@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Player List</h1>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th class="text-center">Demos</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="player in players">
+          <td>
+            <a href="http://steamcommunity.com/profiles/{{player.steamid}}" ng-if="player.avatar"><img ng-src="{{player.avatar}}"/></a>
+            <a href="#/player/{{player.steamid}}">{{player.personaname ? player.personaname : player.name}}</a>
+          </td>
+          <td class="text-center">
+            {{player.demos}}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

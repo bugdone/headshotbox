@@ -1,0 +1,105 @@
+<div class="demoDiv">
+  <h2 class="text-center">
+    {{demoOutcome(theDemo)}}
+    <span ng-class="{green: theDemo.score.score[0] > 15, red: theDemo.score.score[0] < 15}">{{theDemo.score.score[0]}}</span>:<span ng-class="{green: theDemo.score.score[1] > 15, red: theDemo.score.score[1] < 15}">{{theDemo.score.score[1]}}</span>
+    (<span class="red">{{theDemo.score.first_half[0]}}</span>:<span class="blue">{{theDemo.score.first_half[1]}}</span>;
+    <span class="blue">{{theDemo.score.second_half[0]}}</span>:<span class="red">{{theDemo.score.second_half[1]}}</span>)
+  </h2>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <table class="table" ng-if="theDemo">
+          <thead>
+            <tr>
+              <th>Team A</th>
+              <th><a ng-click="orderTeams = '-kills'">Kills</a></th>
+              <th>Assists</th>
+              <th>Deaths</th>
+              <th><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
+              <th><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
+              <th><a ng-click="orderTeams = '-rating'"><abbr title="HLTV Rating">Rating</abbr></a></th>
+            </tr>
+          </thead>
+          <tr ng-repeat="player in theDemo['teams']['2'] | orderBy:orderTeams">
+            <td class="text-left">
+              <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
+                <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
+              </a>
+              <img src="img/vac.png" ng-if="steamAccounts[player.steamid]['NumberOfVACBans'] > 0" width="24"
+                   title="{{steamAccounts[player.steamid]['NumberOfVACBans']}} VAC bans, {{steamAccounts[player.steamid]['DaysSinceLastBan']}} days since last ban"/>
+              <a href="#/player/{{player.steamid}}">{{player.name}}</a>
+            </td>
+            <td>{{player.kills}}</td>
+            <td>{{player.assists}}</td>
+            <td>{{player.deaths}}</td>
+            <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
+            <td>{{player.hs_percent | number:2}}</td>
+            <td>{{player.rating | number:2}}</td>
+          </tr>
+          <thead>
+            <tr>
+              <th>Team B</th>
+              <th><a ng-click="orderTeams = '-kills'">Kills</a></th>
+              <th>Assists</th>
+              <th>Deaths</th>
+              <th><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
+              <th><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
+              <th><a ng-click="orderTeams = '-rating'"><abbr title="HLTV Rating">Rating</abbr></a></th>
+            </tr>
+          </thead>
+          <tr ng-repeat="player in theDemo['teams']['3'] | orderBy:orderTeams">
+            <td class="text-left">
+              <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
+                <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
+              </a>
+              <img src="img/vac.png" ng-if="steamAccounts[player.steamid]['NumberOfVACBans'] > 0" width="24"
+                   title="{{steamAccounts[player.steamid]['NumberOfVACBans']}} VAC bans, {{steamAccounts[player.steamid]['DaysSinceLastBan']}} days since last ban"/>
+              <a href="#/player/{{player.steamid}}">{{player.name}}</a>
+            </td>
+            <td>{{player.kills}}</td>
+            <td>{{player.assists}}</td>
+            <td>{{player.deaths}}</td>
+            <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
+            <td>{{player.hs_percent | number:2}}</td>
+            <td>{{player.rating | number:2}}</td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="col-md-4">
+        <div id="notes-container" class="container">
+          <div class="row">
+            <h2 class="text-center"><small>Demo Notes</small></h2>
+          </div>
+          <div class="row">
+            <div class="well well-sm" ng-bind-html="notesControls.demoNotesView">
+              {{notesControls.demoNotesView}}
+            </div>
+          </div>
+          <form ng-submit="updateDemoNotes2()">
+            <div class="row">
+              <textarea class="form-control notes" ng-model="notesControls.demoNotesInput"></textarea>
+            </div>
+            <div class="row">
+              <button type="button" class="btn btn-default btn-xs"
+                      popover="Strings like 'round 3' and 'tick 1234' will be displayed as links to that particular round / tick."
+                      popover-trigger="mouseenter">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+              </button>
+            </div>
+            <br/>
+            <div class="row text-center">
+              <input type="submit" value="Update" class="btn btn-default"></input>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <h5 class="text-center"><small>{{theDemo.path}}</small></h5>
+    </div>
+    
+  </div>
+</div>

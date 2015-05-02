@@ -1,0 +1,93 @@
+<p/>
+<div ng-app="hsboxApp" ng-controller="RoundSearch">
+  <form ng-submit="search()">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+          <input type="text" ng-model="search_string" class="form-control" size="50">
+        </div>
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-default">Search</button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-default btn-sm" ng-click="roundHelpIsCollapsed = !roundHelpIsCollapsed">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <br/>
+      <div class="row">
+        <div collapse="roundHelpIsCollapsed">
+	  <div class="well well-lg text-left">
+            Rounds can be filtered on:
+            <ul>
+              <li>map name (eg. <em>de_nuke</em>)</li>
+              <li>side (eg. <em>t</em> or <em>ct</em>)</li>
+              <li>clutch situation won (eg. <em>1v2</em>)</li>
+              <li>number of kills (eg. <em>3k</em> - all rounds with at least 3 kills). The time frame of the kills can be specified by adding <em>&lt;Xs</em> at the end where X is the number of seconds (eg. <em>4k<3s</em> - at least 4 kills within 3 seconds)</li>
+              <li>number of kills with a particular weapon (eg. <em>2xak47</em> - at least 2 ak47 kills). See 'Weapon Stats' tab for valid weapon names. Headshot and wallbang flags can be added with 'hs' and 'bang' (eg. <em>3xdeaglehs</em> - at least 3 deagle headshot kills).</li>
+            </ul>
+            Example: to search for rounds on map de_nuke ct side with at least 3 ak47 kills (with at least one of those 3 being a wallbang headshot) and at least 1 deagle headshot
+            <br/>
+            <em>de_nuke ct deaglehs 3xak47 ak47hsbang</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <p/>
+  <div class="row" ng-if="rounds">
+    <h5 class="text-center">{{ rounds.length == 100 ? "100+ rounds found" : rounds.length + " rounds found" }}</h5>
+  </div>
+  <div class="row" ng-if="rounds.length == 0">
+    <h5 class="text-center">No rounds found</h5>
+  </div>
+  <div>
+    <table class="table table-hover" ng-if="rounds">
+      <thead>
+        <tr>
+          <th class="text-left"><a ng-click="setOrder('timestamp')">Date</a></th>
+          <th class="text-left">Map</th>
+          <th class="text-center">Side</th>
+          <th class="text-center"><a ng-click="setOrder('round')">Round</a></th>
+          <th class="text-center">Kills</th>
+          <th class="text-center">Won?</th>
+          <th class="text-center">Watch</th>
+          <th class="text-center">Demo</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="round in rounds | orderBy:orderRounds">
+        <tr>
+          <td class="text-left">{{round.timestamp * 1000 | mydate}}</td>
+          <td class="text-left">{{round.map}}</td>
+          <td class="text-center" ng-class="{blue: round.side == 'CT', red: round.side == 'T'}">{{round.side}}</td>
+          <td class="text-center">{{round.round}}</td>
+          <td class="text-left">
+            <div container="col-md-1" ng-repeat="kill in round.kills">
+              {{kill.kills + "x"}}
+              <img src="img/weapons/icon-{{kill.weapon}}_grey.png" height="20"/>
+              <img ng-if="kill.penetrated" src="img/weapons/icon-penetrate_grey.png" height="20"/>
+              <img ng-if="kill.headshot" src="img/weapons/icon-headshot_grey.png" height="20"/>
+            </div>
+          </td>
+          <td class="text-center" ng-class="{green: round.won, red: !round.won}">{{round.won_str}}</td>
+          <td class="text-right">
+            <a class="btn btn-default btn-xs" href='{{watchDemoUrl(round.path, steamid, round.tick)}}'>Watch Round</a>
+          </td>
+          <td ng-click="makeVisible(round.demoid, round.round)" class="clickable text-center">
+            <i class="pull-right glyphicon"
+               ng-class="{'glyphicon-chevron-down': isVisible(round.demoid, round.round), 'glyphicon-chevron-right': !isVisible(round.demoid, round.round)}"/>
+          </td>
+        </tr>
+        <tr ng-if="isVisible(round.demoid, round.round)">
+          <td colspan="9">
+            <div ng-include src="'templates/demo.html'"></div>
+          </td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+</div>

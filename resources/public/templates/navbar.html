@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default" ng-app="hsboxApp" ng-controller="Navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="img/hsbox.png" width=32>
+        HeadshotBox
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: $scope.active == 'player_list'}"><a href="#/player_list" ng-click="$scope.active = 'player_list'">Player List<span class="sr-only">(current)</span></a></li>
+        <li ng-class="{active: $scope.active == 'settings'}"><a href="#/settings" ng-click="$scope.active = 'settings'">Settings</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-if="newVersionAvailable">
+          <h5><span class="label label-default">New version available!</span></h5>
+        </li>
+        <li>
+          <a class="navbar-brand" href="https://headshotbox.github.io">
+            <img alt="Brand" src="img/GitHub-Mark-32px.png" width=32>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
