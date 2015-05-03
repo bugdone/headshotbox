@@ -1,6 +1,5 @@
 <div class="container">
-  <h1>{{player.personaname ? player.personaname : player.name}}</h1>
-  <div class="avatar"><img ng-src="{{player.avatarfull}}"></div>
+  <div class="name"><img class="avatar" ng-src="{{player.avatarfull}}" width=64>{{player.personaname ? player.personaname : player.name}}</div>
 
   <div id="stats-tables" class="center-block">
     <table class="table">

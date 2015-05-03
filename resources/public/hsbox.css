@@ -8,6 +8,11 @@ h1 {
     text-align: center;
 }
 
+.name {
+    font-size: 200%;
+    text-align: center;
+}
+
 .container {
     max-width: 1000px;
 }

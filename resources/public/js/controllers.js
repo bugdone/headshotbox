@@ -153,7 +153,7 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
         else
            $scope.orderRounds = field;
     }
-    $scope.orderRounds = '-date';
+    $scope.orderRounds = '-timestamp';
     $scope.watchDemoUrl = watchDemoUrl;
     $scope.roundHelpIsCollapsed = true;
     steamid = $routeParams.steamid;
@@ -162,6 +162,8 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
         $http.get(serverUrl + '/round/search', { params: {'search-string': steamid + ' ' + $scope.search_string} }).success(function(data) {
             $scope.rounds = data;
             $scope.rounds.forEach(function (r) {
+                if (!r.timestamp)
+                    r.timestamp = 0;
                 if (r.won)
                     r.won_str = "Yes";
                 else
