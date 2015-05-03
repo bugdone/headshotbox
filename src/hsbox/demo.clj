@@ -84,7 +84,9 @@
   (info "Processing" path)
   (let [demo-data (parse-demo path)
         ; Parse MM dem.info file if available (for demo timestamp)
-        scoreboard (parse-mm-info-file path)
+        scoreboard (try
+                     (parse-mm-info-file path)
+                     (catch Exception e {}))
         rounds (process-events (:events demo-data))
         score (compute-score rounds)]
     (if (not= 10 (count (:players demo-data)))
