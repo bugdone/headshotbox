@@ -78,7 +78,7 @@
         <table id="demos" class="table">
           <thead>
             <tr>
-              <th class="text-left"><a ng-click="orderDemos = '-timestamp'">Date</a></th>
+              <th class="text-left"><a ng-click="orderDemos = (orderDemos  == '-timestamp' ? 'timestamp' : '-timestamp')">Date</a></th>
               <th class="text-left">Map</th>
               <th class="text-center">Score</th>
               <th class="text-center"><a ng-click="orderDemos = '-kills'">Kills</a></th>
