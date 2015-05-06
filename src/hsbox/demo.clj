@@ -94,4 +94,4 @@
     (merge {:rounds (filter #(not (:fake %)) rounds)
             :score score}
            (select-keys demo-data [:map :players :tickrate])
-           {:timestamp (:matchtime scoreboard)})))
+           {:timestamp (get scoreboard :matchtime (/ (.lastModified (as-file path)) 1000))})))
