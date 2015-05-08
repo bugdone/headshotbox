@@ -68,7 +68,7 @@
           <td class="text-left">
             <div container="col-md-1" ng-repeat="kill in round.kills">
               {{kill.kills + "x"}}
-              <img src="img/weapons/icon-{{kill.weapon}}_grey.png" height="20"/>
+              <img ng-src="img/weapons/icon-{{kill.weapon}}_grey.png" height="20"/>
               <img ng-if="kill.penetrated" src="img/weapons/icon-penetrate_grey.png" height="20"/>
               <img ng-if="kill.headshot" src="img/weapons/icon-headshot_grey.png" height="20"/>
             </div>

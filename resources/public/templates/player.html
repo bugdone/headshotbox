@@ -133,7 +133,7 @@
             </tr>
           </thead>
           <tr ng-repeat="weapon in stats.weapons | orderBy:orderWeapons">
-            <td style="text-align: left"><img src="img/weapons/icon-{{weapon.name}}_grey.png" ng-if="weapon.name" height="20"/></td>
+            <td style="text-align: left"><img ng-src="img/weapons/icon-{{weapon.name}}_grey.png" ng-if="weapon.name" height="20"/></td>
             <td style="text-align: left">{{weapon.name}}</td>
             <td>{{weapon.kills}}</td>
             <td>{{weapon.hs}}</td>
