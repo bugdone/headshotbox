@@ -89,8 +89,6 @@
                      (catch Exception e {}))
         rounds (process-events (:events demo-data))
         score (compute-score rounds)]
-    (if (not= 10 (count (:players demo-data)))
-      (throw (Exception. (str "!= 10 players in demo:" (count (:players demo-data))))))
     (merge {:rounds (filter #(not (:fake %)) rounds)
             :score score}
            (select-keys demo-data [:map :players :tickrate])
