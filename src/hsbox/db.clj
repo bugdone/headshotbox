@@ -16,6 +16,7 @@
                       (File. xdg)
                       (File. (System/getProperty "user.home") ".config"))
         app-config (File. config-home "headshotbox")]
+    (.mkdir config-home)
     (.mkdir app-config)
     app-config))
 
