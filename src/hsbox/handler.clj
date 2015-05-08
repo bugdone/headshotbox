@@ -31,12 +31,14 @@
        (response (stats/search-rounds search-string)))
   (GET "/steamids/info" [steamids]
        (response
-         (let [steamids-list (clojure.string/split steamids #",")]
-           (if (clojure.string/blank? (db/get-steam-api-key))
-             (->>
+        (if (empty? steamids)
+          {}
+          (let [steamids-list (clojure.string/split steamids #",")]
+            (if (clojure.string/blank? (db/get-steam-api-key))
+              (->>
                (map #(Long/parseLong %) steamids-list)
                (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {}))
-             (steamapi/get-steamids-info steamids-list)))))
+              (steamapi/get-steamids-info steamids-list))))))
   (GET "/indexer" []
        (response {:running (indexer/is-running?)}))
   (POST "/indexer" {state :body}
