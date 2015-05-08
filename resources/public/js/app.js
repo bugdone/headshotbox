@@ -45,10 +45,10 @@ hsboxApp.filter('mydate', function () {
         if (!date)
             return '';
         d = new Date(date);
-        if (d.getFullYear() == (new Date()).getFullYear())
-            return d.toLocaleString(undefined, {day: 'numeric', month: 'short', hour: "2-digit", minute: "2-digit"});
-        else
-            return d.toLocaleString(undefined, {day: 'numeric', month: 'short', year: 'numeric', hour: "2-digit", minute: "2-digit"});
+        format = {day: 'numeric', month: 'short', hour: "2-digit", minute: "2-digit", hour12: false};
+        if (d.getFullYear() != (new Date()).getFullYear())
+            format.year = 'numeric';
+        return d.toLocaleString(undefined, format);
     };
 });
 
