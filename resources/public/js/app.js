@@ -44,11 +44,11 @@ hsboxApp.filter('mydate', function () {
     return function (date) {
         if (!date)
             return '';
-        d = new Date(date)
+        d = new Date(date);
         if (d.getFullYear() == (new Date()).getFullYear())
-            return d.toLocaleFormat('%d %b, %H:%M');
+            return d.toLocaleString(undefined, {day: 'numeric', month: 'short', hour: "2-digit", minute: "2-digit"});
         else
-            return d.toLocaleFormat('%d %b %Y, %H:%M');
+            return d.toLocaleString(undefined, {day: 'numeric', month: 'short', year: 'numeric', hour: "2-digit", minute: "2-digit"});
     };
 });
 
