@@ -54,6 +54,6 @@ hsboxApp.filter('mydate', function () {
 
 function watchDemoUrl(path, steamid, tick, highlight) {
     return 'steam://rungame/730/' + steamid + '/+playdemo "' +
-        path + (tick ? '@' + tick : '') + '" ' +
+        encodeURI(path) + (tick ? '@' + tick : '') + '" ' +
         (highlight ? steamid : '');
 }
