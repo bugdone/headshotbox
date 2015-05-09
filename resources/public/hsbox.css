@@ -32,14 +32,14 @@ tr th{
   text-align: center;
   margin: 0 auto;
   color: #fff;
-  background: rgba(75, 96, 119, 0.29);
+  background: rgba(0, 0, 0, 0.29);
   border-radius: 6px;
   margin-bottom: 20px;
   border: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 .panel-default{
-  background-color: rgba(75, 96, 119, 0.29)!important;
+  background-color: rgba(0, 0, 0, 0.29)!important;
   border-color: rgba(255, 255, 255, 0.13)!important;
 }
 .panel .table{
@@ -99,7 +99,7 @@ tr th{
   color:#fff;
 }
 #stats-tables{
-  background: rgba(75, 96, 119, 0.29);
+  background: rgba(0, 0, 0, 0.29);
   margin-bottom: 15px;
   border-radius: 6px;
   color: #FFFAFA;
@@ -111,10 +111,10 @@ tr th{
   width: 25%;
   display: block;
   float: left;
-  background: rgba(22, 28, 33, 0.7);
+  background: rgba(46, 55, 62, 0.6);
   padding: 10px;
   height: 230px;
-  border: 1px solid rgba(75, 96, 119, 0.29);
+  border: 1px solid rgba(0, 0, 0, 0.29);
 }
 .player-stats:first-of-type{
   border-top-left-radius: 6px;
@@ -137,7 +137,7 @@ tr th{
 }
 .tab-content{
   border: 1px solid rgba(255, 255, 255, 0.13);
-  background: rgba(75, 96, 119, 0.29);
+  background: rgba(0, 0, 0, 0.29);
   border-radius: 6px;
   margin-top:20px;
 }
@@ -149,10 +149,14 @@ tr th{
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
   color: #fff !important;
-  background-color: rgba(75, 96, 119, 0.29)!important;
+  background-color: rgba(0, 0, 0, 0.29)!important;
   border: 1px solid rgba(255, 255, 255, 0.13)!important;
 }
-
+.nav-tabs>li>a:hover {
+  border-color: #333;
+  background: rgba(0, 0, 0, 0.29);
+  color: #fff;
+}
 #demos {
     display: table;
     width: 900px;
@@ -162,12 +166,12 @@ tr th{
 
 .demo-winner{
   background: rgba(22, 28, 33, 0.7);
-  border: 1px solid rgba(75, 96, 119, 0.29);
+  border: 1px solid rgba(0, 0, 0, 0.29);
   padding: 10px;
 }
 .table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th{
   background: rgba(22, 28, 33, 0.7);
-  border: 1px solid rgba(75, 96, 119, 0.29);
+  border: 1px solid rgba(0, 0, 0, 0.29);
   color: #fff;w
 }
 div.demoDiv {
@@ -222,12 +226,12 @@ a {
   margin: 0;
   margin-bottom: 10px;
   background:rgba(22, 28, 33, 0.7);
-  border-color: rgba(75, 96, 119, 0.29);
+  border-color: rgba(0, 0, 0, 0.29);
   color: #fff;
 }
 #notes-container .form-control{
   background:rgba(22, 28, 33, 0.7) !important;
-  border-color: rgba(75, 96, 119, 0.29) !important;
+  border-color: rgba(0, 0, 0, 0.29) !important;
 }
 
 #notes-container .row {
