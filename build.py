@@ -1,3 +1,5 @@
+# environment paths demoinfogo_bin__linux and demoinfogo_bin_win
+# should point to directories where the demoinfogo binaries are
 import os
 import os.path
 import shutil
@@ -11,7 +13,7 @@ version = jar.split('-')[1]
 for os_name in ['linux', 'win']:
     dir_name = 'headshotbox-%s-%s' % (version, os_name)
     path = dir_name + '/' + dir_name
-    demoinfogo = os.environ['headshotbox_' + os_name]
+    demoinfogo = os.environ['demoinfogo_bin_' + os_name]
     if os.path.exists(dir_name):
         shutil.rmtree(dir_name)
     os.mkdir(dir_name)
