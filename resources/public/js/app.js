@@ -44,16 +44,16 @@ hsboxApp.filter('mydate', function () {
     return function (date) {
         if (!date)
             return '';
-        d = new Date(date)
-        if (d.getFullYear() == (new Date()).getFullYear())
-            return d.toLocaleFormat('%d %b, %H:%M');
-        else
-            return d.toLocaleFormat('%d %b %Y, %H:%M');
+        d = new Date(date);
+        format = {day: 'numeric', month: 'short', hour: "2-digit", minute: "2-digit", hour12: false};
+        if (d.getFullYear() != (new Date()).getFullYear())
+            format.year = 'numeric';
+        return d.toLocaleString(undefined, format);
     };
 });
 
 function watchDemoUrl(path, steamid, tick, highlight) {
     return 'steam://rungame/730/' + steamid + '/+playdemo "' +
-        path + (tick ? '@' + tick : '') + '" ' +
+        encodeURI(path) + (tick ? '@' + tick : '') + '" ' +
         (highlight ? steamid : '');
 }

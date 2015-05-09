@@ -3,6 +3,8 @@
             [hsbox.db :as db :refer [demo-path get-steam-api-key]]
             [hsbox.steamapi :refer [get-steamids-info]]))
 
+(taoensso.timbre/refer-timbre)
+
 (def demos {})
 (def player-demos {})
 
@@ -56,7 +58,7 @@
 (def weapon-names ["mag7" "mp9" "inferno" "elite" "g3sg1" "negev" "fiveseven" "hkp2000" "m4a1" "galil" "xm1014"
                    "ssg08" "nova" "flashbang" "ak47" "m4a4" "tec9" "decoy" "hegrenade" "taser" "famas" "ump45"
                    "mp7" "worldspawn" "cz75a" "glock" "sg556" "mac10" "sawedoff" "p90" "usp" "p250" "scar20"
-                   "deagle" "awp" "aug" "world" "m249" "bizon" "knife"])
+                   "deagle" "awp" "aug" "world" "m249" "bizon" "knife" "smokegrenade"])
 
 (defn add-hltv-rating [stats]
   "Compute HLTV rating"
@@ -111,17 +113,21 @@
 
 (defn build-clutch-round-fn [enemies exact-enemies? won?]
   (fn [round steamid demo]
-    (let [players (:players demo)
-          deaths (filter #(<= (:tick %) (:tick_end round)) (:deaths round))
-          player-team (team-number steamid (:number round) players)
-          player-death (split-with #(not= (:victim %) steamid) deaths)
-          same-team (fn [death] (= player-team (team-number (:victim death) (:number round) players)))
-          not-same-team (comp not same-team)
-          last-teammate-death (split-with not-same-team
-                                          (reverse (first player-death)))
-          dead-teammates (count (filter same-team (second last-teammate-death)))
-          alive-enemies (- 5 (count (filter not-same-team (second last-teammate-death))))]
-      (and ((if exact-enemies? = >=) alive-enemies enemies) (= 4 dead-teammates) (if won? (= (:winner round) player-team) true)))))
+    (if (nil? (:tick_end round))
+      (do
+        (debug "No tick_end for round" (:number round) "in demo" (:demoid demo))
+        false)
+      (let [players (:players demo)
+           deaths (filter #(<= (:tick %) (:tick_end round)) (:deaths round))
+           player-team (team-number steamid (:number round) players)
+           player-death (split-with #(not= (:victim %) steamid) deaths)
+           same-team (fn [death] (= player-team (team-number (:victim death) (:number round) players)))
+           not-same-team (comp not same-team)
+           last-teammate-death (split-with not-same-team
+                                           (reverse (first player-death)))
+           dead-teammates (count (filter same-team (second last-teammate-death)))
+           alive-enemies (- 5 (count (filter not-same-team (second last-teammate-death))))]
+       (and ((if exact-enemies? = >=) alive-enemies enemies) (= 4 dead-teammates) (if won? (= (:winner round) player-team) true))))))
 
 (defn update-stats-with-round [stats round]
   (let [updated-stats (reduce update-stats-with-death (assoc stats :kills-this-round 0) (:deaths round))

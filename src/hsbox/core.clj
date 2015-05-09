@@ -7,6 +7,7 @@
             [ring.adapter.jetty]
             [taoensso.timbre :as timbre])
   (:import (java.io File))
+  (:import (java.net BindException))
   (:gen-class))
 
 (timbre/set-config! [:appenders :spit :enabled?] true)
@@ -32,4 +33,7 @@
       (stats/init-cache)
       (indexer/add-demo-directory (db/get-demo-directory))
     (indexer/run))
+    (catch BindException e (do
+                             (error e)
+                             (System/exit 1)))
     (catch Exception e (error e))))

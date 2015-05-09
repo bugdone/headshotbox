@@ -4,7 +4,7 @@
             [hsbox.stats :as stats]
             [clojure.java.io :refer [as-file]]
             [hsbox.mynotify :as notify :refer [ENTRY_CREATE ENTRY_MODIFY ENTRY_DELETE]]
-            [hsbox.util :refer [current-timestamp]]
+            [hsbox.util :refer [current-timestamp path-exists?]]
             [taoensso.timbre :as timbre]))
 
 (timbre/refer-timbre)
@@ -28,11 +28,14 @@
       (del-demo path))))
 
 (defn set-indexed-path [path]
-  (do
-    (if (not (nil? @current-indexed-path))
-      (notify/unregister @current-indexed-path))
-    (reset! current-indexed-path path)
-    (notify/register path handle-event)))
+  (if (not (path-exists? path))
+    (warn "Invalid path" path)
+    (try
+      (if (not (nil? @current-indexed-path))
+        (notify/unregister @current-indexed-path))
+      (reset! current-indexed-path path)
+      (notify/register path handle-event)
+      (catch Exception e (error e)))))
 
 (defn set-indexing-state [state]
   (reset! indexing-running? state))
