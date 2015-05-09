@@ -10,7 +10,10 @@
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.json :refer [wrap-json-body
                                           wrap-json-response]]
-            [ring.util.response :refer [response redirect]]))
+            [ring.util.response :refer [response redirect]]
+            [taoensso.timbre :as timbre]))
+
+(timbre/refer-timbre)
 
 (defroutes api-routes
   (GET "/player/:steamid/stats" [steamid]
@@ -69,6 +72,14 @@
   (route/resources "/")
   (route/not-found "Not Found"))
 
+(defn wrap-exception [f]
+  (fn [request]
+    (try (f request)
+         (catch Exception e
+           (error e)
+           (throw e)))))
+
 (def app
   (-> app-routes
+      wrap-exception
       handler/site))
