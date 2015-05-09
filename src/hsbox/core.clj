@@ -36,4 +36,4 @@
     (catch BindException e (do
                              (error e)
                              (System/exit 1)))
-    (catch Exception e (error e))))
+    (catch Throwable e (error e))))
