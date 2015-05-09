@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="panel panel-default panel-center">
         <div class="panel-heading">
           Settings
@@ -24,16 +24,16 @@
               </span>
             </div>
             <div collapse="demoDirectoryCollapsed">
-	      <div class="well well-lg text-left">
-                HeadshotBox indexes demos present in this directory.
-                <p/>
-                If you download demos from the Watch tab in-game (or with certain other third party software),
-                for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
-                This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
-                If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
-                Otherwise, the date of the demo file is used.
-                <p/>
-                <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted. If you change the demo directory path <b>all</b> notes will be deleted.
+	             <div class="well well-lg text-left">
+                  HeadshotBox indexes demos present in this directory.
+                  <p/>
+                  If you download demos from the Watch tab in-game (or with certain other third party software),
+                  for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
+                  This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
+                  If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
+                  Otherwise, the date of the demo file is used.
+                  <p/>
+                  <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted. If you change the demo directory path <b>all</b> notes will be deleted.
               </div>
             </div>
 
@@ -43,6 +43,11 @@
               <span class="input-group-addon" id="steam-api-help">
                 <button type="button" class="btn btn-default btn-xs glyphicon glyphicon-question-sign" ng-click="steamApiCollapsed = !steamApiCollapsed"><div/></button>
               </span>
+            </div>
+            <div class="input-group">
+              <p>Select Theme</p>
+              <a href="javascript:;" onclick="setActiveStyleSheet('dark'); return false;">Select Dark theme</a></br>
+              <a href="javascript:;" onclick="setActiveStyleSheet('light'); return false;">Select Light theme</a>
             </div>
             <div collapse="steamApiCollapsed">
 	      <div class="well well-lg text-left">

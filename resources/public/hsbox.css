@@ -79,6 +79,12 @@ tr th{
   border-right: 1px solid rgb(35,39,43);
 }
 
+.panel-default>.panel-heading{
+  color: #fff;
+  border-bottom: #333;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0%,#1a222a), color-stop(50%,#404850), color-stop(100%,#182128));
+}
+
 #stats-tables, #tabs {
     text-align: center;
 }
@@ -241,7 +247,11 @@ a {
 .input-group {
     padding: 10px;
 }
-
+.input-group-addon{
+  background-color: #182128;
+  border: 1px solid #182128;
+  color:#fff;
+}
 .table .table{
   background-color: rgba(22, 28, 33, 0.7) !important;
   color: #fff !important;

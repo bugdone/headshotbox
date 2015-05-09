@@ -1,0 +1,89 @@
+h1 {
+    margin: 20px;
+    text-align: center;
+}
+
+.avatar {
+    margin: 20px;
+    text-align: center;
+}
+
+.name {
+    font-size: 200%;
+    text-align: center;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+#stats-tables, #tabs {
+    text-align: center;
+}
+#stats-tables .table, #weapon-stats {
+    width: auto;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+}
+
+#demos {
+    display: table;
+    width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+div.demoDiv {
+    text-align: left;
+    width: 884px;
+    display: inline-block;
+}
+
+a {
+    cursor: pointer;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.player-list li {
+    font-size: 120%;
+    padding: 4px;
+    list-style-type: none;
+}
+
+.red { color: red; }
+.green { color: green; }
+.blue { color: blue; }
+.won_background { background-color: #F1FFEF; cursor: pointer; }
+.lost_background { background-color: #FFF1EF; cursor: pointer; }
+.tied_background { background-color: #F0F0F0; cursor: pointer; }
+
+.score {
+    display: inline-block;
+    width: 2em;
+}
+
+.notes {
+    display: inline-block;
+    text-align: left;
+    height: 12em !important;
+    padding: 5px;
+}
+
+.well {
+    background-image: none;
+    background-color: none;
+    box-shadow: none;
+    word-wrap: break-word;
+}
+
+#notes-container .row {
+    width: 15em;
+}
+
+.input-group {
+    padding: 10px;
+}
