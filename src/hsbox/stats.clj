@@ -34,10 +34,12 @@
   (get-player-name-in-demo steamid (first (sorted-demos-for-steamid steamid))))
 
 (defn add-demo [demo]
-  ; TODO use atom
-  (def hsbox.stats/demos (assoc demos (:demoid demo) demo))
-  (doseq [steamid (keys (:players demo))]
-    (def hsbox.stats/player-demos (assoc-in player-demos [steamid (:demoid demo)] demo))))
+  (if (not (or (empty? (:rounds demo)) (empty? (:players demo))))
+    (do
+      ; TODO use atom
+      (def hsbox.stats/demos (assoc demos (:demoid demo) demo))
+      (doseq [steamid (keys (:players demo))]
+        (def hsbox.stats/player-demos (assoc-in player-demos [steamid (:demoid demo)] demo))))))
 
 (defn del-demo [demoid]
   (let [demo (get demos demoid)]
