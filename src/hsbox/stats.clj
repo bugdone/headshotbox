@@ -39,7 +39,8 @@
       ; TODO use atom
       (def hsbox.stats/demos (assoc demos (:demoid demo) demo))
       (doseq [steamid (keys (:players demo))]
-        (def hsbox.stats/player-demos (assoc-in player-demos [steamid (:demoid demo)] demo))))))
+        (def hsbox.stats/player-demos (assoc-in player-demos [steamid (:demoid demo)] demo))))
+    (warn "Demo" (:demoid demo) "has" (count (:rounds demo)) "rounds and" (count (:players demo)) "players")))
 
 (defn del-demo [demoid]
   (let [demo (get demos demoid)]
