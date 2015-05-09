@@ -16,6 +16,46 @@ h1 {
 .container {
     max-width: 1000px;
 }
+#stats-tables{
+  background: rgba(169, 164, 164, 0.29);
+  margin-bottom: 15px;
+  border-radius: 6px;
+  color: #FFFAFA;
+  padding: 22px;
+  height: 270px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+.player-stats{
+  width: 25%;
+  display: block;
+  float: left;
+  padding: 10px;
+  height: 230px;
+  background: #D3D3D3;
+  padding: 20px;
+}
+.player-stats:first-of-type{
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.player-stats:last-of-type{
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.player-stats p{
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
+  color: #333;
+}
+.player-stats span{
+  border-radius: 4px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: #333;
+  color: #fff;
+}
 
 #stats-tables, #tabs {
     text-align: center;
