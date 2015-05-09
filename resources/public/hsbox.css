@@ -77,6 +77,7 @@ tr th{
   padding-top: 20px !important;
   border-left: 1px solid rgb(35,39,43);
   border-right: 1px solid rgb(35,39,43);
+  transition: all 0.3s ease;
 }
 
 .panel-default>.panel-heading{
@@ -152,6 +153,7 @@ tr th{
 .nav-tabs>li>a{
   padding: 5px 15px !important;
   border-radius: 6px !important;
+  transition: all 0.3s ease;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
   color: #fff !important;
@@ -203,7 +205,7 @@ a {
 .red { color: red; }
 .green { color: green; }
 .blue { color: blue; }
-.won_background { background-color: rgba(22, 28, 33, 0.7); color: #fff; cursor: pointer; }
+.won_background { rgba(46, 55, 62, 0.83); color: #fff; cursor: pointer; }
 .lost_background { background-color: transparent; color:#fff; cursor: pointer; }
 .tied_background { background-color: #F0F0F0; cursor: pointer; }
 
@@ -263,4 +265,11 @@ a {
   float: left;
   padding: 7px;
   border-radius: 4px;
+}
+
+
+.form-control{
+  color: #FFF;
+  background-color: rgba(46, 55, 62, 0.6);
+  border: 1px solid rgba(236, 236, 236, 0.52);
 }
