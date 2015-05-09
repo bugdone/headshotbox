@@ -53,7 +53,7 @@
               <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
                 <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
               </a>
-              <img src="img/vac.png" ng-if="steamAccounts[player.steamid]['NumberOfVACBans'] > 0" width="24"
+              <img class="demo-avatar" src="img/vac.png" ng-if="steamAccounts[player.steamid]['NumberOfVACBans'] > 0" width="24"
                    title="{{steamAccounts[player.steamid]['NumberOfVACBans']}} VAC bans, {{steamAccounts[player.steamid]['DaysSinceLastBan']}} days since last ban"/>
               <a href="#/player/{{player.steamid}}">{{player.name}}</a>
             </td>
@@ -66,7 +66,7 @@
           </tr>
         </table>
       </div>
-      
+
       <div class="col-md-4">
         <div id="notes-container">
           <div class="row">
@@ -96,10 +96,10 @@
         </div>
       </div>
     </div>
-    
+
     <div class="row">
-      <h5 class="text-center"><small>{{theDemo.path}}</small></h5>
+      <h5 class="file-path"><small>{{theDemo.path}}</small></h5>
     </div>
-    
+
   </div>
 </div>

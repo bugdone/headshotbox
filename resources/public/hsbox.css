@@ -1,30 +1,146 @@
+body{
+  background: url('img/bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 h1 {
     margin: 20px;
     text-align: center;
 }
 
+h1,h2,h3,h4,h5,h6{color:#fff;}
+
 .avatar {
     margin: 20px;
     text-align: center;
+    border-radius: 25%;
+}
+.demo-avatar{
+  border-radius: 25%;
+  margin-right: 10px;
+}
+
+tr th{
+  color:#fff;
 }
 
 .name {
-    font-size: 200%;
-    text-align: center;
+  font-size: 200%;
+  text-align: center;
+  margin: 0 auto;
+  color: #fff;
+  background: rgba(75, 96, 119, 0.61);
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.panel-default{
+  background-color: rgba(75, 96, 119, 0.61)!important;
+  border-color: rgba(255, 255, 255, 0.13)!important;
+}
+.panel .table{
+  color: #fff;
+}
+.panel a{
+  color: rgb(6, 195, 6);
 }
 
 .container {
     max-width: 1000px;
 }
-
+.navbar-default{
+  background-image: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0px !important;
+  background-repeat: none !important;
+  border: none !important;
+}
+.navbar-brand, .navbar-nav>li>a{
+  text-shadow: none !important;
+  color: #FFF !important;
+  padding-top: 20px !important;
+}
+.navbar-default .navbar-nav>.active>a{
+  color: #333 !important;
+}
 #stats-tables, #tabs {
     text-align: center;
 }
 #stats-tables .table, #weapon-stats {
-    width: auto;
-    display: inline-block;
-    text-align: right;
-    vertical-align: top;
+  width: 20%;
+  display: inline-block;
+  text-align: right;
+  vertical-align: middle;
+}
+#weapon-stats{
+  width: 33%;
+  color: #fff;
+}
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th{
+  color:#333;
+}
+.table-hover>tbody>tr>td,.table-hover>tbody>tr>th{
+  color:#fff;
+}
+#stats-tables{
+  background: rgba(75, 96, 119, 0.61);
+  margin-bottom: 15px;
+  border-radius: 6px;
+  color: #FFFAFA;
+  padding: 22px;
+  height: 270px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+.player-stats{
+  width: 25%;
+  display: block;
+  float: left;
+  background: rgba(22, 28, 33, 0.7);
+  padding: 10px;
+  height: 230px;
+  border: 1px solid rgba(75, 96, 119, 0.73);
+}
+.player-stats:first-of-type{
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.player-stats:last-of-type{
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.player-stats p{
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
+}
+.player-stats span{
+  border-radius: 22px;
+  background: rgba(75, 96, 119, 0.61);
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+.tab-content{
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(75, 96, 119, 0.61);
+  border-radius: 6px;
+  margin-top:20px;
+}
+.nav-tabs{border: none !important;}
+
+.nav-tabs>li>a{
+  padding: 5px 15px !important;
+  border-radius: 6px !important;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
+  color: #fff !important;
+  background-color: rgba(75, 96, 119, 0.61)!important;
+  border: 1px solid rgba(255, 255, 255, 0.13)!important;
 }
 
 #demos {
@@ -57,8 +173,8 @@ a {
 .red { color: red; }
 .green { color: green; }
 .blue { color: blue; }
-.won_background { background-color: #F1FFEF; cursor: pointer; }
-.lost_background { background-color: #FFF1EF; cursor: pointer; }
+.won_background { background-color: rgba(22, 28, 33, 0.7); color: #fff; cursor: pointer; }
+.lost_background { background-color: transparent; color:#fff; cursor: pointer; }
 .tied_background { background-color: #F0F0F0; cursor: pointer; }
 
 .score {
@@ -78,6 +194,20 @@ a {
     background-color: none;
     box-shadow: none;
     word-wrap: break-word;
+    width: 90%;
+    margin-left: 36px;
+}
+#notes-container .well{
+  width:inherit;
+  margin: 0;
+  margin-bottom: 10px;
+  background:rgba(22, 28, 33, 0.7);
+  border-color: rgba(75, 96, 119, 0.73);
+  color: #fff;
+}
+#notes-container .form-control{
+  background:rgba(22, 28, 33, 0.7) !important;
+  border-color: rgba(75, 96, 119, 0.73) !important;
 }
 
 #notes-container .row {
@@ -86,4 +216,17 @@ a {
 
 .input-group {
     padding: 10px;
+}
+
+.table .table{
+  background-color: rgba(22, 28, 33, 0.7) !important;
+  color: #fff !important;
+}
+.file-path{
+  text-align: left;
+  background: rgba(22, 28, 33, 0.7);
+  width: 890px;
+  float: left;
+  padding: 7px;
+  border-radius: 4px;
 }
