@@ -273,6 +273,16 @@ a {
   background-color: rgba(46, 55, 62, 0.6);
   border: 1px solid rgba(236, 236, 236, 0.52);
 }
+.steam-api-link{
+  color:#428bca !important;
+}
+#theme-select {
+  margin: 0 auto;
+  text-align: center;
+}
+#theme-select p{
+  color: #fff;
+}
 
 .search-box input{
   width: 87%;
@@ -292,4 +302,12 @@ a {
   padding: 6px 10px;
   text-shadow: none;
 }
+#demo-dir-help button,
+#steam-api-help button{
+  margin-right: 0px;
+  padding: 4px 5px;
+}
 #searchround{float:right;}
+.github-link{
+  font-size: 24px;
+}
