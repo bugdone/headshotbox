@@ -137,9 +137,11 @@ a {
   text-align: center;
 }
 #theme-select p{
-  color: #fff;
+  color: #333;
 }
-
+.input-group {
+  padding: 10px;
+}
 .search-box input{
   width: 87%;
   float: left;
@@ -154,13 +156,17 @@ a {
   margin-right: 29px;
   border-radius: 69%;
   background: rgba(0, 0, 0, 0);
-  color: #fff;
+  color: #333;
   padding: 6px 10px;
   text-shadow: none;
 }
 #demo-dir-help button,
 #steam-api-help button{
   margin-right: 0px;
-  padding: 4px 5px;
+  padding: 3px 4px;
 }
 #searchround{float:right;}
+
+.github-link{
+  font-size: 24px;
+}
