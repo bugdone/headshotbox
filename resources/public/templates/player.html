@@ -91,7 +91,7 @@
           </thead>
           <tbody ng-repeat="demo in demos | orderBy:orderDemos">
             <tr ng-class="{won_background: demo.outcome == 'won', lost_background: demo.outcome == 'lost', tied_background: demo.outcome == 'tied'}" data-ng-click="makeVisible(demo.demoid)">
-              <td class="text-left">{{demo.timestamp * 1000 | mydate}}</td>
+              <td class="text-left">{{demo.date}}</td>
               <td class="text-left">{{demo.map}}</td>
               <td class="text-center">
                 <span class="score text-right">
@@ -120,7 +120,7 @@
           </tbody>
         </table>
       </tab>
-  
+
       <tab heading="Weapon Stats">
         <table id="weapon-stats" class="table table-hover">
           <thead>
@@ -141,11 +141,11 @@
           </tr>
         </table>
       </tab>
-      
+
       <tab heading="Search Round">
-        <div ng-include src="'templates/search_round.html'"></div>        
+        <div ng-include src="'templates/search_round.html'"></div>
       </tab>
-      
+
     </tabset>
   </div>
 </div>

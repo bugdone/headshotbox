@@ -61,7 +61,7 @@
       </thead>
       <tbody ng-repeat="round in rounds | orderBy:orderRounds">
         <tr>
-          <td class="text-left">{{round.timestamp * 1000 | mydate}}</td>
+          <td class="text-left">{{round.date}}</td>
           <td class="text-left">{{round.map}}</td>
           <td class="text-center" ng-class="{blue: round.side == 'CT', red: round.side == 'T'}">{{round.side}}</td>
           <td class="text-center">{{round.round}}</td>

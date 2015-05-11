@@ -14,6 +14,16 @@ function demoOutcome(demoStats) {
     return outcome + '! ';
 }
 
+function timestamp2date(timestamp) {
+    if (!timestamp)
+        return '';
+    d = new Date(timestamp * 1000);
+    format = {day: 'numeric', month: 'short', hour: "2-digit", minute: "2-digit", hour12: false};
+    if (d.getFullYear() != (new Date()).getFullYear())
+        format.year = 'numeric';
+    return d.toLocaleString(undefined, format);
+};
+
 hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce) {
     $scope.watchDemoUrl = watchDemoUrl;
     steamid = $routeParams.steamid;
@@ -32,6 +42,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
             m.kdd = m.kills - m.deaths;
             if (!m.timestamp)
                 m.timestamp = 0;
+            m.date = timestamp2date(m.timestamp);
         });
     });
     $http.get(getPlayerSummaries([steamid])).success(function (response) {
@@ -127,7 +138,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     };
 
     $scope.demoOutcome = demoOutcome;
- });
+});
 
 hsboxControllers.controller('PlayerList', function ($scope, $http) {
     $http.get(serverUrl + '/players').success(function (data) {
@@ -151,7 +162,7 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
         if ($scope.orderRounds == field)
             $scope.orderRounds = '-' + field;
         else
-           $scope.orderRounds = field;
+            $scope.orderRounds = field;
     }
     $scope.orderRounds = '-timestamp';
     $scope.watchDemoUrl = watchDemoUrl;
@@ -164,6 +175,7 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
             $scope.rounds.forEach(function (r) {
                 if (!r.timestamp)
                     r.timestamp = 0;
+                r.date = timestamp2date(r.timestamp);
                 if (r.won)
                     r.won_str = "Yes";
                 else

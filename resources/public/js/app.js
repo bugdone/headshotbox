@@ -40,18 +40,6 @@ hsboxApp.filter('signed', function () {
     };
 });
 
-hsboxApp.filter('mydate', function () {
-    return function (date) {
-        if (!date)
-            return '';
-        d = new Date(date);
-        format = {day: 'numeric', month: 'short', hour: "2-digit", minute: "2-digit", hour12: false};
-        if (d.getFullYear() != (new Date()).getFullYear())
-            format.year = 'numeric';
-        return d.toLocaleString(undefined, format);
-    };
-});
-
 function watchDemoUrl(path, steamid, tick, highlight) {
     return 'steam://rungame/730/' + steamid + '/+playdemo "' +
         encodeURI(path) + (tick ? '@' + tick : '') + '" ' +
