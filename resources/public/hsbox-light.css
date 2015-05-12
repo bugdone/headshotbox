@@ -114,8 +114,6 @@ a {
 }
 
 .well {
-    background-image: none;
-    background-color: none;
     box-shadow: none;
     word-wrap: break-word;
 }

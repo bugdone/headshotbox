@@ -224,8 +224,9 @@ a {
 }
 
 .well {
-    background-image: none;
-    background-color: none;
+    background-color: #182128;
+    color: #fff;
+    border: 1px solid #182128;
     box-shadow: none;
     word-wrap: break-word;
     width: 90%;
