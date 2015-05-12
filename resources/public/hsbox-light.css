@@ -59,9 +59,7 @@ h1 {
 .player-stats span{
   border-radius: 4px;
   padding: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  background: #9D9D9D;
-  color: #fff;
+  border: 1px solid rgba(94, 87, 87, 1);
 }
 
 #stats-tables, #tabs {
