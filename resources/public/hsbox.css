@@ -69,6 +69,7 @@ tr th{
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus,
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
   background: rgba(90,95,100,0.7);
+  line-height:30px;
 }
 
 .navbar-brand, .navbar-nav>li>a{
