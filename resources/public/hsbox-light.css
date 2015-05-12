@@ -31,7 +31,7 @@ h1 {
   float: left;
   padding: 10px;
   height: 230px;
-  background: #D3D3D3;
+  background: #F0F0F0;
   padding: 20px;
 }
 .player-stats:first-of-type{
@@ -53,7 +53,7 @@ h1 {
   border-radius: 4px;
   padding: 5px;
   border: 1px solid rgba(255, 255, 255, 0.13);
-  background: #333;
+  background: #9D9D9D;
   color: #fff;
 }
 
