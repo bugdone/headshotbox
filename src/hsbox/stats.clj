@@ -136,12 +136,13 @@
   (let [updated-stats (reduce update-stats-with-death (assoc stats :kills-this-round 0) (:deaths round))
         multikills (:kills-this-round updated-stats)
         ; Super lame hax horrible code the wurst
-        players {:players (reduce #(assoc % %2 {:team (get-in stats [:teams %2])}) {} (keys (:teams stats)))}]
+        demo {:players (reduce #(assoc % %2 {:team (get-in stats [:teams %2])}) {} (keys (:teams stats)))
+              :demoid  (:demoid stats)}]
     (-> updated-stats
         (dissoc :kills-this-round)
         (update-in [:rounds_with_kills multikills] inc)
-        (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round (:steamid stats) players))
-        (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round (:steamid stats) players))))
+        (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round (:steamid stats) demo))
+        (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round (:steamid stats) demo))))
   )
 
 (defn demo-outcome [demo steamid]
@@ -159,10 +160,10 @@
 
 (defn update-stats-with-demo [stats demo]
   (let [teams (reduce-kv #(assoc % %2 (:team %3)) {} (:players demo))]
-    (-> (reduce update-stats-with-round (assoc stats :teams teams) (add-round-numbers (:rounds demo)))
+    (-> (reduce update-stats-with-round (assoc stats :teams teams :demoid (:demoid demo)) (add-round-numbers (:rounds demo)))
         (add-stat (demo-outcome demo (:steamid stats)) 1)
         (add-stat :rounds (count (:rounds demo)))
-        (dissoc :teams)
+        (dissoc :teams :demoid)
         (add-hltv-rating))))
 
 (defn initial-stats [steamid]
