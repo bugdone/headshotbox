@@ -1,9 +1,9 @@
 <div class="demoDiv">
-  <h2 class="text-center">
+  <h2 class="text-center demo-winner">
     {{demoOutcome(theDemo)}}
     <span ng-class="{green: theDemo.score.score[0] > 15, red: theDemo.score.score[0] < 15}">{{theDemo.score.score[0]}}</span>:<span ng-class="{green: theDemo.score.score[1] > 15, red: theDemo.score.score[1] < 15}">{{theDemo.score.score[1]}}</span>
-    (<span class="red">{{theDemo.score.first_half[0]}}</span>:<span class="blue">{{theDemo.score.first_half[1]}}</span>;
-    <span class="blue">{{theDemo.score.second_half[0]}}</span>:<span class="red">{{theDemo.score.second_half[1]}}</span>)
+    (<span class="green">{{theDemo.score.first_half[0]}}</span>:<span class="red">{{theDemo.score.first_half[1]}}</span>;
+    <span class="red">{{theDemo.score.second_half[0]}}</span>:<span class="green">{{theDemo.score.second_half[1]}}</span>)
   </h2>
 
   <div class="container">
@@ -53,7 +53,7 @@
               <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
                 <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
               </a>
-              <img src="img/vac.png" ng-if="steamAccounts[player.steamid]['NumberOfVACBans'] > 0" width="24"
+              <img class="demo-avatar" src="img/vac.png" ng-if="steamAccounts[player.steamid]['NumberOfVACBans'] > 0" width="24"
                    title="{{steamAccounts[player.steamid]['NumberOfVACBans']}} VAC bans, {{steamAccounts[player.steamid]['DaysSinceLastBan']}} days since last ban"/>
               <a href="#/player/{{player.steamid}}">{{player.name}}</a>
             </td>
@@ -66,7 +66,7 @@
           </tr>
         </table>
       </div>
-      
+
       <div class="col-md-4">
         <div id="notes-container">
           <div class="row">
@@ -82,7 +82,7 @@
               <textarea class="form-control notes" ng-model="notesControls.demoNotesInput"></textarea>
             </div>
             <div class="row">
-              <button type="button" class="btn btn-default btn-xs"
+              <button type="button" class="btn btn-default btn-xs help-button"
                       popover="Strings like 'round 3' and 'tick 1234' will be displayed as links to that particular round / tick."
                       popover-trigger="mouseenter">
                 <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
@@ -96,10 +96,10 @@
         </div>
       </div>
     </div>
-    
+
     <div class="row">
-      <h5 class="text-center"><small>{{theDemo.path}}</small></h5>
+      <h5 class="file-path"><small>{{theDemo.path}}</small></h5>
     </div>
-    
+
   </div>
 </div>

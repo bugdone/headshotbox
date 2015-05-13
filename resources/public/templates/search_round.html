@@ -3,16 +3,13 @@
   <form ng-submit="search()">
     <div class="container">
       <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-1"></div>
-        <div class="col-md-4">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 search-box">
           <input type="text" ng-model="search_string" class="form-control" size="50">
+          <button type="submit" id="searchround" class="btn btn-default"><i class="fa fa-search"></i></button>
         </div>
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-default">Search</button>
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-default btn-sm" ng-click="roundHelpIsCollapsed = !roundHelpIsCollapsed">
+        <div class="col-md-4">
+          <button type="button" class="btn btn-default btn-sm help-button" ng-click="roundHelpIsCollapsed = !roundHelpIsCollapsed">
             <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
           </button>
         </div>
@@ -68,14 +65,14 @@
           <td class="text-left">
             <div container="col-md-1" ng-repeat="kill in round.kills">
               {{kill.kills + "x"}}
-              <img ng-src="img/weapons/icon-{{kill.weapon}}_grey.png" height="20"/>
+              <img src="img/weapons/icon-{{kill.weapon}}_grey.png" height="20"/>
               <img ng-if="kill.penetrated" src="img/weapons/icon-penetrate_grey.png" height="20"/>
               <img ng-if="kill.headshot" src="img/weapons/icon-headshot_grey.png" height="20"/>
             </div>
           </td>
           <td class="text-center" ng-class="{green: round.won, red: !round.won}">{{round.won_str}}</td>
-          <td class="text-right">
-            <a class="btn btn-default btn-xs" href='{{watchDemoUrl(round.path, steamid, round.tick)}}'>Watch Round</a>
+          <td class="text-center">
+            <a class="btn btn-success btn-xs" href='{{watchDemoUrl(round.path, steamid, round.tick)}}'><i class="fa fa-play-circle"></i></a>
           </td>
           <td ng-click="makeVisible(round.demoid, round.round)" class="clickable text-center">
             <i class="pull-right glyphicon"

@@ -2,74 +2,29 @@
   <div class="name"><img class="avatar" ng-src="{{player.avatarfull}}" width=64>{{player.personaname ? player.personaname : player.name}}</div>
 
   <div id="stats-tables" class="center-block">
-    <table class="table">
-      <tr>
-        <th>Win %</th>
-        <td>{{stats.won / (stats.won + stats.lost) * 100 | number:2}}</td>
-      </tr>
-      <tr>
-        <th>Won</th>
-        <td>{{stats.won}}</td>
-      </tr>
-      <tr>
-        <th>Tied</th>
-        <td>{{stats.tied}}</td>
-      </tr>
-      <tr>
-        <th>Lost</th>
-        <td>{{stats.lost}}</td>
-      </tr>
-      <tr>
-        <th>Total</th>
-        <td>{{stats.won + stats.tied + stats.lost}}</td>
-      </tr>
-    </table>
-    <table class="table">
-      <tr>
-        <th><abbr title="Kill/Death Ratio">KDR</abbr></th>
-        <td ng-class="{green: stats.kills >= stats.deaths, red: stats.kills < stats.deaths}">{{stats.kills / stats.deaths  | number:2}}</td>
-      </tr>
-      <tr>
-        <th><abbr title="Headshot Percent">HS %</abbr></th>
-        <td>{{stats.hs_percent | number:2}}</td>
-      </tr>
-      <tr>
-        <th>Rating <a href="http://www.hltv.org/?pageid=242" title="HLTV Rating" style="color: black">(?)</th>
-        <td>{{stats.rating  | number:2}}</td>
-      </tr>
-      <tr>
-        <th><abbr title="1v1 rounds won / attempted ({{stats.1v1_won}}/{{stats.1v1_attempted}})">Clutch %</abbr></th>
-        <td>{{stats.1v1_won / stats.1v1_attempted * 100 | number:2}}</td>
-      </tr>
-    </table>
-    <table class="table">
-      <tr>
-        <th><abbr title="Kills Per Round">KPR</abbr></th>
-        <td>{{stats.kills / stats.rounds | number:2}}</td>
-      </tr>
-      <tr>
-        <th><abbr title="Assists Per Round">APR</abbr></th>
-        <td>{{stats.assists / stats.rounds | number:2}}</td>
-      </tr>
-      <tr>
-        <th><abbr title="Deaths Per Round">DPR</abbr></th>
-        <td>{{stats.deaths / stats.rounds | number:2}}</td>
-      </tr>
-    </table>
-    <table class="table">
-      <tr>
-        <th><abbr title="Rounds with 3 kills">3K</abbr></th>
-        <td>{{stats.rounds_with_kills[3]}}</td>
-      </tr>
-      <tr>
-        <th><abbr title="Rounds with 4 kills">4K</abbr></th>
-        <td>{{stats.rounds_with_kills[4]}}</td>
-      </tr>
-      <tr>
-        <th><abbr title="Rounds with 5 kills">5K</abbr></th>
-        <td>{{stats.rounds_with_kills[5]}}</td>
-      </tr>
-    </table>
+    <div class="player-stats">
+      <p>Win <span>{{stats.won / (stats.won + stats.lost) * 100 | number:2}}%</span></p>
+      <p>Won <span>{{stats.won}}</span></p>
+      <p>Tied <span>{{stats.tied}}</span></p>
+      <p>Lost <span>{{stats.lost}}</span></p>
+      <p>Total <span>{{stats.won + stats.tied + stats.lost}}</span></p>
+    </div>
+    <div class="player-stats">
+      <p>KDR <span ng-class="{green: stats.kills >= stats.deaths, red: stats.kills < stats.deaths}">{{stats.kills / stats.deaths  | number:2}}</span></p>
+      <p>HS <span>{{stats.hs_percent | number:2}} %</span></p>
+      <p>Rating <a href="http://www.hltv.org/?pageid=242" title="HLTV Rating" style="color: black">(?)</a> <span>{{stats.kills / stats.deaths  | number:2}}</span></p>
+      <p> <abbr title="1v1 rounds won / attempted ({{stats.1v1_won}}/{{stats.1v1_attempted}})">Clutch</abbr> <span>{{stats.1v1_won / stats.1v1_attempted * 100 | number:2}} %</span></p>
+    </div>
+    <div class="player-stats">
+      <p><abbr title="Kills Per Round">KPR</abbr> <span>{{stats.kills / stats.rounds | number:2}}</span></p>
+      <p><abbr title="Assists Per Round">APR</abbr> <span>{{stats.assists / stats.rounds | number:2}}</span></p>
+      <p><abbr title="Deaths Per Round">DPR</abbr> <span>{{stats.deaths / stats.rounds | number:2}}</span></p>
+    </div>
+    <div class="player-stats">
+      <p><abbr title="Rounds with 3 kills">3K</abbr> <span>{{stats.rounds_with_kills[3]}}</span></p>
+      <p><abbr title="Rounds with 4 kills">4K</abbr> <span>{{stats.rounds_with_kills[4]}}</span></p>
+      <p><abbr title="Rounds with 5 kills">5K</abbr> <span>{{stats.rounds_with_kills[5]}}</span></p>
+    </div>
   </div>
 
   <div id="tabs" class="center-block">
@@ -108,8 +63,8 @@
               <td class="text-center" ng-class="{green: demo.kdd >= 0, red: demo.kdd < 0}">{{demo.kdd | signed}}</td>
               <td class="text-center">{{demo.hs_percent | number:2}}</td>
               <td class="text-right" ng-click="$event.stopPropagation()">
-                <a class="btn btn-default btn-xs" href='{{watchDemoUrl(demo.path, steamid)}}'>Demo</a>
-                <a class="btn btn-default btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, true)}}'>Highlights</a>
+                <a class="btn btn-success btn-xs" href='{{watchDemoUrl(demo.path, steamid)}}'><i class="fa fa-play-circle"></i></a>
+                <a class="btn btn-primary btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, true)}}'>Highlights</a>
               </td>
             </tr>
             <tr ng-if="isVisible(demo.demoid)">
@@ -133,7 +88,7 @@
             </tr>
           </thead>
           <tr ng-repeat="weapon in stats.weapons | orderBy:orderWeapons">
-            <td style="text-align: left"><img ng-src="img/weapons/icon-{{weapon.name}}_grey.png" ng-if="weapon.name" height="20"/></td>
+            <td style="text-align: left"><img src="img/weapons/icon-{{weapon.name}}_grey.png" ng-if="weapon.name" height="20"/></td>
             <td style="text-align: left">{{weapon.name}}</td>
             <td>{{weapon.kills}}</td>
             <td>{{weapon.hs}}</td>

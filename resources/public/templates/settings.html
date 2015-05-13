@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="panel panel-default panel-center">
         <div class="panel-heading">
           Settings
@@ -8,8 +8,8 @@
 
         <div class="panel-body">
           <div class="text-center">
-            <button class="btn btn-default" ng-click="invertIndexerState()">
-              {{indexerRunning == true ? 'Pause Demo Analyzer' : (indexerRunning == false ? 'Resume Demo Analyzer' : '')}}
+            <button class="btn btn-info" ng-click="invertIndexerState()">
+               {{indexerRunning == true ? 'Pause Demo Analyzer' : (indexerRunning == false ? 'Resume Demo Analyzer' : '')}}
             </button>
           </div>
         </div>
@@ -20,20 +20,20 @@
               <span class="input-group-addon">Demo directory</span>
               <input type="text" class="form-control" aria-describedby="demo-dir-help" ng-value="config.demo_directory" ng-model="config.demo_directory">
               <span class="input-group-addon" id="demo-dir-help">
-                <button type="button" class="btn btn-default btn-xs glyphicon glyphicon-question-sign" ng-click="demoDirectoryCollapsed = !demoDirectoryCollapsed"><div/></button>
+                <button type="button" class="btn btn-default btn-xs glyphicon glyphicon-question-sign help-button" ng-click="demoDirectoryCollapsed = !demoDirectoryCollapsed"><div/></button>
               </span>
             </div>
             <div collapse="demoDirectoryCollapsed">
-	      <div class="well well-lg text-left">
-                HeadshotBox indexes demos present in this directory.
-                <p/>
-                If you download demos from the Watch tab in-game (or with certain other third party software),
-                for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
-                This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
-                If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
-                Otherwise, the date of the demo file is used.
-                <p/>
-                <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted. If you change the demo directory path <b>all</b> notes will be deleted.
+	             <div class="well well-lg text-left">
+                  HeadshotBox indexes demos present in this directory.
+                  <p/>
+                  If you download demos from the Watch tab in-game (or with certain other third party software),
+                  for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
+                  This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
+                  If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
+                  Otherwise, the date of the demo file is used.
+                  <p/>
+                  <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted. If you change the demo directory path <b>all</b> notes will be deleted.
               </div>
             </div>
 
@@ -41,19 +41,25 @@
               <span class="input-group-addon">Steam Web API Key</span>
               <input type="text" class="form-control" aria-describedby="steam-api-help" ng-value="config.steam_api_key" ng-model="config.steam_api_key">
               <span class="input-group-addon" id="steam-api-help">
-                <button type="button" class="btn btn-default btn-xs glyphicon glyphicon-question-sign" ng-click="steamApiCollapsed = !steamApiCollapsed"><div/></button>
+                <button type="button" class="btn btn-default btn-xs glyphicon glyphicon-question-sign help-button" ng-click="steamApiCollapsed = !steamApiCollapsed"><div/></button>
               </span>
             </div>
             <div collapse="steamApiCollapsed">
 	      <div class="well well-lg text-left">
                 The Steam Web API key is used to fetch the latest name, avatar and VAC status for steam accounts.
                 <br/>
-                You can get you own key <a href="http://steamcommunity.com/dev/apikey">here</a>.
+                You can get you own key <a href="http://steamcommunity.com/dev/apikey" class="steam-api-link">here</a>.
               </div>
+            </div>
+            <div id="theme-select" class="input-group">
+              <p >Select Theme</p>
+              <a href="javascript:;" onclick="setActiveStyleSheet('dark'); return false;">Select Dark theme</a></br>
+              <a href="javascript:;" onclick="setActiveStyleSheet('light'); return false;">Select Light theme</a>
+
             </div>
 
             <div class="text-center">
-              <input type="submit" value="Update" class="btn btn-default"></input>
+              <input type="submit" value="Update" class="btn btn-primary"></input>
             </div>
           </form>
         </div>
