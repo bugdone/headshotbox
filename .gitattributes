@@ -1,2 +1,8 @@
 resources/proto/* linguist-vendored
 protosrc/* linguist-vendored
+
+* text=auto
+*.html text
+*.js text
+*.css text
+*.clj text
