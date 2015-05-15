@@ -6,7 +6,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/java.jdbc "0.3.6"]
-                 [org.xerial/sqlite-jdbc "3.8.7"]
+                 [org.xerial/sqlite-jdbc "3.8.6"]
                  [compojure "1.3.2"]
                  [ring-cors "0.1.6"]
                  [ring/ring-json "0.3.1"]
