@@ -110,6 +110,7 @@
               <td class="text-right" ng-click="$event.stopPropagation()">
                 <a class="btn btn-default btn-xs" href='{{watchDemoUrl(demo.path, steamid)}}'>Demo</a>
                 <a class="btn btn-default btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, true)}}'>Highlights</a>
+                <a class="btn btn-default btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, "lowlights")}}'>Lowlights</a>
               </td>
             </tr>
             <tr ng-if="isVisible(demo.demoid)">
