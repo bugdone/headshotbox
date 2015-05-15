@@ -75,7 +75,7 @@
 (defn wrap-exception [f]
   (fn [request]
     (try (f request)
-         (catch Exception e
+         (catch Throwable e
            (error e)
            (throw e)))))
 

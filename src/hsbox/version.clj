@@ -21,7 +21,7 @@
       (info "Checking latest version on" url)
       (swap! latest-version (fn [_] (slurp url)))
       (debug "Latest version" @latest-version)
-      (catch Exception e (error "Cannot get latest version info" e)))))
+      (catch Throwable e (error "Cannot get latest version info" e)))))
 
 (defn update-latest-version-every-day []
   (while true

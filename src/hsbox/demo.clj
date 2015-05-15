@@ -86,7 +86,7 @@
         ; Parse MM dem.info file if available (for demo timestamp)
         scoreboard (try
                      (parse-mm-info-file path)
-                     (catch Exception e {}))
+                     (catch Throwable e {}))
         rounds (process-events (:events demo-data))
         score (compute-score rounds)]
     (merge {:rounds (filter #(not (:fake %)) rounds)

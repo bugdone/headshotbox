@@ -35,7 +35,7 @@
         (notify/unregister @current-indexed-path))
       (reset! current-indexed-path path)
       (notify/register path handle-event)
-      (catch Exception e (error e)))))
+      (catch Throwable e (error e)))))
 
 (defn set-indexing-state [state]
   (reset! indexing-running? state))
@@ -53,7 +53,7 @@
               {:keys [timestamp map]} demo-info]
           (db/add-demo demoid timestamp map steamids demo-info)
           (stats/add-demo (merge demo-info {:timestamp timestamp :demoid demoid})))
-        (catch Exception e (error "Cannot parse demo" path e))))))
+        (catch Throwable e (error "Cannot parse demo" path e))))))
 
 (defn add-demo-directory [path]
   (->> (clojure.java.io/as-file path)
