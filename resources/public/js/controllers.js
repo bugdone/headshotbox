@@ -218,9 +218,11 @@ hsboxControllers.controller('Settings', function ($scope, $http) {
 
 hsboxControllers.controller('Navbar', function ($scope, $http, $interval) {
     $scope.active = 'player_list';
+    $scope.version = '';
     $scope.newVersionAvailable = false;
     $scope.checkVersion = function($scope) {
         $http.get(serverUrl + '/version').success(function(data) {
+            $scope.version = data.current;
             if (data.current != data.latest)
                 $scope.newVersionAvailable = true;
         });
