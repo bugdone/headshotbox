@@ -214,7 +214,7 @@ a {
 .blue { color: blue; }
 .won_background { rgba(31, 52, 36, 0.81); color: #fff; cursor: pointer; }
 .lost_background { background-color: rgba(190, 93, 93, 0.17); color:#fff; cursor: pointer; }
-.tied_background { background-color: rgba(16, 84, 140, 0.53); cursor: pointer; }
+.tied_background { background-color: rgba(16, 84, 140, 0.53); color:#fff; cursor: pointer; }
 
 .score {
     display: inline-block;
