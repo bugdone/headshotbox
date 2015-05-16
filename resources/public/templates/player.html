@@ -2,7 +2,7 @@
   <div class="name"><img class="avatar" ng-src="{{player.avatarfull}}" width=64>{{player.personaname ? player.personaname : player.name}}</div>
 
   <div id="stats-tables" class="center-block">
-    <table class="table">
+    <table class="table player-stats">
       <tr>
         <th>Win %</th>
         <td>{{stats.won / (stats.won + stats.lost) * 100 | number:2}}</td>
@@ -24,7 +24,7 @@
         <td>{{stats.won + stats.tied + stats.lost}}</td>
       </tr>
     </table>
-    <table class="table">
+    <table class="table player-stats">
       <tr>
         <th><abbr title="Kill/Death Ratio">KDR</abbr></th>
         <td ng-class="{green: stats.kills >= stats.deaths, red: stats.kills < stats.deaths}">{{stats.kills / stats.deaths  | number:2}}</td>
@@ -42,7 +42,7 @@
         <td>{{stats.1v1_won / stats.1v1_attempted * 100 | number:2}}</td>
       </tr>
     </table>
-    <table class="table">
+    <table class="table player-stats">
       <tr>
         <th><abbr title="Kills Per Round">KPR</abbr></th>
         <td>{{stats.kills / stats.rounds | number:2}}</td>
@@ -56,7 +56,7 @@
         <td>{{stats.deaths / stats.rounds | number:2}}</td>
       </tr>
     </table>
-    <table class="table">
+    <table class="table player-stats">
       <tr>
         <th><abbr title="Rounds with 3 kills">3K</abbr></th>
         <td>{{stats.rounds_with_kills[3]}}</td>
@@ -108,9 +108,9 @@
               <td class="text-center" ng-class="{green: demo.kdd >= 0, red: demo.kdd < 0}">{{demo.kdd | signed}}</td>
               <td class="text-center">{{demo.hs_percent | number:2}}</td>
               <td class="text-right" ng-click="$event.stopPropagation()">
-                <a class="btn btn-default btn-xs" href='{{watchDemoUrl(demo.path, steamid)}}'>Demo</a>
-                <a class="btn btn-default btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, true)}}'>Highlights</a>
-                <a class="btn btn-default btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, "lowlights")}}'>Lowlights</a>
+                <a class="btn btn-success btn-xs" href='{{watchDemoUrl(demo.path, steamid)}}'><i class="fa fa-play-circle"></i></a>
+                <a class="btn btn-primary btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, true)}}'>Highlights</a>
+                <a class="btn btn-primary btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, "lowlights")}}'>Lowlights</a>
               </td>
             </tr>
             <tr ng-if="isVisible(demo.demoid)">
@@ -134,7 +134,7 @@
             </tr>
           </thead>
           <tr ng-repeat="weapon in stats.weapons | orderBy:orderWeapons">
-            <td style="text-align: left"><img ng-src="img/weapons/icon-{{weapon.name}}_grey.png" ng-if="weapon.name" height="20"/></td>
+            <td style="text-align: left"><img src="img/weapons/icon-{{weapon.name}}_grey.png" ng-if="weapon.name" height="20"/></td>
             <td style="text-align: left">{{weapon.name}}</td>
             <td>{{weapon.kills}}</td>
             <td>{{weapon.hs}}</td>
