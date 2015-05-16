@@ -95,11 +95,12 @@
               <td class="text-left">{{demo.map}}</td>
               <td class="text-center">
                 <span class="score text-right">
-                  <img src="img/White_flag_icon.svg" title="Surrendered" ng-if="demo.surrendered && demo.outcome == 'lost'" height=16 width=16/>{{demo.score[0]}}
+                  <i class="fa fa-flag-o" title="Surrendered" ng-if="demo.surrendered && demo.outcome == 'lost'"></i>
+                  {{demo.score[0]}}
                 </span>
                 -
                 <span class="score text-left">{{demo.score[1]}}
-                  <img src="img/White_flag_icon.svg" title="Surrendered" ng-if="demo.surrendered && demo.outcome == 'won'" height=16 width=16/>
+                  <i class="fa fa-flag-o" title="Surrendered" ng-if="demo.surrendered && demo.outcome == 'won'"></i>
                 </span>
               </td>
               <td class="text-center">{{demo.kills}}</td>
