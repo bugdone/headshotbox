@@ -210,11 +210,11 @@ a {
 }
 
 .red { color: red; }
-.green { color: green; }
+.green { color: rgb(10, 250, 10); }
 .blue { color: blue; }
-.won_background { rgba(46, 55, 62, 0.83); color: #fff; cursor: pointer; }
-.lost_background { background-color: transparent; color:#fff; cursor: pointer; }
-.tied_background { background-color: #F0F0F0; cursor: pointer; }
+.won_background { background-color:rgba(31, 52, 36, 0.81); color: #fff; cursor: pointer; }
+.lost_background { background-color: rgba(190, 93, 93, 0.17); color:#fff; cursor: pointer; }
+.tied_background { background-color: rgba(16, 84, 140, 0.53); color:#fff; cursor: pointer; }
 
 .score {
     display: inline-block;
