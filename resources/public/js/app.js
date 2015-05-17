@@ -39,10 +39,3 @@ hsboxApp.filter('signed', function () {
             return "" + num;
     };
 });
-
-function watchDemoUrl(path, steamid, tick, highlight) {
-    return 'steam://rungame/730/' + steamid + '/+playdemo "' +
-        encodeURI(path) + (tick ? '@' + tick : '') + '" ' +
-        (highlight ? steamid : '') +
-        (highlight == 'lowlights' ? ' lowlights' : '');
-}

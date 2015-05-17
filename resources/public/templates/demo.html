@@ -26,8 +26,8 @@
               <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
                 <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
               </a>
-              <img src="img/vac.png" ng-if="steamAccounts[player.steamid]['NumberOfVACBans'] > 0" width="24"
-                   title="{{steamAccounts[player.steamid]['NumberOfVACBans']}} VAC bans, {{steamAccounts[player.steamid]['DaysSinceLastBan']}} days since last ban"/>
+              <img class="demo-avatar" src="img/vac.png" ng-if="bansTooltip(steamAccounts[player.steamid])" width="24"
+                   title="{{bansTooltip(steamAccounts[player.steamid])}}"/>
               <a href="#/player/{{player.steamid}}">{{player.name}}</a>
             </td>
             <td>{{player.kills}}</td>
@@ -53,8 +53,8 @@
               <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
                 <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
               </a>
-              <img class="demo-avatar" src="img/vac.png" ng-if="steamAccounts[player.steamid]['NumberOfVACBans'] > 0" width="24"
-                   title="{{steamAccounts[player.steamid]['NumberOfVACBans']}} VAC bans, {{steamAccounts[player.steamid]['DaysSinceLastBan']}} days since last ban"/>
+              <img class="demo-avatar" src="img/vac.png" ng-if="bansTooltip(steamAccounts[player.steamid])" width="24"
+                   title="{{bansTooltip(steamAccounts[player.steamid])}}"/>
               <a href="#/player/{{player.steamid}}">{{player.name}}</a>
             </td>
             <td>{{player.kills}}</td>

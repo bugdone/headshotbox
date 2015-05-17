@@ -24,8 +24,31 @@ function timestamp2date(timestamp) {
     return d.toLocaleString(undefined, format);
 };
 
+function watchDemoUrl(path, steamid, tick, highlight) {
+    return 'steam://rungame/730/' + steamid + '/+playdemo "' +
+        encodeURI(path) + (tick ? '@' + tick : '') + '" ' +
+        (highlight ? steamid : '') +
+        (highlight == 'lowlights' ? ' lowlights' : '');
+}
+
+function bansTooltip(player) {
+    console.log("banstooltip for " + player);
+    var tooltip = "";
+    if (player['NumberOfVACBans'] > 0)
+        tooltip = player['NumberOfVACBans'] + " VAC bans";
+    if (player['NumberOfGameBans'] > 0) {
+        if (tooltip != "")
+            tooltip += ", ";
+        tooltip += player['NumberOfGameBans'] + " game bans";
+    }
+    if (tooltip != "")
+        tooltip += ", " + player['DaysSinceLastBan'] + " days since last ban";
+    return tooltip;
+}
+
 hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce) {
     $scope.watchDemoUrl = watchDemoUrl;
+    $scope.bansTooltip = bansTooltip;
     steamid = $routeParams.steamid;
     $scope.orderWeapons = '-kills';
     $scope.steamid = steamid;
