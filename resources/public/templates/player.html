@@ -1,5 +1,10 @@
 <div class="container">
-  <div class="name"><img class="avatar" ng-src="{{player.avatarfull}}" width=64>{{player.personaname ? player.personaname : player.name}}</div>
+  <div class="name">
+    <a href="http://steamcommunity.com/profiles/{{steamid}}">
+      <img class="avatar" ng-src="{{player.avatarfull ? player.avatarfull : 'img/avatar.jpg'}}" width="64"/>
+    </a>
+    {{player.personaname ? player.personaname : player.name}}
+  </div>
 
   <div id="stats-tables" class="center-block">
     <table class="table player-stats">

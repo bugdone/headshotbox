@@ -31,8 +31,7 @@ function watchDemoUrl(path, steamid, tick, highlight) {
         (highlight == 'lowlights' ? ' lowlights' : '');
 }
 
-function bansTooltip(player) {
-    console.log("banstooltip for " + player);
+function bansTooltip(player, demoTimestamp) {
     var tooltip = "";
     if (player['NumberOfVACBans'] > 0)
         tooltip = player['NumberOfVACBans'] + " VAC bans";
@@ -41,8 +40,12 @@ function bansTooltip(player) {
             tooltip += ", ";
         tooltip += player['NumberOfGameBans'] + " game bans";
     }
-    if (tooltip != "")
+    if (tooltip != "") {
         tooltip += ", " + player['DaysSinceLastBan'] + " days since last ban";
+        var banTime = Math.floor(Date.now() / 1000)- 3600 * 24 * player['DaysSinceLastBan'];
+        if (banTime >= demoTimestamp)
+             tooltip += " (" + ((banTime - demoTimestamp) / (24 * 3600) | 0) + " days after this game)";
+    }
     return tooltip;
 }
 
