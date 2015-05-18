@@ -9,6 +9,7 @@
 
 (timbre/refer-timbre)
 (def latest-data-version 1)
+(def schema-version 2)
 ;(set! *warn-on-reflection* true)
 
 (def app-config-dir
@@ -25,9 +26,9 @@
    :subprotocol "sqlite"
    :subname (File. app-config-dir "headshotbox.sqlite")})
 
-(defn exec-sql-file [file]
+(defn exec-sql-file [file & {:keys [transaction?] :or {transaction? true}}]
   (let [queries (str/split (slurp (resource file)) #";\r?\n")]
-    (apply jdbc/db-do-commands db true queries)))
+    (apply jdbc/db-do-commands db transaction? queries)))
 
 (defn init-db []
   (exec-sql-file "sql/create.sql"))
@@ -35,15 +36,72 @@
 (defn wipe-demos []
   (jdbc/with-db-transaction
     [trans db]
-    (jdbc/execute! db ["DELETE FROM playerdemos"])
     (jdbc/execute! db ["DELETE FROM demos"])))
 
 (defn init-db-if-absent []
   (if-not (file-exists? (str app-config-dir "/headshotbox.sqlite"))
     (init-db)))
 
+(defn get-meta-value [key]
+  (json/read-str (:value (first (jdbc/query db ["SELECT value FROM meta WHERE key=?" key]))) :key-fn keyword))
+
+(defn get-current-schema-version [] (get-meta-value "schema_version"))
+
 (defn get-config []
-  (json/read-str (:value (first (jdbc/query db ["SELECT value FROM meta WHERE key=?" "config"]))) :key-fn keyword))
+  (get-meta-value "config"))
+
+(defn half-parsed-demo? [{:keys [score rounds players]}]
+  (let [score1 (first (:score score))
+        score2 (second (:score score))]
+    (or (= 0 (count players))
+        (not= 2 (count (:score score)))
+        (and (not (:surrendered score)) (not= score1 score2 15) (< score1 16) (< score2 16))
+        (not (empty? (filter #(not (:tick_end %)) rounds))))))
+
+(defn kw-steamids-to-long [path dict]
+  (assoc-in dict path (into {} (for [[k v] (get-in dict path)] [(Long/parseLong (name k)) v]))))
+
+(defn db-json-to-dict [rows]
+  (->> rows
+       (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))
+       (map (partial kw-steamids-to-long [:data :players]))))
+
+(defn get-all-demos []
+  (->>
+    (jdbc/query db [(str "SELECT demos.demoid, data FROM demos")])
+    (db-json-to-dict)
+    (map #(assoc (:data %) :demoid (:demoid %)))))
+
+(defn sql-demoids [demoids]
+  (str " (" (str/join ", " (map #(str "\"" % "\"") demoids)) ")"))
+
+(defn migrate-2 []
+  (exec-sql-file "sql/migrate_1_to_2.sql" :transaction? false)
+  (let [half-parsed-demos (filter half-parsed-demo? (get-all-demos))
+        demoids (map #(:demoid %) half-parsed-demos)]
+    (if (not (empty? demoids))
+      (jdbc/execute! db [(str "UPDATE demos SET mtime = 0 WHERE demoid IN " (sql-demoids demoids))]))))
+
+(def migrations {1 [2 migrate-2]})
+
+(defn get-migration-plan []
+  (loop [plan []
+         version (get-current-schema-version)]
+    (cond
+      (= version schema-version) plan
+      (not (contains? migrations version)) (throw (Exception. "Cannot find a migration plan"))
+      :else (let [[next-version f] (get migrations version)]
+              (recur (conj plan [next-version f]) next-version)))))
+
+(defn upgrade-db []
+  (let [migration-plan (get-migration-plan)]
+    (doall (map #(let [version (first %) procedure (second %)]
+                  (warn "Migrating from schema version" (get-current-schema-version) "to" version)
+                  (jdbc/with-db-transaction
+                    [trans db]
+                    (procedure)
+                    (jdbc/execute! db ["UPDATE meta SET value = ? WHERE key = ?" version "schema_version"])))
+                migration-plan))))
 
 (defn set-config [dict]
   (jdbc/with-db-transaction
@@ -60,22 +118,22 @@
 (defn demo-path [demoid]
   (.getPath (io/file (get-demo-directory) demoid)))
 
-(defn kw-steamids-to-long [path dict]
-  (assoc-in dict path (into {} (for [[k v] (get-in dict path)] [(Long/parseLong (name k)) v]))))
-
-(defn db-json-to-dict [rows]
-  (->> rows
-       (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))
-       (map (partial kw-steamids-to-long [:data :players]))))
-
 (defn get-data-version [demoid]
   (:data_version (first (jdbc/query db ["SELECT data_version FROM demos WHERE demoid=?" demoid]))))
 
-(defn demoid-in-db? [demoid]
-  "Returns true if the demo is present and is parsed by the latest version"
-  (= (get-data-version demoid) latest-data-version))
+(defn get-demo-mtime [demoid]
+  (:mtime (first (jdbc/query db ["SELECT mtime FROM demos WHERE demoid=?" demoid]))))
 
-(defn add-demo [demoid timestamp map steamids data]
+(defn demoid-in-db? [demoid mtime]
+  "Returns true if the demo is present, was parsed by the latest version at/after mtime"
+  (and (= (get-data-version demoid) latest-data-version) (<= mtime (get-demo-mtime demoid))))
+
+(defn del-demo [demoid]
+  (jdbc/with-db-transaction
+    [trans db]
+    (jdbc/execute! db ["DELETE FROM demos WHERE demoid=?" demoid])))
+
+(defn add-demo [demoid timestamp mtime map data]
   (jdbc/with-db-transaction
     [trans db]
     (let [data-version (get-data-version demoid)]
@@ -83,36 +141,19 @@
         (nil? data-version)
         (do
           (debug "Adding demo data for" demoid)
-          (jdbc/execute! db ["INSERT INTO demos (demoid, timestamp, map, data_version, data) VALUES (?, ?, ?, ?, ?)"
-                             demoid timestamp map latest-data-version (json/write-str data)])
-          (doseq [steamid steamids]
-            (jdbc/execute! db ["INSERT INTO playerdemos (demoid, steamid) VALUES (?, ?)"
-                               demoid steamid])))
-        (not= latest-data-version data-version)
+          (jdbc/execute! db ["INSERT INTO demos (demoid, timestamp, mtime, map, data_version, data) VALUES (?, ?, ?, ?, ?, ?)"
+                             demoid timestamp mtime map latest-data-version (json/write-str data)]))
+        (not (demoid-in-db? demoid mtime))
         (do
           (debug "Updating data for demo" demoid)
-          (jdbc/execute! db ["UPDATE demos SET data=?, data_version=? WHERE demoid=?"
-                             (json/write-str data) latest-data-version demoid]))))))
-
-(defn del-demo [demoid]
-  (jdbc/with-db-transaction
-    [trans db]
-    (jdbc/execute! db ["DELETE FROM playerdemos WHERE demoid=?" demoid])
-    (jdbc/execute! db ["DELETE FROM demos WHERE demoid=?" demoid])))
+          (jdbc/execute! db ["UPDATE demos SET data=?, data_version=?, timestamp=?, mtime=?, map=? WHERE demoid=?"
+                             (json/write-str data) latest-data-version timestamp mtime map demoid]))))))
 
 (defn keep-only [demoids]
   (if (count demoids)
     (jdbc/with-db-transaction
       [trans db]
-      (let [demoids-str (str/join ", " (map #(str "\"" % "\"") demoids))]
-        (jdbc/execute! db [(str "DELETE FROM playerdemos WHERE demoid NOT IN (" demoids-str ")")])
-        (jdbc/execute! db [(str "DELETE FROM demos WHERE demoid NOT IN (" demoids-str ")")])))))
-
-(defn get-all-demos []
-  (->>
-    (jdbc/query db [(str "SELECT demos.demoid, data FROM demos")])
-    (db-json-to-dict)
-    (map #(assoc (:data %) :demoid (:demoid %)))))
+      (jdbc/execute! db [(str "DELETE FROM demos WHERE demoid NOT IN " (sql-demoids demoids))]))))
 
 (defn get-steamid-info [steamids]
   (->>

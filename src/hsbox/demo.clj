@@ -5,7 +5,7 @@
             [clojure.string :refer [split-lines split trim]]
             [clojure.data.json :as json]
             [hsbox.db :refer [kw-steamids-to-long]],
-            [hsbox.util :refer [file-exists?]]
+            [hsbox.util :refer [file-exists? last-modified]]
             [flatland.protobuf.core :refer [protodef protobuf-load]]
             [taoensso.timbre :as timbre]))
 
@@ -25,7 +25,7 @@
         mm-info-file (as-file mm-info-path)]
     (if (file-exists? mm-info-file)
       (do
-        (info "Processing" mm-info-file)
+        (info "Processing" mm-info-path)
         (protobuf-load MatchInfo (read-file mm-info-path)))
       {})))
 
@@ -92,4 +92,4 @@
     (merge {:rounds (filter #(not (:fake %)) rounds)
             :score score}
            (select-keys demo-data [:map :players :tickrate])
-           {:timestamp (get scoreboard :matchtime (/ (.lastModified (as-file path)) 1000))})))
+           {:timestamp (get scoreboard :matchtime (last-modified path))})))

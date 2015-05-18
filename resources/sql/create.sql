@@ -28,5 +28,5 @@ CREATE TABLE IF NOT EXISTS meta (
 );
 
 INSERT INTO meta (key, value) VALUES
-  ('schema_version', '1'),   
+  ('schema_version', '1'),
   ('config', '{"demo_directory": "C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Counter-Strike Global Offensive\\csgo\\replays"}');

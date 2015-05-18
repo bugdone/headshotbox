@@ -1,7 +1,6 @@
 (ns hsbox.stats
   (:require [clojure.string :as str]
-            [hsbox.db :as db :refer [demo-path get-steam-api-key]]
-            [hsbox.steamapi :refer [get-steamids-info]]))
+            [hsbox.db :as db :refer [demo-path get-steam-api-key]]))
 
 (taoensso.timbre/refer-timbre)
 

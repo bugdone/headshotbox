@@ -24,6 +24,7 @@
       (future (version/update-latest-version-every-day))
       (.start server)
       (db/init-db-if-absent)
+      (db/upgrade-db)
       (indexer/set-indexed-path (db/get-demo-directory))
       (indexer/set-indexing-state true)
       (db/keep-only (->> (db/get-demo-directory)
