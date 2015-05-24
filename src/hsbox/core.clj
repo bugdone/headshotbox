@@ -33,7 +33,7 @@
                          (map #(.getName %))))
       (stats/init-cache)
       (indexer/add-demo-directory (db/get-demo-directory))
-    (indexer/run))
+      (indexer/run))
     (catch BindException e (do
                              (error e)
                              (System/exit 1)))
