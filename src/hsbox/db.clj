@@ -9,7 +9,7 @@
 
 (timbre/refer-timbre)
 (def latest-data-version 1)
-(def schema-version 2)
+(def schema-version 3)
 ;(set! *warn-on-reflection* true)
 
 (def app-config-dir
@@ -82,7 +82,14 @@
     (if (not (empty? demoids))
       (jdbc/execute! db [(str "UPDATE demos SET mtime = 0 WHERE demoid IN " (sql-demoids demoids))]))))
 
-(def migrations {1 [2 migrate-2]})
+(defn migrate-3 []
+  (let [demos (jdbc/query db [(str "SELECT demos.demoid, mtime FROM demos")])]
+    (doseq [demo demos]
+        (let [mtime (int (read-string (str (:mtime demo))))]
+          (jdbc/execute! db ["UPDATE demos SET mtime = ? WHERE demoid = ?" mtime (:demoid demo)])))))
+
+(def migrations {1 [2 migrate-2]
+                 2 [3 migrate-3]})
 
 (defn get-migration-plan []
   (loop [plan []

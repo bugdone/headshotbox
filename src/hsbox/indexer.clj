@@ -45,18 +45,21 @@
   @indexing-running?)
 
 (defn add-demo [path]
-  (let [demoid (get-demo-id path)
-        mtime (last-modified path)]
-    (when-not (demoid-in-db? demoid mtime)
-      (debug "Adding path" path)
-      (try
-        (let [demo-info (get-demo-info path)
-              {:keys [timestamp map]} demo-info]
-          (db/add-demo demoid timestamp mtime map demo-info)
-          (stats/add-demo (merge demo-info {:timestamp timestamp :demoid demoid})))
-        (catch Throwable e
-          (error "Cannot parse demo" path)
-          (error e))))))
+  (try
+    (let [demoid (get-demo-id path)
+          mtime (last-modified path)]
+      (when-not (demoid-in-db? demoid mtime)
+        (debug "Adding path" path)
+        (try
+          (let [demo-info (get-demo-info path)
+                {:keys [timestamp map]} demo-info]
+            (db/add-demo demoid timestamp mtime map demo-info)
+            (stats/add-demo (merge demo-info {:timestamp timestamp :demoid demoid})))
+          (catch Throwable e
+            (error "Cannot parse demo" path)
+            (error e)))))
+    (catch Throwable e
+      (error e))))
 
 (defn add-demo-directory [path]
   (->> (clojure.java.io/as-file path)

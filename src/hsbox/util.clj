@@ -10,7 +10,7 @@
     (.exists p)))
 
 (defn last-modified [path]
-  (/ (.lastModified (as-file path)) 1000))
+  (int (/ (.lastModified (as-file path)) 1000)))
 
 (defn current-timestamp []
   (quot (System/currentTimeMillis) 1000))
