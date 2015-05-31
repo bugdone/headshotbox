@@ -33,6 +33,8 @@ function watchDemoUrl(path, steamid, tick, highlight) {
 
 function bansTooltip(player, demoTimestamp) {
     var tooltip = "";
+    if (player == null)
+        return "";
     if (player['NumberOfVACBans'] > 0)
         tooltip = player['NumberOfVACBans'] + " VAC bans";
     if (player['NumberOfGameBans'] > 0) {
@@ -92,6 +94,8 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         return "<a href='" + watchDemoUrl($scope.theDemo.path, steamid, tick) + "'>" + demo + "</a>";
     }
     $scope.addLinks = function(text) {
+        if (text == null)
+            return "";
         text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
         return text.replace(/(?:(?:round|tick) ?)(\d+)/g, $scope.linkToTick);
     };
