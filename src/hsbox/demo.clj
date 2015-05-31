@@ -4,8 +4,9 @@
             [clojure.java.shell :refer [sh]]
             [clojure.string :refer [split-lines split trim]]
             [clojure.data.json :as json]
-            [hsbox.db :refer [kw-steamids-to-long]],
+            [hsbox.db :refer [kw-steamids-to-long latest-data-version]],
             [hsbox.util :refer [file-exists? last-modified]]
+            [hsbox.stats :refer [add-round-numbers]]
             [flatland.protobuf.core :refer [protodef protobuf-load]]
             [taoensso.timbre :as timbre]))
 
@@ -37,59 +38,165 @@
     (assert (zero? (:exit proc)))
     (->>
       (json/read-str (:out proc) :key-fn keyword)
-      (kw-steamids-to-long [:players]))))
+      (kw-steamids-to-long [:player_names]))))
 
-(defn process-event [rounds event]
-  "The :fake property is true if there are two round_end events in row without a round_start in between.
-  This is needed because surrendering always generates a round_end event."
-  (let [add-stuff-to-current-round (fn [f]
-                                     (let [round (first rounds)]
-                                       (conj (pop rounds) (f round))))]
-    (case (:type event)
-      "round_start" (conj rounds {:tick (:tick event)})
-      "round_end" (let [round-end-info {:winner (:winner event) :win_reason (:reason event) :tick_end (:tick event)}]
-                    (if (get (first rounds) :winner)
-                      (conj rounds (assoc round-end-info :fake true))
-                      (add-stuff-to-current-round
-                        #(merge % round-end-info))))
-      "player_death" (add-stuff-to-current-round
-                       (let [death (conj
-                                     (select-keys event '(:assister :attacker :headshot :penetrated :tick :weapon))
-                                     {:victim (:userid event)})]
-                         #(assoc % :deaths (conj (vec (:deaths %)) death))))
-      rounds)))
+(defn get-demo-type [demo]
+  (letfn [(has_gotv_bot [name] (some #(.contains % name) (:gotv_bots demo)))]
+    (cond
+      (.contains (:servername demo) "Valve") "valve"
+      (has_gotv_bot "ESEA") "esea"
+      (has_gotv_bot "FACEIT GOTV") "faceit")))
 
-(defn process-events [events]
-  (reverse (reduce process-event '() (drop-while #(not (and (= (:type %) "round_start") (= (:timelimit %) 120))) events))))
+(defn get-chunks [demo]
+  (->> (:events demo)
+       (partition-by #(= (:type %) "game_restart"))
+       (filter #(not= "game_restart" (:type (first %))))))
 
-(defn compute-score [rounds]
-  (let [real-rounds (fn [rounds] (filter #(not (get % :fake false)) rounds))
-        half-score (fn [rounds]
-                     (let [rounds-won (fn [team] (count (filter #(= (:winner %) team) (real-rounds rounds))))]
-                       [(rounds-won 2) (rounds-won 3)]))
-        true-team (fn [team round-number] (if (<= round-number 15) team (- 5 team)))
-        first-half (half-score (take 15 rounds))
-        second-half (vec (reverse (half-score (drop 15 rounds))))
-        score (map + first-half second-half)
-        surrendered (contains? #{16 17} (get (last rounds) :win_reason))
-        winner (if surrendered
-                 (true-team (:winner (last rounds)) (count (real-rounds rounds)))
-                 (cond
-                   (> (first score) (second score)) 2
-                   (< (first score) (second score)) 3
-                   :default 0))]
-    {:first_half first-half :second_half second-half :score score :surrendered surrendered :winner winner}))
+(defn split-by-round-end [chunk]
+  (loop [rounds [] events chunk]
+    (if (empty? events)
+      rounds
+      (let [[a b] (split-with #(not= (:type %) "round_end") events)
+            [c d] (split-with #(#{"round_end" "player_death" "score_changed"} (:type %)) b)]
+        (recur (conj rounds (if (first b)
+                              (concat (vec a) c)
+                              (vec a)))
+               d)))))
+
+(defn process-round-events [events]
+  (letfn [(process
+            [round event]
+            (case (:type event)
+              "round_start" (assoc round :tick (:tick event))
+              "round_end" (assoc round :tick_end (:tick event)
+                                       :winner (:winner event)
+                                       :win_reason (:reason event))
+              "player_spawn" (if (or (= 0 (:teamnum event)) (= 0 (:userid event)))
+                               round
+                               (assoc-in round [:players (:userid event)] (:teamnum event)))
+              "player_death" (let [death (conj
+                                           (select-keys event '(:assister :attacker :headshot :penetrated :tick :weapon))
+                                           {:victim (:userid event)})]
+                               (update-in round [:deaths] conj death))
+              round))]
+    ; Filter events before round start tick
+    (let [round-tick (:tick (last (filter #(= (:type %) "round_start") events)))]
+      (reduce process {:players {} :deaths []} (filter #(<= round-tick (:tick %)) events)))))
+
+(defn has-event [events type]
+  (some #(= (:type %) type) events))
+
+(defn filter-esea-possible-rounds [possible-rounds]
+  ; Score doesn't get updated after the last round in ESEA
+  (conj (vec (filter #(has-event % "score_changed") (butlast possible-rounds))) (last possible-rounds)))
+
+(def filter-possible-rounds {"esea" filter-esea-possible-rounds})
+
+; This gets rid of knife rounds as ESEA has 2 minutes for it (wtf?) and faceit 1 hour
+(defn round-timelimit [demo-type]
+  (if (= "valve" demo-type)
+    120
+    105))
+
+(defn get-rounds [demo-data demo-type]
+  (->> demo-data
+       (get-chunks)
+       (map split-by-round-end)
+       (apply concat)
+       (filter (fn [events]
+                 (and
+                   (some #(and (= (:type %) "round_start") (<= 105 (:timelimit %) (round-timelimit demo-type))) events)
+                   (has-event events "round_end"))))
+       ((get filter-possible-rounds demo-type identity))
+       (map process-round-events)))
+
+(defn real-team [demo team]
+  (if (:teams_switched? demo)
+    (- 5 team)
+    team))
+
+(defn update-players [demo player team]
+  (let [initial-team (get-in demo [:players player :team])]
+    (if initial-team
+      ; Check if teams switched
+      (assoc demo :teams_switched? (not= team initial-team))
+      ; Add new player
+      (assoc-in demo [:players player] {:name (get-in demo [:player_names player])
+                                        :team (real-team demo team)}))))
+
+(defn update-score [demo round]
+  (let [score (:detailed_score demo)]
+    (assoc demo :detailed_score
+                (conj
+                  (vec (butlast score))
+                  (update-in (last score) [(- (real-team demo (:winner round)) 2)] inc)))))
+
+(defn check-ot-half-started [mr round_no]
+  (if (or (nil? mr) (<= round_no 30))
+    false
+    (= 1 (mod (- round_no 30) mr))))
+
+(defn update-winner [demo]
+  (let [score (vec (apply map + (:detailed_score demo)))
+        [a_wins b_wins] score]
+    (-> demo
+        (assoc :score score
+               :winner (if (not (:surrendered? demo))
+                         (cond
+                           (< a_wins b_wins) 3
+                           (> a_wins b_wins) 2
+                           :else 0)
+                         (real-team demo (:winner demo)))))))
+
+(defn enrich-with-round [demo round]
+  (->
+    ; Update players table
+    (reduce-kv update-players demo (:players round))
+    ; Detect MR
+    (#(if (and (not= (get % :teams_switched?) (:teams_switched? demo)) (#{34 36} (:number round)))
+       (assoc % :mr (- (:number round) 31))
+       %))
+    ; Start a new score table if overtime started (round 31 - we still don't know MR rules at this point)
+    ; or teams switched or we're in overtime but teams switched last half
+    (#(if (or (= (:number round) 31)
+              (not= (get % :teams_switched?) (:teams_switched? demo))
+              (check-ot-half-started (:mr demo) (:number round)))
+       (update-in % [:detailed_score] conj [0 0])
+       %))
+    (update-score round)
+    (dissoc :round_no)))
+
+(defn enrich-demo [demo]
+  (let [demo (merge demo {:players         {}
+                          :detailed_score  [[0 0]]
+                          :teams_switched? false})]
+    (-> (reduce enrich-with-round demo (add-round-numbers (:rounds demo)))
+        (update-winner)
+        (dissoc :teams_switched? :player_names))))
 
 (defn get-demo-info [path]
   (info "Processing" path)
   (let [demo-data (parse-demo path)
+        demo-type (get-demo-type demo-data)
         ; Parse MM dem.info file if available (for demo timestamp)
         scoreboard (try
                      (parse-mm-info-file path)
                      (catch Throwable e {}))
-        rounds (process-events (:events demo-data))
-        score (compute-score rounds)]
-    (merge {:rounds (filter #(not (:fake %)) rounds)
-            :score score}
-           (select-keys demo-data [:map :players :tickrate])
-           {:timestamp (get scoreboard :matchtime (last-modified path))})))
+        last-round-end (last (filter #(= (:type %) "round_end") (:events demo-data)))
+        surrendered? (if last-round-end
+                       (contains? #{16 17} (:reason last-round-end))
+                       false)
+        ; If winner gets set here, it will be rewritten when we know if on the last rounds teams were switched
+        winner (if surrendered?
+                 (:winner last-round-end)
+                 0)
+        rounds (get-rounds demo-data demo-type)
+        demo (merge {:rounds      rounds
+                     :type        demo-type
+                     :timestamp   (get scoreboard :matchtime (last-modified path))
+                     :surrendered surrendered?
+                     :winner      winner}
+                    (select-keys demo-data [:map :player_names :tickrate :mm_rank_update]))]
+    (if (not (contains? latest-data-version demo-type))
+      (throw (Exception. "Unknown demo type")))
+    (enrich-demo demo)))

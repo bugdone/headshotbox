@@ -51,10 +51,9 @@
       (when-not (demoid-in-db? demoid mtime)
         (debug "Adding path" path)
         (try
-          (let [demo-info (get-demo-info path)
-                {:keys [timestamp map]} demo-info]
-            (db/add-demo demoid timestamp mtime map demo-info)
-            (stats/add-demo (merge demo-info {:timestamp timestamp :demoid demoid})))
+          (let [demo-info (get-demo-info path)]
+            (db/add-demo demoid mtime demo-info)
+            (stats/add-demo (merge demo-info {:demoid demoid})))
           (catch Throwable e
             (error "Cannot parse demo" path)
             (error e)))))

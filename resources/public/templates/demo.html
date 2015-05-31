@@ -1,9 +1,10 @@
 <div class="demoDiv">
   <h2 class="text-center demo-winner">
     {{demoOutcome(theDemo)}}
-    <span ng-class="{green: theDemo.score.score[0] > 15, red: theDemo.score.score[0] < 15}">{{theDemo.score.score[0]}}</span>:<span ng-class="{green: theDemo.score.score[1] > 15, red: theDemo.score.score[1] < 15}">{{theDemo.score.score[1]}}</span>
-    (<span class="green">{{theDemo.score.first_half[0]}}</span>:<span class="red">{{theDemo.score.first_half[1]}}</span>;
-    <span class="red">{{theDemo.score.second_half[0]}}</span>:<span class="green">{{theDemo.score.second_half[1]}}</span>)
+    <span ng-class="{green: theDemo.score[0] > theDemo.score[1], red: theDemo.score[0] < theDemo.score[1]}">{{theDemo.score[0]}}</span>:<span ng-class="{green: theDemo.score[1] > theDemo.score[0], red: theDemo.score[1] < theDemo.score[0]}">{{theDemo.score[1]}}</span>
+    (<span ng-repeat="half_score in theDemo.detailed_score">
+      <span ng-class="{red: $even && $index < 2, blue: $odd && $index < 2}">{{half_score[0]}}</span>:<span ng-class="{red: $odd && $index < 2, blue: $even && $index < 2}">{{half_score[1]}}</span><span ng-if="!$last">;</span>
+    </span>)
   </h2>
 
   <div class="container">

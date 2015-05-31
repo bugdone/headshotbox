@@ -18,13 +18,12 @@
 
 (defn get-players []
   (->> player-demos
-    (reduce-kv #(conj % {:steamid %2
-                         :demos (count %3)
-                         :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
-    (filter #(> (:demos %) 1))
-    (sort #(compare (:demos %2) (:demos %)))
-    (map #(assoc % :steamid (str (:steamid %))))
-    ))
+       (reduce-kv #(conj % {:steamid %2
+                            :demos   (count %3)
+                            :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
+       (filter #(> (:demos %) 0))
+       (sort #(compare (:demos %2) (:demos %)))
+       (map #(assoc % :steamid (str (:steamid %))))))
 
 (defn sorted-demos-for-steamid [steamid]
   (sort #(compare (:timestamp %) (:timestamp %2)) (vals (get player-demos steamid))))
@@ -86,9 +85,8 @@
 
 (defn update-stats-with-death [stats {:keys [attacker victim assister weapon headshot]}]
   (let [steamid (:steamid stats)
-        teams (:teams stats)
         weapon (weapon-name weapon)
-        enemies? (not= (teams steamid) (teams victim))
+        enemies? (not= (get (:players stats) steamid) (get (:players stats) victim))
         killed? (and (= steamid attacker) enemies?)
         init-hs-if-needed (fn [stats weapon]
                             (if (and killed? (nil? (get-in stats [:weapons weapon :hs])))
@@ -104,52 +102,46 @@
         (inc-stat-maybe :hs (and headshot killed?))
         (inc-stat-maybe [:weapons weapon :hs] (and headshot killed?)))))
 
-(defn team-number [steamid round players]
-  (if (zero? steamid)
-    0
-    (let [initial-team (:team (get players steamid))]
-      (assert (not (nil? initial-team)))
-      (if (<= round 15)
-        initial-team
-        (- 5 initial-team)))))
+(defn team-number [steamid round]
+  (get (:players round) steamid 0))
 
 (defn build-clutch-round-fn [enemies exact-enemies? won?]
   (fn [round steamid demo]
     (if (nil? (:tick_end round))
+      ; TODO make this check somewhere more sane (eg. when it's read from / written in db)
       (do
         (debug "No tick_end for round" (:number round) "in demo" (:demoid demo))
         false)
-      (let [players (:players demo)
-           deaths (filter #(<= (:tick %) (:tick_end round)) (:deaths round))
-           player-team (team-number steamid (:number round) players)
-           player-death (split-with #(not= (:victim %) steamid) deaths)
-           same-team (fn [death] (= player-team (team-number (:victim death) (:number round) players)))
-           not-same-team (comp not same-team)
-           last-teammate-death (split-with not-same-team
-                                           (reverse (first player-death)))
-           dead-teammates (count (filter same-team (second last-teammate-death)))
-           alive-enemies (- 5 (count (filter not-same-team (second last-teammate-death))))]
-       (and ((if exact-enemies? = >=) alive-enemies enemies) (= 4 dead-teammates) (if won? (= (:winner round) player-team) true))))))
+      (let [deaths (filter #(<= (:tick %) (:tick_end round)) (:deaths round))
+            player-team (team-number steamid round)
+            player-death (split-with #(not= (:victim %) steamid) deaths)
+            same-team (fn [death] (= player-team (team-number (:victim death) round)))
+            not-same-team (comp not same-team)
+            last-teammate-death (split-with not-same-team
+                                            (reverse (first player-death)))
+            dead-teammates (count (filter same-team (second last-teammate-death)))
+            alive-enemies (- 5 (count (filter not-same-team (second last-teammate-death))))]
+        (and ((if exact-enemies? = >=) alive-enemies enemies) (= 4 dead-teammates) (if won? (= (:winner round) player-team) true))))))
 
 (defn update-stats-with-round [stats round]
-  (let [updated-stats (reduce update-stats-with-death (assoc stats :kills-this-round 0) (:deaths round))
+  (let [updated-stats (reduce update-stats-with-death
+                              (assoc stats :kills-this-round 0 :players (:players round))
+                              (:deaths round))
         multikills (:kills-this-round updated-stats)
-        ; Super lame hax horrible code the wurst
-        demo {:players (reduce #(assoc % %2 {:team (get-in stats [:teams %2])}) {} (keys (:teams stats)))
-              :demoid  (:demoid stats)}]
+        ; Super lame hax horrible code the wurst (somewhat better now)
+        demo {:demoid (:demoid stats)}]
     (-> updated-stats
-        (dissoc :kills-this-round)
+        (dissoc :kills-this-round :players)
         (update-in [:rounds_with_kills multikills] inc)
         (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round (:steamid stats) demo))
         (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round (:steamid stats) demo))))
   )
 
 (defn demo-outcome [demo steamid]
-  (let [score (:score demo)]
-    (cond
-      (= (:winner score) 0) :tied
-      (= (:winner score) (team-number steamid 1 (:players demo))) :won
-      true :lost)))
+  (cond
+    (= (:winner demo) 0) :tied
+    (= (:winner demo) (team-number steamid (first (:rounds demo)))) :won
+    true :lost))
 
 (defn add-stat [stats stat value]
   (assoc stats stat (+ (stats stat) value)))
@@ -158,27 +150,26 @@
   (map #(assoc (second %) :number (+ 1 (first %))) (enumerate rounds)))
 
 (defn update-stats-with-demo [stats demo]
-  (let [teams (reduce-kv #(assoc % %2 (:team %3)) {} (:players demo))]
-    (-> (reduce update-stats-with-round (assoc stats :teams teams :demoid (:demoid demo)) (add-round-numbers (:rounds demo)))
-        (add-stat (demo-outcome demo (:steamid stats)) 1)
-        (add-stat :rounds (count (:rounds demo)))
-        (dissoc :teams :demoid)
-        (add-hltv-rating))))
+  (-> (reduce update-stats-with-round (assoc stats :demoid (:demoid demo)) (add-round-numbers (:rounds demo)))
+      (add-stat (demo-outcome demo (:steamid stats)) 1)
+      (add-stat :rounds (count (:rounds demo)))
+      (dissoc :demoid)
+      (add-hltv-rating)))
 
 (defn initial-stats [steamid]
-  {:steamid steamid
-   :kills   0
-   :deaths  0
-   :assists 0
-   :rounds  0
-   :won     0
-   :lost    0
-   :tied    0
-   :hs      0
-   :1v1_attempted 0
-   :1v1_won 0
+  {:steamid           steamid
+   :kills             0
+   :deaths            0
+   :assists           0
+   :rounds            0
+   :won               0
+   :lost              0
+   :tied              0
+   :hs                0
+   :1v1_attempted     0
+   :1v1_won           0
    :rounds_with_kills {0 0 1 0 2 0 3 0 4 0 5 0}
-   :weapons {}})
+   :weapons           {}})
 
 (defn cleanup-stats [stats]
   (let [make-weapons-list (fn [stats] (assoc stats :weapons (for [[k v] (:weapons stats)] (assoc v :name k))))]
@@ -198,14 +189,11 @@
     (cleanup-stats)))
 
 (defn add-score [demo]
-  (let [score (get-in demo [:score :score])
-        true-score (if (= 2 (team-number (:steamid demo) 1 (:players demo)))
-                     score
-                     (vec (reverse score)))]
+  (let [reverse? (= 3 (team-number (:steamid demo) (first (:rounds demo))))]
     (assoc demo
-      :score true-score
+      :score (if reverse? (vec (reverse (:score demo))) (:score demo))
       :outcome (name (demo-outcome demo (:steamid demo)))
-      :surrendered (get-in demo [:score :surrendered]))))
+      :surrendered (:surrendered demo))))
 
 (defn append-demo-stats [demo]
   (let [stats (stats-for-demo demo (:steamid demo))]
@@ -216,7 +204,7 @@
   (->> (sorted-demos-for-steamid steamid)
        (map #(assoc % :steamid steamid))
        (map append-demo-stats)
-       (map #(dissoc % :players :rounds))
+       (map #(dissoc % :players :rounds :steamid))
        (map #(assoc % :path (demo-path (:demoid %))))))
 
 (defn get-demo-stats [demoid]
@@ -228,9 +216,9 @@
                   :name (:name (second %)))
                 (seq (:players demo)))
            (group-by #(:team %))
-           (assoc (select-keys demo [:score :timestamp :duration :map]) :teams))
+           (assoc (select-keys demo [:score :winner :surrendered :detailed_score :timestamp :duration :map]) :teams))
       (merge {:rounds (map #(select-keys % [:tick]) (:rounds demo))
-              :path (demo-path demoid)}))))
+              :path   (demo-path demoid)}))))
 
 ; Search round
 
@@ -255,10 +243,11 @@
                             (seconds-to-ticks seconds (:tickrate demo)))
                         (partition kills-no 1 kills)))))))
 
+; TODO demo unused here, remove?
 (defn side-filter [regexp-demo]
   (fn [round steamid demo]
     (let [team (get {"ct" 3 "t" 2} (second regexp-demo))]
-      (= team (team-number steamid (:number round) (:players demo))))))
+      (= team (team-number steamid round)))))
 
 (defn clutch-filter [regexp-demo]
   (let [enemies-str (second regexp-demo)]
@@ -300,17 +289,17 @@
         demo-info (select-keys demo [:timestamp :map :demoid])
         make-kill-obj #(merge (first %) {:kills (second %)})]
     (map #(merge demo-info (hash-map :round (:number %)
-                                      :steamid steamid
-                                      :tick (+ (:tick %) (seconds-to-ticks 15 (:tickrate demo)))
-                                      :won (= (team-number steamid (:number %) (:players demo)) (:winner %))
-                                      :side (get {2 "T" 3 "CT"} (team-number steamid (:number %) (:players demo)))
-                                      :kills (map make-kill-obj (round-kills % steamid demo))
-                                      :path (demo-path (:demoid demo))))
+                                     :steamid steamid
+                                     :tick (+ (:tick %) (seconds-to-ticks 15 (:tickrate demo)))
+                                     :won (= (team-number steamid %) (:winner %))
+                                     :side (get {2 "T" 3 "CT"} (team-number steamid %))
+                                     :kills (map make-kill-obj (round-kills % steamid demo))
+                                     :path (demo-path (:demoid demo))))
          filtered-rounds)))
 
 (defn replace-aliases [s]
-  (reduce #(str/replace % (first %2) (second %2)) s {"hsbang" "banghs"
-                                                     "ace" "5k"
+  (reduce #(str/replace % (first %2) (second %2)) s {"hsbang"   "banghs"
+                                                     "ace"      "5k"
                                                      "juandeag" "deaglehs"}))
 
 (defn re-filters [re filters]
@@ -326,9 +315,9 @@
   (let [steamid (steamid-filter filters)
         map (first (re-filters #"(de|cs)_\w+" filters))
         demos (vals
-                  (if steamid
-                    (get player-demos steamid)
-                    demos))]
+                (if steamid
+                  (get player-demos steamid)
+                  demos))]
     (sort #(compare (:timestamp (first %2)) (:timestamp (first %)))
           (if map
             (filter #(= (:map %) map) demos)

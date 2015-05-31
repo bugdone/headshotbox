@@ -8,8 +8,11 @@
   (:import (java.io File)))
 
 (timbre/refer-timbre)
-(def latest-data-version 1)
-(def schema-version 3)
+(def latest-data-version {"valve" 2
+                          "esea" 2
+                          "faceit" 2})
+
+(def schema-version 4)
 ;(set! *warn-on-reflection* true)
 
 (def app-config-dir
@@ -62,13 +65,17 @@
   (assoc-in dict path (into {} (for [[k v] (get-in dict path)] [(Long/parseLong (name k)) v]))))
 
 (defn db-json-to-dict [rows]
-  (->> rows
-       (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))
-       (map (partial kw-steamids-to-long [:data :players]))))
+  (letfn [(round-players-to-long [rounds]
+                                 (map (partial kw-steamids-to-long [:players]) rounds))]
+    (->> rows
+         (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))
+         (map (partial kw-steamids-to-long [:data :players]))
+         (map #(assoc-in % [:data :rounds] (round-players-to-long (get-in % [:data :rounds])))))))
 
 (defn get-all-demos []
   (->>
-    (jdbc/query db [(str "SELECT demos.demoid, data FROM demos")])
+    (jdbc/query db [(str "SELECT demos.demoid, type, data_version, data FROM demos")])
+    (filter #(= (latest-data-version (:type %)) (:data_version %)))
     (db-json-to-dict)
     (map #(assoc (:data %) :demoid (:demoid %)))))
 
@@ -82,14 +89,20 @@
     (if (not (empty? demoids))
       (jdbc/execute! db [(str "UPDATE demos SET mtime = 0 WHERE demoid IN " (sql-demoids demoids))]))))
 
+; So some systems have subsecond precision...
+; and for these systems, mtime was a clojure ratio serialized as string
 (defn migrate-3 []
   (let [demos (jdbc/query db [(str "SELECT demos.demoid, mtime FROM demos")])]
     (doseq [demo demos]
         (let [mtime (int (read-string (str (:mtime demo))))]
           (jdbc/execute! db ["UPDATE demos SET mtime = ? WHERE demoid = ?" mtime (:demoid demo)])))))
 
+(defn migrate-4 []
+  (exec-sql-file "sql/migrate_3_to_4.sql" :transaction? true))
+
 (def migrations {1 [2 migrate-2]
-                 2 [3 migrate-3]})
+                 2 [3 migrate-3]
+                 3 [4 migrate-4]})
 
 (defn get-migration-plan []
   (loop [plan []
@@ -125,36 +138,47 @@
 (defn demo-path [demoid]
   (.getPath (io/file (get-demo-directory) demoid)))
 
+(defn demoid-present? [demoid]
+  (first (jdbc/query db ["SELECT demoid FROM demos WHERE demoid=?" demoid])))
+
 (defn get-data-version [demoid]
-  (:data_version (first (jdbc/query db ["SELECT data_version FROM demos WHERE demoid=?" demoid]))))
+  (first (jdbc/query db ["SELECT type, data_version FROM demos WHERE demoid=?" demoid])))
 
 (defn get-demo-mtime [demoid]
   (:mtime (first (jdbc/query db ["SELECT mtime FROM demos WHERE demoid=?" demoid]))))
 
 (defn demoid-in-db? [demoid mtime]
   "Returns true if the demo is present, was parsed by the latest version at/after mtime"
-  (and (= (get-data-version demoid) latest-data-version) (<= mtime (get-demo-mtime demoid))))
+  (let [mtime-db (get-demo-mtime demoid)]
+    (and
+      mtime-db
+      (<= mtime mtime-db)
+      (let [{type :type data-version :data_version} (get-data-version demoid)]
+        (if (not (nil? type))
+          (= (get latest-data-version type) data-version)
+          true)))))
 
 (defn del-demo [demoid]
   (jdbc/with-db-transaction
     [trans db]
     (jdbc/execute! db ["DELETE FROM demos WHERE demoid=?" demoid])))
 
-(defn add-demo [demoid timestamp mtime map data]
-  (jdbc/with-db-transaction
-    [trans db]
-    (let [data-version (get-data-version demoid)]
-      (cond
-        (nil? data-version)
-        (do
-          (debug "Adding demo data for" demoid)
-          (jdbc/execute! db ["INSERT INTO demos (demoid, timestamp, mtime, map, data_version, data) VALUES (?, ?, ?, ?, ?, ?)"
-                             demoid timestamp mtime map latest-data-version (json/write-str data)]))
-        (not (demoid-in-db? demoid mtime))
+(defn add-demo [demoid mtime data]
+  (let [{:keys [timestamp map type]} data
+        data-str (json/write-str data)
+        data-version (get latest-data-version type)]
+    (assert (not (and (nil? type) (nil? timestamp) (nil? map))))
+    (jdbc/with-db-transaction
+      [trans db]
+      (if (demoid-present? demoid)
         (do
           (debug "Updating data for demo" demoid)
-          (jdbc/execute! db ["UPDATE demos SET data=?, data_version=?, timestamp=?, mtime=?, map=? WHERE demoid=?"
-                             (json/write-str data) latest-data-version timestamp mtime map demoid]))))))
+          (jdbc/execute! db ["UPDATE demos SET data=?, data_version=?, timestamp=?, mtime=?, map=?, type=? WHERE demoid=?"
+                             data-str data-version timestamp mtime map type demoid]))
+        (do
+          (debug "Adding demo data for" demoid)
+          (jdbc/execute! db ["INSERT INTO demos (demoid, timestamp, mtime, map, data_version, data, type) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                             demoid timestamp mtime map data-version data-str type]))))))
 
 (defn keep-only [demoids]
   (if (count demoids)

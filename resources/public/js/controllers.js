@@ -5,9 +5,9 @@ function getPlayerSummaries(steamids) {
 }
 
 function demoOutcome(demoStats) {
-    if (demoStats.score.winner == '2')
+    if (demoStats.winner == '2')
         outcome = 'Team A wins';
-    else if (demoStats.score.winner == '3')
+    else if (demoStats.winner == '3')
         outcome = 'Team B wins';
     else
         outcome = 'Draw';
