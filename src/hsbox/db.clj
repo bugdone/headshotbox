@@ -24,10 +24,10 @@
     (.mkdir app-config)
     app-config))
 
-(def db
-  {:classname "org.sqlite.JDBC"
-   :subprotocol "sqlite"
-   :subname (File. app-config-dir "headshotbox.sqlite")})
+(def db nil)
+
+(defn set-portable []
+  (def app-config-dir (File. ".")))
 
 (defn exec-sql-file [file & {:keys [transaction?] :or {transaction? true}}]
   (let [queries (str/split (slurp (resource file)) #";\r?\n")]
@@ -42,6 +42,10 @@
     (jdbc/execute! db ["DELETE FROM demos"])))
 
 (defn init-db-if-absent []
+  (def hsbox.db/db
+    {:classname "org.sqlite.JDBC"
+     :subprotocol "sqlite"
+     :subname (File. app-config-dir "headshotbox.sqlite")})
   (if-not (file-exists? (str app-config-dir "/headshotbox.sqlite"))
     (init-db)))
 
