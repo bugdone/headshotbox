@@ -6,6 +6,16 @@ h1 {
 .avatar {
     margin: 20px;
     text-align: center;
+    border-radius: 25%;
+}
+
+.demo-avatar {
+    border-radius: 25%;
+}
+
+.list-avatar {
+    border-radius: 25%;
+    margin-right: 10px;
 }
 
 .name {
