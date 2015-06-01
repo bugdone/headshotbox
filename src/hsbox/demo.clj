@@ -177,6 +177,7 @@
 (defn get-demo-info [path]
   (info "Processing" path)
   (let [demo-data (parse-demo path)
+        demo-data (kw-steamids-to-long [:mm_rank_update] demo-data)
         demo-type (get-demo-type demo-data)
         ; Parse MM dem.info file if available (for demo timestamp)
         scoreboard (try
@@ -190,7 +191,6 @@
         winner (if surrendered?
                  (:winner last-round-end)
                  0)
-        x (println "wat"  winner surrendered?)
         rounds (get-rounds demo-data demo-type)
         demo (merge {:rounds      rounds
                      :type        demo-type
