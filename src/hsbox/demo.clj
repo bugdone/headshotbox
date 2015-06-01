@@ -141,7 +141,7 @@
         [a_wins b_wins] score]
     (-> demo
         (assoc :score score
-               :winner (if (not (:surrendered? demo))
+               :winner (if (not (:surrendered demo))
                          (cond
                            (< a_wins b_wins) 3
                            (> a_wins b_wins) 2
@@ -190,6 +190,7 @@
         winner (if surrendered?
                  (:winner last-round-end)
                  0)
+        x (println "wat"  winner surrendered?)
         rounds (get-rounds demo-data demo-type)
         demo (merge {:rounds      rounds
                      :type        demo-type
