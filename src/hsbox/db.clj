@@ -82,9 +82,15 @@
 (defn sql-demoids [demoids]
   (str " (" (str/join ", " (map #(str "\"" % "\"") demoids)) ")"))
 
+(defn get-all-demos-v1 []
+  (->>
+    (jdbc/query db [(str "SELECT demos.demoid, data FROM demos")])
+    (db-json-to-dict)
+    (map #(assoc (:data %) :demoid (:demoid %)))))
+
 (defn migrate-2 []
   (exec-sql-file "sql/migrate_1_to_2.sql" :transaction? false)
-  (let [half-parsed-demos (filter half-parsed-demo? (get-all-demos))
+  (let [half-parsed-demos (filter half-parsed-demo? (get-all-demos-v1))
         demoids (map #(:demoid %) half-parsed-demos)]
     (if (not (empty? demoids))
       (jdbc/execute! db [(str "UPDATE demos SET mtime = 0 WHERE demoid IN " (sql-demoids demoids))]))))
