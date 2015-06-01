@@ -84,6 +84,7 @@
           <thead>
             <tr>
               <th class="text-left"><a ng-click="orderDemos = (orderDemos  == '-timestamp' ? 'timestamp' : '-timestamp')">Date</a></th>
+              <th class="text-center">Type</th>
               <th class="text-left">Map</th>
               <th class="text-center">Score</th>
               <th class="text-center"><a ng-click="orderDemos = '-kills'">Kills</a></th>
@@ -97,6 +98,7 @@
           <tbody ng-repeat="demo in demos | orderBy:orderDemos">
             <tr ng-class="{won_background: demo.outcome == 'won', lost_background: demo.outcome == 'lost', tied_background: demo.outcome == 'tied'}" data-ng-click="makeVisible(demo.demoid)">
               <td class="text-left">{{demo.date}}</td>
+              <td class="text-center"><img ng-src="img/{{demo.type}}.png" width="50"/></td>
               <td class="text-left">{{demo.map}}</td>
               <td class="text-center">
                 <span class="score text-right">
@@ -120,7 +122,7 @@
               </td>
             </tr>
             <tr ng-if="isVisible(demo.demoid)">
-              <td colspan="9">
+              <td colspan="10">
                 <div ng-include src="'templates/demo.html'"></div>
               </td>
             </tr>
