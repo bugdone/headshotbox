@@ -46,9 +46,9 @@ function bansTooltip(player, demoTimestamp) {
         tooltip += ", " + player['DaysSinceLastBan'] + " days since last ban";
         var banTime = Math.floor(Date.now() / 1000)- 3600 * 24 * player['DaysSinceLastBan'];
         if (banTime >= demoTimestamp)
-             tooltip += " (" + ((banTime - demoTimestamp) / (24 * 3600) | 0) + " days after this game)";
+             return tooltip + " (" + ((banTime - demoTimestamp) / (24 * 3600) | 0) + " days after this game)";
     }
-    return tooltip;
+    return "";
 }
 
 hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce) {
