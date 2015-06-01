@@ -14,6 +14,7 @@
           <thead>
             <tr>
               <th>Team A</th>
+              <th ng-if="theDemo.type == 'valve'">Rank</th>
               <th><a ng-click="orderTeams = '-kills'">Kills</a></th>
               <th>Assists</th>
               <th>Deaths</th>
@@ -28,8 +29,11 @@
                 <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
               </a>
               <img class="demo-avatar" src="img/vac.png" ng-if="bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)" width="24"
-                   title="{{bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)}}"/>
+                   title="{{bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)}}" title="{{player.mm_rank_update.old_rank}}"/>
               <a href="#/player/{{player.steamid}}">{{player.name}}</a>
+            </td>
+            <td ng-if="theDemo.type == 'valve'">
+              <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" />
             </td>
             <td>{{player.kills}}</td>
             <td>{{player.assists}}</td>
@@ -41,6 +45,7 @@
           <thead>
             <tr>
               <th>Team B</th>
+              <th ng-if="theDemo.type == 'valve'">Rank</th>
               <th><a ng-click="orderTeams = '-kills'">Kills</a></th>
               <th>Assists</th>
               <th>Deaths</th>
@@ -57,6 +62,9 @@
               <img class="demo-avatar" src="img/vac.png" ng-if="bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)" width="24"
                    title="{{bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)}}"/>
               <a href="#/player/{{player.steamid}}">{{player.name}}</a>
+            </td>
+            <td ng-if="theDemo.type == 'valve'">
+              <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" />
             </td>
             <td>{{player.kills}}</td>
             <td>{{player.assists}}</td>

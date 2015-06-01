@@ -21,7 +21,7 @@
        (reduce-kv #(conj % {:steamid %2
                             :demos   (count %3)
                             :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
-       (filter #(> (:demos %) 0))
+       (filter #(> (:demos %) 1))
        (sort #(compare (:demos %2) (:demos %)))
        (map #(assoc % :steamid (str (:steamid %))))))
 
@@ -214,10 +214,11 @@
       (->> (map #(assoc (stats-for-demo demo (first %))
                   :team (:team (second %))
                   :steamid (str (first %))
-                  :name (:name (second %)))
+                  :name (:name (second %))
+                  :mm_rank_update (get-in demo [:mm_rank_update (first %)]))
                 (seq (:players demo)))
            (group-by #(:team %))
-           (assoc (select-keys demo [:score :winner :surrendered :detailed_score :timestamp :duration :map]) :teams))
+           (assoc (select-keys demo [:score :winner :surrendered :detailed_score :timestamp :duration :map :type]) :teams))
       (merge {:rounds (map #(select-keys % [:tick]) (:rounds demo))
               :path   (demo-path demoid)}))))
 
