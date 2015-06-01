@@ -23,7 +23,7 @@
           portable? (flag-present "-portable")
           run-indexer? (not (flag-present "-noindexer"))
           server (ring.adapter.jetty/run-jetty #'app {:port port :join? false})]
-      (info "HeadshotBox " (version/get-version) (when portable? "portable"))
+      (info "HeadshotBox" (version/get-version) (if portable? "portable" ""))
       (when portable?
         (db/set-portable))
       (future (version/update-latest-version-every-day))

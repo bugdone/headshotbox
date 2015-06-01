@@ -204,7 +204,8 @@
   (->> (sorted-demos-for-steamid steamid)
        (map #(assoc % :steamid steamid))
        (map append-demo-stats)
-       (map #(dissoc % :players :rounds :steamid))
+       (map #(dissoc % :players :rounds :steamid :mm_rank_update :detailed_score :tickrate :rounds_with_kills
+                     :1v1_attempted :1v1_won :weapons :tied :won :lost))
        (map #(assoc % :path (demo-path (:demoid %))))))
 
 (defn get-demo-stats [demoid]
