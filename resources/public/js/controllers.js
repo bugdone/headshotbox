@@ -52,21 +52,13 @@ function bansTooltip(player, demoTimestamp) {
 }
 
 function getStats($scope, $http) {
-    var $req = '?';
-    for (var key in $scope.filterDemos) {
-        if ($scope.filterDemos.hasOwnProperty(key)) {
-            if ($req != '?')
-                $req += '&';
-            $req += key + '=' + $scope.filterDemos[key];
-        }
-    }
-    $http.get(serverUrl + '/player/' + steamid + '/stats' + $req).success(function(data) {
+    $http.get(serverUrl + '/player/' + steamid + '/stats', {'params': $scope.filterDemos}).success(function(data) {
         $scope.stats = data;
         $scope.stats.weapons.forEach(function (p) {
             p.hs_percent = (p.hs / p.kills) * 100;
         });
     });
-    $http.get(serverUrl + '/player/' + steamid + '/demos' + $req).success(function(data) {
+    $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': $scope.filterDemos}).success(function(data) {
         $scope.demos = data;
         var $valveOnly = true;
         $scope.demos.forEach(function (m) {
