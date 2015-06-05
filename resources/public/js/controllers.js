@@ -51,28 +51,46 @@ function bansTooltip(player, demoTimestamp) {
     return "";
 }
 
+function getStats($scope, $http) {
+    var $req = '?';
+    for (var key in $scope.filterDemos) {
+        if ($scope.filterDemos.hasOwnProperty(key)) {
+            if ($req != '?')
+                $req += '&';
+            $req += key + '=' + $scope.filterDemos[key];
+        }
+    }
+    $http.get(serverUrl + '/player/' + steamid + '/stats' + $req).success(function(data) {
+        $scope.stats = data;
+        $scope.stats.weapons.forEach(function (p) {
+            p.hs_percent = (p.hs / p.kills) * 100;
+        });
+    });
+    $http.get(serverUrl + '/player/' + steamid + '/demos' + $req).success(function(data) {
+        $scope.demos = data;
+        var $valveOnly = true;
+        $scope.demos.forEach(function (m) {
+            m.kdd = m.kills - m.deaths;
+            if (!m.timestamp)
+                m.timestamp = 0;
+            if (m.type != 'valve')
+                $valveOnly = false;
+            m.date = timestamp2date(m.timestamp);
+        });
+        $scope.valveOnly = $valveOnly;
+    });
+}
+
 hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce) {
+    $scope.valveOnly = false;
+    $scope.filterDemos = {};
     $scope.watchDemoUrl = watchDemoUrl;
     $scope.bansTooltip = bansTooltip;
     steamid = $routeParams.steamid;
     $scope.orderWeapons = '-kills';
     $scope.steamid = steamid;
     $scope.orderDemos = '-timestamp';
-    $http.get(serverUrl + '/player/' + steamid + '/stats').success(function(data) {
-        $scope.stats = data;
-        $scope.stats.weapons.forEach(function (p) {
-            p.hs_percent = (p.hs / p.kills) * 100;
-        });
-    });
-    $http.get(serverUrl + '/player/' + steamid + '/demos').success(function(data) {
-        $scope.demos = data;
-        $scope.demos.forEach(function (m) {
-            m.kdd = m.kills - m.deaths;
-            if (!m.timestamp)
-                m.timestamp = 0;
-            m.date = timestamp2date(m.timestamp);
-        });
-    });
+    getStats($scope, $http);
     $http.get(getPlayerSummaries([steamid])).success(function (response) {
         $scope.player = response[steamid];
     });
@@ -168,6 +186,14 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     };
 
     $scope.demoOutcome = demoOutcome;
+
+    $scope.status = {
+        isopen: false
+    };
+    $scope.setDemoType = function(demoType) {
+        $scope.filterDemos.demoType = demoType;
+        getStats($scope, $http);
+    };
 });
 
 hsboxControllers.controller('PlayerList', function ($scope, $http) {

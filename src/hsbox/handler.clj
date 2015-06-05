@@ -16,10 +16,10 @@
 (timbre/refer-timbre)
 
 (defroutes api-routes
-  (GET "/player/:steamid/stats" [steamid]
-       (response (stats/get-stats-for-steamid (Long/parseLong steamid))))
-  (GET "/player/:steamid/demos" [steamid]
-       (response (stats/get-demos-for-steamid (Long/parseLong steamid))))
+  (GET "/player/:steamid/stats" [steamid demoType]
+    (response (stats/get-stats-for-steamid (Long/parseLong steamid) demoType)))
+  (GET "/player/:steamid/demos" [steamid demoType]
+    (response (stats/get-demos-for-steamid (Long/parseLong steamid) demoType)))
 
   (context "/demo/:demoid" [demoid]
            (defroutes demo-routes

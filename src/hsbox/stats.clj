@@ -182,9 +182,13 @@
   (-> (update-stats-with-demo (initial-stats steamid) demo)
       (cleanup-stats)))
 
-(defn get-stats-for-steamid [steamid]
+(defn filter-demos [demo-type demos]
+  (filter #(if (contains? #{"valve" "faceit" "esea"} demo-type) (= demo-type (:type %)) true) demos))
+
+(defn get-stats-for-steamid [steamid demo-type]
   (->
     (->> (vals (get player-demos steamid))
+         (filter-demos demo-type)
          (reduce update-stats-with-demo (initial-stats steamid)))
     (cleanup-stats)))
 
@@ -193,18 +197,20 @@
     (assoc demo
       :score (if reverse? (vec (reverse (:score demo))) (:score demo))
       :outcome (name (demo-outcome demo (:steamid demo)))
-      :surrendered (:surrendered demo))))
+      :surrendered (:surrendered demo)
+      :mm_rank_update (get-in demo [:mm_rank_update (:steamid demo)]))))
 
 (defn append-demo-stats [demo]
   (let [stats (stats-for-demo demo (:steamid demo))]
     (-> (add-score demo)
         (merge stats))))
 
-(defn get-demos-for-steamid [steamid]
+(defn get-demos-for-steamid [steamid demo-type]
   (->> (sorted-demos-for-steamid steamid)
+       (filter-demos demo-type)
        (map #(assoc % :steamid steamid))
        (map append-demo-stats)
-       (map #(dissoc % :players :rounds :steamid :mm_rank_update :detailed_score :tickrate :rounds_with_kills
+       (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills
                      :1v1_attempted :1v1_won :weapons :tied :won :lost))
        (map #(assoc % :path (demo-path (:demoid %))))))
 
