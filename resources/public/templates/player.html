@@ -104,11 +104,11 @@
                 <td class="text-left">{{demo.date}}</td>
                 <td class="text-center" ng-if="!valveOnly"><img ng-src="img/{{demo.type}}.png" width="50"/></td>
                 <td class="text-center" ng-if="valveOnly">
-                    <img ng-if="demo.mm_rank_update.rank_old" ng-src="img/ranks/{{demo.mm_rank_update.rank_old}}.png"/>
-                    <span ng-if="demo.mm_rank_update.rank_old != demo.mm_rank_update.rank_new">
-                      <i class="fa fa-long-arrow-right" color="green"></i>
-                      <img ng-if="demo.mm_rank_update.rank_new" ng-src="img/ranks/{{demo.mm_rank_update.rank_new}}.png"/>
-                    </span>
+                  <img ng-if="demo.mm_rank_update.rank_old" ng-src="img/ranks/{{demo.mm_rank_update.rank_old}}.png"/>
+                  <span ng-if="demo.mm_rank_update.rank_old != demo.mm_rank_update.rank_new">
+                    <i class="fa fa-long-arrow-right"></i>
+                    <img ng-if="demo.mm_rank_update.rank_new" ng-src="img/ranks/{{demo.mm_rank_update.rank_new}}.png"/>
+                  </span>
                 </td>
                 <td class="text-left">{{demo.map}}</td>
                 <td class="text-center">
@@ -171,19 +171,56 @@
   </div>
 
   <div class="container col-md-3">
-    <!-- Single button -->
-    <div class="btn dropdown" is-open="status.isopen">
-      <button type="button" class="btn btn-default dropdown-toggle">
-        Demo type <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li ng-click="setDemoType(null)">All</li>
-        <li ng-click="setDemoType('valve')"><img ng-src="img/valve.png" width="50"/></li>
-        <li ng-click="setDemoType('esea')"><img ng-src="img/esea.png" width="50"/></li>
-        <li ng-click="setDemoType('faceit')"><img ng-src="img/faceit.png" width="50"/></li>
-      </ul>
+    <div class="row">
+      <div class="container col-sm-3">
+        <div class="btn dropdown">
+          <button type="button" class="btn btn-default dropdown-toggle">
+            Demo type <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-click="setDemoType(null)">All</li>
+            <li ng-click="setDemoType('valve')"><img ng-src="img/valve.png" width="50"/></li>
+            <li ng-click="setDemoType('esea')"><img ng-src="img/esea.png" width="50"/></li>
+            <li ng-click="setDemoType('faceit')"><img ng-src="img/faceit.png" width="50"/></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container col-sm-3">
+        <div class="btn dropdown">
+          <button type="button" class="btn btn-default dropdown-toggle">
+            Map <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-click="setMap(null)">All</li>
+            <li ng-repeat="map in playerMaps" ng-click="setMap(map)">{{map}}</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-  </div>
+    <div class="row">
+      <div class="container col-md-6">
+        <div class="input-group">
+          <span class="input-group-addon">Start</span>
+          <input type="text" class="form-control" is-open="datepickerStatus[0]" datepicker-popup="dd.MM.yyyy" starting-day=1 ng-model="startDate" ng-required="true" close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openDatepicker($event, 0)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="container col-md-6">
+        <div class="input-group">
+          <span class="input-group-addon">End</span>
+          <input type="text" class="form-control" is-open="datepickerStatus[1]" datepicker-popup="dd.MM.yyyy" starting-day=1 ng-model="endDate" ng-required="true" close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openDatepicker($event, 1)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

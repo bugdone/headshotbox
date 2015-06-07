@@ -25,6 +25,9 @@
        (sort #(compare (:demos %2) (:demos %)))
        (map #(assoc % :steamid (str (:steamid %))))))
 
+(defn get-maps-for-steamid [steamid]
+  (set (map #(:map %) (vals (get player-demos steamid)))))
+
 (defn sorted-demos-for-steamid [steamid]
   (sort #(compare (:timestamp %) (:timestamp %2)) (vals (get player-demos steamid))))
 
@@ -182,13 +185,18 @@
   (-> (update-stats-with-demo (initial-stats steamid) demo)
       (cleanup-stats)))
 
-(defn filter-demos [demo-type demos]
-  (filter #(if (contains? #{"valve" "faceit" "esea"} demo-type) (= demo-type (:type %)) true) demos))
+(defn filter-demos [{:keys [demo-type start-date end-date map-name]} demos]
+  (filter #(and
+            (if (contains? #{"valve" "faceit" "esea"} demo-type) (= demo-type (:type %)) true)
+            (if map-name (= (:map %) map-name) true)
+            (if start-date (>= (:timestamp %) start-date) true)
+            (if end-date (<= (:timestamp %) end-date) true))
+          demos))
 
-(defn get-stats-for-steamid [steamid demo-type]
+(defn get-stats-for-steamid [steamid filters]
   (->
     (->> (vals (get player-demos steamid))
-         (filter-demos demo-type)
+         (filter-demos filters)
          (reduce update-stats-with-demo (initial-stats steamid)))
     (cleanup-stats)))
 
@@ -205,9 +213,9 @@
     (-> (add-score demo)
         (merge stats))))
 
-(defn get-demos-for-steamid [steamid demo-type]
+(defn get-demos-for-steamid [steamid filters]
   (->> (sorted-demos-for-steamid steamid)
-       (filter-demos demo-type)
+       (filter-demos filters)
        (map #(assoc % :steamid steamid))
        (map append-demo-stats)
        (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills

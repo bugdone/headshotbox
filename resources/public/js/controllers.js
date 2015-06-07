@@ -24,6 +24,12 @@ function timestamp2date(timestamp) {
     return d.toLocaleString(undefined, format);
 };
 
+function date2timestamp(date) {
+    if (date)
+        return Math.round(date / 1000);
+    return null;
+}
+
 function watchDemoUrl(path, steamid, tick, highlight) {
     return 'steam://rungame/730/' + steamid + '/+playdemo "' +
         encodeURI(path) + (tick ? '@' + tick : '') + '" ' +
@@ -44,7 +50,7 @@ function bansTooltip(player, demoTimestamp) {
     }
     if (tooltip != "") {
         tooltip += ", " + player['DaysSinceLastBan'] + " days since last ban";
-        var banTime = Math.floor(Date.now() / 1000)- 3600 * 24 * player['DaysSinceLastBan'];
+        var banTime = date2timestamp(Date.now()) - 3600 * 24 * player['DaysSinceLastBan'];
         if (banTime >= demoTimestamp)
              return tooltip + " (" + ((banTime - demoTimestamp) / (24 * 3600) | 0) + " days after this game)";
     }
@@ -75,7 +81,8 @@ function getStats($scope, $http) {
 
 hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce) {
     $scope.valveOnly = false;
-    $scope.filterDemos = {};
+    $scope.playerMaps = [];
+    $scope.filterDemos = {'startDate': null, 'endDate': null};
     $scope.watchDemoUrl = watchDemoUrl;
     $scope.bansTooltip = bansTooltip;
     steamid = $routeParams.steamid;
@@ -85,6 +92,9 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     getStats($scope, $http);
     $http.get(getPlayerSummaries([steamid])).success(function (response) {
         $scope.player = response[steamid];
+    });
+    $http.get(serverUrl + '/player/' + steamid + '/maps').success(function(data) {
+        $scope.playerMaps = data;
     });
     $scope.demoStats = {}
     $scope.steamAccounts = {}
@@ -179,13 +189,35 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
 
     $scope.demoOutcome = demoOutcome;
 
-    $scope.status = {
-        isopen: false
-    };
     $scope.setDemoType = function(demoType) {
         $scope.filterDemos.demoType = demoType;
         getStats($scope, $http);
     };
+
+    $scope.setMap = function(map) {
+        $scope.filterDemos.mapName = map;
+        getStats($scope, $http);
+    };
+
+    $scope.datepickerStatus = [false, false];
+    $scope.openDatepicker = function($event, $no) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.datepickerStatus[$no] = true;
+    };
+
+    $scope.$watch('startDate', function() {
+        var $changed = $scope.filterDemos.startDate != date2timestamp($scope.startDate);
+        $scope.filterDemos.startDate = date2timestamp($scope.startDate);
+        if ($changed)
+            getStats($scope, $http);
+    });
+    $scope.$watch('endDate', function() {
+        var $changed = $scope.filterDemos.endDate != date2timestamp($scope.endDate);
+        $scope.filterDemos.endDate = date2timestamp($scope.endDate);
+        if ($changed)
+            getStats($scope, $http);
+    });
 });
 
 hsboxControllers.controller('PlayerList', function ($scope, $http) {
