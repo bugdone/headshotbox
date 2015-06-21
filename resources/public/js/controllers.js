@@ -128,7 +128,8 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
                 missingPlayers[missingPlayers.length] = p.steamid;
         });
         $scope.getPlayersInfo(missingPlayers);
-        $scope.$apply();
+        if (!$scope.$$phase)
+            $scope.$apply();
     });
     $scope.resetNotesControls = function() {
         $scope.notesControls = {'demoNotesInput': '', 'demoNotesView': ''};
