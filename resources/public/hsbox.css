@@ -183,3 +183,24 @@ a {
 .github-link{
   font-size: 24px;
 }
+
+.teammates-box {
+    box-shadow: none;
+}
+
+.teammate {
+    background: inherit;
+    border: none;
+}
+
+.remove-teammate {
+    border-radius: 69%;
+}
+
+.no-bg {
+    background-image: none;
+}
+
+.my-input-group {
+    padding: 10px 14px !important;
+}

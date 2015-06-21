@@ -336,3 +336,30 @@ a {
 .github-link{
     font-size: 24px;
 }
+
+.teammate {
+    background: inherit;
+    color: white;
+    border: none;
+}
+
+.teammates-box {
+    box-shadow: none;
+}
+
+.remove-teammate {
+    border-radius: 69%;
+}
+
+.no-bg {
+    background-image: none;
+}
+
+.my-input-group {
+    padding: 10px 14px !important;
+}
+
+.teammates-list {
+    background: inherit;
+    color: white;
+}

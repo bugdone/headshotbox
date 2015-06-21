@@ -58,13 +58,20 @@ function bansTooltip(player, demoTimestamp) {
 }
 
 function getStats($scope, $http) {
-    $http.get(serverUrl + '/player/' + steamid + '/stats', {'params': $scope.filterDemos}).success(function(data) {
+    var params = JSON.parse(JSON.stringify($scope.filterDemos));
+    var teammates = [];
+    $scope.filterTeammates.forEach(function (t) {
+        teammates.push(t.steamid);
+    });
+    if (teammates.length > 0)
+        params['teammates'] = teammates.join();
+    $http.get(serverUrl + '/player/' + steamid + '/stats', {'params': params}).success(function(data) {
         $scope.stats = data;
         $scope.stats.weapons.forEach(function (p) {
             p.hs_percent = (p.hs / p.kills) * 100;
         });
     });
-    $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': $scope.filterDemos}).success(function(data) {
+    $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': params}).success(function(data) {
         $scope.demos = data;
         var $valveOnly = true;
         $scope.demos.forEach(function (m) {
@@ -82,13 +89,30 @@ function getStats($scope, $http) {
 hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce) {
     $scope.valveOnly = false;
     $scope.playerMaps = [];
+    $scope.playerTeammates = [];
     $scope.filterDemos = {'startDate': null, 'endDate': null};
+    $scope.filterTeammates = [];
     $scope.watchDemoUrl = watchDemoUrl;
     $scope.bansTooltip = bansTooltip;
     steamid = $routeParams.steamid;
     $scope.orderWeapons = '-kills';
     $scope.steamid = steamid;
     $scope.orderDemos = '-timestamp';
+    $scope.demoStats = {}
+    $scope.steamAccounts = {}
+    $scope.visibleDemo = ''
+    $scope.visibleRound = 0
+    $scope.orderTeams = '-kills';
+    $scope.getPlayersInfo = function(missingPlayers) {
+        if (missingPlayers.length == 0)
+            return;
+        $http.get(getPlayerSummaries(missingPlayers)).success(function (response) {
+            for (var player in response) {
+                $scope.steamAccounts[player] = response[player];
+            }
+        });
+    };
+
     getStats($scope, $http);
     $http.get(getPlayerSummaries([steamid])).success(function (response) {
         $scope.player = response[steamid];
@@ -96,11 +120,16 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     $http.get(serverUrl + '/player/' + steamid + '/maps').success(function(data) {
         $scope.playerMaps = data;
     });
-    $scope.demoStats = {}
-    $scope.steamAccounts = {}
-    $scope.visibleDemo = ''
-    $scope.visibleRound = 0
-    $scope.orderTeams = '-kills';
+    $http.get(serverUrl + '/player/' + steamid + '/teammates').success(function(data) {
+        $scope.playerTeammates = data;
+        missingPlayers = []
+        $scope.playerTeammates.forEach(function (p) {
+            if (!$scope.steamAccounts[p.steamid])
+                missingPlayers[missingPlayers.length] = p.steamid;
+        });
+        $scope.getPlayersInfo(missingPlayers);
+        $scope.$apply();
+    });
     $scope.resetNotesControls = function() {
         $scope.notesControls = {'demoNotesInput': '', 'demoNotesView': ''};
     };
@@ -162,13 +191,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
                             });
                         }
                     }
-                    if (missingPlayers.length) {
-                        $http.get(getPlayerSummaries(missingPlayers)).success(function (response) {
-                            for (var player in response) {
-                                $scope.steamAccounts[player] = response[player];
-                            }
-                        });
-                    }
+                    $scope.getPlayersInfo(missingPlayers);
                 });
             } else
                 $scope.doMakeVisible(demoid, round);
@@ -204,6 +227,21 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         $event.preventDefault();
         $event.stopPropagation();
         $scope.datepickerStatus[$no] = true;
+    };
+
+    $scope.addTeammate = function(teammate) {
+        if ($scope.filterTeammates.indexOf(teammate) != -1 || $scope.filterTeammates.length == 4)
+            return;
+        $scope.filterTeammates.push(teammate);
+        getStats($scope, $http);
+    };
+
+    $scope.removeTeammate = function(teammate) {
+        var $i = $scope.filterTeammates.indexOf(teammate);
+        if ($i == -1)
+            return;
+        $scope.filterTeammates.splice($i, 1);
+        getStats($scope, $http);
     };
 
     $scope.$watch('startDate', function() {

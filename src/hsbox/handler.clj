@@ -15,23 +15,29 @@
 
 (timbre/refer-timbre)
 
-(defn parse-filters [{:keys [startDate endDate demoType mapName]}]
+(defn parse-filters [{:keys [startDate endDate demoType mapName teammates]}]
   {:start-date (if (nil? startDate) nil (Long/parseLong startDate))
    :end-date   (if (nil? endDate) nil (Long/parseLong endDate))
-   :demo-type demoType
-   :map-name mapName})
+   :demo-type  demoType
+   :map-name   mapName
+   :teammates  (if (empty? teammates) #{}
+                                      (set (map #(Long/parseLong %) (clojure.string/split teammates #","))))})
 
 (defroutes api-routes
-           (GET "/player/:steamid/stats" req
-             (response (stats/get-stats-for-steamid
-                         (Long/parseLong (get-in req [:params :steamid]))
-                         (parse-filters (get req :params)))))
-           (GET "/player/:steamid/demos" req
-             (response (stats/get-demos-for-steamid
-                         (Long/parseLong (get-in req [:params :steamid]))
-                         (parse-filters (get req :params)))))
-           (GET "/player/:steamid/maps" [steamid]
-             (response (stats/get-maps-for-steamid (Long/parseLong steamid))))
+           (context "/player/:steamid" [steamid]
+             (defroutes player-routes
+                        (GET "/stats" req
+                          (response (stats/get-stats-for-steamid
+                                      (Long/parseLong (get-in req [:params :steamid]))
+                                      (parse-filters (get req :params)))))
+                        (GET "/demos" req
+                          (response (stats/get-demos-for-steamid
+                                      (Long/parseLong (get-in req [:params :steamid]))
+                                      (parse-filters (get req :params)))))
+                        (GET "/teammates" []
+                          (response (stats/get-teammates-for-steamid (Long/parseLong steamid))))
+                        (GET "/maps" []
+                          (response (stats/get-maps-for-steamid (Long/parseLong steamid))))))
 
            (context "/demo/:demoid" [demoid]
              (defroutes demo-routes

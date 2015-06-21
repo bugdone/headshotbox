@@ -1,5 +1,6 @@
 (ns hsbox.stats
   (:require [clojure.string :as str]
+            [clojure.set :refer [subset?]]
             [hsbox.db :as db :refer [demo-path get-steam-api-key]]))
 
 (taoensso.timbre/refer-timbre)
@@ -33,6 +34,19 @@
 
 (defn get-player-latest-name [steamid]
   (get-player-name-in-demo steamid (first (sorted-demos-for-steamid steamid))))
+
+(defn get-teammates [demo steamid]
+  (let [team (get-in demo [:players steamid :team])]
+    (set (for [p (:players demo) :when (and (not= (key p) steamid) (= (:team (val p)) team))] (key p)))))
+
+(defn get-teammates-for-steamid [steamid]
+  (letfn [(update-teammates [teammates demo]
+                            (reduce #(assoc % %2 (inc (get % %2 0))) teammates (get-teammates demo steamid)))]
+    (->>
+      (reduce #(update-teammates % %2) {} (vals (get player-demos steamid)))
+      (map #(hash-map :steamid (str (key %)) :demos (val %) :name (get-player-latest-name (key %))))
+      (filter #(> (:demos %) 1))
+      (sort #(compare (:demos %2) (:demos %))))))
 
 (defn add-demo [demo]
   (if (not (or (empty? (:rounds demo)) (empty? (:players demo))))
@@ -185,18 +199,20 @@
   (-> (update-stats-with-demo (initial-stats steamid) demo)
       (cleanup-stats)))
 
-(defn filter-demos [{:keys [demo-type start-date end-date map-name]} demos]
+(defn filter-demos [steamid {:keys [demo-type start-date end-date map-name teammates]} demos]
   (filter #(and
             (if (contains? #{"valve" "faceit" "esea"} demo-type) (= demo-type (:type %)) true)
             (if map-name (= (:map %) map-name) true)
             (if start-date (>= (:timestamp %) start-date) true)
-            (if end-date (<= (:timestamp %) end-date) true))
+            (if end-date (<= (:timestamp %) end-date) true)
+            (if (empty? teammates) true (subset? teammates (get-teammates % steamid)))
+            )
           demos))
 
 (defn get-stats-for-steamid [steamid filters]
   (->
     (->> (vals (get player-demos steamid))
-         (filter-demos filters)
+         (filter-demos steamid filters)
          (reduce update-stats-with-demo (initial-stats steamid)))
     (cleanup-stats)))
 
@@ -215,7 +231,7 @@
 
 (defn get-demos-for-steamid [steamid filters]
   (->> (sorted-demos-for-steamid steamid)
-       (filter-demos filters)
+       (filter-demos steamid filters)
        (map #(assoc % :steamid steamid))
        (map append-demo-stats)
        (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills
@@ -359,3 +375,7 @@
 (defn init-cache []
   (doseq [demo (db/get-all-demos)]
     (add-demo demo)))
+
+(defn load-cache []
+  (hsbox.db/init-db-if-absent)
+  (init-cache))
