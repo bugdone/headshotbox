@@ -7,6 +7,7 @@
             [hsbox.db :as db]
             [hsbox.version :as version]
             [hsbox.steamapi :as steamapi]
+            [ring.middleware.not-modified :refer [wrap-not-modified]]
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.json :refer [wrap-json-body
                                           wrap-json-response]]
@@ -87,7 +88,7 @@
 (defroutes app-routes
            (GET "/" [] (redirect "index.html"))
            (context "/api" [] (api-handlers api-routes))
-           (route/resources "/")
+           (wrap-not-modified (route/resources "/"))
            (route/not-found "Not Found"))
 
 (defn wrap-exception [f]
