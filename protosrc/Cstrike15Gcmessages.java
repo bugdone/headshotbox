@@ -128,145 +128,169 @@ public final class Cstrike15Gcmessages {
      */
     k_EMsgGCCStrike15_v2_SetMyMedalsInfo(28, 9129),
     /**
-     * <code>k_EMsgGCCStrike15_v2_PlayerEarnedRewardNotification = 9130;</code>
-     */
-    k_EMsgGCCStrike15_v2_PlayerEarnedRewardNotification(29, 9130),
-    /**
      * <code>k_EMsgGCCStrike15_v2_PlayerOverwatchCaseUpdate = 9131;</code>
      */
-    k_EMsgGCCStrike15_v2_PlayerOverwatchCaseUpdate(30, 9131),
+    k_EMsgGCCStrike15_v2_PlayerOverwatchCaseUpdate(29, 9131),
     /**
      * <code>k_EMsgGCCStrike15_v2_PlayerOverwatchCaseAssignment = 9132;</code>
      */
-    k_EMsgGCCStrike15_v2_PlayerOverwatchCaseAssignment(31, 9132),
+    k_EMsgGCCStrike15_v2_PlayerOverwatchCaseAssignment(30, 9132),
     /**
      * <code>k_EMsgGCCStrike15_v2_PlayerOverwatchCaseStatus = 9133;</code>
      */
-    k_EMsgGCCStrike15_v2_PlayerOverwatchCaseStatus(32, 9133),
+    k_EMsgGCCStrike15_v2_PlayerOverwatchCaseStatus(31, 9133),
     /**
      * <code>k_EMsgGCCStrike15_v2_GC2ClientTextMsg = 9134;</code>
      */
-    k_EMsgGCCStrike15_v2_GC2ClientTextMsg(33, 9134),
+    k_EMsgGCCStrike15_v2_GC2ClientTextMsg(32, 9134),
     /**
      * <code>k_EMsgGCCStrike15_v2_Client2GCTextMsg = 9135;</code>
      */
-    k_EMsgGCCStrike15_v2_Client2GCTextMsg(34, 9135),
+    k_EMsgGCCStrike15_v2_Client2GCTextMsg(33, 9135),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchEndRunRewardDrops = 9136;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchEndRunRewardDrops(35, 9136),
+    k_EMsgGCCStrike15_v2_MatchEndRunRewardDrops(34, 9136),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchEndRewardDropsNotification = 9137;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchEndRewardDropsNotification(36, 9137),
+    k_EMsgGCCStrike15_v2_MatchEndRewardDropsNotification(35, 9137),
     /**
      * <code>k_EMsgGCCStrike15_v2_ClientRequestWatchInfoFriends2 = 9138;</code>
      */
-    k_EMsgGCCStrike15_v2_ClientRequestWatchInfoFriends2(37, 9138),
+    k_EMsgGCCStrike15_v2_ClientRequestWatchInfoFriends2(36, 9138),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchList = 9139;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchList(38, 9139),
+    k_EMsgGCCStrike15_v2_MatchList(37, 9139),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchListRequestCurrentLiveGames = 9140;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchListRequestCurrentLiveGames(39, 9140),
+    k_EMsgGCCStrike15_v2_MatchListRequestCurrentLiveGames(38, 9140),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchListRequestRecentUserGames = 9141;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchListRequestRecentUserGames(40, 9141),
+    k_EMsgGCCStrike15_v2_MatchListRequestRecentUserGames(39, 9141),
     /**
      * <code>k_EMsgGCCStrike15_v2_GC2ServerReservationUpdate = 9142;</code>
      */
-    k_EMsgGCCStrike15_v2_GC2ServerReservationUpdate(41, 9142),
+    k_EMsgGCCStrike15_v2_GC2ServerReservationUpdate(40, 9142),
     /**
      * <code>k_EMsgGCCStrike15_v2_ClientVarValueNotificationInfo = 9144;</code>
      */
-    k_EMsgGCCStrike15_v2_ClientVarValueNotificationInfo(42, 9144),
+    k_EMsgGCCStrike15_v2_ClientVarValueNotificationInfo(41, 9144),
     /**
      * <code>k_EMsgGCCStrike15_v2_TournamentMatchRewardDropsNotification = 9145;</code>
      */
-    k_EMsgGCCStrike15_v2_TournamentMatchRewardDropsNotification(43, 9145),
+    k_EMsgGCCStrike15_v2_TournamentMatchRewardDropsNotification(42, 9145),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchListRequestTournamentGames = 9146;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchListRequestTournamentGames(44, 9146),
+    k_EMsgGCCStrike15_v2_MatchListRequestTournamentGames(43, 9146),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchListRequestFullGameInfo = 9147;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchListRequestFullGameInfo(45, 9147),
+    k_EMsgGCCStrike15_v2_MatchListRequestFullGameInfo(44, 9147),
     /**
      * <code>k_EMsgGCCStrike15_v2_GiftsLeaderboardRequest = 9148;</code>
      */
-    k_EMsgGCCStrike15_v2_GiftsLeaderboardRequest(46, 9148),
+    k_EMsgGCCStrike15_v2_GiftsLeaderboardRequest(45, 9148),
     /**
      * <code>k_EMsgGCCStrike15_v2_GiftsLeaderboardResponse = 9149;</code>
      */
-    k_EMsgGCCStrike15_v2_GiftsLeaderboardResponse(47, 9149),
+    k_EMsgGCCStrike15_v2_GiftsLeaderboardResponse(46, 9149),
     /**
      * <code>k_EMsgGCCStrike15_v2_ServerVarValueNotificationInfo = 9150;</code>
      */
-    k_EMsgGCCStrike15_v2_ServerVarValueNotificationInfo(48, 9150),
+    k_EMsgGCCStrike15_v2_ServerVarValueNotificationInfo(47, 9150),
     /**
      * <code>k_EMsgGCToGCReloadVersions = 9151;</code>
      */
-    k_EMsgGCToGCReloadVersions(49, 9151),
+    k_EMsgGCToGCReloadVersions(48, 9151),
     /**
      * <code>k_EMsgGCCStrike15_v2_ClientSubmitSurveyVote = 9152;</code>
      */
-    k_EMsgGCCStrike15_v2_ClientSubmitSurveyVote(50, 9152),
+    k_EMsgGCCStrike15_v2_ClientSubmitSurveyVote(49, 9152),
     /**
      * <code>k_EMsgGCCStrike15_v2_Server2GCClientValidate = 9153;</code>
      */
-    k_EMsgGCCStrike15_v2_Server2GCClientValidate(51, 9153),
+    k_EMsgGCCStrike15_v2_Server2GCClientValidate(50, 9153),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchListRequestLiveGameForUser = 9154;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchListRequestLiveGameForUser(52, 9154),
+    k_EMsgGCCStrike15_v2_MatchListRequestLiveGameForUser(51, 9154),
     /**
      * <code>k_EMsgGCCStrike15_v2_Server2GCPureServerValidationFailure = 9155;</code>
      */
-    k_EMsgGCCStrike15_v2_Server2GCPureServerValidationFailure(53, 9155),
+    k_EMsgGCCStrike15_v2_Server2GCPureServerValidationFailure(52, 9155),
     /**
      * <code>k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockRequest = 9156;</code>
      */
-    k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockRequest(54, 9156),
+    k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockRequest(53, 9156),
     /**
      * <code>k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse = 9157;</code>
      */
-    k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse(55, 9157),
+    k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse(54, 9157),
     /**
      * <code>k_EMsgGCCStrike15_v2_AccountPrivacySettings = 9158;</code>
      */
-    k_EMsgGCCStrike15_v2_AccountPrivacySettings(56, 9158),
+    k_EMsgGCCStrike15_v2_AccountPrivacySettings(55, 9158),
     /**
      * <code>k_EMsgGCCStrike15_v2_SetMyActivityInfo = 9159;</code>
      */
-    k_EMsgGCCStrike15_v2_SetMyActivityInfo(57, 9159),
+    k_EMsgGCCStrike15_v2_SetMyActivityInfo(56, 9159),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchListRequestTournamentPredictions = 9160;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchListRequestTournamentPredictions(58, 9160),
+    k_EMsgGCCStrike15_v2_MatchListRequestTournamentPredictions(57, 9160),
     /**
      * <code>k_EMsgGCCStrike15_v2_MatchListUploadTournamentPredictions = 9161;</code>
      */
-    k_EMsgGCCStrike15_v2_MatchListUploadTournamentPredictions(59, 9161),
+    k_EMsgGCCStrike15_v2_MatchListUploadTournamentPredictions(58, 9161),
     /**
      * <code>k_EMsgGCCStrike15_v2_DraftSummary = 9162;</code>
      */
-    k_EMsgGCCStrike15_v2_DraftSummary(60, 9162),
+    k_EMsgGCCStrike15_v2_DraftSummary(59, 9162),
     /**
      * <code>k_EMsgGCCStrike15_v2_ClientRequestJoinFriendData = 9163;</code>
      */
-    k_EMsgGCCStrike15_v2_ClientRequestJoinFriendData(61, 9163),
+    k_EMsgGCCStrike15_v2_ClientRequestJoinFriendData(60, 9163),
     /**
      * <code>k_EMsgGCCStrike15_v2_ClientRequestJoinServerData = 9164;</code>
      */
-    k_EMsgGCCStrike15_v2_ClientRequestJoinServerData(62, 9164),
+    k_EMsgGCCStrike15_v2_ClientRequestJoinServerData(61, 9164),
     /**
      * <code>k_EMsgGCCStrike15_v2_ClientRequestNewMission = 9165;</code>
      */
-    k_EMsgGCCStrike15_v2_ClientRequestNewMission(63, 9165),
+    k_EMsgGCCStrike15_v2_ClientRequestNewMission(62, 9165),
+    /**
+     * <code>k_EMsgGCCStrike15_v2_GC2ServerNotifyXPRewarded = 9166;</code>
+     */
+    k_EMsgGCCStrike15_v2_GC2ServerNotifyXPRewarded(63, 9166),
+    /**
+     * <code>k_EMsgGCCStrike15_v2_GC2ClientTournamentInfo = 9167;</code>
+     */
+    k_EMsgGCCStrike15_v2_GC2ClientTournamentInfo(64, 9167),
+    /**
+     * <code>k_EMsgGC_GlobalGame_Subscribe = 9168;</code>
+     */
+    k_EMsgGC_GlobalGame_Subscribe(65, 9168),
+    /**
+     * <code>k_EMsgGC_GlobalGame_Unsubscribe = 9169;</code>
+     */
+    k_EMsgGC_GlobalGame_Unsubscribe(66, 9169),
+    /**
+     * <code>k_EMsgGC_GlobalGame_Play = 9170;</code>
+     */
+    k_EMsgGC_GlobalGame_Play(67, 9170),
+    /**
+     * <code>k_EMsgGCCStrike15_v2_AcknowledgePenalty = 9171;</code>
+     */
+    k_EMsgGCCStrike15_v2_AcknowledgePenalty(68, 9171),
+    /**
+     * <code>k_EMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin = 9172;</code>
+     */
+    k_EMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin(69, 9172),
     ;
 
     /**
@@ -385,10 +409,6 @@ public final class Cstrike15Gcmessages {
      * <code>k_EMsgGCCStrike15_v2_SetMyMedalsInfo = 9129;</code>
      */
     public static final int k_EMsgGCCStrike15_v2_SetMyMedalsInfo_VALUE = 9129;
-    /**
-     * <code>k_EMsgGCCStrike15_v2_PlayerEarnedRewardNotification = 9130;</code>
-     */
-    public static final int k_EMsgGCCStrike15_v2_PlayerEarnedRewardNotification_VALUE = 9130;
     /**
      * <code>k_EMsgGCCStrike15_v2_PlayerOverwatchCaseUpdate = 9131;</code>
      */
@@ -525,6 +545,34 @@ public final class Cstrike15Gcmessages {
      * <code>k_EMsgGCCStrike15_v2_ClientRequestNewMission = 9165;</code>
      */
     public static final int k_EMsgGCCStrike15_v2_ClientRequestNewMission_VALUE = 9165;
+    /**
+     * <code>k_EMsgGCCStrike15_v2_GC2ServerNotifyXPRewarded = 9166;</code>
+     */
+    public static final int k_EMsgGCCStrike15_v2_GC2ServerNotifyXPRewarded_VALUE = 9166;
+    /**
+     * <code>k_EMsgGCCStrike15_v2_GC2ClientTournamentInfo = 9167;</code>
+     */
+    public static final int k_EMsgGCCStrike15_v2_GC2ClientTournamentInfo_VALUE = 9167;
+    /**
+     * <code>k_EMsgGC_GlobalGame_Subscribe = 9168;</code>
+     */
+    public static final int k_EMsgGC_GlobalGame_Subscribe_VALUE = 9168;
+    /**
+     * <code>k_EMsgGC_GlobalGame_Unsubscribe = 9169;</code>
+     */
+    public static final int k_EMsgGC_GlobalGame_Unsubscribe_VALUE = 9169;
+    /**
+     * <code>k_EMsgGC_GlobalGame_Play = 9170;</code>
+     */
+    public static final int k_EMsgGC_GlobalGame_Play_VALUE = 9170;
+    /**
+     * <code>k_EMsgGCCStrike15_v2_AcknowledgePenalty = 9171;</code>
+     */
+    public static final int k_EMsgGCCStrike15_v2_AcknowledgePenalty_VALUE = 9171;
+    /**
+     * <code>k_EMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin = 9172;</code>
+     */
+    public static final int k_EMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_VALUE = 9172;
 
 
     public final int getNumber() { return value; }
@@ -560,7 +608,6 @@ public final class Cstrike15Gcmessages {
         case 9127: return k_EMsgGCCStrike15_v2_ClientRequestPlayersProfile;
         case 9128: return k_EMsgGCCStrike15_v2_PlayersProfile;
         case 9129: return k_EMsgGCCStrike15_v2_SetMyMedalsInfo;
-        case 9130: return k_EMsgGCCStrike15_v2_PlayerEarnedRewardNotification;
         case 9131: return k_EMsgGCCStrike15_v2_PlayerOverwatchCaseUpdate;
         case 9132: return k_EMsgGCCStrike15_v2_PlayerOverwatchCaseAssignment;
         case 9133: return k_EMsgGCCStrike15_v2_PlayerOverwatchCaseStatus;
@@ -595,6 +642,13 @@ public final class Cstrike15Gcmessages {
         case 9163: return k_EMsgGCCStrike15_v2_ClientRequestJoinFriendData;
         case 9164: return k_EMsgGCCStrike15_v2_ClientRequestJoinServerData;
         case 9165: return k_EMsgGCCStrike15_v2_ClientRequestNewMission;
+        case 9166: return k_EMsgGCCStrike15_v2_GC2ServerNotifyXPRewarded;
+        case 9167: return k_EMsgGCCStrike15_v2_GC2ClientTournamentInfo;
+        case 9168: return k_EMsgGC_GlobalGame_Subscribe;
+        case 9169: return k_EMsgGC_GlobalGame_Unsubscribe;
+        case 9170: return k_EMsgGC_GlobalGame_Play;
+        case 9171: return k_EMsgGCCStrike15_v2_AcknowledgePenalty;
+        case 9172: return k_EMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin;
         default: return null;
       }
     }
@@ -10594,16 +10648,6 @@ public final class Cstrike15Gcmessages {
      */
     int getMedalArms();
 
-    // optional uint32 legacy__coin_op_payback = 6;
-    /**
-     * <code>optional uint32 legacy__coin_op_payback = 6;</code>
-     */
-    boolean hasLegacyCoinOpPayback();
-    /**
-     * <code>optional uint32 legacy__coin_op_payback = 6;</code>
-     */
-    int getLegacyCoinOpPayback();
-
     // repeated uint32 display_items_defidx = 7;
     /**
      * <code>repeated uint32 display_items_defidx = 7;</code>
@@ -10704,15 +10748,10 @@ public final class Cstrike15Gcmessages {
               medalArms_ = input.readUInt32();
               break;
             }
-            case 48: {
-              bitField0_ |= 0x00000020;
-              legacyCoinOpPayback_ = input.readUInt32();
-              break;
-            }
             case 56: {
-              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
                 displayItemsDefidx_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000040;
+                mutable_bitField0_ |= 0x00000020;
               }
               displayItemsDefidx_.add(input.readUInt32());
               break;
@@ -10720,9 +10759,9 @@ public final class Cstrike15Gcmessages {
             case 58: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040) && input.getBytesUntilLimit() > 0) {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020) && input.getBytesUntilLimit() > 0) {
                 displayItemsDefidx_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000040;
+                mutable_bitField0_ |= 0x00000020;
               }
               while (input.getBytesUntilLimit() > 0) {
                 displayItemsDefidx_.add(input.readUInt32());
@@ -10731,7 +10770,7 @@ public final class Cstrike15Gcmessages {
               break;
             }
             case 64: {
-              bitField0_ |= 0x00000040;
+              bitField0_ |= 0x00000020;
               featuredDisplayItemDefidx_ = input.readUInt32();
               break;
             }
@@ -10743,7 +10782,7 @@ public final class Cstrike15Gcmessages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
           displayItemsDefidx_ = java.util.Collections.unmodifiableList(displayItemsDefidx_);
         }
         this.unknownFields = unknownFields.build();
@@ -10858,22 +10897,6 @@ public final class Cstrike15Gcmessages {
       return medalArms_;
     }
 
-    // optional uint32 legacy__coin_op_payback = 6;
-    public static final int LEGACY__COIN_OP_PAYBACK_FIELD_NUMBER = 6;
-    private int legacyCoinOpPayback_;
-    /**
-     * <code>optional uint32 legacy__coin_op_payback = 6;</code>
-     */
-    public boolean hasLegacyCoinOpPayback() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>optional uint32 legacy__coin_op_payback = 6;</code>
-     */
-    public int getLegacyCoinOpPayback() {
-      return legacyCoinOpPayback_;
-    }
-
     // repeated uint32 display_items_defidx = 7;
     public static final int DISPLAY_ITEMS_DEFIDX_FIELD_NUMBER = 7;
     private java.util.List<java.lang.Integer> displayItemsDefidx_;
@@ -10904,7 +10927,7 @@ public final class Cstrike15Gcmessages {
      * <code>optional uint32 featured_display_item_defidx = 8;</code>
      */
     public boolean hasFeaturedDisplayItemDefidx() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
      * <code>optional uint32 featured_display_item_defidx = 8;</code>
@@ -10919,7 +10942,6 @@ public final class Cstrike15Gcmessages {
       medalWeapon_ = 0;
       medalGlobal_ = 0;
       medalArms_ = 0;
-      legacyCoinOpPayback_ = 0;
       displayItemsDefidx_ = java.util.Collections.emptyList();
       featuredDisplayItemDefidx_ = 0;
     }
@@ -10950,13 +10972,10 @@ public final class Cstrike15Gcmessages {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeUInt32(5, medalArms_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeUInt32(6, legacyCoinOpPayback_);
-      }
       for (int i = 0; i < displayItemsDefidx_.size(); i++) {
         output.writeUInt32(7, displayItemsDefidx_.get(i));
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeUInt32(8, featuredDisplayItemDefidx_);
       }
       getUnknownFields().writeTo(output);
@@ -10988,10 +11007,6 @@ public final class Cstrike15Gcmessages {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(5, medalArms_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(6, legacyCoinOpPayback_);
-      }
       {
         int dataSize = 0;
         for (int i = 0; i < displayItemsDefidx_.size(); i++) {
@@ -11001,7 +11016,7 @@ public final class Cstrike15Gcmessages {
         size += dataSize;
         size += 1 * getDisplayItemsDefidxList().size();
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(8, featuredDisplayItemDefidx_);
       }
@@ -11131,12 +11146,10 @@ public final class Cstrike15Gcmessages {
         bitField0_ = (bitField0_ & ~0x00000008);
         medalArms_ = 0;
         bitField0_ = (bitField0_ & ~0x00000010);
-        legacyCoinOpPayback_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000020);
         displayItemsDefidx_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         featuredDisplayItemDefidx_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -11185,17 +11198,13 @@ public final class Cstrike15Gcmessages {
           to_bitField0_ |= 0x00000010;
         }
         result.medalArms_ = medalArms_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.legacyCoinOpPayback_ = legacyCoinOpPayback_;
-        if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
           displayItemsDefidx_ = java.util.Collections.unmodifiableList(displayItemsDefidx_);
-          bitField0_ = (bitField0_ & ~0x00000040);
+          bitField0_ = (bitField0_ & ~0x00000020);
         }
         result.displayItemsDefidx_ = displayItemsDefidx_;
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000040;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000020;
         }
         result.featuredDisplayItemDefidx_ = featuredDisplayItemDefidx_;
         result.bitField0_ = to_bitField0_;
@@ -11229,13 +11238,10 @@ public final class Cstrike15Gcmessages {
         if (other.hasMedalArms()) {
           setMedalArms(other.getMedalArms());
         }
-        if (other.hasLegacyCoinOpPayback()) {
-          setLegacyCoinOpPayback(other.getLegacyCoinOpPayback());
-        }
         if (!other.displayItemsDefidx_.isEmpty()) {
           if (displayItemsDefidx_.isEmpty()) {
             displayItemsDefidx_ = other.displayItemsDefidx_;
-            bitField0_ = (bitField0_ & ~0x00000040);
+            bitField0_ = (bitField0_ & ~0x00000020);
           } else {
             ensureDisplayItemsDefidxIsMutable();
             displayItemsDefidx_.addAll(other.displayItemsDefidx_);
@@ -11437,45 +11443,12 @@ public final class Cstrike15Gcmessages {
         return this;
       }
 
-      // optional uint32 legacy__coin_op_payback = 6;
-      private int legacyCoinOpPayback_ ;
-      /**
-       * <code>optional uint32 legacy__coin_op_payback = 6;</code>
-       */
-      public boolean hasLegacyCoinOpPayback() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <code>optional uint32 legacy__coin_op_payback = 6;</code>
-       */
-      public int getLegacyCoinOpPayback() {
-        return legacyCoinOpPayback_;
-      }
-      /**
-       * <code>optional uint32 legacy__coin_op_payback = 6;</code>
-       */
-      public Builder setLegacyCoinOpPayback(int value) {
-        bitField0_ |= 0x00000020;
-        legacyCoinOpPayback_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint32 legacy__coin_op_payback = 6;</code>
-       */
-      public Builder clearLegacyCoinOpPayback() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        legacyCoinOpPayback_ = 0;
-        onChanged();
-        return this;
-      }
-
       // repeated uint32 display_items_defidx = 7;
       private java.util.List<java.lang.Integer> displayItemsDefidx_ = java.util.Collections.emptyList();
       private void ensureDisplayItemsDefidxIsMutable() {
-        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
           displayItemsDefidx_ = new java.util.ArrayList<java.lang.Integer>(displayItemsDefidx_);
-          bitField0_ |= 0x00000040;
+          bitField0_ |= 0x00000020;
          }
       }
       /**
@@ -11531,7 +11504,7 @@ public final class Cstrike15Gcmessages {
        */
       public Builder clearDisplayItemsDefidx() {
         displayItemsDefidx_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -11542,7 +11515,7 @@ public final class Cstrike15Gcmessages {
        * <code>optional uint32 featured_display_item_defidx = 8;</code>
        */
       public boolean hasFeaturedDisplayItemDefidx() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
        * <code>optional uint32 featured_display_item_defidx = 8;</code>
@@ -11554,7 +11527,7 @@ public final class Cstrike15Gcmessages {
        * <code>optional uint32 featured_display_item_defidx = 8;</code>
        */
       public Builder setFeaturedDisplayItemDefidx(int value) {
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000040;
         featuredDisplayItemDefidx_ = value;
         onChanged();
         return this;
@@ -11563,7 +11536,7 @@ public final class Cstrike15Gcmessages {
        * <code>optional uint32 featured_display_item_defidx = 8;</code>
        */
       public Builder clearFeaturedDisplayItemDefidx() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000040);
         featuredDisplayItemDefidx_ = 0;
         onChanged();
         return this;
@@ -15580,6 +15553,2997 @@ public final class Cstrike15Gcmessages {
     }
 
     // @@protoc_insertion_point(class_scope:IpAddressMask)
+  }
+
+  public interface XpProgressDataOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint32 xp_points = 1;
+    /**
+     * <code>optional uint32 xp_points = 1;</code>
+     */
+    boolean hasXpPoints();
+    /**
+     * <code>optional uint32 xp_points = 1;</code>
+     */
+    int getXpPoints();
+
+    // optional int32 xp_category = 2;
+    /**
+     * <code>optional int32 xp_category = 2;</code>
+     */
+    boolean hasXpCategory();
+    /**
+     * <code>optional int32 xp_category = 2;</code>
+     */
+    int getXpCategory();
+  }
+  /**
+   * Protobuf type {@code XpProgressData}
+   */
+  public static final class XpProgressData extends
+      com.google.protobuf.GeneratedMessage
+      implements XpProgressDataOrBuilder {
+    // Use XpProgressData.newBuilder() to construct.
+    private XpProgressData(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private XpProgressData(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final XpProgressData defaultInstance;
+    public static XpProgressData getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public XpProgressData getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private XpProgressData(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              xpPoints_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              xpCategory_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_XpProgressData_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_XpProgressData_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.XpProgressData.class, Cstrike15Gcmessages.XpProgressData.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<XpProgressData> PARSER =
+        new com.google.protobuf.AbstractParser<XpProgressData>() {
+      public XpProgressData parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new XpProgressData(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<XpProgressData> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional uint32 xp_points = 1;
+    public static final int XP_POINTS_FIELD_NUMBER = 1;
+    private int xpPoints_;
+    /**
+     * <code>optional uint32 xp_points = 1;</code>
+     */
+    public boolean hasXpPoints() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 xp_points = 1;</code>
+     */
+    public int getXpPoints() {
+      return xpPoints_;
+    }
+
+    // optional int32 xp_category = 2;
+    public static final int XP_CATEGORY_FIELD_NUMBER = 2;
+    private int xpCategory_;
+    /**
+     * <code>optional int32 xp_category = 2;</code>
+     */
+    public boolean hasXpCategory() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 xp_category = 2;</code>
+     */
+    public int getXpCategory() {
+      return xpCategory_;
+    }
+
+    private void initFields() {
+      xpPoints_ = 0;
+      xpCategory_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, xpPoints_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, xpCategory_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, xpPoints_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, xpCategory_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.XpProgressData parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.XpProgressData parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.XpProgressData parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.XpProgressData parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.XpProgressData parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.XpProgressData parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.XpProgressData parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.XpProgressData parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.XpProgressData parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.XpProgressData parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.XpProgressData prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code XpProgressData}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.XpProgressDataOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_XpProgressData_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_XpProgressData_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.XpProgressData.class, Cstrike15Gcmessages.XpProgressData.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.XpProgressData.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        xpPoints_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        xpCategory_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_XpProgressData_descriptor;
+      }
+
+      public Cstrike15Gcmessages.XpProgressData getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.XpProgressData.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.XpProgressData build() {
+        Cstrike15Gcmessages.XpProgressData result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.XpProgressData buildPartial() {
+        Cstrike15Gcmessages.XpProgressData result = new Cstrike15Gcmessages.XpProgressData(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.xpPoints_ = xpPoints_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.xpCategory_ = xpCategory_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.XpProgressData) {
+          return mergeFrom((Cstrike15Gcmessages.XpProgressData)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.XpProgressData other) {
+        if (other == Cstrike15Gcmessages.XpProgressData.getDefaultInstance()) return this;
+        if (other.hasXpPoints()) {
+          setXpPoints(other.getXpPoints());
+        }
+        if (other.hasXpCategory()) {
+          setXpCategory(other.getXpCategory());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.XpProgressData parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.XpProgressData) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint32 xp_points = 1;
+      private int xpPoints_ ;
+      /**
+       * <code>optional uint32 xp_points = 1;</code>
+       */
+      public boolean hasXpPoints() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 xp_points = 1;</code>
+       */
+      public int getXpPoints() {
+        return xpPoints_;
+      }
+      /**
+       * <code>optional uint32 xp_points = 1;</code>
+       */
+      public Builder setXpPoints(int value) {
+        bitField0_ |= 0x00000001;
+        xpPoints_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 xp_points = 1;</code>
+       */
+      public Builder clearXpPoints() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        xpPoints_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional int32 xp_category = 2;
+      private int xpCategory_ ;
+      /**
+       * <code>optional int32 xp_category = 2;</code>
+       */
+      public boolean hasXpCategory() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 xp_category = 2;</code>
+       */
+      public int getXpCategory() {
+        return xpCategory_;
+      }
+      /**
+       * <code>optional int32 xp_category = 2;</code>
+       */
+      public Builder setXpCategory(int value) {
+        bitField0_ |= 0x00000002;
+        xpCategory_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 xp_category = 2;</code>
+       */
+      public Builder clearXpCategory() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        xpCategory_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:XpProgressData)
+    }
+
+    static {
+      defaultInstance = new XpProgressData(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:XpProgressData)
+  }
+
+  public interface PlayerQuestDataOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint32 quester_account_id = 1;
+    /**
+     * <code>optional uint32 quester_account_id = 1;</code>
+     */
+    boolean hasQuesterAccountId();
+    /**
+     * <code>optional uint32 quester_account_id = 1;</code>
+     */
+    int getQuesterAccountId();
+
+    // repeated .PlayerQuestData.QuestItemData quest_item_data = 2;
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    java.util.List<Cstrike15Gcmessages.PlayerQuestData.QuestItemData> 
+        getQuestItemDataList();
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    Cstrike15Gcmessages.PlayerQuestData.QuestItemData getQuestItemData(int index);
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    int getQuestItemDataCount();
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    java.util.List<? extends Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder> 
+        getQuestItemDataOrBuilderList();
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder getQuestItemDataOrBuilder(
+        int index);
+
+    // repeated .XpProgressData xp_progress_data = 3;
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    java.util.List<Cstrike15Gcmessages.XpProgressData> 
+        getXpProgressDataList();
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    Cstrike15Gcmessages.XpProgressData getXpProgressData(int index);
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    int getXpProgressDataCount();
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    java.util.List<? extends Cstrike15Gcmessages.XpProgressDataOrBuilder> 
+        getXpProgressDataOrBuilderList();
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    Cstrike15Gcmessages.XpProgressDataOrBuilder getXpProgressDataOrBuilder(
+        int index);
+
+    // optional uint32 time_played = 4;
+    /**
+     * <code>optional uint32 time_played = 4;</code>
+     */
+    boolean hasTimePlayed();
+    /**
+     * <code>optional uint32 time_played = 4;</code>
+     */
+    int getTimePlayed();
+
+    // optional uint32 mm_game_mode = 5;
+    /**
+     * <code>optional uint32 mm_game_mode = 5;</code>
+     */
+    boolean hasMmGameMode();
+    /**
+     * <code>optional uint32 mm_game_mode = 5;</code>
+     */
+    int getMmGameMode();
+  }
+  /**
+   * Protobuf type {@code PlayerQuestData}
+   */
+  public static final class PlayerQuestData extends
+      com.google.protobuf.GeneratedMessage
+      implements PlayerQuestDataOrBuilder {
+    // Use PlayerQuestData.newBuilder() to construct.
+    private PlayerQuestData(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private PlayerQuestData(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final PlayerQuestData defaultInstance;
+    public static PlayerQuestData getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public PlayerQuestData getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PlayerQuestData(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              questerAccountId_ = input.readUInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                questItemData_ = new java.util.ArrayList<Cstrike15Gcmessages.PlayerQuestData.QuestItemData>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              questItemData_.add(input.readMessage(Cstrike15Gcmessages.PlayerQuestData.QuestItemData.PARSER, extensionRegistry));
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                xpProgressData_ = new java.util.ArrayList<Cstrike15Gcmessages.XpProgressData>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              xpProgressData_.add(input.readMessage(Cstrike15Gcmessages.XpProgressData.PARSER, extensionRegistry));
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000002;
+              timePlayed_ = input.readUInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000004;
+              mmGameMode_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          questItemData_ = java.util.Collections.unmodifiableList(questItemData_);
+        }
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          xpProgressData_ = java.util.Collections.unmodifiableList(xpProgressData_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_PlayerQuestData_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_PlayerQuestData_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.PlayerQuestData.class, Cstrike15Gcmessages.PlayerQuestData.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<PlayerQuestData> PARSER =
+        new com.google.protobuf.AbstractParser<PlayerQuestData>() {
+      public PlayerQuestData parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PlayerQuestData(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PlayerQuestData> getParserForType() {
+      return PARSER;
+    }
+
+    public interface QuestItemDataOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // optional uint64 quest_id = 1;
+      /**
+       * <code>optional uint64 quest_id = 1;</code>
+       */
+      boolean hasQuestId();
+      /**
+       * <code>optional uint64 quest_id = 1;</code>
+       */
+      long getQuestId();
+
+      // optional int32 quest_normal_points_earned = 2;
+      /**
+       * <code>optional int32 quest_normal_points_earned = 2;</code>
+       */
+      boolean hasQuestNormalPointsEarned();
+      /**
+       * <code>optional int32 quest_normal_points_earned = 2;</code>
+       */
+      int getQuestNormalPointsEarned();
+
+      // optional int32 quest_bonus_points_earned = 3;
+      /**
+       * <code>optional int32 quest_bonus_points_earned = 3;</code>
+       */
+      boolean hasQuestBonusPointsEarned();
+      /**
+       * <code>optional int32 quest_bonus_points_earned = 3;</code>
+       */
+      int getQuestBonusPointsEarned();
+    }
+    /**
+     * Protobuf type {@code PlayerQuestData.QuestItemData}
+     */
+    public static final class QuestItemData extends
+        com.google.protobuf.GeneratedMessage
+        implements QuestItemDataOrBuilder {
+      // Use QuestItemData.newBuilder() to construct.
+      private QuestItemData(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private QuestItemData(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final QuestItemData defaultInstance;
+      public static QuestItemData getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public QuestItemData getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private QuestItemData(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+                bitField0_ |= 0x00000001;
+                questId_ = input.readUInt64();
+                break;
+              }
+              case 16: {
+                bitField0_ |= 0x00000002;
+                questNormalPointsEarned_ = input.readInt32();
+                break;
+              }
+              case 24: {
+                bitField0_ |= 0x00000004;
+                questBonusPointsEarned_ = input.readInt32();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_PlayerQuestData_QuestItemData_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_PlayerQuestData_QuestItemData_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.PlayerQuestData.QuestItemData.class, Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<QuestItemData> PARSER =
+          new com.google.protobuf.AbstractParser<QuestItemData>() {
+        public QuestItemData parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new QuestItemData(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<QuestItemData> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // optional uint64 quest_id = 1;
+      public static final int QUEST_ID_FIELD_NUMBER = 1;
+      private long questId_;
+      /**
+       * <code>optional uint64 quest_id = 1;</code>
+       */
+      public boolean hasQuestId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint64 quest_id = 1;</code>
+       */
+      public long getQuestId() {
+        return questId_;
+      }
+
+      // optional int32 quest_normal_points_earned = 2;
+      public static final int QUEST_NORMAL_POINTS_EARNED_FIELD_NUMBER = 2;
+      private int questNormalPointsEarned_;
+      /**
+       * <code>optional int32 quest_normal_points_earned = 2;</code>
+       */
+      public boolean hasQuestNormalPointsEarned() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 quest_normal_points_earned = 2;</code>
+       */
+      public int getQuestNormalPointsEarned() {
+        return questNormalPointsEarned_;
+      }
+
+      // optional int32 quest_bonus_points_earned = 3;
+      public static final int QUEST_BONUS_POINTS_EARNED_FIELD_NUMBER = 3;
+      private int questBonusPointsEarned_;
+      /**
+       * <code>optional int32 quest_bonus_points_earned = 3;</code>
+       */
+      public boolean hasQuestBonusPointsEarned() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional int32 quest_bonus_points_earned = 3;</code>
+       */
+      public int getQuestBonusPointsEarned() {
+        return questBonusPointsEarned_;
+      }
+
+      private void initFields() {
+        questId_ = 0L;
+        questNormalPointsEarned_ = 0;
+        questBonusPointsEarned_ = 0;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeUInt64(1, questId_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeInt32(2, questNormalPointsEarned_);
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          output.writeInt32(3, questBonusPointsEarned_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt64Size(1, questId_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(2, questNormalPointsEarned_);
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(3, questBonusPointsEarned_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static Cstrike15Gcmessages.PlayerQuestData.QuestItemData parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(Cstrike15Gcmessages.PlayerQuestData.QuestItemData prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code PlayerQuestData.QuestItemData}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return Cstrike15Gcmessages.internal_static_PlayerQuestData_QuestItemData_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return Cstrike15Gcmessages.internal_static_PlayerQuestData_QuestItemData_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  Cstrike15Gcmessages.PlayerQuestData.QuestItemData.class, Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder.class);
+        }
+
+        // Construct using Cstrike15Gcmessages.PlayerQuestData.QuestItemData.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          questId_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          questNormalPointsEarned_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          questBonusPointsEarned_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000004);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return Cstrike15Gcmessages.internal_static_PlayerQuestData_QuestItemData_descriptor;
+        }
+
+        public Cstrike15Gcmessages.PlayerQuestData.QuestItemData getDefaultInstanceForType() {
+          return Cstrike15Gcmessages.PlayerQuestData.QuestItemData.getDefaultInstance();
+        }
+
+        public Cstrike15Gcmessages.PlayerQuestData.QuestItemData build() {
+          Cstrike15Gcmessages.PlayerQuestData.QuestItemData result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public Cstrike15Gcmessages.PlayerQuestData.QuestItemData buildPartial() {
+          Cstrike15Gcmessages.PlayerQuestData.QuestItemData result = new Cstrike15Gcmessages.PlayerQuestData.QuestItemData(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.questId_ = questId_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.questNormalPointsEarned_ = questNormalPointsEarned_;
+          if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+            to_bitField0_ |= 0x00000004;
+          }
+          result.questBonusPointsEarned_ = questBonusPointsEarned_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof Cstrike15Gcmessages.PlayerQuestData.QuestItemData) {
+            return mergeFrom((Cstrike15Gcmessages.PlayerQuestData.QuestItemData)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(Cstrike15Gcmessages.PlayerQuestData.QuestItemData other) {
+          if (other == Cstrike15Gcmessages.PlayerQuestData.QuestItemData.getDefaultInstance()) return this;
+          if (other.hasQuestId()) {
+            setQuestId(other.getQuestId());
+          }
+          if (other.hasQuestNormalPointsEarned()) {
+            setQuestNormalPointsEarned(other.getQuestNormalPointsEarned());
+          }
+          if (other.hasQuestBonusPointsEarned()) {
+            setQuestBonusPointsEarned(other.getQuestBonusPointsEarned());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          Cstrike15Gcmessages.PlayerQuestData.QuestItemData parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (Cstrike15Gcmessages.PlayerQuestData.QuestItemData) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // optional uint64 quest_id = 1;
+        private long questId_ ;
+        /**
+         * <code>optional uint64 quest_id = 1;</code>
+         */
+        public boolean hasQuestId() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional uint64 quest_id = 1;</code>
+         */
+        public long getQuestId() {
+          return questId_;
+        }
+        /**
+         * <code>optional uint64 quest_id = 1;</code>
+         */
+        public Builder setQuestId(long value) {
+          bitField0_ |= 0x00000001;
+          questId_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional uint64 quest_id = 1;</code>
+         */
+        public Builder clearQuestId() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          questId_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        // optional int32 quest_normal_points_earned = 2;
+        private int questNormalPointsEarned_ ;
+        /**
+         * <code>optional int32 quest_normal_points_earned = 2;</code>
+         */
+        public boolean hasQuestNormalPointsEarned() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional int32 quest_normal_points_earned = 2;</code>
+         */
+        public int getQuestNormalPointsEarned() {
+          return questNormalPointsEarned_;
+        }
+        /**
+         * <code>optional int32 quest_normal_points_earned = 2;</code>
+         */
+        public Builder setQuestNormalPointsEarned(int value) {
+          bitField0_ |= 0x00000002;
+          questNormalPointsEarned_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional int32 quest_normal_points_earned = 2;</code>
+         */
+        public Builder clearQuestNormalPointsEarned() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          questNormalPointsEarned_ = 0;
+          onChanged();
+          return this;
+        }
+
+        // optional int32 quest_bonus_points_earned = 3;
+        private int questBonusPointsEarned_ ;
+        /**
+         * <code>optional int32 quest_bonus_points_earned = 3;</code>
+         */
+        public boolean hasQuestBonusPointsEarned() {
+          return ((bitField0_ & 0x00000004) == 0x00000004);
+        }
+        /**
+         * <code>optional int32 quest_bonus_points_earned = 3;</code>
+         */
+        public int getQuestBonusPointsEarned() {
+          return questBonusPointsEarned_;
+        }
+        /**
+         * <code>optional int32 quest_bonus_points_earned = 3;</code>
+         */
+        public Builder setQuestBonusPointsEarned(int value) {
+          bitField0_ |= 0x00000004;
+          questBonusPointsEarned_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional int32 quest_bonus_points_earned = 3;</code>
+         */
+        public Builder clearQuestBonusPointsEarned() {
+          bitField0_ = (bitField0_ & ~0x00000004);
+          questBonusPointsEarned_ = 0;
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:PlayerQuestData.QuestItemData)
+      }
+
+      static {
+        defaultInstance = new QuestItemData(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:PlayerQuestData.QuestItemData)
+    }
+
+    private int bitField0_;
+    // optional uint32 quester_account_id = 1;
+    public static final int QUESTER_ACCOUNT_ID_FIELD_NUMBER = 1;
+    private int questerAccountId_;
+    /**
+     * <code>optional uint32 quester_account_id = 1;</code>
+     */
+    public boolean hasQuesterAccountId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 quester_account_id = 1;</code>
+     */
+    public int getQuesterAccountId() {
+      return questerAccountId_;
+    }
+
+    // repeated .PlayerQuestData.QuestItemData quest_item_data = 2;
+    public static final int QUEST_ITEM_DATA_FIELD_NUMBER = 2;
+    private java.util.List<Cstrike15Gcmessages.PlayerQuestData.QuestItemData> questItemData_;
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    public java.util.List<Cstrike15Gcmessages.PlayerQuestData.QuestItemData> getQuestItemDataList() {
+      return questItemData_;
+    }
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    public java.util.List<? extends Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder> 
+        getQuestItemDataOrBuilderList() {
+      return questItemData_;
+    }
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    public int getQuestItemDataCount() {
+      return questItemData_.size();
+    }
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    public Cstrike15Gcmessages.PlayerQuestData.QuestItemData getQuestItemData(int index) {
+      return questItemData_.get(index);
+    }
+    /**
+     * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+     */
+    public Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder getQuestItemDataOrBuilder(
+        int index) {
+      return questItemData_.get(index);
+    }
+
+    // repeated .XpProgressData xp_progress_data = 3;
+    public static final int XP_PROGRESS_DATA_FIELD_NUMBER = 3;
+    private java.util.List<Cstrike15Gcmessages.XpProgressData> xpProgressData_;
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    public java.util.List<Cstrike15Gcmessages.XpProgressData> getXpProgressDataList() {
+      return xpProgressData_;
+    }
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    public java.util.List<? extends Cstrike15Gcmessages.XpProgressDataOrBuilder> 
+        getXpProgressDataOrBuilderList() {
+      return xpProgressData_;
+    }
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    public int getXpProgressDataCount() {
+      return xpProgressData_.size();
+    }
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    public Cstrike15Gcmessages.XpProgressData getXpProgressData(int index) {
+      return xpProgressData_.get(index);
+    }
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+     */
+    public Cstrike15Gcmessages.XpProgressDataOrBuilder getXpProgressDataOrBuilder(
+        int index) {
+      return xpProgressData_.get(index);
+    }
+
+    // optional uint32 time_played = 4;
+    public static final int TIME_PLAYED_FIELD_NUMBER = 4;
+    private int timePlayed_;
+    /**
+     * <code>optional uint32 time_played = 4;</code>
+     */
+    public boolean hasTimePlayed() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 time_played = 4;</code>
+     */
+    public int getTimePlayed() {
+      return timePlayed_;
+    }
+
+    // optional uint32 mm_game_mode = 5;
+    public static final int MM_GAME_MODE_FIELD_NUMBER = 5;
+    private int mmGameMode_;
+    /**
+     * <code>optional uint32 mm_game_mode = 5;</code>
+     */
+    public boolean hasMmGameMode() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional uint32 mm_game_mode = 5;</code>
+     */
+    public int getMmGameMode() {
+      return mmGameMode_;
+    }
+
+    private void initFields() {
+      questerAccountId_ = 0;
+      questItemData_ = java.util.Collections.emptyList();
+      xpProgressData_ = java.util.Collections.emptyList();
+      timePlayed_ = 0;
+      mmGameMode_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, questerAccountId_);
+      }
+      for (int i = 0; i < questItemData_.size(); i++) {
+        output.writeMessage(2, questItemData_.get(i));
+      }
+      for (int i = 0; i < xpProgressData_.size(); i++) {
+        output.writeMessage(3, xpProgressData_.get(i));
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(4, timePlayed_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(5, mmGameMode_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, questerAccountId_);
+      }
+      for (int i = 0; i < questItemData_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, questItemData_.get(i));
+      }
+      for (int i = 0; i < xpProgressData_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, xpProgressData_.get(i));
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, timePlayed_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, mmGameMode_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.PlayerQuestData parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.PlayerQuestData parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.PlayerQuestData parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.PlayerQuestData parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.PlayerQuestData parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.PlayerQuestData parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.PlayerQuestData parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.PlayerQuestData parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.PlayerQuestData parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.PlayerQuestData parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.PlayerQuestData prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code PlayerQuestData}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.PlayerQuestDataOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_PlayerQuestData_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_PlayerQuestData_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.PlayerQuestData.class, Cstrike15Gcmessages.PlayerQuestData.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.PlayerQuestData.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getQuestItemDataFieldBuilder();
+          getXpProgressDataFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        questerAccountId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (questItemDataBuilder_ == null) {
+          questItemData_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          questItemDataBuilder_.clear();
+        }
+        if (xpProgressDataBuilder_ == null) {
+          xpProgressData_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          xpProgressDataBuilder_.clear();
+        }
+        timePlayed_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        mmGameMode_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_PlayerQuestData_descriptor;
+      }
+
+      public Cstrike15Gcmessages.PlayerQuestData getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.PlayerQuestData.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.PlayerQuestData build() {
+        Cstrike15Gcmessages.PlayerQuestData result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.PlayerQuestData buildPartial() {
+        Cstrike15Gcmessages.PlayerQuestData result = new Cstrike15Gcmessages.PlayerQuestData(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.questerAccountId_ = questerAccountId_;
+        if (questItemDataBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            questItemData_ = java.util.Collections.unmodifiableList(questItemData_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.questItemData_ = questItemData_;
+        } else {
+          result.questItemData_ = questItemDataBuilder_.build();
+        }
+        if (xpProgressDataBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            xpProgressData_ = java.util.Collections.unmodifiableList(xpProgressData_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.xpProgressData_ = xpProgressData_;
+        } else {
+          result.xpProgressData_ = xpProgressDataBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.timePlayed_ = timePlayed_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.mmGameMode_ = mmGameMode_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.PlayerQuestData) {
+          return mergeFrom((Cstrike15Gcmessages.PlayerQuestData)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.PlayerQuestData other) {
+        if (other == Cstrike15Gcmessages.PlayerQuestData.getDefaultInstance()) return this;
+        if (other.hasQuesterAccountId()) {
+          setQuesterAccountId(other.getQuesterAccountId());
+        }
+        if (questItemDataBuilder_ == null) {
+          if (!other.questItemData_.isEmpty()) {
+            if (questItemData_.isEmpty()) {
+              questItemData_ = other.questItemData_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureQuestItemDataIsMutable();
+              questItemData_.addAll(other.questItemData_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.questItemData_.isEmpty()) {
+            if (questItemDataBuilder_.isEmpty()) {
+              questItemDataBuilder_.dispose();
+              questItemDataBuilder_ = null;
+              questItemData_ = other.questItemData_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              questItemDataBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getQuestItemDataFieldBuilder() : null;
+            } else {
+              questItemDataBuilder_.addAllMessages(other.questItemData_);
+            }
+          }
+        }
+        if (xpProgressDataBuilder_ == null) {
+          if (!other.xpProgressData_.isEmpty()) {
+            if (xpProgressData_.isEmpty()) {
+              xpProgressData_ = other.xpProgressData_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureXpProgressDataIsMutable();
+              xpProgressData_.addAll(other.xpProgressData_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.xpProgressData_.isEmpty()) {
+            if (xpProgressDataBuilder_.isEmpty()) {
+              xpProgressDataBuilder_.dispose();
+              xpProgressDataBuilder_ = null;
+              xpProgressData_ = other.xpProgressData_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              xpProgressDataBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getXpProgressDataFieldBuilder() : null;
+            } else {
+              xpProgressDataBuilder_.addAllMessages(other.xpProgressData_);
+            }
+          }
+        }
+        if (other.hasTimePlayed()) {
+          setTimePlayed(other.getTimePlayed());
+        }
+        if (other.hasMmGameMode()) {
+          setMmGameMode(other.getMmGameMode());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.PlayerQuestData parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.PlayerQuestData) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint32 quester_account_id = 1;
+      private int questerAccountId_ ;
+      /**
+       * <code>optional uint32 quester_account_id = 1;</code>
+       */
+      public boolean hasQuesterAccountId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 quester_account_id = 1;</code>
+       */
+      public int getQuesterAccountId() {
+        return questerAccountId_;
+      }
+      /**
+       * <code>optional uint32 quester_account_id = 1;</code>
+       */
+      public Builder setQuesterAccountId(int value) {
+        bitField0_ |= 0x00000001;
+        questerAccountId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 quester_account_id = 1;</code>
+       */
+      public Builder clearQuesterAccountId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        questerAccountId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // repeated .PlayerQuestData.QuestItemData quest_item_data = 2;
+      private java.util.List<Cstrike15Gcmessages.PlayerQuestData.QuestItemData> questItemData_ =
+        java.util.Collections.emptyList();
+      private void ensureQuestItemDataIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          questItemData_ = new java.util.ArrayList<Cstrike15Gcmessages.PlayerQuestData.QuestItemData>(questItemData_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.PlayerQuestData.QuestItemData, Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder, Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder> questItemDataBuilder_;
+
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.PlayerQuestData.QuestItemData> getQuestItemDataList() {
+        if (questItemDataBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(questItemData_);
+        } else {
+          return questItemDataBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public int getQuestItemDataCount() {
+        if (questItemDataBuilder_ == null) {
+          return questItemData_.size();
+        } else {
+          return questItemDataBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestData.QuestItemData getQuestItemData(int index) {
+        if (questItemDataBuilder_ == null) {
+          return questItemData_.get(index);
+        } else {
+          return questItemDataBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Builder setQuestItemData(
+          int index, Cstrike15Gcmessages.PlayerQuestData.QuestItemData value) {
+        if (questItemDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQuestItemDataIsMutable();
+          questItemData_.set(index, value);
+          onChanged();
+        } else {
+          questItemDataBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Builder setQuestItemData(
+          int index, Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder builderForValue) {
+        if (questItemDataBuilder_ == null) {
+          ensureQuestItemDataIsMutable();
+          questItemData_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          questItemDataBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Builder addQuestItemData(Cstrike15Gcmessages.PlayerQuestData.QuestItemData value) {
+        if (questItemDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQuestItemDataIsMutable();
+          questItemData_.add(value);
+          onChanged();
+        } else {
+          questItemDataBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Builder addQuestItemData(
+          int index, Cstrike15Gcmessages.PlayerQuestData.QuestItemData value) {
+        if (questItemDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQuestItemDataIsMutable();
+          questItemData_.add(index, value);
+          onChanged();
+        } else {
+          questItemDataBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Builder addQuestItemData(
+          Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder builderForValue) {
+        if (questItemDataBuilder_ == null) {
+          ensureQuestItemDataIsMutable();
+          questItemData_.add(builderForValue.build());
+          onChanged();
+        } else {
+          questItemDataBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Builder addQuestItemData(
+          int index, Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder builderForValue) {
+        if (questItemDataBuilder_ == null) {
+          ensureQuestItemDataIsMutable();
+          questItemData_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          questItemDataBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Builder addAllQuestItemData(
+          java.lang.Iterable<? extends Cstrike15Gcmessages.PlayerQuestData.QuestItemData> values) {
+        if (questItemDataBuilder_ == null) {
+          ensureQuestItemDataIsMutable();
+          super.addAll(values, questItemData_);
+          onChanged();
+        } else {
+          questItemDataBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Builder clearQuestItemData() {
+        if (questItemDataBuilder_ == null) {
+          questItemData_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          questItemDataBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Builder removeQuestItemData(int index) {
+        if (questItemDataBuilder_ == null) {
+          ensureQuestItemDataIsMutable();
+          questItemData_.remove(index);
+          onChanged();
+        } else {
+          questItemDataBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder getQuestItemDataBuilder(
+          int index) {
+        return getQuestItemDataFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder getQuestItemDataOrBuilder(
+          int index) {
+        if (questItemDataBuilder_ == null) {
+          return questItemData_.get(index);  } else {
+          return questItemDataBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public java.util.List<? extends Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder> 
+           getQuestItemDataOrBuilderList() {
+        if (questItemDataBuilder_ != null) {
+          return questItemDataBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(questItemData_);
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder addQuestItemDataBuilder() {
+        return getQuestItemDataFieldBuilder().addBuilder(
+            Cstrike15Gcmessages.PlayerQuestData.QuestItemData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder addQuestItemDataBuilder(
+          int index) {
+        return getQuestItemDataFieldBuilder().addBuilder(
+            index, Cstrike15Gcmessages.PlayerQuestData.QuestItemData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .PlayerQuestData.QuestItemData quest_item_data = 2;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder> 
+           getQuestItemDataBuilderList() {
+        return getQuestItemDataFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.PlayerQuestData.QuestItemData, Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder, Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder> 
+          getQuestItemDataFieldBuilder() {
+        if (questItemDataBuilder_ == null) {
+          questItemDataBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              Cstrike15Gcmessages.PlayerQuestData.QuestItemData, Cstrike15Gcmessages.PlayerQuestData.QuestItemData.Builder, Cstrike15Gcmessages.PlayerQuestData.QuestItemDataOrBuilder>(
+                  questItemData_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          questItemData_ = null;
+        }
+        return questItemDataBuilder_;
+      }
+
+      // repeated .XpProgressData xp_progress_data = 3;
+      private java.util.List<Cstrike15Gcmessages.XpProgressData> xpProgressData_ =
+        java.util.Collections.emptyList();
+      private void ensureXpProgressDataIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          xpProgressData_ = new java.util.ArrayList<Cstrike15Gcmessages.XpProgressData>(xpProgressData_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.XpProgressData, Cstrike15Gcmessages.XpProgressData.Builder, Cstrike15Gcmessages.XpProgressDataOrBuilder> xpProgressDataBuilder_;
+
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.XpProgressData> getXpProgressDataList() {
+        if (xpProgressDataBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(xpProgressData_);
+        } else {
+          return xpProgressDataBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public int getXpProgressDataCount() {
+        if (xpProgressDataBuilder_ == null) {
+          return xpProgressData_.size();
+        } else {
+          return xpProgressDataBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressData getXpProgressData(int index) {
+        if (xpProgressDataBuilder_ == null) {
+          return xpProgressData_.get(index);
+        } else {
+          return xpProgressDataBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Builder setXpProgressData(
+          int index, Cstrike15Gcmessages.XpProgressData value) {
+        if (xpProgressDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.set(index, value);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Builder setXpProgressData(
+          int index, Cstrike15Gcmessages.XpProgressData.Builder builderForValue) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Builder addXpProgressData(Cstrike15Gcmessages.XpProgressData value) {
+        if (xpProgressDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.add(value);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Builder addXpProgressData(
+          int index, Cstrike15Gcmessages.XpProgressData value) {
+        if (xpProgressDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.add(index, value);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Builder addXpProgressData(
+          Cstrike15Gcmessages.XpProgressData.Builder builderForValue) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.add(builderForValue.build());
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Builder addXpProgressData(
+          int index, Cstrike15Gcmessages.XpProgressData.Builder builderForValue) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Builder addAllXpProgressData(
+          java.lang.Iterable<? extends Cstrike15Gcmessages.XpProgressData> values) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          super.addAll(values, xpProgressData_);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Builder clearXpProgressData() {
+        if (xpProgressDataBuilder_ == null) {
+          xpProgressData_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Builder removeXpProgressData(int index) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.remove(index);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressData.Builder getXpProgressDataBuilder(
+          int index) {
+        return getXpProgressDataFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressDataOrBuilder getXpProgressDataOrBuilder(
+          int index) {
+        if (xpProgressDataBuilder_ == null) {
+          return xpProgressData_.get(index);  } else {
+          return xpProgressDataBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public java.util.List<? extends Cstrike15Gcmessages.XpProgressDataOrBuilder> 
+           getXpProgressDataOrBuilderList() {
+        if (xpProgressDataBuilder_ != null) {
+          return xpProgressDataBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(xpProgressData_);
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressData.Builder addXpProgressDataBuilder() {
+        return getXpProgressDataFieldBuilder().addBuilder(
+            Cstrike15Gcmessages.XpProgressData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressData.Builder addXpProgressDataBuilder(
+          int index) {
+        return getXpProgressDataFieldBuilder().addBuilder(
+            index, Cstrike15Gcmessages.XpProgressData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 3;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.XpProgressData.Builder> 
+           getXpProgressDataBuilderList() {
+        return getXpProgressDataFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.XpProgressData, Cstrike15Gcmessages.XpProgressData.Builder, Cstrike15Gcmessages.XpProgressDataOrBuilder> 
+          getXpProgressDataFieldBuilder() {
+        if (xpProgressDataBuilder_ == null) {
+          xpProgressDataBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              Cstrike15Gcmessages.XpProgressData, Cstrike15Gcmessages.XpProgressData.Builder, Cstrike15Gcmessages.XpProgressDataOrBuilder>(
+                  xpProgressData_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          xpProgressData_ = null;
+        }
+        return xpProgressDataBuilder_;
+      }
+
+      // optional uint32 time_played = 4;
+      private int timePlayed_ ;
+      /**
+       * <code>optional uint32 time_played = 4;</code>
+       */
+      public boolean hasTimePlayed() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional uint32 time_played = 4;</code>
+       */
+      public int getTimePlayed() {
+        return timePlayed_;
+      }
+      /**
+       * <code>optional uint32 time_played = 4;</code>
+       */
+      public Builder setTimePlayed(int value) {
+        bitField0_ |= 0x00000008;
+        timePlayed_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 time_played = 4;</code>
+       */
+      public Builder clearTimePlayed() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        timePlayed_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 mm_game_mode = 5;
+      private int mmGameMode_ ;
+      /**
+       * <code>optional uint32 mm_game_mode = 5;</code>
+       */
+      public boolean hasMmGameMode() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional uint32 mm_game_mode = 5;</code>
+       */
+      public int getMmGameMode() {
+        return mmGameMode_;
+      }
+      /**
+       * <code>optional uint32 mm_game_mode = 5;</code>
+       */
+      public Builder setMmGameMode(int value) {
+        bitField0_ |= 0x00000010;
+        mmGameMode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 mm_game_mode = 5;</code>
+       */
+      public Builder clearMmGameMode() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        mmGameMode_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:PlayerQuestData)
+    }
+
+    static {
+      defaultInstance = new PlayerQuestData(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:PlayerQuestData)
+  }
+
+  public interface CMsgGC_ServerQuestUpdateDataOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // repeated .PlayerQuestData player_quest_data = 1;
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    java.util.List<Cstrike15Gcmessages.PlayerQuestData> 
+        getPlayerQuestDataList();
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    Cstrike15Gcmessages.PlayerQuestData getPlayerQuestData(int index);
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    int getPlayerQuestDataCount();
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    java.util.List<? extends Cstrike15Gcmessages.PlayerQuestDataOrBuilder> 
+        getPlayerQuestDataOrBuilderList();
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    Cstrike15Gcmessages.PlayerQuestDataOrBuilder getPlayerQuestDataOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code CMsgGC_ServerQuestUpdateData}
+   */
+  public static final class CMsgGC_ServerQuestUpdateData extends
+      com.google.protobuf.GeneratedMessage
+      implements CMsgGC_ServerQuestUpdateDataOrBuilder {
+    // Use CMsgGC_ServerQuestUpdateData.newBuilder() to construct.
+    private CMsgGC_ServerQuestUpdateData(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CMsgGC_ServerQuestUpdateData(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CMsgGC_ServerQuestUpdateData defaultInstance;
+    public static CMsgGC_ServerQuestUpdateData getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CMsgGC_ServerQuestUpdateData getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CMsgGC_ServerQuestUpdateData(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                playerQuestData_ = new java.util.ArrayList<Cstrike15Gcmessages.PlayerQuestData>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              playerQuestData_.add(input.readMessage(Cstrike15Gcmessages.PlayerQuestData.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          playerQuestData_ = java.util.Collections.unmodifiableList(playerQuestData_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.class, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CMsgGC_ServerQuestUpdateData> PARSER =
+        new com.google.protobuf.AbstractParser<CMsgGC_ServerQuestUpdateData>() {
+      public CMsgGC_ServerQuestUpdateData parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CMsgGC_ServerQuestUpdateData(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CMsgGC_ServerQuestUpdateData> getParserForType() {
+      return PARSER;
+    }
+
+    // repeated .PlayerQuestData player_quest_data = 1;
+    public static final int PLAYER_QUEST_DATA_FIELD_NUMBER = 1;
+    private java.util.List<Cstrike15Gcmessages.PlayerQuestData> playerQuestData_;
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    public java.util.List<Cstrike15Gcmessages.PlayerQuestData> getPlayerQuestDataList() {
+      return playerQuestData_;
+    }
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    public java.util.List<? extends Cstrike15Gcmessages.PlayerQuestDataOrBuilder> 
+        getPlayerQuestDataOrBuilderList() {
+      return playerQuestData_;
+    }
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    public int getPlayerQuestDataCount() {
+      return playerQuestData_.size();
+    }
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    public Cstrike15Gcmessages.PlayerQuestData getPlayerQuestData(int index) {
+      return playerQuestData_.get(index);
+    }
+    /**
+     * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+     */
+    public Cstrike15Gcmessages.PlayerQuestDataOrBuilder getPlayerQuestDataOrBuilder(
+        int index) {
+      return playerQuestData_.get(index);
+    }
+
+    private void initFields() {
+      playerQuestData_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < playerQuestData_.size(); i++) {
+        output.writeMessage(1, playerQuestData_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < playerQuestData_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, playerQuestData_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CMsgGC_ServerQuestUpdateData}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateDataOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.class, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getPlayerQuestDataFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (playerQuestDataBuilder_ == null) {
+          playerQuestData_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          playerQuestDataBuilder_.clear();
+        }
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData build() {
+        Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData buildPartial() {
+        Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData result = new Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData(this);
+        int from_bitField0_ = bitField0_;
+        if (playerQuestDataBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            playerQuestData_ = java.util.Collections.unmodifiableList(playerQuestData_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.playerQuestData_ = playerQuestData_;
+        } else {
+          result.playerQuestData_ = playerQuestDataBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData) {
+          return mergeFrom((Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData other) {
+        if (other == Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.getDefaultInstance()) return this;
+        if (playerQuestDataBuilder_ == null) {
+          if (!other.playerQuestData_.isEmpty()) {
+            if (playerQuestData_.isEmpty()) {
+              playerQuestData_ = other.playerQuestData_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensurePlayerQuestDataIsMutable();
+              playerQuestData_.addAll(other.playerQuestData_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.playerQuestData_.isEmpty()) {
+            if (playerQuestDataBuilder_.isEmpty()) {
+              playerQuestDataBuilder_.dispose();
+              playerQuestDataBuilder_ = null;
+              playerQuestData_ = other.playerQuestData_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              playerQuestDataBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getPlayerQuestDataFieldBuilder() : null;
+            } else {
+              playerQuestDataBuilder_.addAllMessages(other.playerQuestData_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // repeated .PlayerQuestData player_quest_data = 1;
+      private java.util.List<Cstrike15Gcmessages.PlayerQuestData> playerQuestData_ =
+        java.util.Collections.emptyList();
+      private void ensurePlayerQuestDataIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          playerQuestData_ = new java.util.ArrayList<Cstrike15Gcmessages.PlayerQuestData>(playerQuestData_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.PlayerQuestData, Cstrike15Gcmessages.PlayerQuestData.Builder, Cstrike15Gcmessages.PlayerQuestDataOrBuilder> playerQuestDataBuilder_;
+
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.PlayerQuestData> getPlayerQuestDataList() {
+        if (playerQuestDataBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(playerQuestData_);
+        } else {
+          return playerQuestDataBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public int getPlayerQuestDataCount() {
+        if (playerQuestDataBuilder_ == null) {
+          return playerQuestData_.size();
+        } else {
+          return playerQuestDataBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestData getPlayerQuestData(int index) {
+        if (playerQuestDataBuilder_ == null) {
+          return playerQuestData_.get(index);
+        } else {
+          return playerQuestDataBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Builder setPlayerQuestData(
+          int index, Cstrike15Gcmessages.PlayerQuestData value) {
+        if (playerQuestDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayerQuestDataIsMutable();
+          playerQuestData_.set(index, value);
+          onChanged();
+        } else {
+          playerQuestDataBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Builder setPlayerQuestData(
+          int index, Cstrike15Gcmessages.PlayerQuestData.Builder builderForValue) {
+        if (playerQuestDataBuilder_ == null) {
+          ensurePlayerQuestDataIsMutable();
+          playerQuestData_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          playerQuestDataBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Builder addPlayerQuestData(Cstrike15Gcmessages.PlayerQuestData value) {
+        if (playerQuestDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayerQuestDataIsMutable();
+          playerQuestData_.add(value);
+          onChanged();
+        } else {
+          playerQuestDataBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Builder addPlayerQuestData(
+          int index, Cstrike15Gcmessages.PlayerQuestData value) {
+        if (playerQuestDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayerQuestDataIsMutable();
+          playerQuestData_.add(index, value);
+          onChanged();
+        } else {
+          playerQuestDataBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Builder addPlayerQuestData(
+          Cstrike15Gcmessages.PlayerQuestData.Builder builderForValue) {
+        if (playerQuestDataBuilder_ == null) {
+          ensurePlayerQuestDataIsMutable();
+          playerQuestData_.add(builderForValue.build());
+          onChanged();
+        } else {
+          playerQuestDataBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Builder addPlayerQuestData(
+          int index, Cstrike15Gcmessages.PlayerQuestData.Builder builderForValue) {
+        if (playerQuestDataBuilder_ == null) {
+          ensurePlayerQuestDataIsMutable();
+          playerQuestData_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          playerQuestDataBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Builder addAllPlayerQuestData(
+          java.lang.Iterable<? extends Cstrike15Gcmessages.PlayerQuestData> values) {
+        if (playerQuestDataBuilder_ == null) {
+          ensurePlayerQuestDataIsMutable();
+          super.addAll(values, playerQuestData_);
+          onChanged();
+        } else {
+          playerQuestDataBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Builder clearPlayerQuestData() {
+        if (playerQuestDataBuilder_ == null) {
+          playerQuestData_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          playerQuestDataBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Builder removePlayerQuestData(int index) {
+        if (playerQuestDataBuilder_ == null) {
+          ensurePlayerQuestDataIsMutable();
+          playerQuestData_.remove(index);
+          onChanged();
+        } else {
+          playerQuestDataBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestData.Builder getPlayerQuestDataBuilder(
+          int index) {
+        return getPlayerQuestDataFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestDataOrBuilder getPlayerQuestDataOrBuilder(
+          int index) {
+        if (playerQuestDataBuilder_ == null) {
+          return playerQuestData_.get(index);  } else {
+          return playerQuestDataBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public java.util.List<? extends Cstrike15Gcmessages.PlayerQuestDataOrBuilder> 
+           getPlayerQuestDataOrBuilderList() {
+        if (playerQuestDataBuilder_ != null) {
+          return playerQuestDataBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(playerQuestData_);
+        }
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestData.Builder addPlayerQuestDataBuilder() {
+        return getPlayerQuestDataFieldBuilder().addBuilder(
+            Cstrike15Gcmessages.PlayerQuestData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.PlayerQuestData.Builder addPlayerQuestDataBuilder(
+          int index) {
+        return getPlayerQuestDataFieldBuilder().addBuilder(
+            index, Cstrike15Gcmessages.PlayerQuestData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .PlayerQuestData player_quest_data = 1;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.PlayerQuestData.Builder> 
+           getPlayerQuestDataBuilderList() {
+        return getPlayerQuestDataFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.PlayerQuestData, Cstrike15Gcmessages.PlayerQuestData.Builder, Cstrike15Gcmessages.PlayerQuestDataOrBuilder> 
+          getPlayerQuestDataFieldBuilder() {
+        if (playerQuestDataBuilder_ == null) {
+          playerQuestDataBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              Cstrike15Gcmessages.PlayerQuestData, Cstrike15Gcmessages.PlayerQuestData.Builder, Cstrike15Gcmessages.PlayerQuestDataOrBuilder>(
+                  playerQuestData_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          playerQuestData_ = null;
+        }
+        return playerQuestDataBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CMsgGC_ServerQuestUpdateData)
+    }
+
+    static {
+      defaultInstance = new CMsgGC_ServerQuestUpdateData(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CMsgGC_ServerQuestUpdateData)
   }
 
   public interface CMsgGCCStrike15_v2_MatchmakingGCOperationalStatsOrBuilder
@@ -20132,6 +23096,20 @@ public final class Cstrike15Gcmessages {
      * <code>repeated uint32 penalty_account_id_sessions_green = 14;</code>
      */
     int getPenaltyAccountIdSessionsGreen(int index);
+
+    // repeated uint32 insufficientlevel_sessions = 15;
+    /**
+     * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+     */
+    java.util.List<java.lang.Integer> getInsufficientlevelSessionsList();
+    /**
+     * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+     */
+    int getInsufficientlevelSessionsCount();
+    /**
+     * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+     */
+    int getInsufficientlevelSessions(int index);
   }
   /**
    * Protobuf type {@code CMsgGCCStrike15_v2_MatchmakingGC2ClientUpdate}
@@ -20375,6 +23353,27 @@ public final class Cstrike15Gcmessages {
               input.popLimit(limit);
               break;
             }
+            case 120: {
+              if (!((mutable_bitField0_ & 0x00001000) == 0x00001000)) {
+                insufficientlevelSessions_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00001000;
+              }
+              insufficientlevelSessions_.add(input.readUInt32());
+              break;
+            }
+            case 122: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00001000) == 0x00001000) && input.getBytesUntilLimit() > 0) {
+                insufficientlevelSessions_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00001000;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                insufficientlevelSessions_.add(input.readUInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -20406,6 +23405,9 @@ public final class Cstrike15Gcmessages {
         }
         if (((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
           penaltyAccountIdSessionsGreen_ = java.util.Collections.unmodifiableList(penaltyAccountIdSessionsGreen_);
+        }
+        if (((mutable_bitField0_ & 0x00001000) == 0x00001000)) {
+          insufficientlevelSessions_ = java.util.Collections.unmodifiableList(insufficientlevelSessions_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -21378,6 +24380,29 @@ public final class Cstrike15Gcmessages {
       return penaltyAccountIdSessionsGreen_.get(index);
     }
 
+    // repeated uint32 insufficientlevel_sessions = 15;
+    public static final int INSUFFICIENTLEVEL_SESSIONS_FIELD_NUMBER = 15;
+    private java.util.List<java.lang.Integer> insufficientlevelSessions_;
+    /**
+     * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+     */
+    public java.util.List<java.lang.Integer>
+        getInsufficientlevelSessionsList() {
+      return insufficientlevelSessions_;
+    }
+    /**
+     * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+     */
+    public int getInsufficientlevelSessionsCount() {
+      return insufficientlevelSessions_.size();
+    }
+    /**
+     * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+     */
+    public int getInsufficientlevelSessions(int index) {
+      return insufficientlevelSessions_.get(index);
+    }
+
     private void initFields() {
       matchmaking_ = 0;
       waitingAccountIdSessions_ = java.util.Collections.emptyList();
@@ -21391,6 +24416,7 @@ public final class Cstrike15Gcmessages {
       serverIpaddressMask_ = Cstrike15Gcmessages.IpAddressMask.getDefaultInstance();
       notes_ = java.util.Collections.emptyList();
       penaltyAccountIdSessionsGreen_ = java.util.Collections.emptyList();
+      insufficientlevelSessions_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -21439,6 +24465,9 @@ public final class Cstrike15Gcmessages {
       }
       for (int i = 0; i < penaltyAccountIdSessionsGreen_.size(); i++) {
         output.writeUInt32(14, penaltyAccountIdSessionsGreen_.get(i));
+      }
+      for (int i = 0; i < insufficientlevelSessions_.size(); i++) {
+        output.writeUInt32(15, insufficientlevelSessions_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -21531,6 +24560,15 @@ public final class Cstrike15Gcmessages {
         }
         size += dataSize;
         size += 1 * getPenaltyAccountIdSessionsGreenList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < insufficientlevelSessions_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(insufficientlevelSessions_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getInsufficientlevelSessionsList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -21687,6 +24725,8 @@ public final class Cstrike15Gcmessages {
         }
         penaltyAccountIdSessionsGreen_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000800);
+        insufficientlevelSessions_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00001000);
         return this;
       }
 
@@ -21783,6 +24823,11 @@ public final class Cstrike15Gcmessages {
           bitField0_ = (bitField0_ & ~0x00000800);
         }
         result.penaltyAccountIdSessionsGreen_ = penaltyAccountIdSessionsGreen_;
+        if (((bitField0_ & 0x00001000) == 0x00001000)) {
+          insufficientlevelSessions_ = java.util.Collections.unmodifiableList(insufficientlevelSessions_);
+          bitField0_ = (bitField0_ & ~0x00001000);
+        }
+        result.insufficientlevelSessions_ = insufficientlevelSessions_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -21906,6 +24951,16 @@ public final class Cstrike15Gcmessages {
           } else {
             ensurePenaltyAccountIdSessionsGreenIsMutable();
             penaltyAccountIdSessionsGreen_.addAll(other.penaltyAccountIdSessionsGreen_);
+          }
+          onChanged();
+        }
+        if (!other.insufficientlevelSessions_.isEmpty()) {
+          if (insufficientlevelSessions_.isEmpty()) {
+            insufficientlevelSessions_ = other.insufficientlevelSessions_;
+            bitField0_ = (bitField0_ & ~0x00001000);
+          } else {
+            ensureInsufficientlevelSessionsIsMutable();
+            insufficientlevelSessions_.addAll(other.insufficientlevelSessions_);
           }
           onChanged();
         }
@@ -22975,6 +26030,72 @@ public final class Cstrike15Gcmessages {
       public Builder clearPenaltyAccountIdSessionsGreen() {
         penaltyAccountIdSessionsGreen_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000800);
+        onChanged();
+        return this;
+      }
+
+      // repeated uint32 insufficientlevel_sessions = 15;
+      private java.util.List<java.lang.Integer> insufficientlevelSessions_ = java.util.Collections.emptyList();
+      private void ensureInsufficientlevelSessionsIsMutable() {
+        if (!((bitField0_ & 0x00001000) == 0x00001000)) {
+          insufficientlevelSessions_ = new java.util.ArrayList<java.lang.Integer>(insufficientlevelSessions_);
+          bitField0_ |= 0x00001000;
+         }
+      }
+      /**
+       * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+       */
+      public java.util.List<java.lang.Integer>
+          getInsufficientlevelSessionsList() {
+        return java.util.Collections.unmodifiableList(insufficientlevelSessions_);
+      }
+      /**
+       * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+       */
+      public int getInsufficientlevelSessionsCount() {
+        return insufficientlevelSessions_.size();
+      }
+      /**
+       * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+       */
+      public int getInsufficientlevelSessions(int index) {
+        return insufficientlevelSessions_.get(index);
+      }
+      /**
+       * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+       */
+      public Builder setInsufficientlevelSessions(
+          int index, int value) {
+        ensureInsufficientlevelSessionsIsMutable();
+        insufficientlevelSessions_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+       */
+      public Builder addInsufficientlevelSessions(int value) {
+        ensureInsufficientlevelSessionsIsMutable();
+        insufficientlevelSessions_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+       */
+      public Builder addAllInsufficientlevelSessions(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureInsufficientlevelSessionsIsMutable();
+        super.addAll(values, insufficientlevelSessions_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 insufficientlevel_sessions = 15;</code>
+       */
+      public Builder clearInsufficientlevelSessions() {
+        insufficientlevelSessions_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00001000);
         onChanged();
         return this;
       }
@@ -32565,6 +35686,20 @@ public final class Cstrike15Gcmessages {
      * <code>optional uint32 spectators_count_lnk = 24;</code>
      */
     int getSpectatorsCountLnk();
+
+    // repeated int32 enemy_kills_agg = 25;
+    /**
+     * <code>repeated int32 enemy_kills_agg = 25;</code>
+     */
+    java.util.List<java.lang.Integer> getEnemyKillsAggList();
+    /**
+     * <code>repeated int32 enemy_kills_agg = 25;</code>
+     */
+    int getEnemyKillsAggCount();
+    /**
+     * <code>repeated int32 enemy_kills_agg = 25;</code>
+     */
+    int getEnemyKillsAgg(int index);
   }
   /**
    * Protobuf type {@code CMsgGCCStrike15_v2_MatchmakingServerRoundStats}
@@ -32945,6 +36080,27 @@ public final class Cstrike15Gcmessages {
               spectatorsCountLnk_ = input.readUInt32();
               break;
             }
+            case 200: {
+              if (!((mutable_bitField0_ & 0x01000000) == 0x01000000)) {
+                enemyKillsAgg_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x01000000;
+              }
+              enemyKillsAgg_.add(input.readInt32());
+              break;
+            }
+            case 202: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x01000000) == 0x01000000) && input.getBytesUntilLimit() > 0) {
+                enemyKillsAgg_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x01000000;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                enemyKillsAgg_.add(input.readInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -32988,6 +36144,9 @@ public final class Cstrike15Gcmessages {
         }
         if (((mutable_bitField0_ & 0x00100000) == 0x00100000)) {
           mvps_ = java.util.Collections.unmodifiableList(mvps_);
+        }
+        if (((mutable_bitField0_ & 0x01000000) == 0x01000000)) {
+          enemyKillsAgg_ = java.util.Collections.unmodifiableList(enemyKillsAgg_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -33528,6 +36687,29 @@ public final class Cstrike15Gcmessages {
       return spectatorsCountLnk_;
     }
 
+    // repeated int32 enemy_kills_agg = 25;
+    public static final int ENEMY_KILLS_AGG_FIELD_NUMBER = 25;
+    private java.util.List<java.lang.Integer> enemyKillsAgg_;
+    /**
+     * <code>repeated int32 enemy_kills_agg = 25;</code>
+     */
+    public java.util.List<java.lang.Integer>
+        getEnemyKillsAggList() {
+      return enemyKillsAgg_;
+    }
+    /**
+     * <code>repeated int32 enemy_kills_agg = 25;</code>
+     */
+    public int getEnemyKillsAggCount() {
+      return enemyKillsAgg_.size();
+    }
+    /**
+     * <code>repeated int32 enemy_kills_agg = 25;</code>
+     */
+    public int getEnemyKillsAgg(int index) {
+      return enemyKillsAgg_.get(index);
+    }
+
     private void initFields() {
       reservationid_ = 0L;
       reservation_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingGC2ServerReserve.getDefaultInstance();
@@ -33553,6 +36735,7 @@ public final class Cstrike15Gcmessages {
       spectatorsCount_ = 0;
       spectatorsCountTv_ = 0;
       spectatorsCountLnk_ = 0;
+      enemyKillsAgg_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -33637,6 +36820,9 @@ public final class Cstrike15Gcmessages {
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         output.writeUInt32(24, spectatorsCountLnk_);
+      }
+      for (int i = 0; i < enemyKillsAgg_.size(); i++) {
+        output.writeInt32(25, enemyKillsAgg_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -33802,6 +36988,15 @@ public final class Cstrike15Gcmessages {
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(24, spectatorsCountLnk_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < enemyKillsAgg_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(enemyKillsAgg_.get(i));
+        }
+        size += dataSize;
+        size += 2 * getEnemyKillsAggList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -33977,6 +37172,8 @@ public final class Cstrike15Gcmessages {
         bitField0_ = (bitField0_ & ~0x00400000);
         spectatorsCountLnk_ = 0;
         bitField0_ = (bitField0_ & ~0x00800000);
+        enemyKillsAgg_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x01000000);
         return this;
       }
 
@@ -34121,6 +37318,11 @@ public final class Cstrike15Gcmessages {
           to_bitField0_ |= 0x00000800;
         }
         result.spectatorsCountLnk_ = spectatorsCountLnk_;
+        if (((bitField0_ & 0x01000000) == 0x01000000)) {
+          enemyKillsAgg_ = java.util.Collections.unmodifiableList(enemyKillsAgg_);
+          bitField0_ = (bitField0_ & ~0x01000000);
+        }
+        result.enemyKillsAgg_ = enemyKillsAgg_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -34294,6 +37496,16 @@ public final class Cstrike15Gcmessages {
         }
         if (other.hasSpectatorsCountLnk()) {
           setSpectatorsCountLnk(other.getSpectatorsCountLnk());
+        }
+        if (!other.enemyKillsAgg_.isEmpty()) {
+          if (enemyKillsAgg_.isEmpty()) {
+            enemyKillsAgg_ = other.enemyKillsAgg_;
+            bitField0_ = (bitField0_ & ~0x01000000);
+          } else {
+            ensureEnemyKillsAggIsMutable();
+            enemyKillsAgg_.addAll(other.enemyKillsAgg_);
+          }
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -35719,6 +38931,72 @@ public final class Cstrike15Gcmessages {
         return this;
       }
 
+      // repeated int32 enemy_kills_agg = 25;
+      private java.util.List<java.lang.Integer> enemyKillsAgg_ = java.util.Collections.emptyList();
+      private void ensureEnemyKillsAggIsMutable() {
+        if (!((bitField0_ & 0x01000000) == 0x01000000)) {
+          enemyKillsAgg_ = new java.util.ArrayList<java.lang.Integer>(enemyKillsAgg_);
+          bitField0_ |= 0x01000000;
+         }
+      }
+      /**
+       * <code>repeated int32 enemy_kills_agg = 25;</code>
+       */
+      public java.util.List<java.lang.Integer>
+          getEnemyKillsAggList() {
+        return java.util.Collections.unmodifiableList(enemyKillsAgg_);
+      }
+      /**
+       * <code>repeated int32 enemy_kills_agg = 25;</code>
+       */
+      public int getEnemyKillsAggCount() {
+        return enemyKillsAgg_.size();
+      }
+      /**
+       * <code>repeated int32 enemy_kills_agg = 25;</code>
+       */
+      public int getEnemyKillsAgg(int index) {
+        return enemyKillsAgg_.get(index);
+      }
+      /**
+       * <code>repeated int32 enemy_kills_agg = 25;</code>
+       */
+      public Builder setEnemyKillsAgg(
+          int index, int value) {
+        ensureEnemyKillsAggIsMutable();
+        enemyKillsAgg_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int32 enemy_kills_agg = 25;</code>
+       */
+      public Builder addEnemyKillsAgg(int value) {
+        ensureEnemyKillsAggIsMutable();
+        enemyKillsAgg_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int32 enemy_kills_agg = 25;</code>
+       */
+      public Builder addAllEnemyKillsAgg(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureEnemyKillsAggIsMutable();
+        super.addAll(values, enemyKillsAgg_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int32 enemy_kills_agg = 25;</code>
+       */
+      public Builder clearEnemyKillsAgg() {
+        enemyKillsAgg_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x01000000);
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:CMsgGCCStrike15_v2_MatchmakingServerRoundStats)
     }
 
@@ -35800,6 +39078,20 @@ public final class Cstrike15Gcmessages {
      * <code>optional bool aborted_match = 7;</code>
      */
     boolean getAbortedMatch();
+
+    // optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;
+    /**
+     * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+     */
+    boolean hasMatchEndQuestData();
+    /**
+     * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+     */
+    Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData getMatchEndQuestData();
+    /**
+     * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+     */
+    Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateDataOrBuilder getMatchEndQuestDataOrBuilder();
   }
   /**
    * Protobuf type {@code CMsgGCCStrike15_v2_MatchmakingServerMatchEnd}
@@ -35896,6 +39188,19 @@ public final class Cstrike15Gcmessages {
             case 56: {
               bitField0_ |= 0x00000020;
               abortedMatch_ = input.readBool();
+              break;
+            }
+            case 66: {
+              Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000040) == 0x00000040)) {
+                subBuilder = matchEndQuestData_.toBuilder();
+              }
+              matchEndQuestData_ = input.readMessage(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(matchEndQuestData_);
+                matchEndQuestData_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000040;
               break;
             }
           }
@@ -36046,6 +39351,28 @@ public final class Cstrike15Gcmessages {
       return abortedMatch_;
     }
 
+    // optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;
+    public static final int MATCH_END_QUEST_DATA_FIELD_NUMBER = 8;
+    private Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData matchEndQuestData_;
+    /**
+     * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+     */
+    public boolean hasMatchEndQuestData() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+     */
+    public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData getMatchEndQuestData() {
+      return matchEndQuestData_;
+    }
+    /**
+     * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+     */
+    public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateDataOrBuilder getMatchEndQuestDataOrBuilder() {
+      return matchEndQuestData_;
+    }
+
     private void initFields() {
       stats_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance();
       confirm_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingGC2ServerConfirm.getDefaultInstance();
@@ -36053,6 +39380,7 @@ public final class Cstrike15Gcmessages {
       replayToken_ = 0;
       replayClusterId_ = 0;
       abortedMatch_ = false;
+      matchEndQuestData_ = Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -36083,6 +39411,9 @@ public final class Cstrike15Gcmessages {
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeBool(7, abortedMatch_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeMessage(8, matchEndQuestData_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -36116,6 +39447,10 @@ public final class Cstrike15Gcmessages {
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(7, abortedMatch_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, matchEndQuestData_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -36227,6 +39562,7 @@ public final class Cstrike15Gcmessages {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getStatsFieldBuilder();
           getConfirmFieldBuilder();
+          getMatchEndQuestDataFieldBuilder();
         }
       }
       private static Builder create() {
@@ -36255,6 +39591,12 @@ public final class Cstrike15Gcmessages {
         bitField0_ = (bitField0_ & ~0x00000010);
         abortedMatch_ = false;
         bitField0_ = (bitField0_ & ~0x00000020);
+        if (matchEndQuestDataBuilder_ == null) {
+          matchEndQuestData_ = Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.getDefaultInstance();
+        } else {
+          matchEndQuestDataBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -36315,6 +39657,14 @@ public final class Cstrike15Gcmessages {
           to_bitField0_ |= 0x00000020;
         }
         result.abortedMatch_ = abortedMatch_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        if (matchEndQuestDataBuilder_ == null) {
+          result.matchEndQuestData_ = matchEndQuestData_;
+        } else {
+          result.matchEndQuestData_ = matchEndQuestDataBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -36348,6 +39698,9 @@ public final class Cstrike15Gcmessages {
         }
         if (other.hasAbortedMatch()) {
           setAbortedMatch(other.getAbortedMatch());
+        }
+        if (other.hasMatchEndQuestData()) {
+          mergeMatchEndQuestData(other.getMatchEndQuestData());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -36740,6 +40093,123 @@ public final class Cstrike15Gcmessages {
         abortedMatch_ = false;
         onChanged();
         return this;
+      }
+
+      // optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;
+      private Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData matchEndQuestData_ = Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateDataOrBuilder> matchEndQuestDataBuilder_;
+      /**
+       * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+       */
+      public boolean hasMatchEndQuestData() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+       */
+      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData getMatchEndQuestData() {
+        if (matchEndQuestDataBuilder_ == null) {
+          return matchEndQuestData_;
+        } else {
+          return matchEndQuestDataBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+       */
+      public Builder setMatchEndQuestData(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData value) {
+        if (matchEndQuestDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          matchEndQuestData_ = value;
+          onChanged();
+        } else {
+          matchEndQuestDataBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+       */
+      public Builder setMatchEndQuestData(
+          Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder builderForValue) {
+        if (matchEndQuestDataBuilder_ == null) {
+          matchEndQuestData_ = builderForValue.build();
+          onChanged();
+        } else {
+          matchEndQuestDataBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+       */
+      public Builder mergeMatchEndQuestData(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData value) {
+        if (matchEndQuestDataBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+              matchEndQuestData_ != Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.getDefaultInstance()) {
+            matchEndQuestData_ =
+              Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.newBuilder(matchEndQuestData_).mergeFrom(value).buildPartial();
+          } else {
+            matchEndQuestData_ = value;
+          }
+          onChanged();
+        } else {
+          matchEndQuestDataBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+       */
+      public Builder clearMatchEndQuestData() {
+        if (matchEndQuestDataBuilder_ == null) {
+          matchEndQuestData_ = Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.getDefaultInstance();
+          onChanged();
+        } else {
+          matchEndQuestDataBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      /**
+       * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+       */
+      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder getMatchEndQuestDataBuilder() {
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return getMatchEndQuestDataFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+       */
+      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateDataOrBuilder getMatchEndQuestDataOrBuilder() {
+        if (matchEndQuestDataBuilder_ != null) {
+          return matchEndQuestDataBuilder_.getMessageOrBuilder();
+        } else {
+          return matchEndQuestData_;
+        }
+      }
+      /**
+       * <code>optional .CMsgGC_ServerQuestUpdateData match_end_quest_data = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateDataOrBuilder> 
+          getMatchEndQuestDataFieldBuilder() {
+        if (matchEndQuestDataBuilder_ == null) {
+          matchEndQuestDataBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateDataOrBuilder>(
+                  matchEndQuestData_,
+                  getParentForChildren(),
+                  isClean());
+          matchEndQuestData_ = null;
+        }
+        return matchEndQuestDataBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:CMsgGCCStrike15_v2_MatchmakingServerMatchEnd)
@@ -37277,15 +40747,35 @@ public final class Cstrike15Gcmessages {
      */
     Cstrike15Gcmessages.AccountActivityOrBuilder getActivityOrBuilder();
 
-    // optional int32 seconds_until_next_mission = 16;
+    // optional int32 player_level = 17;
     /**
-     * <code>optional int32 seconds_until_next_mission = 16;</code>
+     * <code>optional int32 player_level = 17;</code>
      */
-    boolean hasSecondsUntilNextMission();
+    boolean hasPlayerLevel();
     /**
-     * <code>optional int32 seconds_until_next_mission = 16;</code>
+     * <code>optional int32 player_level = 17;</code>
      */
-    int getSecondsUntilNextMission();
+    int getPlayerLevel();
+
+    // optional int32 player_cur_xp = 18;
+    /**
+     * <code>optional int32 player_cur_xp = 18;</code>
+     */
+    boolean hasPlayerCurXp();
+    /**
+     * <code>optional int32 player_cur_xp = 18;</code>
+     */
+    int getPlayerCurXp();
+
+    // optional int32 player_xp_bonus_flags = 19;
+    /**
+     * <code>optional int32 player_xp_bonus_flags = 19;</code>
+     */
+    boolean hasPlayerXpBonusFlags();
+    /**
+     * <code>optional int32 player_xp_bonus_flags = 19;</code>
+     */
+    int getPlayerXpBonusFlags();
   }
   /**
    * Protobuf type {@code CMsgGCCStrike15_v2_MatchmakingGC2ClientHello}
@@ -37483,9 +40973,19 @@ public final class Cstrike15Gcmessages {
               bitField0_ |= 0x00001000;
               break;
             }
-            case 128: {
+            case 136: {
               bitField0_ |= 0x00002000;
-              secondsUntilNextMission_ = input.readInt32();
+              playerLevel_ = input.readInt32();
+              break;
+            }
+            case 144: {
+              bitField0_ |= 0x00004000;
+              playerCurXp_ = input.readInt32();
+              break;
+            }
+            case 152: {
+              bitField0_ |= 0x00008000;
+              playerXpBonusFlags_ = input.readInt32();
               break;
             }
           }
@@ -37862,20 +41362,52 @@ public final class Cstrike15Gcmessages {
       return activity_;
     }
 
-    // optional int32 seconds_until_next_mission = 16;
-    public static final int SECONDS_UNTIL_NEXT_MISSION_FIELD_NUMBER = 16;
-    private int secondsUntilNextMission_;
+    // optional int32 player_level = 17;
+    public static final int PLAYER_LEVEL_FIELD_NUMBER = 17;
+    private int playerLevel_;
     /**
-     * <code>optional int32 seconds_until_next_mission = 16;</code>
+     * <code>optional int32 player_level = 17;</code>
      */
-    public boolean hasSecondsUntilNextMission() {
+    public boolean hasPlayerLevel() {
       return ((bitField0_ & 0x00002000) == 0x00002000);
     }
     /**
-     * <code>optional int32 seconds_until_next_mission = 16;</code>
+     * <code>optional int32 player_level = 17;</code>
      */
-    public int getSecondsUntilNextMission() {
-      return secondsUntilNextMission_;
+    public int getPlayerLevel() {
+      return playerLevel_;
+    }
+
+    // optional int32 player_cur_xp = 18;
+    public static final int PLAYER_CUR_XP_FIELD_NUMBER = 18;
+    private int playerCurXp_;
+    /**
+     * <code>optional int32 player_cur_xp = 18;</code>
+     */
+    public boolean hasPlayerCurXp() {
+      return ((bitField0_ & 0x00004000) == 0x00004000);
+    }
+    /**
+     * <code>optional int32 player_cur_xp = 18;</code>
+     */
+    public int getPlayerCurXp() {
+      return playerCurXp_;
+    }
+
+    // optional int32 player_xp_bonus_flags = 19;
+    public static final int PLAYER_XP_BONUS_FLAGS_FIELD_NUMBER = 19;
+    private int playerXpBonusFlags_;
+    /**
+     * <code>optional int32 player_xp_bonus_flags = 19;</code>
+     */
+    public boolean hasPlayerXpBonusFlags() {
+      return ((bitField0_ & 0x00008000) == 0x00008000);
+    }
+    /**
+     * <code>optional int32 player_xp_bonus_flags = 19;</code>
+     */
+    public int getPlayerXpBonusFlags() {
+      return playerXpBonusFlags_;
     }
 
     private void initFields() {
@@ -37894,7 +41426,9 @@ public final class Cstrike15Gcmessages {
       myCurrentEventStages_ = java.util.Collections.emptyList();
       surveyVote_ = 0;
       activity_ = Cstrike15Gcmessages.AccountActivity.getDefaultInstance();
-      secondsUntilNextMission_ = 0;
+      playerLevel_ = 0;
+      playerCurXp_ = 0;
+      playerXpBonusFlags_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -37954,7 +41488,13 @@ public final class Cstrike15Gcmessages {
         output.writeMessage(15, activity_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
-        output.writeInt32(16, secondsUntilNextMission_);
+        output.writeInt32(17, playerLevel_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        output.writeInt32(18, playerCurXp_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        output.writeInt32(19, playerXpBonusFlags_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -38027,7 +41567,15 @@ public final class Cstrike15Gcmessages {
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(16, secondsUntilNextMission_);
+          .computeInt32Size(17, playerLevel_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(18, playerCurXp_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(19, playerXpBonusFlags_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -38225,8 +41773,12 @@ public final class Cstrike15Gcmessages {
           activityBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00004000);
-        secondsUntilNextMission_ = 0;
+        playerLevel_ = 0;
         bitField0_ = (bitField0_ & ~0x00008000);
+        playerCurXp_ = 0;
+        bitField0_ = (bitField0_ & ~0x00010000);
+        playerXpBonusFlags_ = 0;
+        bitField0_ = (bitField0_ & ~0x00020000);
         return this;
       }
 
@@ -38360,7 +41912,15 @@ public final class Cstrike15Gcmessages {
         if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
           to_bitField0_ |= 0x00002000;
         }
-        result.secondsUntilNextMission_ = secondsUntilNextMission_;
+        result.playerLevel_ = playerLevel_;
+        if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
+          to_bitField0_ |= 0x00004000;
+        }
+        result.playerCurXp_ = playerCurXp_;
+        if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
+          to_bitField0_ |= 0x00008000;
+        }
+        result.playerXpBonusFlags_ = playerXpBonusFlags_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -38468,8 +42028,14 @@ public final class Cstrike15Gcmessages {
         if (other.hasActivity()) {
           mergeActivity(other.getActivity());
         }
-        if (other.hasSecondsUntilNextMission()) {
-          setSecondsUntilNextMission(other.getSecondsUntilNextMission());
+        if (other.hasPlayerLevel()) {
+          setPlayerLevel(other.getPlayerLevel());
+        }
+        if (other.hasPlayerCurXp()) {
+          setPlayerCurXp(other.getPlayerCurXp());
+        }
+        if (other.hasPlayerXpBonusFlags()) {
+          setPlayerXpBonusFlags(other.getPlayerXpBonusFlags());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -40079,35 +43645,101 @@ public final class Cstrike15Gcmessages {
         return activityBuilder_;
       }
 
-      // optional int32 seconds_until_next_mission = 16;
-      private int secondsUntilNextMission_ ;
+      // optional int32 player_level = 17;
+      private int playerLevel_ ;
       /**
-       * <code>optional int32 seconds_until_next_mission = 16;</code>
+       * <code>optional int32 player_level = 17;</code>
        */
-      public boolean hasSecondsUntilNextMission() {
+      public boolean hasPlayerLevel() {
         return ((bitField0_ & 0x00008000) == 0x00008000);
       }
       /**
-       * <code>optional int32 seconds_until_next_mission = 16;</code>
+       * <code>optional int32 player_level = 17;</code>
        */
-      public int getSecondsUntilNextMission() {
-        return secondsUntilNextMission_;
+      public int getPlayerLevel() {
+        return playerLevel_;
       }
       /**
-       * <code>optional int32 seconds_until_next_mission = 16;</code>
+       * <code>optional int32 player_level = 17;</code>
        */
-      public Builder setSecondsUntilNextMission(int value) {
+      public Builder setPlayerLevel(int value) {
         bitField0_ |= 0x00008000;
-        secondsUntilNextMission_ = value;
+        playerLevel_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 seconds_until_next_mission = 16;</code>
+       * <code>optional int32 player_level = 17;</code>
        */
-      public Builder clearSecondsUntilNextMission() {
+      public Builder clearPlayerLevel() {
         bitField0_ = (bitField0_ & ~0x00008000);
-        secondsUntilNextMission_ = 0;
+        playerLevel_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional int32 player_cur_xp = 18;
+      private int playerCurXp_ ;
+      /**
+       * <code>optional int32 player_cur_xp = 18;</code>
+       */
+      public boolean hasPlayerCurXp() {
+        return ((bitField0_ & 0x00010000) == 0x00010000);
+      }
+      /**
+       * <code>optional int32 player_cur_xp = 18;</code>
+       */
+      public int getPlayerCurXp() {
+        return playerCurXp_;
+      }
+      /**
+       * <code>optional int32 player_cur_xp = 18;</code>
+       */
+      public Builder setPlayerCurXp(int value) {
+        bitField0_ |= 0x00010000;
+        playerCurXp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 player_cur_xp = 18;</code>
+       */
+      public Builder clearPlayerCurXp() {
+        bitField0_ = (bitField0_ & ~0x00010000);
+        playerCurXp_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional int32 player_xp_bonus_flags = 19;
+      private int playerXpBonusFlags_ ;
+      /**
+       * <code>optional int32 player_xp_bonus_flags = 19;</code>
+       */
+      public boolean hasPlayerXpBonusFlags() {
+        return ((bitField0_ & 0x00020000) == 0x00020000);
+      }
+      /**
+       * <code>optional int32 player_xp_bonus_flags = 19;</code>
+       */
+      public int getPlayerXpBonusFlags() {
+        return playerXpBonusFlags_;
+      }
+      /**
+       * <code>optional int32 player_xp_bonus_flags = 19;</code>
+       */
+      public Builder setPlayerXpBonusFlags(int value) {
+        bitField0_ |= 0x00020000;
+        playerXpBonusFlags_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 player_xp_bonus_flags = 19;</code>
+       */
+      public Builder clearPlayerXpBonusFlags() {
+        bitField0_ = (bitField0_ & ~0x00020000);
+        playerXpBonusFlags_ = 0;
         onChanged();
         return this;
       }
@@ -52824,16 +56456,6 @@ public final class Cstrike15Gcmessages {
   public interface CMsgGCCstrike15_v2_ClientRequestNewMissionOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // optional uint64 campaign_item_id = 1;
-    /**
-     * <code>optional uint64 campaign_item_id = 1;</code>
-     */
-    boolean hasCampaignItemId();
-    /**
-     * <code>optional uint64 campaign_item_id = 1;</code>
-     */
-    long getCampaignItemId();
-
     // optional uint32 mission_id = 2;
     /**
      * <code>optional uint32 mission_id = 2;</code>
@@ -52843,6 +56465,16 @@ public final class Cstrike15Gcmessages {
      * <code>optional uint32 mission_id = 2;</code>
      */
     int getMissionId();
+
+    // optional uint32 campaign_id = 3;
+    /**
+     * <code>optional uint32 campaign_id = 3;</code>
+     */
+    boolean hasCampaignId();
+    /**
+     * <code>optional uint32 campaign_id = 3;</code>
+     */
+    int getCampaignId();
   }
   /**
    * Protobuf type {@code CMsgGCCstrike15_v2_ClientRequestNewMission}
@@ -52895,14 +56527,14 @@ public final class Cstrike15Gcmessages {
               }
               break;
             }
-            case 8: {
+            case 16: {
               bitField0_ |= 0x00000001;
-              campaignItemId_ = input.readUInt64();
+              missionId_ = input.readUInt32();
               break;
             }
-            case 16: {
+            case 24: {
               bitField0_ |= 0x00000002;
-              missionId_ = input.readUInt32();
+              campaignId_ = input.readUInt32();
               break;
             }
           }
@@ -52945,22 +56577,6 @@ public final class Cstrike15Gcmessages {
     }
 
     private int bitField0_;
-    // optional uint64 campaign_item_id = 1;
-    public static final int CAMPAIGN_ITEM_ID_FIELD_NUMBER = 1;
-    private long campaignItemId_;
-    /**
-     * <code>optional uint64 campaign_item_id = 1;</code>
-     */
-    public boolean hasCampaignItemId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional uint64 campaign_item_id = 1;</code>
-     */
-    public long getCampaignItemId() {
-      return campaignItemId_;
-    }
-
     // optional uint32 mission_id = 2;
     public static final int MISSION_ID_FIELD_NUMBER = 2;
     private int missionId_;
@@ -52968,7 +56584,7 @@ public final class Cstrike15Gcmessages {
      * <code>optional uint32 mission_id = 2;</code>
      */
     public boolean hasMissionId() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
      * <code>optional uint32 mission_id = 2;</code>
@@ -52977,9 +56593,25 @@ public final class Cstrike15Gcmessages {
       return missionId_;
     }
 
+    // optional uint32 campaign_id = 3;
+    public static final int CAMPAIGN_ID_FIELD_NUMBER = 3;
+    private int campaignId_;
+    /**
+     * <code>optional uint32 campaign_id = 3;</code>
+     */
+    public boolean hasCampaignId() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 campaign_id = 3;</code>
+     */
+    public int getCampaignId() {
+      return campaignId_;
+    }
+
     private void initFields() {
-      campaignItemId_ = 0L;
       missionId_ = 0;
+      campaignId_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -52994,10 +56626,10 @@ public final class Cstrike15Gcmessages {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeUInt64(1, campaignItemId_);
+        output.writeUInt32(2, missionId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, missionId_);
+        output.writeUInt32(3, campaignId_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -53010,11 +56642,11 @@ public final class Cstrike15Gcmessages {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, campaignItemId_);
+          .computeUInt32Size(2, missionId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, missionId_);
+          .computeUInt32Size(3, campaignId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -53132,9 +56764,9 @@ public final class Cstrike15Gcmessages {
 
       public Builder clear() {
         super.clear();
-        campaignItemId_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000001);
         missionId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        campaignId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -53167,11 +56799,11 @@ public final class Cstrike15Gcmessages {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.campaignItemId_ = campaignItemId_;
+        result.missionId_ = missionId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.missionId_ = missionId_;
+        result.campaignId_ = campaignId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -53188,11 +56820,11 @@ public final class Cstrike15Gcmessages {
 
       public Builder mergeFrom(Cstrike15Gcmessages.CMsgGCCstrike15_v2_ClientRequestNewMission other) {
         if (other == Cstrike15Gcmessages.CMsgGCCstrike15_v2_ClientRequestNewMission.getDefaultInstance()) return this;
-        if (other.hasCampaignItemId()) {
-          setCampaignItemId(other.getCampaignItemId());
-        }
         if (other.hasMissionId()) {
           setMissionId(other.getMissionId());
+        }
+        if (other.hasCampaignId()) {
+          setCampaignId(other.getCampaignId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -53221,46 +56853,13 @@ public final class Cstrike15Gcmessages {
       }
       private int bitField0_;
 
-      // optional uint64 campaign_item_id = 1;
-      private long campaignItemId_ ;
-      /**
-       * <code>optional uint64 campaign_item_id = 1;</code>
-       */
-      public boolean hasCampaignItemId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional uint64 campaign_item_id = 1;</code>
-       */
-      public long getCampaignItemId() {
-        return campaignItemId_;
-      }
-      /**
-       * <code>optional uint64 campaign_item_id = 1;</code>
-       */
-      public Builder setCampaignItemId(long value) {
-        bitField0_ |= 0x00000001;
-        campaignItemId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint64 campaign_item_id = 1;</code>
-       */
-      public Builder clearCampaignItemId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        campaignItemId_ = 0L;
-        onChanged();
-        return this;
-      }
-
       // optional uint32 mission_id = 2;
       private int missionId_ ;
       /**
        * <code>optional uint32 mission_id = 2;</code>
        */
       public boolean hasMissionId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
        * <code>optional uint32 mission_id = 2;</code>
@@ -53272,7 +56871,7 @@ public final class Cstrike15Gcmessages {
        * <code>optional uint32 mission_id = 2;</code>
        */
       public Builder setMissionId(int value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
         missionId_ = value;
         onChanged();
         return this;
@@ -53281,8 +56880,41 @@ public final class Cstrike15Gcmessages {
        * <code>optional uint32 mission_id = 2;</code>
        */
       public Builder clearMissionId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         missionId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 campaign_id = 3;
+      private int campaignId_ ;
+      /**
+       * <code>optional uint32 campaign_id = 3;</code>
+       */
+      public boolean hasCampaignId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 campaign_id = 3;</code>
+       */
+      public int getCampaignId() {
+        return campaignId_;
+      }
+      /**
+       * <code>optional uint32 campaign_id = 3;</code>
+       */
+      public Builder setCampaignId(int value) {
+        bitField0_ |= 0x00000002;
+        campaignId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 campaign_id = 3;</code>
+       */
+      public Builder clearCampaignId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        campaignId_ = 0;
         onChanged();
         return this;
       }
@@ -53296,6 +56928,1007 @@ public final class Cstrike15Gcmessages {
     }
 
     // @@protoc_insertion_point(class_scope:CMsgGCCstrike15_v2_ClientRequestNewMission)
+  }
+
+  public interface CMsgGCCstrike15_v2_GC2ServerNotifyXPRewardedOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // repeated .XpProgressData xp_progress_data = 1;
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    java.util.List<Cstrike15Gcmessages.XpProgressData> 
+        getXpProgressDataList();
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    Cstrike15Gcmessages.XpProgressData getXpProgressData(int index);
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    int getXpProgressDataCount();
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    java.util.List<? extends Cstrike15Gcmessages.XpProgressDataOrBuilder> 
+        getXpProgressDataOrBuilderList();
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    Cstrike15Gcmessages.XpProgressDataOrBuilder getXpProgressDataOrBuilder(
+        int index);
+
+    // optional uint32 account_id = 2;
+    /**
+     * <code>optional uint32 account_id = 2;</code>
+     */
+    boolean hasAccountId();
+    /**
+     * <code>optional uint32 account_id = 2;</code>
+     */
+    int getAccountId();
+
+    // optional uint32 current_xp = 3;
+    /**
+     * <code>optional uint32 current_xp = 3;</code>
+     */
+    boolean hasCurrentXp();
+    /**
+     * <code>optional uint32 current_xp = 3;</code>
+     */
+    int getCurrentXp();
+
+    // optional uint32 current_level = 4;
+    /**
+     * <code>optional uint32 current_level = 4;</code>
+     */
+    boolean hasCurrentLevel();
+    /**
+     * <code>optional uint32 current_level = 4;</code>
+     */
+    int getCurrentLevel();
+
+    // optional uint32 upgraded_defidx = 5;
+    /**
+     * <code>optional uint32 upgraded_defidx = 5;</code>
+     */
+    boolean hasUpgradedDefidx();
+    /**
+     * <code>optional uint32 upgraded_defidx = 5;</code>
+     */
+    int getUpgradedDefidx();
+  }
+  /**
+   * Protobuf type {@code CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded}
+   */
+  public static final class CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded extends
+      com.google.protobuf.GeneratedMessage
+      implements CMsgGCCstrike15_v2_GC2ServerNotifyXPRewardedOrBuilder {
+    // Use CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.newBuilder() to construct.
+    private CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded defaultInstance;
+    public static CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                xpProgressData_ = new java.util.ArrayList<Cstrike15Gcmessages.XpProgressData>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              xpProgressData_.add(input.readMessage(Cstrike15Gcmessages.XpProgressData.PARSER, extensionRegistry));
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000001;
+              accountId_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000002;
+              currentXp_ = input.readUInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000004;
+              currentLevel_ = input.readUInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000008;
+              upgradedDefidx_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          xpProgressData_ = java.util.Collections.unmodifiableList(xpProgressData_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.class, Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded> PARSER =
+        new com.google.protobuf.AbstractParser<CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded>() {
+      public CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // repeated .XpProgressData xp_progress_data = 1;
+    public static final int XP_PROGRESS_DATA_FIELD_NUMBER = 1;
+    private java.util.List<Cstrike15Gcmessages.XpProgressData> xpProgressData_;
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    public java.util.List<Cstrike15Gcmessages.XpProgressData> getXpProgressDataList() {
+      return xpProgressData_;
+    }
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    public java.util.List<? extends Cstrike15Gcmessages.XpProgressDataOrBuilder> 
+        getXpProgressDataOrBuilderList() {
+      return xpProgressData_;
+    }
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    public int getXpProgressDataCount() {
+      return xpProgressData_.size();
+    }
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    public Cstrike15Gcmessages.XpProgressData getXpProgressData(int index) {
+      return xpProgressData_.get(index);
+    }
+    /**
+     * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+     */
+    public Cstrike15Gcmessages.XpProgressDataOrBuilder getXpProgressDataOrBuilder(
+        int index) {
+      return xpProgressData_.get(index);
+    }
+
+    // optional uint32 account_id = 2;
+    public static final int ACCOUNT_ID_FIELD_NUMBER = 2;
+    private int accountId_;
+    /**
+     * <code>optional uint32 account_id = 2;</code>
+     */
+    public boolean hasAccountId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 account_id = 2;</code>
+     */
+    public int getAccountId() {
+      return accountId_;
+    }
+
+    // optional uint32 current_xp = 3;
+    public static final int CURRENT_XP_FIELD_NUMBER = 3;
+    private int currentXp_;
+    /**
+     * <code>optional uint32 current_xp = 3;</code>
+     */
+    public boolean hasCurrentXp() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 current_xp = 3;</code>
+     */
+    public int getCurrentXp() {
+      return currentXp_;
+    }
+
+    // optional uint32 current_level = 4;
+    public static final int CURRENT_LEVEL_FIELD_NUMBER = 4;
+    private int currentLevel_;
+    /**
+     * <code>optional uint32 current_level = 4;</code>
+     */
+    public boolean hasCurrentLevel() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional uint32 current_level = 4;</code>
+     */
+    public int getCurrentLevel() {
+      return currentLevel_;
+    }
+
+    // optional uint32 upgraded_defidx = 5;
+    public static final int UPGRADED_DEFIDX_FIELD_NUMBER = 5;
+    private int upgradedDefidx_;
+    /**
+     * <code>optional uint32 upgraded_defidx = 5;</code>
+     */
+    public boolean hasUpgradedDefidx() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional uint32 upgraded_defidx = 5;</code>
+     */
+    public int getUpgradedDefidx() {
+      return upgradedDefidx_;
+    }
+
+    private void initFields() {
+      xpProgressData_ = java.util.Collections.emptyList();
+      accountId_ = 0;
+      currentXp_ = 0;
+      currentLevel_ = 0;
+      upgradedDefidx_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < xpProgressData_.size(); i++) {
+        output.writeMessage(1, xpProgressData_.get(i));
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(2, accountId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(3, currentXp_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(4, currentLevel_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeUInt32(5, upgradedDefidx_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < xpProgressData_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, xpProgressData_.get(i));
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, accountId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, currentXp_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, currentLevel_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, upgradedDefidx_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewardedOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.class, Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getXpProgressDataFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (xpProgressDataBuilder_ == null) {
+          xpProgressData_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          xpProgressDataBuilder_.clear();
+        }
+        accountId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        currentXp_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        currentLevel_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        upgradedDefidx_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded build() {
+        Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded buildPartial() {
+        Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded result = new Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (xpProgressDataBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            xpProgressData_ = java.util.Collections.unmodifiableList(xpProgressData_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.xpProgressData_ = xpProgressData_;
+        } else {
+          result.xpProgressData_ = xpProgressDataBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.accountId_ = accountId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.currentXp_ = currentXp_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.currentLevel_ = currentLevel_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.upgradedDefidx_ = upgradedDefidx_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded) {
+          return mergeFrom((Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded other) {
+        if (other == Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.getDefaultInstance()) return this;
+        if (xpProgressDataBuilder_ == null) {
+          if (!other.xpProgressData_.isEmpty()) {
+            if (xpProgressData_.isEmpty()) {
+              xpProgressData_ = other.xpProgressData_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureXpProgressDataIsMutable();
+              xpProgressData_.addAll(other.xpProgressData_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.xpProgressData_.isEmpty()) {
+            if (xpProgressDataBuilder_.isEmpty()) {
+              xpProgressDataBuilder_.dispose();
+              xpProgressDataBuilder_ = null;
+              xpProgressData_ = other.xpProgressData_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              xpProgressDataBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getXpProgressDataFieldBuilder() : null;
+            } else {
+              xpProgressDataBuilder_.addAllMessages(other.xpProgressData_);
+            }
+          }
+        }
+        if (other.hasAccountId()) {
+          setAccountId(other.getAccountId());
+        }
+        if (other.hasCurrentXp()) {
+          setCurrentXp(other.getCurrentXp());
+        }
+        if (other.hasCurrentLevel()) {
+          setCurrentLevel(other.getCurrentLevel());
+        }
+        if (other.hasUpgradedDefidx()) {
+          setUpgradedDefidx(other.getUpgradedDefidx());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // repeated .XpProgressData xp_progress_data = 1;
+      private java.util.List<Cstrike15Gcmessages.XpProgressData> xpProgressData_ =
+        java.util.Collections.emptyList();
+      private void ensureXpProgressDataIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          xpProgressData_ = new java.util.ArrayList<Cstrike15Gcmessages.XpProgressData>(xpProgressData_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.XpProgressData, Cstrike15Gcmessages.XpProgressData.Builder, Cstrike15Gcmessages.XpProgressDataOrBuilder> xpProgressDataBuilder_;
+
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.XpProgressData> getXpProgressDataList() {
+        if (xpProgressDataBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(xpProgressData_);
+        } else {
+          return xpProgressDataBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public int getXpProgressDataCount() {
+        if (xpProgressDataBuilder_ == null) {
+          return xpProgressData_.size();
+        } else {
+          return xpProgressDataBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressData getXpProgressData(int index) {
+        if (xpProgressDataBuilder_ == null) {
+          return xpProgressData_.get(index);
+        } else {
+          return xpProgressDataBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Builder setXpProgressData(
+          int index, Cstrike15Gcmessages.XpProgressData value) {
+        if (xpProgressDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.set(index, value);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Builder setXpProgressData(
+          int index, Cstrike15Gcmessages.XpProgressData.Builder builderForValue) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Builder addXpProgressData(Cstrike15Gcmessages.XpProgressData value) {
+        if (xpProgressDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.add(value);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Builder addXpProgressData(
+          int index, Cstrike15Gcmessages.XpProgressData value) {
+        if (xpProgressDataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.add(index, value);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Builder addXpProgressData(
+          Cstrike15Gcmessages.XpProgressData.Builder builderForValue) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.add(builderForValue.build());
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Builder addXpProgressData(
+          int index, Cstrike15Gcmessages.XpProgressData.Builder builderForValue) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Builder addAllXpProgressData(
+          java.lang.Iterable<? extends Cstrike15Gcmessages.XpProgressData> values) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          super.addAll(values, xpProgressData_);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Builder clearXpProgressData() {
+        if (xpProgressDataBuilder_ == null) {
+          xpProgressData_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Builder removeXpProgressData(int index) {
+        if (xpProgressDataBuilder_ == null) {
+          ensureXpProgressDataIsMutable();
+          xpProgressData_.remove(index);
+          onChanged();
+        } else {
+          xpProgressDataBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressData.Builder getXpProgressDataBuilder(
+          int index) {
+        return getXpProgressDataFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressDataOrBuilder getXpProgressDataOrBuilder(
+          int index) {
+        if (xpProgressDataBuilder_ == null) {
+          return xpProgressData_.get(index);  } else {
+          return xpProgressDataBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public java.util.List<? extends Cstrike15Gcmessages.XpProgressDataOrBuilder> 
+           getXpProgressDataOrBuilderList() {
+        if (xpProgressDataBuilder_ != null) {
+          return xpProgressDataBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(xpProgressData_);
+        }
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressData.Builder addXpProgressDataBuilder() {
+        return getXpProgressDataFieldBuilder().addBuilder(
+            Cstrike15Gcmessages.XpProgressData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public Cstrike15Gcmessages.XpProgressData.Builder addXpProgressDataBuilder(
+          int index) {
+        return getXpProgressDataFieldBuilder().addBuilder(
+            index, Cstrike15Gcmessages.XpProgressData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .XpProgressData xp_progress_data = 1;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.XpProgressData.Builder> 
+           getXpProgressDataBuilderList() {
+        return getXpProgressDataFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.XpProgressData, Cstrike15Gcmessages.XpProgressData.Builder, Cstrike15Gcmessages.XpProgressDataOrBuilder> 
+          getXpProgressDataFieldBuilder() {
+        if (xpProgressDataBuilder_ == null) {
+          xpProgressDataBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              Cstrike15Gcmessages.XpProgressData, Cstrike15Gcmessages.XpProgressData.Builder, Cstrike15Gcmessages.XpProgressDataOrBuilder>(
+                  xpProgressData_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          xpProgressData_ = null;
+        }
+        return xpProgressDataBuilder_;
+      }
+
+      // optional uint32 account_id = 2;
+      private int accountId_ ;
+      /**
+       * <code>optional uint32 account_id = 2;</code>
+       */
+      public boolean hasAccountId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 account_id = 2;</code>
+       */
+      public int getAccountId() {
+        return accountId_;
+      }
+      /**
+       * <code>optional uint32 account_id = 2;</code>
+       */
+      public Builder setAccountId(int value) {
+        bitField0_ |= 0x00000002;
+        accountId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 account_id = 2;</code>
+       */
+      public Builder clearAccountId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        accountId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 current_xp = 3;
+      private int currentXp_ ;
+      /**
+       * <code>optional uint32 current_xp = 3;</code>
+       */
+      public boolean hasCurrentXp() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional uint32 current_xp = 3;</code>
+       */
+      public int getCurrentXp() {
+        return currentXp_;
+      }
+      /**
+       * <code>optional uint32 current_xp = 3;</code>
+       */
+      public Builder setCurrentXp(int value) {
+        bitField0_ |= 0x00000004;
+        currentXp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 current_xp = 3;</code>
+       */
+      public Builder clearCurrentXp() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        currentXp_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 current_level = 4;
+      private int currentLevel_ ;
+      /**
+       * <code>optional uint32 current_level = 4;</code>
+       */
+      public boolean hasCurrentLevel() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional uint32 current_level = 4;</code>
+       */
+      public int getCurrentLevel() {
+        return currentLevel_;
+      }
+      /**
+       * <code>optional uint32 current_level = 4;</code>
+       */
+      public Builder setCurrentLevel(int value) {
+        bitField0_ |= 0x00000008;
+        currentLevel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 current_level = 4;</code>
+       */
+      public Builder clearCurrentLevel() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        currentLevel_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 upgraded_defidx = 5;
+      private int upgradedDefidx_ ;
+      /**
+       * <code>optional uint32 upgraded_defidx = 5;</code>
+       */
+      public boolean hasUpgradedDefidx() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional uint32 upgraded_defidx = 5;</code>
+       */
+      public int getUpgradedDefidx() {
+        return upgradedDefidx_;
+      }
+      /**
+       * <code>optional uint32 upgraded_defidx = 5;</code>
+       */
+      public Builder setUpgradedDefidx(int value) {
+        bitField0_ |= 0x00000010;
+        upgradedDefidx_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 upgraded_defidx = 5;</code>
+       */
+      public Builder clearUpgradedDefidx() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        upgradedDefidx_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded)
+    }
+
+    static {
+      defaultInstance = new CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded)
   }
 
   public interface CMsgGCCStrike15_v2_WatchInfoUsersOrBuilder
@@ -55765,645 +60398,6 @@ public final class Cstrike15Gcmessages {
     }
 
     // @@protoc_insertion_point(class_scope:CMsgGCCStrike15_v2_PlayersProfile)
-  }
-
-  public interface CMsgGCCStrike15_v2_PlayerEarnedRewardNotificationOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-
-    // optional uint32 account_id = 1;
-    /**
-     * <code>optional uint32 account_id = 1;</code>
-     */
-    boolean hasAccountId();
-    /**
-     * <code>optional uint32 account_id = 1;</code>
-     */
-    int getAccountId();
-
-    // optional uint32 item_def_index = 2;
-    /**
-     * <code>optional uint32 item_def_index = 2;</code>
-     */
-    boolean hasItemDefIndex();
-    /**
-     * <code>optional uint32 item_def_index = 2;</code>
-     */
-    int getItemDefIndex();
-
-    // optional uint32 attr_def_index = 3;
-    /**
-     * <code>optional uint32 attr_def_index = 3;</code>
-     */
-    boolean hasAttrDefIndex();
-    /**
-     * <code>optional uint32 attr_def_index = 3;</code>
-     */
-    int getAttrDefIndex();
-
-    // optional uint32 attr_value = 4;
-    /**
-     * <code>optional uint32 attr_value = 4;</code>
-     */
-    boolean hasAttrValue();
-    /**
-     * <code>optional uint32 attr_value = 4;</code>
-     */
-    int getAttrValue();
-  }
-  /**
-   * Protobuf type {@code CMsgGCCStrike15_v2_PlayerEarnedRewardNotification}
-   */
-  public static final class CMsgGCCStrike15_v2_PlayerEarnedRewardNotification extends
-      com.google.protobuf.GeneratedMessage
-      implements CMsgGCCStrike15_v2_PlayerEarnedRewardNotificationOrBuilder {
-    // Use CMsgGCCStrike15_v2_PlayerEarnedRewardNotification.newBuilder() to construct.
-    private CMsgGCCStrike15_v2_PlayerEarnedRewardNotification(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private CMsgGCCStrike15_v2_PlayerEarnedRewardNotification(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final CMsgGCCStrike15_v2_PlayerEarnedRewardNotification defaultInstance;
-    public static CMsgGCCStrike15_v2_PlayerEarnedRewardNotification getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public CMsgGCCStrike15_v2_PlayerEarnedRewardNotification getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CMsgGCCStrike15_v2_PlayerEarnedRewardNotification(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              accountId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              itemDefIndex_ = input.readUInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              attrDefIndex_ = input.readUInt32();
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              attrValue_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification.class, Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<CMsgGCCStrike15_v2_PlayerEarnedRewardNotification> PARSER =
-        new com.google.protobuf.AbstractParser<CMsgGCCStrike15_v2_PlayerEarnedRewardNotification>() {
-      public CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CMsgGCCStrike15_v2_PlayerEarnedRewardNotification(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<CMsgGCCStrike15_v2_PlayerEarnedRewardNotification> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    // optional uint32 account_id = 1;
-    public static final int ACCOUNT_ID_FIELD_NUMBER = 1;
-    private int accountId_;
-    /**
-     * <code>optional uint32 account_id = 1;</code>
-     */
-    public boolean hasAccountId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional uint32 account_id = 1;</code>
-     */
-    public int getAccountId() {
-      return accountId_;
-    }
-
-    // optional uint32 item_def_index = 2;
-    public static final int ITEM_DEF_INDEX_FIELD_NUMBER = 2;
-    private int itemDefIndex_;
-    /**
-     * <code>optional uint32 item_def_index = 2;</code>
-     */
-    public boolean hasItemDefIndex() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional uint32 item_def_index = 2;</code>
-     */
-    public int getItemDefIndex() {
-      return itemDefIndex_;
-    }
-
-    // optional uint32 attr_def_index = 3;
-    public static final int ATTR_DEF_INDEX_FIELD_NUMBER = 3;
-    private int attrDefIndex_;
-    /**
-     * <code>optional uint32 attr_def_index = 3;</code>
-     */
-    public boolean hasAttrDefIndex() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional uint32 attr_def_index = 3;</code>
-     */
-    public int getAttrDefIndex() {
-      return attrDefIndex_;
-    }
-
-    // optional uint32 attr_value = 4;
-    public static final int ATTR_VALUE_FIELD_NUMBER = 4;
-    private int attrValue_;
-    /**
-     * <code>optional uint32 attr_value = 4;</code>
-     */
-    public boolean hasAttrValue() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional uint32 attr_value = 4;</code>
-     */
-    public int getAttrValue() {
-      return attrValue_;
-    }
-
-    private void initFields() {
-      accountId_ = 0;
-      itemDefIndex_ = 0;
-      attrDefIndex_ = 0;
-      attrValue_ = 0;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeUInt32(1, accountId_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, itemDefIndex_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeUInt32(3, attrDefIndex_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeUInt32(4, attrValue_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, accountId_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, itemDefIndex_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, attrDefIndex_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(4, attrValue_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code CMsgGCCStrike15_v2_PlayerEarnedRewardNotification}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotificationOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification.class, Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification.Builder.class);
-      }
-
-      // Construct using Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        accountId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        itemDefIndex_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        attrDefIndex_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        attrValue_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_descriptor;
-      }
-
-      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification getDefaultInstanceForType() {
-        return Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification.getDefaultInstance();
-      }
-
-      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification build() {
-        Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification buildPartial() {
-        Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification result = new Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.accountId_ = accountId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.itemDefIndex_ = itemDefIndex_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.attrDefIndex_ = attrDefIndex_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.attrValue_ = attrValue_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification) {
-          return mergeFrom((Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification other) {
-        if (other == Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification.getDefaultInstance()) return this;
-        if (other.hasAccountId()) {
-          setAccountId(other.getAccountId());
-        }
-        if (other.hasItemDefIndex()) {
-          setItemDefIndex(other.getItemDefIndex());
-        }
-        if (other.hasAttrDefIndex()) {
-          setAttrDefIndex(other.getAttrDefIndex());
-        }
-        if (other.hasAttrValue()) {
-          setAttrValue(other.getAttrValue());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Cstrike15Gcmessages.CMsgGCCStrike15_v2_PlayerEarnedRewardNotification) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      // optional uint32 account_id = 1;
-      private int accountId_ ;
-      /**
-       * <code>optional uint32 account_id = 1;</code>
-       */
-      public boolean hasAccountId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional uint32 account_id = 1;</code>
-       */
-      public int getAccountId() {
-        return accountId_;
-      }
-      /**
-       * <code>optional uint32 account_id = 1;</code>
-       */
-      public Builder setAccountId(int value) {
-        bitField0_ |= 0x00000001;
-        accountId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint32 account_id = 1;</code>
-       */
-      public Builder clearAccountId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        accountId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional uint32 item_def_index = 2;
-      private int itemDefIndex_ ;
-      /**
-       * <code>optional uint32 item_def_index = 2;</code>
-       */
-      public boolean hasItemDefIndex() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional uint32 item_def_index = 2;</code>
-       */
-      public int getItemDefIndex() {
-        return itemDefIndex_;
-      }
-      /**
-       * <code>optional uint32 item_def_index = 2;</code>
-       */
-      public Builder setItemDefIndex(int value) {
-        bitField0_ |= 0x00000002;
-        itemDefIndex_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint32 item_def_index = 2;</code>
-       */
-      public Builder clearItemDefIndex() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        itemDefIndex_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional uint32 attr_def_index = 3;
-      private int attrDefIndex_ ;
-      /**
-       * <code>optional uint32 attr_def_index = 3;</code>
-       */
-      public boolean hasAttrDefIndex() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional uint32 attr_def_index = 3;</code>
-       */
-      public int getAttrDefIndex() {
-        return attrDefIndex_;
-      }
-      /**
-       * <code>optional uint32 attr_def_index = 3;</code>
-       */
-      public Builder setAttrDefIndex(int value) {
-        bitField0_ |= 0x00000004;
-        attrDefIndex_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint32 attr_def_index = 3;</code>
-       */
-      public Builder clearAttrDefIndex() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        attrDefIndex_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional uint32 attr_value = 4;
-      private int attrValue_ ;
-      /**
-       * <code>optional uint32 attr_value = 4;</code>
-       */
-      public boolean hasAttrValue() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional uint32 attr_value = 4;</code>
-       */
-      public int getAttrValue() {
-        return attrValue_;
-      }
-      /**
-       * <code>optional uint32 attr_value = 4;</code>
-       */
-      public Builder setAttrValue(int value) {
-        bitField0_ |= 0x00000008;
-        attrValue_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint32 attr_value = 4;</code>
-       */
-      public Builder clearAttrValue() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        attrValue_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:CMsgGCCStrike15_v2_PlayerEarnedRewardNotification)
-    }
-
-    static {
-      defaultInstance = new CMsgGCCStrike15_v2_PlayerEarnedRewardNotification(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:CMsgGCCStrike15_v2_PlayerEarnedRewardNotification)
   }
 
   public interface CMsgGCCStrike15_v2_PlayerOverwatchCaseUpdateOrBuilder
@@ -60711,1915 +64705,6 @@ public final class Cstrike15Gcmessages {
     // @@protoc_insertion_point(class_scope:CMsgGCCStrike15_v2_Client2GCTextMsg)
   }
 
-  public interface CMsgGC_ServerQuestUpdateDataOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-
-    // repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData> 
-        getPlayerQuestDataList();
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData getPlayerQuestData(int index);
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    int getPlayerQuestDataCount();
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    java.util.List<? extends Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder> 
-        getPlayerQuestDataOrBuilderList();
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder getPlayerQuestDataOrBuilder(
-        int index);
-  }
-  /**
-   * Protobuf type {@code CMsgGC_ServerQuestUpdateData}
-   */
-  public static final class CMsgGC_ServerQuestUpdateData extends
-      com.google.protobuf.GeneratedMessage
-      implements CMsgGC_ServerQuestUpdateDataOrBuilder {
-    // Use CMsgGC_ServerQuestUpdateData.newBuilder() to construct.
-    private CMsgGC_ServerQuestUpdateData(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private CMsgGC_ServerQuestUpdateData(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final CMsgGC_ServerQuestUpdateData defaultInstance;
-    public static CMsgGC_ServerQuestUpdateData getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public CMsgGC_ServerQuestUpdateData getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CMsgGC_ServerQuestUpdateData(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                playerQuestData_ = new java.util.ArrayList<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              playerQuestData_.add(input.readMessage(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.PARSER, extensionRegistry));
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          playerQuestData_ = java.util.Collections.unmodifiableList(playerQuestData_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.class, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<CMsgGC_ServerQuestUpdateData> PARSER =
-        new com.google.protobuf.AbstractParser<CMsgGC_ServerQuestUpdateData>() {
-      public CMsgGC_ServerQuestUpdateData parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CMsgGC_ServerQuestUpdateData(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<CMsgGC_ServerQuestUpdateData> getParserForType() {
-      return PARSER;
-    }
-
-    public interface PlayerQuestDataOrBuilder
-        extends com.google.protobuf.MessageOrBuilder {
-
-      // optional uint32 quester_account_id = 1;
-      /**
-       * <code>optional uint32 quester_account_id = 1;</code>
-       */
-      boolean hasQuesterAccountId();
-      /**
-       * <code>optional uint32 quester_account_id = 1;</code>
-       */
-      int getQuesterAccountId();
-
-      // repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData> 
-          getQuestItemDataList();
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData getQuestItemData(int index);
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      int getQuestItemDataCount();
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      java.util.List<? extends Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder> 
-          getQuestItemDataOrBuilderList();
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder getQuestItemDataOrBuilder(
-          int index);
-    }
-    /**
-     * Protobuf type {@code CMsgGC_ServerQuestUpdateData.PlayerQuestData}
-     */
-    public static final class PlayerQuestData extends
-        com.google.protobuf.GeneratedMessage
-        implements PlayerQuestDataOrBuilder {
-      // Use PlayerQuestData.newBuilder() to construct.
-      private PlayerQuestData(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-        super(builder);
-        this.unknownFields = builder.getUnknownFields();
-      }
-      private PlayerQuestData(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-      private static final PlayerQuestData defaultInstance;
-      public static PlayerQuestData getDefaultInstance() {
-        return defaultInstance;
-      }
-
-      public PlayerQuestData getDefaultInstanceForType() {
-        return defaultInstance;
-      }
-
-      private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-          getUnknownFields() {
-        return this.unknownFields;
-      }
-      private PlayerQuestData(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        initFields();
-        int mutable_bitField0_ = 0;
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              default: {
-                if (!parseUnknownField(input, unknownFields,
-                                       extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-              case 8: {
-                bitField0_ |= 0x00000001;
-                questerAccountId_ = input.readUInt32();
-                break;
-              }
-              case 18: {
-                if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                  questItemData_ = new java.util.ArrayList<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData>();
-                  mutable_bitField0_ |= 0x00000002;
-                }
-                questItemData_.add(input.readMessage(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.PARSER, extensionRegistry));
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(this);
-        } finally {
-          if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-            questItemData_ = java.util.Collections.unmodifiableList(questItemData_);
-          }
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.class, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder.class);
-      }
-
-      public static com.google.protobuf.Parser<PlayerQuestData> PARSER =
-          new com.google.protobuf.AbstractParser<PlayerQuestData>() {
-        public PlayerQuestData parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return new PlayerQuestData(input, extensionRegistry);
-        }
-      };
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<PlayerQuestData> getParserForType() {
-        return PARSER;
-      }
-
-      public interface QuestItemDataOrBuilder
-          extends com.google.protobuf.MessageOrBuilder {
-
-        // optional uint64 quest_item_id = 1;
-        /**
-         * <code>optional uint64 quest_item_id = 1;</code>
-         */
-        boolean hasQuestItemId();
-        /**
-         * <code>optional uint64 quest_item_id = 1;</code>
-         */
-        long getQuestItemId();
-
-        // optional int32 quest_points_earned = 2;
-        /**
-         * <code>optional int32 quest_points_earned = 2;</code>
-         */
-        boolean hasQuestPointsEarned();
-        /**
-         * <code>optional int32 quest_points_earned = 2;</code>
-         */
-        int getQuestPointsEarned();
-      }
-      /**
-       * Protobuf type {@code CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData}
-       */
-      public static final class QuestItemData extends
-          com.google.protobuf.GeneratedMessage
-          implements QuestItemDataOrBuilder {
-        // Use QuestItemData.newBuilder() to construct.
-        private QuestItemData(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-          super(builder);
-          this.unknownFields = builder.getUnknownFields();
-        }
-        private QuestItemData(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-        private static final QuestItemData defaultInstance;
-        public static QuestItemData getDefaultInstance() {
-          return defaultInstance;
-        }
-
-        public QuestItemData getDefaultInstanceForType() {
-          return defaultInstance;
-        }
-
-        private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @java.lang.Override
-        public final com.google.protobuf.UnknownFieldSet
-            getUnknownFields() {
-          return this.unknownFields;
-        }
-        private QuestItemData(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          initFields();
-          int mutable_bitField0_ = 0;
-          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-              com.google.protobuf.UnknownFieldSet.newBuilder();
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!parseUnknownField(input, unknownFields,
-                                         extensionRegistry, tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 8: {
-                  bitField0_ |= 0x00000001;
-                  questItemId_ = input.readUInt64();
-                  break;
-                }
-                case 16: {
-                  bitField0_ |= 0x00000002;
-                  questPointsEarned_ = input.readInt32();
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw e.setUnfinishedMessage(this);
-          } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(this);
-          } finally {
-            this.unknownFields = unknownFields.build();
-            makeExtensionsImmutable();
-          }
-        }
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_descriptor;
-        }
-
-        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.class, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder.class);
-        }
-
-        public static com.google.protobuf.Parser<QuestItemData> PARSER =
-            new com.google.protobuf.AbstractParser<QuestItemData>() {
-          public QuestItemData parsePartialFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws com.google.protobuf.InvalidProtocolBufferException {
-            return new QuestItemData(input, extensionRegistry);
-          }
-        };
-
-        @java.lang.Override
-        public com.google.protobuf.Parser<QuestItemData> getParserForType() {
-          return PARSER;
-        }
-
-        private int bitField0_;
-        // optional uint64 quest_item_id = 1;
-        public static final int QUEST_ITEM_ID_FIELD_NUMBER = 1;
-        private long questItemId_;
-        /**
-         * <code>optional uint64 quest_item_id = 1;</code>
-         */
-        public boolean hasQuestItemId() {
-          return ((bitField0_ & 0x00000001) == 0x00000001);
-        }
-        /**
-         * <code>optional uint64 quest_item_id = 1;</code>
-         */
-        public long getQuestItemId() {
-          return questItemId_;
-        }
-
-        // optional int32 quest_points_earned = 2;
-        public static final int QUEST_POINTS_EARNED_FIELD_NUMBER = 2;
-        private int questPointsEarned_;
-        /**
-         * <code>optional int32 quest_points_earned = 2;</code>
-         */
-        public boolean hasQuestPointsEarned() {
-          return ((bitField0_ & 0x00000002) == 0x00000002);
-        }
-        /**
-         * <code>optional int32 quest_points_earned = 2;</code>
-         */
-        public int getQuestPointsEarned() {
-          return questPointsEarned_;
-        }
-
-        private void initFields() {
-          questItemId_ = 0L;
-          questPointsEarned_ = 0;
-        }
-        private byte memoizedIsInitialized = -1;
-        public final boolean isInitialized() {
-          byte isInitialized = memoizedIsInitialized;
-          if (isInitialized != -1) return isInitialized == 1;
-
-          memoizedIsInitialized = 1;
-          return true;
-        }
-
-        public void writeTo(com.google.protobuf.CodedOutputStream output)
-                            throws java.io.IOException {
-          getSerializedSize();
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            output.writeUInt64(1, questItemId_);
-          }
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            output.writeInt32(2, questPointsEarned_);
-          }
-          getUnknownFields().writeTo(output);
-        }
-
-        private int memoizedSerializedSize = -1;
-        public int getSerializedSize() {
-          int size = memoizedSerializedSize;
-          if (size != -1) return size;
-
-          size = 0;
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.CodedOutputStream
-              .computeUInt64Size(1, questItemId_);
-          }
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += com.google.protobuf.CodedOutputStream
-              .computeInt32Size(2, questPointsEarned_);
-          }
-          size += getUnknownFields().getSerializedSize();
-          memoizedSerializedSize = size;
-          return size;
-        }
-
-        private static final long serialVersionUID = 0L;
-        @java.lang.Override
-        protected java.lang.Object writeReplace()
-            throws java.io.ObjectStreamException {
-          return super.writeReplace();
-        }
-
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return PARSER.parseFrom(data);
-        }
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return PARSER.parseFrom(data, extensionRegistry);
-        }
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseFrom(byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return PARSER.parseFrom(data);
-        }
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return PARSER.parseFrom(data, extensionRegistry);
-        }
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseFrom(java.io.InputStream input)
-            throws java.io.IOException {
-          return PARSER.parseFrom(input);
-        }
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          return PARSER.parseFrom(input, extensionRegistry);
-        }
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
-          return PARSER.parseDelimitedFrom(input);
-        }
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          return PARSER.parseDelimitedFrom(input, extensionRegistry);
-        }
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-          return PARSER.parseFrom(input);
-        }
-        public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          return PARSER.parseFrom(input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() { return Builder.create(); }
-        public Builder newBuilderForType() { return newBuilder(); }
-        public static Builder newBuilder(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData prototype) {
-          return newBuilder().mergeFrom(prototype);
-        }
-        public Builder toBuilder() { return newBuilder(this); }
-
-        @java.lang.Override
-        protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-          Builder builder = new Builder(parent);
-          return builder;
-        }
-        /**
-         * Protobuf type {@code CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData}
-         */
-        public static final class Builder extends
-            com.google.protobuf.GeneratedMessage.Builder<Builder>
-           implements Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder {
-          public static final com.google.protobuf.Descriptors.Descriptor
-              getDescriptor() {
-            return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_descriptor;
-          }
-
-          protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-              internalGetFieldAccessorTable() {
-            return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                    Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.class, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder.class);
-          }
-
-          // Construct using Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.newBuilder()
-          private Builder() {
-            maybeForceBuilderInitialization();
-          }
-
-          private Builder(
-              com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-            super(parent);
-            maybeForceBuilderInitialization();
-          }
-          private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-            }
-          }
-          private static Builder create() {
-            return new Builder();
-          }
-
-          public Builder clear() {
-            super.clear();
-            questItemId_ = 0L;
-            bitField0_ = (bitField0_ & ~0x00000001);
-            questPointsEarned_ = 0;
-            bitField0_ = (bitField0_ & ~0x00000002);
-            return this;
-          }
-
-          public Builder clone() {
-            return create().mergeFrom(buildPartial());
-          }
-
-          public com.google.protobuf.Descriptors.Descriptor
-              getDescriptorForType() {
-            return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_descriptor;
-          }
-
-          public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData getDefaultInstanceForType() {
-            return Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.getDefaultInstance();
-          }
-
-          public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData build() {
-            Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData result = buildPartial();
-            if (!result.isInitialized()) {
-              throw newUninitializedMessageException(result);
-            }
-            return result;
-          }
-
-          public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData buildPartial() {
-            Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData result = new Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData(this);
-            int from_bitField0_ = bitField0_;
-            int to_bitField0_ = 0;
-            if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-              to_bitField0_ |= 0x00000001;
-            }
-            result.questItemId_ = questItemId_;
-            if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-              to_bitField0_ |= 0x00000002;
-            }
-            result.questPointsEarned_ = questPointsEarned_;
-            result.bitField0_ = to_bitField0_;
-            onBuilt();
-            return result;
-          }
-
-          public Builder mergeFrom(com.google.protobuf.Message other) {
-            if (other instanceof Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData) {
-              return mergeFrom((Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData)other);
-            } else {
-              super.mergeFrom(other);
-              return this;
-            }
-          }
-
-          public Builder mergeFrom(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData other) {
-            if (other == Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.getDefaultInstance()) return this;
-            if (other.hasQuestItemId()) {
-              setQuestItemId(other.getQuestItemId());
-            }
-            if (other.hasQuestPointsEarned()) {
-              setQuestPointsEarned(other.getQuestPointsEarned());
-            }
-            this.mergeUnknownFields(other.getUnknownFields());
-            return this;
-          }
-
-          public final boolean isInitialized() {
-            return true;
-          }
-
-          public Builder mergeFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
-            Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData parsedMessage = null;
-            try {
-              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              parsedMessage = (Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData) e.getUnfinishedMessage();
-              throw e;
-            } finally {
-              if (parsedMessage != null) {
-                mergeFrom(parsedMessage);
-              }
-            }
-            return this;
-          }
-          private int bitField0_;
-
-          // optional uint64 quest_item_id = 1;
-          private long questItemId_ ;
-          /**
-           * <code>optional uint64 quest_item_id = 1;</code>
-           */
-          public boolean hasQuestItemId() {
-            return ((bitField0_ & 0x00000001) == 0x00000001);
-          }
-          /**
-           * <code>optional uint64 quest_item_id = 1;</code>
-           */
-          public long getQuestItemId() {
-            return questItemId_;
-          }
-          /**
-           * <code>optional uint64 quest_item_id = 1;</code>
-           */
-          public Builder setQuestItemId(long value) {
-            bitField0_ |= 0x00000001;
-            questItemId_ = value;
-            onChanged();
-            return this;
-          }
-          /**
-           * <code>optional uint64 quest_item_id = 1;</code>
-           */
-          public Builder clearQuestItemId() {
-            bitField0_ = (bitField0_ & ~0x00000001);
-            questItemId_ = 0L;
-            onChanged();
-            return this;
-          }
-
-          // optional int32 quest_points_earned = 2;
-          private int questPointsEarned_ ;
-          /**
-           * <code>optional int32 quest_points_earned = 2;</code>
-           */
-          public boolean hasQuestPointsEarned() {
-            return ((bitField0_ & 0x00000002) == 0x00000002);
-          }
-          /**
-           * <code>optional int32 quest_points_earned = 2;</code>
-           */
-          public int getQuestPointsEarned() {
-            return questPointsEarned_;
-          }
-          /**
-           * <code>optional int32 quest_points_earned = 2;</code>
-           */
-          public Builder setQuestPointsEarned(int value) {
-            bitField0_ |= 0x00000002;
-            questPointsEarned_ = value;
-            onChanged();
-            return this;
-          }
-          /**
-           * <code>optional int32 quest_points_earned = 2;</code>
-           */
-          public Builder clearQuestPointsEarned() {
-            bitField0_ = (bitField0_ & ~0x00000002);
-            questPointsEarned_ = 0;
-            onChanged();
-            return this;
-          }
-
-          // @@protoc_insertion_point(builder_scope:CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData)
-        }
-
-        static {
-          defaultInstance = new QuestItemData(true);
-          defaultInstance.initFields();
-        }
-
-        // @@protoc_insertion_point(class_scope:CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData)
-      }
-
-      private int bitField0_;
-      // optional uint32 quester_account_id = 1;
-      public static final int QUESTER_ACCOUNT_ID_FIELD_NUMBER = 1;
-      private int questerAccountId_;
-      /**
-       * <code>optional uint32 quester_account_id = 1;</code>
-       */
-      public boolean hasQuesterAccountId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional uint32 quester_account_id = 1;</code>
-       */
-      public int getQuesterAccountId() {
-        return questerAccountId_;
-      }
-
-      // repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;
-      public static final int QUEST_ITEM_DATA_FIELD_NUMBER = 2;
-      private java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData> questItemData_;
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      public java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData> getQuestItemDataList() {
-        return questItemData_;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      public java.util.List<? extends Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder> 
-          getQuestItemDataOrBuilderList() {
-        return questItemData_;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      public int getQuestItemDataCount() {
-        return questItemData_.size();
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData getQuestItemData(int index) {
-        return questItemData_.get(index);
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-       */
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder getQuestItemDataOrBuilder(
-          int index) {
-        return questItemData_.get(index);
-      }
-
-      private void initFields() {
-        questerAccountId_ = 0;
-        questItemData_ = java.util.Collections.emptyList();
-      }
-      private byte memoizedIsInitialized = -1;
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized != -1) return isInitialized == 1;
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        getSerializedSize();
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          output.writeUInt32(1, questerAccountId_);
-        }
-        for (int i = 0; i < questItemData_.size(); i++) {
-          output.writeMessage(2, questItemData_.get(i));
-        }
-        getUnknownFields().writeTo(output);
-      }
-
-      private int memoizedSerializedSize = -1;
-      public int getSerializedSize() {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeUInt32Size(1, questerAccountId_);
-        }
-        for (int i = 0; i < questItemData_.size(); i++) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, questItemData_.get(i));
-        }
-        size += getUnknownFields().getSerializedSize();
-        memoizedSerializedSize = size;
-        return size;
-      }
-
-      private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      protected java.lang.Object writeReplace()
-          throws java.io.ObjectStreamException {
-        return super.writeReplace();
-      }
-
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return PARSER.parseFrom(input);
-      }
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return PARSER.parseFrom(input, extensionRegistry);
-      }
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return PARSER.parseDelimitedFrom(input);
-      }
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return PARSER.parseDelimitedFrom(input, extensionRegistry);
-      }
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return PARSER.parseFrom(input);
-      }
-      public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return PARSER.parseFrom(input, extensionRegistry);
-      }
-
-      public static Builder newBuilder() { return Builder.create(); }
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData prototype) {
-        return newBuilder().mergeFrom(prototype);
-      }
-      public Builder toBuilder() { return newBuilder(this); }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      /**
-       * Protobuf type {@code CMsgGC_ServerQuestUpdateData.PlayerQuestData}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessage.Builder<Builder>
-         implements Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_descriptor;
-        }
-
-        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.class, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder.class);
-        }
-
-        // Construct using Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-            getQuestItemDataFieldBuilder();
-          }
-        }
-        private static Builder create() {
-          return new Builder();
-        }
-
-        public Builder clear() {
-          super.clear();
-          questerAccountId_ = 0;
-          bitField0_ = (bitField0_ & ~0x00000001);
-          if (questItemDataBuilder_ == null) {
-            questItemData_ = java.util.Collections.emptyList();
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            questItemDataBuilder_.clear();
-          }
-          return this;
-        }
-
-        public Builder clone() {
-          return create().mergeFrom(buildPartial());
-        }
-
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_descriptor;
-        }
-
-        public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData getDefaultInstanceForType() {
-          return Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.getDefaultInstance();
-        }
-
-        public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData build() {
-          Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData buildPartial() {
-          Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData result = new Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData(this);
-          int from_bitField0_ = bitField0_;
-          int to_bitField0_ = 0;
-          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-            to_bitField0_ |= 0x00000001;
-          }
-          result.questerAccountId_ = questerAccountId_;
-          if (questItemDataBuilder_ == null) {
-            if (((bitField0_ & 0x00000002) == 0x00000002)) {
-              questItemData_ = java.util.Collections.unmodifiableList(questItemData_);
-              bitField0_ = (bitField0_ & ~0x00000002);
-            }
-            result.questItemData_ = questItemData_;
-          } else {
-            result.questItemData_ = questItemDataBuilder_.build();
-          }
-          result.bitField0_ = to_bitField0_;
-          onBuilt();
-          return result;
-        }
-
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData) {
-            return mergeFrom((Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData other) {
-          if (other == Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.getDefaultInstance()) return this;
-          if (other.hasQuesterAccountId()) {
-            setQuesterAccountId(other.getQuesterAccountId());
-          }
-          if (questItemDataBuilder_ == null) {
-            if (!other.questItemData_.isEmpty()) {
-              if (questItemData_.isEmpty()) {
-                questItemData_ = other.questItemData_;
-                bitField0_ = (bitField0_ & ~0x00000002);
-              } else {
-                ensureQuestItemDataIsMutable();
-                questItemData_.addAll(other.questItemData_);
-              }
-              onChanged();
-            }
-          } else {
-            if (!other.questItemData_.isEmpty()) {
-              if (questItemDataBuilder_.isEmpty()) {
-                questItemDataBuilder_.dispose();
-                questItemDataBuilder_ = null;
-                questItemData_ = other.questItemData_;
-                bitField0_ = (bitField0_ & ~0x00000002);
-                questItemDataBuilder_ = 
-                  com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                     getQuestItemDataFieldBuilder() : null;
-              } else {
-                questItemDataBuilder_.addAllMessages(other.questItemData_);
-              }
-            }
-          }
-          this.mergeUnknownFields(other.getUnknownFields());
-          return this;
-        }
-
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData) e.getUnfinishedMessage();
-            throw e;
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-        private int bitField0_;
-
-        // optional uint32 quester_account_id = 1;
-        private int questerAccountId_ ;
-        /**
-         * <code>optional uint32 quester_account_id = 1;</code>
-         */
-        public boolean hasQuesterAccountId() {
-          return ((bitField0_ & 0x00000001) == 0x00000001);
-        }
-        /**
-         * <code>optional uint32 quester_account_id = 1;</code>
-         */
-        public int getQuesterAccountId() {
-          return questerAccountId_;
-        }
-        /**
-         * <code>optional uint32 quester_account_id = 1;</code>
-         */
-        public Builder setQuesterAccountId(int value) {
-          bitField0_ |= 0x00000001;
-          questerAccountId_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional uint32 quester_account_id = 1;</code>
-         */
-        public Builder clearQuesterAccountId() {
-          bitField0_ = (bitField0_ & ~0x00000001);
-          questerAccountId_ = 0;
-          onChanged();
-          return this;
-        }
-
-        // repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;
-        private java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData> questItemData_ =
-          java.util.Collections.emptyList();
-        private void ensureQuestItemDataIsMutable() {
-          if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-            questItemData_ = new java.util.ArrayList<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData>(questItemData_);
-            bitField0_ |= 0x00000002;
-           }
-        }
-
-        private com.google.protobuf.RepeatedFieldBuilder<
-            Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder> questItemDataBuilder_;
-
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData> getQuestItemDataList() {
-          if (questItemDataBuilder_ == null) {
-            return java.util.Collections.unmodifiableList(questItemData_);
-          } else {
-            return questItemDataBuilder_.getMessageList();
-          }
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public int getQuestItemDataCount() {
-          if (questItemDataBuilder_ == null) {
-            return questItemData_.size();
-          } else {
-            return questItemDataBuilder_.getCount();
-          }
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData getQuestItemData(int index) {
-          if (questItemDataBuilder_ == null) {
-            return questItemData_.get(index);
-          } else {
-            return questItemDataBuilder_.getMessage(index);
-          }
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Builder setQuestItemData(
-            int index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData value) {
-          if (questItemDataBuilder_ == null) {
-            if (value == null) {
-              throw new NullPointerException();
-            }
-            ensureQuestItemDataIsMutable();
-            questItemData_.set(index, value);
-            onChanged();
-          } else {
-            questItemDataBuilder_.setMessage(index, value);
-          }
-          return this;
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Builder setQuestItemData(
-            int index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder builderForValue) {
-          if (questItemDataBuilder_ == null) {
-            ensureQuestItemDataIsMutable();
-            questItemData_.set(index, builderForValue.build());
-            onChanged();
-          } else {
-            questItemDataBuilder_.setMessage(index, builderForValue.build());
-          }
-          return this;
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Builder addQuestItemData(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData value) {
-          if (questItemDataBuilder_ == null) {
-            if (value == null) {
-              throw new NullPointerException();
-            }
-            ensureQuestItemDataIsMutable();
-            questItemData_.add(value);
-            onChanged();
-          } else {
-            questItemDataBuilder_.addMessage(value);
-          }
-          return this;
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Builder addQuestItemData(
-            int index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData value) {
-          if (questItemDataBuilder_ == null) {
-            if (value == null) {
-              throw new NullPointerException();
-            }
-            ensureQuestItemDataIsMutable();
-            questItemData_.add(index, value);
-            onChanged();
-          } else {
-            questItemDataBuilder_.addMessage(index, value);
-          }
-          return this;
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Builder addQuestItemData(
-            Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder builderForValue) {
-          if (questItemDataBuilder_ == null) {
-            ensureQuestItemDataIsMutable();
-            questItemData_.add(builderForValue.build());
-            onChanged();
-          } else {
-            questItemDataBuilder_.addMessage(builderForValue.build());
-          }
-          return this;
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Builder addQuestItemData(
-            int index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder builderForValue) {
-          if (questItemDataBuilder_ == null) {
-            ensureQuestItemDataIsMutable();
-            questItemData_.add(index, builderForValue.build());
-            onChanged();
-          } else {
-            questItemDataBuilder_.addMessage(index, builderForValue.build());
-          }
-          return this;
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Builder addAllQuestItemData(
-            java.lang.Iterable<? extends Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData> values) {
-          if (questItemDataBuilder_ == null) {
-            ensureQuestItemDataIsMutable();
-            super.addAll(values, questItemData_);
-            onChanged();
-          } else {
-            questItemDataBuilder_.addAllMessages(values);
-          }
-          return this;
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Builder clearQuestItemData() {
-          if (questItemDataBuilder_ == null) {
-            questItemData_ = java.util.Collections.emptyList();
-            bitField0_ = (bitField0_ & ~0x00000002);
-            onChanged();
-          } else {
-            questItemDataBuilder_.clear();
-          }
-          return this;
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Builder removeQuestItemData(int index) {
-          if (questItemDataBuilder_ == null) {
-            ensureQuestItemDataIsMutable();
-            questItemData_.remove(index);
-            onChanged();
-          } else {
-            questItemDataBuilder_.remove(index);
-          }
-          return this;
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder getQuestItemDataBuilder(
-            int index) {
-          return getQuestItemDataFieldBuilder().getBuilder(index);
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder getQuestItemDataOrBuilder(
-            int index) {
-          if (questItemDataBuilder_ == null) {
-            return questItemData_.get(index);  } else {
-            return questItemDataBuilder_.getMessageOrBuilder(index);
-          }
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public java.util.List<? extends Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder> 
-             getQuestItemDataOrBuilderList() {
-          if (questItemDataBuilder_ != null) {
-            return questItemDataBuilder_.getMessageOrBuilderList();
-          } else {
-            return java.util.Collections.unmodifiableList(questItemData_);
-          }
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder addQuestItemDataBuilder() {
-          return getQuestItemDataFieldBuilder().addBuilder(
-              Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.getDefaultInstance());
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder addQuestItemDataBuilder(
-            int index) {
-          return getQuestItemDataFieldBuilder().addBuilder(
-              index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.getDefaultInstance());
-        }
-        /**
-         * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData quest_item_data = 2;</code>
-         */
-        public java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder> 
-             getQuestItemDataBuilderList() {
-          return getQuestItemDataFieldBuilder().getBuilderList();
-        }
-        private com.google.protobuf.RepeatedFieldBuilder<
-            Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder> 
-            getQuestItemDataFieldBuilder() {
-          if (questItemDataBuilder_ == null) {
-            questItemDataBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-                Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemData.Builder, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.QuestItemDataOrBuilder>(
-                    questItemData_,
-                    ((bitField0_ & 0x00000002) == 0x00000002),
-                    getParentForChildren(),
-                    isClean());
-            questItemData_ = null;
-          }
-          return questItemDataBuilder_;
-        }
-
-        // @@protoc_insertion_point(builder_scope:CMsgGC_ServerQuestUpdateData.PlayerQuestData)
-      }
-
-      static {
-        defaultInstance = new PlayerQuestData(true);
-        defaultInstance.initFields();
-      }
-
-      // @@protoc_insertion_point(class_scope:CMsgGC_ServerQuestUpdateData.PlayerQuestData)
-    }
-
-    // repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;
-    public static final int PLAYER_QUEST_DATA_FIELD_NUMBER = 1;
-    private java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData> playerQuestData_;
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    public java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData> getPlayerQuestDataList() {
-      return playerQuestData_;
-    }
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    public java.util.List<? extends Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder> 
-        getPlayerQuestDataOrBuilderList() {
-      return playerQuestData_;
-    }
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    public int getPlayerQuestDataCount() {
-      return playerQuestData_.size();
-    }
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData getPlayerQuestData(int index) {
-      return playerQuestData_.get(index);
-    }
-    /**
-     * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-     */
-    public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder getPlayerQuestDataOrBuilder(
-        int index) {
-      return playerQuestData_.get(index);
-    }
-
-    private void initFields() {
-      playerQuestData_ = java.util.Collections.emptyList();
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      for (int i = 0; i < playerQuestData_.size(); i++) {
-        output.writeMessage(1, playerQuestData_.get(i));
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (int i = 0; i < playerQuestData_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, playerQuestData_.get(i));
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code CMsgGC_ServerQuestUpdateData}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateDataOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.class, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.Builder.class);
-      }
-
-      // Construct using Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getPlayerQuestDataFieldBuilder();
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        if (playerQuestDataBuilder_ == null) {
-          playerQuestData_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          playerQuestDataBuilder_.clear();
-        }
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return Cstrike15Gcmessages.internal_static_CMsgGC_ServerQuestUpdateData_descriptor;
-      }
-
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData getDefaultInstanceForType() {
-        return Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.getDefaultInstance();
-      }
-
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData build() {
-        Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData buildPartial() {
-        Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData result = new Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData(this);
-        int from_bitField0_ = bitField0_;
-        if (playerQuestDataBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            playerQuestData_ = java.util.Collections.unmodifiableList(playerQuestData_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.playerQuestData_ = playerQuestData_;
-        } else {
-          result.playerQuestData_ = playerQuestDataBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData) {
-          return mergeFrom((Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData other) {
-        if (other == Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.getDefaultInstance()) return this;
-        if (playerQuestDataBuilder_ == null) {
-          if (!other.playerQuestData_.isEmpty()) {
-            if (playerQuestData_.isEmpty()) {
-              playerQuestData_ = other.playerQuestData_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensurePlayerQuestDataIsMutable();
-              playerQuestData_.addAll(other.playerQuestData_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.playerQuestData_.isEmpty()) {
-            if (playerQuestDataBuilder_.isEmpty()) {
-              playerQuestDataBuilder_.dispose();
-              playerQuestDataBuilder_ = null;
-              playerQuestData_ = other.playerQuestData_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              playerQuestDataBuilder_ = 
-                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getPlayerQuestDataFieldBuilder() : null;
-            } else {
-              playerQuestDataBuilder_.addAllMessages(other.playerQuestData_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      // repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;
-      private java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData> playerQuestData_ =
-        java.util.Collections.emptyList();
-      private void ensurePlayerQuestDataIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          playerQuestData_ = new java.util.ArrayList<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData>(playerQuestData_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilder<
-          Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder> playerQuestDataBuilder_;
-
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData> getPlayerQuestDataList() {
-        if (playerQuestDataBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(playerQuestData_);
-        } else {
-          return playerQuestDataBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public int getPlayerQuestDataCount() {
-        if (playerQuestDataBuilder_ == null) {
-          return playerQuestData_.size();
-        } else {
-          return playerQuestDataBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData getPlayerQuestData(int index) {
-        if (playerQuestDataBuilder_ == null) {
-          return playerQuestData_.get(index);
-        } else {
-          return playerQuestDataBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Builder setPlayerQuestData(
-          int index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData value) {
-        if (playerQuestDataBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensurePlayerQuestDataIsMutable();
-          playerQuestData_.set(index, value);
-          onChanged();
-        } else {
-          playerQuestDataBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Builder setPlayerQuestData(
-          int index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder builderForValue) {
-        if (playerQuestDataBuilder_ == null) {
-          ensurePlayerQuestDataIsMutable();
-          playerQuestData_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          playerQuestDataBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Builder addPlayerQuestData(Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData value) {
-        if (playerQuestDataBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensurePlayerQuestDataIsMutable();
-          playerQuestData_.add(value);
-          onChanged();
-        } else {
-          playerQuestDataBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Builder addPlayerQuestData(
-          int index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData value) {
-        if (playerQuestDataBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensurePlayerQuestDataIsMutable();
-          playerQuestData_.add(index, value);
-          onChanged();
-        } else {
-          playerQuestDataBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Builder addPlayerQuestData(
-          Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder builderForValue) {
-        if (playerQuestDataBuilder_ == null) {
-          ensurePlayerQuestDataIsMutable();
-          playerQuestData_.add(builderForValue.build());
-          onChanged();
-        } else {
-          playerQuestDataBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Builder addPlayerQuestData(
-          int index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder builderForValue) {
-        if (playerQuestDataBuilder_ == null) {
-          ensurePlayerQuestDataIsMutable();
-          playerQuestData_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          playerQuestDataBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Builder addAllPlayerQuestData(
-          java.lang.Iterable<? extends Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData> values) {
-        if (playerQuestDataBuilder_ == null) {
-          ensurePlayerQuestDataIsMutable();
-          super.addAll(values, playerQuestData_);
-          onChanged();
-        } else {
-          playerQuestDataBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Builder clearPlayerQuestData() {
-        if (playerQuestDataBuilder_ == null) {
-          playerQuestData_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          playerQuestDataBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Builder removePlayerQuestData(int index) {
-        if (playerQuestDataBuilder_ == null) {
-          ensurePlayerQuestDataIsMutable();
-          playerQuestData_.remove(index);
-          onChanged();
-        } else {
-          playerQuestDataBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder getPlayerQuestDataBuilder(
-          int index) {
-        return getPlayerQuestDataFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder getPlayerQuestDataOrBuilder(
-          int index) {
-        if (playerQuestDataBuilder_ == null) {
-          return playerQuestData_.get(index);  } else {
-          return playerQuestDataBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public java.util.List<? extends Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder> 
-           getPlayerQuestDataOrBuilderList() {
-        if (playerQuestDataBuilder_ != null) {
-          return playerQuestDataBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(playerQuestData_);
-        }
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder addPlayerQuestDataBuilder() {
-        return getPlayerQuestDataFieldBuilder().addBuilder(
-            Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder addPlayerQuestDataBuilder(
-          int index) {
-        return getPlayerQuestDataFieldBuilder().addBuilder(
-            index, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .CMsgGC_ServerQuestUpdateData.PlayerQuestData player_quest_data = 1;</code>
-       */
-      public java.util.List<Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder> 
-           getPlayerQuestDataBuilderList() {
-        return getPlayerQuestDataFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilder<
-          Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder> 
-          getPlayerQuestDataFieldBuilder() {
-        if (playerQuestDataBuilder_ == null) {
-          playerQuestDataBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestData.Builder, Cstrike15Gcmessages.CMsgGC_ServerQuestUpdateData.PlayerQuestDataOrBuilder>(
-                  playerQuestData_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
-                  getParentForChildren(),
-                  isClean());
-          playerQuestData_ = null;
-        }
-        return playerQuestDataBuilder_;
-      }
-
-      // @@protoc_insertion_point(builder_scope:CMsgGC_ServerQuestUpdateData)
-    }
-
-    static {
-      defaultInstance = new CMsgGC_ServerQuestUpdateData(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:CMsgGC_ServerQuestUpdateData)
-  }
-
   public interface CMsgGCCStrike15_v2_MatchEndRunRewardDropsOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -63491,6 +65576,16 @@ public final class Cstrike15Gcmessages {
      * <code>optional uint32 questid = 15;</code>
      */
     int getQuestid();
+
+    // optional uint32 dropreason = 16;
+    /**
+     * <code>optional uint32 dropreason = 16;</code>
+     */
+    boolean hasDropreason();
+    /**
+     * <code>optional uint32 dropreason = 16;</code>
+     */
+    int getDropreason();
   }
   /**
    * Protobuf type {@code CEconItemPreviewDataBlock}
@@ -63619,6 +65714,11 @@ public final class Cstrike15Gcmessages {
             case 120: {
               bitField0_ |= 0x00002000;
               questid_ = input.readUInt32();
+              break;
+            }
+            case 128: {
+              bitField0_ |= 0x00004000;
+              dropreason_ = input.readUInt32();
               break;
             }
           }
@@ -64671,6 +66771,22 @@ public final class Cstrike15Gcmessages {
       return questid_;
     }
 
+    // optional uint32 dropreason = 16;
+    public static final int DROPREASON_FIELD_NUMBER = 16;
+    private int dropreason_;
+    /**
+     * <code>optional uint32 dropreason = 16;</code>
+     */
+    public boolean hasDropreason() {
+      return ((bitField0_ & 0x00004000) == 0x00004000);
+    }
+    /**
+     * <code>optional uint32 dropreason = 16;</code>
+     */
+    public int getDropreason() {
+      return dropreason_;
+    }
+
     private void initFields() {
       accountid_ = 0;
       itemid_ = 0L;
@@ -64687,6 +66803,7 @@ public final class Cstrike15Gcmessages {
       inventory_ = 0;
       origin_ = 0;
       questid_ = 0;
+      dropreason_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -64744,6 +66861,9 @@ public final class Cstrike15Gcmessages {
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         output.writeUInt32(15, questid_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        output.writeUInt32(16, dropreason_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -64813,6 +66933,10 @@ public final class Cstrike15Gcmessages {
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(15, questid_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(16, dropreason_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -64965,6 +67089,8 @@ public final class Cstrike15Gcmessages {
         bitField0_ = (bitField0_ & ~0x00002000);
         questid_ = 0;
         bitField0_ = (bitField0_ & ~0x00004000);
+        dropreason_ = 0;
+        bitField0_ = (bitField0_ & ~0x00008000);
         return this;
       }
 
@@ -65058,6 +67184,10 @@ public final class Cstrike15Gcmessages {
           to_bitField0_ |= 0x00002000;
         }
         result.questid_ = questid_;
+        if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
+          to_bitField0_ |= 0x00004000;
+        }
+        result.dropreason_ = dropreason_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -65143,6 +67273,9 @@ public final class Cstrike15Gcmessages {
         }
         if (other.hasQuestid()) {
           setQuestid(other.getQuestid());
+        }
+        if (other.hasDropreason()) {
+          setDropreason(other.getDropreason());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -65910,6 +68043,39 @@ public final class Cstrike15Gcmessages {
       public Builder clearQuestid() {
         bitField0_ = (bitField0_ & ~0x00004000);
         questid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 dropreason = 16;
+      private int dropreason_ ;
+      /**
+       * <code>optional uint32 dropreason = 16;</code>
+       */
+      public boolean hasDropreason() {
+        return ((bitField0_ & 0x00008000) == 0x00008000);
+      }
+      /**
+       * <code>optional uint32 dropreason = 16;</code>
+       */
+      public int getDropreason() {
+        return dropreason_;
+      }
+      /**
+       * <code>optional uint32 dropreason = 16;</code>
+       */
+      public Builder setDropreason(int value) {
+        bitField0_ |= 0x00008000;
+        dropreason_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 dropreason = 16;</code>
+       */
+      public Builder clearDropreason() {
+        bitField0_ = (bitField0_ & ~0x00008000);
+        dropreason_ = 0;
         onChanged();
         return this;
       }
@@ -70811,19 +72977,44 @@ public final class Cstrike15Gcmessages {
      */
     Cstrike15Gcmessages.WatchableMatchInfoOrBuilder getWatchablematchinfoOrBuilder();
 
-    // optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;
+    // optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;
     /**
-     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
      */
-    boolean hasRoundstats();
+    boolean hasRoundstatsLegacy();
     /**
-     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
      */
-    Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats getRoundstats();
+    Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats getRoundstatsLegacy();
     /**
-     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
      */
-    Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder getRoundstatsOrBuilder();
+    Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder getRoundstatsLegacyOrBuilder();
+
+    // repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    java.util.List<Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats> 
+        getRoundstatsallList();
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats getRoundstatsall(int index);
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    int getRoundstatsallCount();
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    java.util.List<? extends Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder> 
+        getRoundstatsallOrBuilderList();
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder getRoundstatsallOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code CDataGCCStrike15_v2_MatchInfo}
@@ -70902,14 +73093,22 @@ public final class Cstrike15Gcmessages {
             case 34: {
               Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder subBuilder = null;
               if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                subBuilder = roundstats_.toBuilder();
+                subBuilder = roundstatsLegacy_.toBuilder();
               }
-              roundstats_ = input.readMessage(Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.PARSER, extensionRegistry);
+              roundstatsLegacy_ = input.readMessage(Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(roundstats_);
-                roundstats_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(roundstatsLegacy_);
+                roundstatsLegacy_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000008;
+              break;
+            }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                roundstatsall_ = new java.util.ArrayList<Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              roundstatsall_.add(input.readMessage(Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.PARSER, extensionRegistry));
               break;
             }
           }
@@ -70920,6 +73119,9 @@ public final class Cstrike15Gcmessages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          roundstatsall_ = java.util.Collections.unmodifiableList(roundstatsall_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -71006,33 +73208,70 @@ public final class Cstrike15Gcmessages {
       return watchablematchinfo_;
     }
 
-    // optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;
-    public static final int ROUNDSTATS_FIELD_NUMBER = 4;
-    private Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_;
+    // optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;
+    public static final int ROUNDSTATS_LEGACY_FIELD_NUMBER = 4;
+    private Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsLegacy_;
     /**
-     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
      */
-    public boolean hasRoundstats() {
+    public boolean hasRoundstatsLegacy() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
      */
-    public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats getRoundstats() {
-      return roundstats_;
+    public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats getRoundstatsLegacy() {
+      return roundstatsLegacy_;
     }
     /**
-     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+     * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
      */
-    public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder getRoundstatsOrBuilder() {
-      return roundstats_;
+    public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder getRoundstatsLegacyOrBuilder() {
+      return roundstatsLegacy_;
+    }
+
+    // repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;
+    public static final int ROUNDSTATSALL_FIELD_NUMBER = 5;
+    private java.util.List<Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats> roundstatsall_;
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    public java.util.List<Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats> getRoundstatsallList() {
+      return roundstatsall_;
+    }
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    public java.util.List<? extends Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder> 
+        getRoundstatsallOrBuilderList() {
+      return roundstatsall_;
+    }
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    public int getRoundstatsallCount() {
+      return roundstatsall_.size();
+    }
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats getRoundstatsall(int index) {
+      return roundstatsall_.get(index);
+    }
+    /**
+     * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+     */
+    public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder getRoundstatsallOrBuilder(
+        int index) {
+      return roundstatsall_.get(index);
     }
 
     private void initFields() {
       matchid_ = 0L;
       matchtime_ = 0;
       watchablematchinfo_ = Cstrike15Gcmessages.WatchableMatchInfo.getDefaultInstance();
-      roundstats_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance();
+      roundstatsLegacy_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance();
+      roundstatsall_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -71056,7 +73295,10 @@ public final class Cstrike15Gcmessages {
         output.writeMessage(3, watchablematchinfo_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, roundstats_);
+        output.writeMessage(4, roundstatsLegacy_);
+      }
+      for (int i = 0; i < roundstatsall_.size(); i++) {
+        output.writeMessage(5, roundstatsall_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -71081,7 +73323,11 @@ public final class Cstrike15Gcmessages {
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, roundstats_);
+          .computeMessageSize(4, roundstatsLegacy_);
+      }
+      for (int i = 0; i < roundstatsall_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, roundstatsall_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -71192,7 +73438,8 @@ public final class Cstrike15Gcmessages {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getWatchablematchinfoFieldBuilder();
-          getRoundstatsFieldBuilder();
+          getRoundstatsLegacyFieldBuilder();
+          getRoundstatsallFieldBuilder();
         }
       }
       private static Builder create() {
@@ -71211,12 +73458,18 @@ public final class Cstrike15Gcmessages {
           watchablematchinfoBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000004);
-        if (roundstatsBuilder_ == null) {
-          roundstats_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance();
+        if (roundstatsLegacyBuilder_ == null) {
+          roundstatsLegacy_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance();
         } else {
-          roundstatsBuilder_.clear();
+          roundstatsLegacyBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
+        if (roundstatsallBuilder_ == null) {
+          roundstatsall_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        } else {
+          roundstatsallBuilder_.clear();
+        }
         return this;
       }
 
@@ -71264,10 +73517,19 @@ public final class Cstrike15Gcmessages {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        if (roundstatsBuilder_ == null) {
-          result.roundstats_ = roundstats_;
+        if (roundstatsLegacyBuilder_ == null) {
+          result.roundstatsLegacy_ = roundstatsLegacy_;
         } else {
-          result.roundstats_ = roundstatsBuilder_.build();
+          result.roundstatsLegacy_ = roundstatsLegacyBuilder_.build();
+        }
+        if (roundstatsallBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+            roundstatsall_ = java.util.Collections.unmodifiableList(roundstatsall_);
+            bitField0_ = (bitField0_ & ~0x00000010);
+          }
+          result.roundstatsall_ = roundstatsall_;
+        } else {
+          result.roundstatsall_ = roundstatsallBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -71294,8 +73556,34 @@ public final class Cstrike15Gcmessages {
         if (other.hasWatchablematchinfo()) {
           mergeWatchablematchinfo(other.getWatchablematchinfo());
         }
-        if (other.hasRoundstats()) {
-          mergeRoundstats(other.getRoundstats());
+        if (other.hasRoundstatsLegacy()) {
+          mergeRoundstatsLegacy(other.getRoundstatsLegacy());
+        }
+        if (roundstatsallBuilder_ == null) {
+          if (!other.roundstatsall_.isEmpty()) {
+            if (roundstatsall_.isEmpty()) {
+              roundstatsall_ = other.roundstatsall_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+            } else {
+              ensureRoundstatsallIsMutable();
+              roundstatsall_.addAll(other.roundstatsall_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.roundstatsall_.isEmpty()) {
+            if (roundstatsallBuilder_.isEmpty()) {
+              roundstatsallBuilder_.dispose();
+              roundstatsallBuilder_ = null;
+              roundstatsall_ = other.roundstatsall_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+              roundstatsallBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getRoundstatsallFieldBuilder() : null;
+            } else {
+              roundstatsallBuilder_.addAllMessages(other.roundstatsall_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -71507,121 +73795,361 @@ public final class Cstrike15Gcmessages {
         return watchablematchinfoBuilder_;
       }
 
-      // optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;
-      private Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance();
+      // optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;
+      private Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsLegacy_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder> roundstatsBuilder_;
+          Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder> roundstatsLegacyBuilder_;
       /**
-       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
        */
-      public boolean hasRoundstats() {
+      public boolean hasRoundstatsLegacy() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
        */
-      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats getRoundstats() {
-        if (roundstatsBuilder_ == null) {
-          return roundstats_;
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats getRoundstatsLegacy() {
+        if (roundstatsLegacyBuilder_ == null) {
+          return roundstatsLegacy_;
         } else {
-          return roundstatsBuilder_.getMessage();
+          return roundstatsLegacyBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
        */
-      public Builder setRoundstats(Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats value) {
-        if (roundstatsBuilder_ == null) {
+      public Builder setRoundstatsLegacy(Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats value) {
+        if (roundstatsLegacyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          roundstats_ = value;
+          roundstatsLegacy_ = value;
           onChanged();
         } else {
-          roundstatsBuilder_.setMessage(value);
+          roundstatsLegacyBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
        */
-      public Builder setRoundstats(
+      public Builder setRoundstatsLegacy(
           Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder builderForValue) {
-        if (roundstatsBuilder_ == null) {
-          roundstats_ = builderForValue.build();
+        if (roundstatsLegacyBuilder_ == null) {
+          roundstatsLegacy_ = builderForValue.build();
           onChanged();
         } else {
-          roundstatsBuilder_.setMessage(builderForValue.build());
+          roundstatsLegacyBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
        */
-      public Builder mergeRoundstats(Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats value) {
-        if (roundstatsBuilder_ == null) {
+      public Builder mergeRoundstatsLegacy(Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats value) {
+        if (roundstatsLegacyBuilder_ == null) {
           if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              roundstats_ != Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance()) {
-            roundstats_ =
-              Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.newBuilder(roundstats_).mergeFrom(value).buildPartial();
+              roundstatsLegacy_ != Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance()) {
+            roundstatsLegacy_ =
+              Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.newBuilder(roundstatsLegacy_).mergeFrom(value).buildPartial();
           } else {
-            roundstats_ = value;
+            roundstatsLegacy_ = value;
           }
           onChanged();
         } else {
-          roundstatsBuilder_.mergeFrom(value);
+          roundstatsLegacyBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
        */
-      public Builder clearRoundstats() {
-        if (roundstatsBuilder_ == null) {
-          roundstats_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance();
+      public Builder clearRoundstatsLegacy() {
+        if (roundstatsLegacyBuilder_ == null) {
+          roundstatsLegacy_ = Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance();
           onChanged();
         } else {
-          roundstatsBuilder_.clear();
+          roundstatsLegacyBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       /**
-       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
        */
-      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder getRoundstatsBuilder() {
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder getRoundstatsLegacyBuilder() {
         bitField0_ |= 0x00000008;
         onChanged();
-        return getRoundstatsFieldBuilder().getBuilder();
+        return getRoundstatsLegacyFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
        */
-      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder getRoundstatsOrBuilder() {
-        if (roundstatsBuilder_ != null) {
-          return roundstatsBuilder_.getMessageOrBuilder();
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder getRoundstatsLegacyOrBuilder() {
+        if (roundstatsLegacyBuilder_ != null) {
+          return roundstatsLegacyBuilder_.getMessageOrBuilder();
         } else {
-          return roundstats_;
+          return roundstatsLegacy_;
         }
       }
       /**
-       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats = 4;</code>
+       * <code>optional .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstats_legacy = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder> 
-          getRoundstatsFieldBuilder() {
-        if (roundstatsBuilder_ == null) {
-          roundstatsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getRoundstatsLegacyFieldBuilder() {
+        if (roundstatsLegacyBuilder_ == null) {
+          roundstatsLegacyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder>(
-                  roundstats_,
+                  roundstatsLegacy_,
                   getParentForChildren(),
                   isClean());
-          roundstats_ = null;
+          roundstatsLegacy_ = null;
         }
-        return roundstatsBuilder_;
+        return roundstatsLegacyBuilder_;
+      }
+
+      // repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;
+      private java.util.List<Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats> roundstatsall_ =
+        java.util.Collections.emptyList();
+      private void ensureRoundstatsallIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          roundstatsall_ = new java.util.ArrayList<Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats>(roundstatsall_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder> roundstatsallBuilder_;
+
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats> getRoundstatsallList() {
+        if (roundstatsallBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(roundstatsall_);
+        } else {
+          return roundstatsallBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public int getRoundstatsallCount() {
+        if (roundstatsallBuilder_ == null) {
+          return roundstatsall_.size();
+        } else {
+          return roundstatsallBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats getRoundstatsall(int index) {
+        if (roundstatsallBuilder_ == null) {
+          return roundstatsall_.get(index);
+        } else {
+          return roundstatsallBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Builder setRoundstatsall(
+          int index, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats value) {
+        if (roundstatsallBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRoundstatsallIsMutable();
+          roundstatsall_.set(index, value);
+          onChanged();
+        } else {
+          roundstatsallBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Builder setRoundstatsall(
+          int index, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder builderForValue) {
+        if (roundstatsallBuilder_ == null) {
+          ensureRoundstatsallIsMutable();
+          roundstatsall_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          roundstatsallBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Builder addRoundstatsall(Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats value) {
+        if (roundstatsallBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRoundstatsallIsMutable();
+          roundstatsall_.add(value);
+          onChanged();
+        } else {
+          roundstatsallBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Builder addRoundstatsall(
+          int index, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats value) {
+        if (roundstatsallBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRoundstatsallIsMutable();
+          roundstatsall_.add(index, value);
+          onChanged();
+        } else {
+          roundstatsallBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Builder addRoundstatsall(
+          Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder builderForValue) {
+        if (roundstatsallBuilder_ == null) {
+          ensureRoundstatsallIsMutable();
+          roundstatsall_.add(builderForValue.build());
+          onChanged();
+        } else {
+          roundstatsallBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Builder addRoundstatsall(
+          int index, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder builderForValue) {
+        if (roundstatsallBuilder_ == null) {
+          ensureRoundstatsallIsMutable();
+          roundstatsall_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          roundstatsallBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Builder addAllRoundstatsall(
+          java.lang.Iterable<? extends Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats> values) {
+        if (roundstatsallBuilder_ == null) {
+          ensureRoundstatsallIsMutable();
+          super.addAll(values, roundstatsall_);
+          onChanged();
+        } else {
+          roundstatsallBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Builder clearRoundstatsall() {
+        if (roundstatsallBuilder_ == null) {
+          roundstatsall_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+          onChanged();
+        } else {
+          roundstatsallBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Builder removeRoundstatsall(int index) {
+        if (roundstatsallBuilder_ == null) {
+          ensureRoundstatsallIsMutable();
+          roundstatsall_.remove(index);
+          onChanged();
+        } else {
+          roundstatsallBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder getRoundstatsallBuilder(
+          int index) {
+        return getRoundstatsallFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder getRoundstatsallOrBuilder(
+          int index) {
+        if (roundstatsallBuilder_ == null) {
+          return roundstatsall_.get(index);  } else {
+          return roundstatsallBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public java.util.List<? extends Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder> 
+           getRoundstatsallOrBuilderList() {
+        if (roundstatsallBuilder_ != null) {
+          return roundstatsallBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(roundstatsall_);
+        }
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder addRoundstatsallBuilder() {
+        return getRoundstatsallFieldBuilder().addBuilder(
+            Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder addRoundstatsallBuilder(
+          int index) {
+        return getRoundstatsallFieldBuilder().addBuilder(
+            index, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .CMsgGCCStrike15_v2_MatchmakingServerRoundStats roundstatsall = 5;</code>
+       */
+      public java.util.List<Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder> 
+           getRoundstatsallBuilderList() {
+        return getRoundstatsallFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder> 
+          getRoundstatsallFieldBuilder() {
+        if (roundstatsallBuilder_ == null) {
+          roundstatsallBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStats.Builder, Cstrike15Gcmessages.CMsgGCCStrike15_v2_MatchmakingServerRoundStatsOrBuilder>(
+                  roundstatsall_,
+                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  getParentForChildren(),
+                  isClean());
+          roundstatsall_ = null;
+        }
+        return roundstatsallBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:CDataGCCStrike15_v2_MatchInfo)
@@ -79839,6 +82367,16 @@ public final class Cstrike15Gcmessages {
      * <code>optional uint64 gscookieid = 18;</code>
      */
     long getGscookieid();
+
+    // optional uint64 uniqueid = 19;
+    /**
+     * <code>optional uint64 uniqueid = 19;</code>
+     */
+    boolean hasUniqueid();
+    /**
+     * <code>optional uint64 uniqueid = 19;</code>
+     */
+    long getUniqueid();
   }
   /**
    * Protobuf type {@code CMsgCStrike15Welcome}
@@ -79919,6 +82457,11 @@ public final class Cstrike15Gcmessages {
             case 144: {
               bitField0_ |= 0x00000020;
               gscookieid_ = input.readUInt64();
+              break;
+            }
+            case 152: {
+              bitField0_ |= 0x00000040;
+              uniqueid_ = input.readUInt64();
               break;
             }
           }
@@ -80057,6 +82600,22 @@ public final class Cstrike15Gcmessages {
       return gscookieid_;
     }
 
+    // optional uint64 uniqueid = 19;
+    public static final int UNIQUEID_FIELD_NUMBER = 19;
+    private long uniqueid_;
+    /**
+     * <code>optional uint64 uniqueid = 19;</code>
+     */
+    public boolean hasUniqueid() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional uint64 uniqueid = 19;</code>
+     */
+    public long getUniqueid() {
+      return uniqueid_;
+    }
+
     private void initFields() {
       storeItemHash_ = 0;
       timeplayedconsecutively_ = 0;
@@ -80064,6 +82623,7 @@ public final class Cstrike15Gcmessages {
       lastTimePlayed_ = 0;
       lastIpAddress_ = 0;
       gscookieid_ = 0L;
+      uniqueid_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -80094,6 +82654,9 @@ public final class Cstrike15Gcmessages {
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeUInt64(18, gscookieid_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeUInt64(19, uniqueid_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -80127,6 +82690,10 @@ public final class Cstrike15Gcmessages {
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(18, gscookieid_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(19, uniqueid_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -80256,6 +82823,8 @@ public final class Cstrike15Gcmessages {
         bitField0_ = (bitField0_ & ~0x00000010);
         gscookieid_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000020);
+        uniqueid_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -80308,6 +82877,10 @@ public final class Cstrike15Gcmessages {
           to_bitField0_ |= 0x00000020;
         }
         result.gscookieid_ = gscookieid_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.uniqueid_ = uniqueid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -80341,6 +82914,9 @@ public final class Cstrike15Gcmessages {
         }
         if (other.hasGscookieid()) {
           setGscookieid(other.getGscookieid());
+        }
+        if (other.hasUniqueid()) {
+          setUniqueid(other.getUniqueid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -80563,6 +83139,39 @@ public final class Cstrike15Gcmessages {
       public Builder clearGscookieid() {
         bitField0_ = (bitField0_ & ~0x00000020);
         gscookieid_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional uint64 uniqueid = 19;
+      private long uniqueid_ ;
+      /**
+       * <code>optional uint64 uniqueid = 19;</code>
+       */
+      public boolean hasUniqueid() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional uint64 uniqueid = 19;</code>
+       */
+      public long getUniqueid() {
+        return uniqueid_;
+      }
+      /**
+       * <code>optional uint64 uniqueid = 19;</code>
+       */
+      public Builder setUniqueid(long value) {
+        bitField0_ |= 0x00000040;
+        uniqueid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint64 uniqueid = 19;</code>
+       */
+      public Builder clearUniqueid() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        uniqueid_ = 0L;
         onChanged();
         return this;
       }
@@ -81503,6 +84112,16 @@ public final class Cstrike15Gcmessages {
      * <code>repeated uint32 viewangles = 2;</code>
      */
     int getViewangles(int index);
+
+    // optional uint32 type = 3;
+    /**
+     * <code>optional uint32 type = 3;</code>
+     */
+    boolean hasType();
+    /**
+     * <code>optional uint32 type = 3;</code>
+     */
+    int getType();
   }
   /**
    * Protobuf type {@code CMsgGCCStrike15_v2_ServerVarValueNotificationInfo}
@@ -81579,6 +84198,11 @@ public final class Cstrike15Gcmessages {
                 viewangles_.add(input.readUInt32());
               }
               input.popLimit(limit);
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000002;
+              type_ = input.readUInt32();
               break;
             }
           }
@@ -81663,9 +84287,26 @@ public final class Cstrike15Gcmessages {
       return viewangles_.get(index);
     }
 
+    // optional uint32 type = 3;
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private int type_;
+    /**
+     * <code>optional uint32 type = 3;</code>
+     */
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 type = 3;</code>
+     */
+    public int getType() {
+      return type_;
+    }
+
     private void initFields() {
       accountid_ = 0;
       viewangles_ = java.util.Collections.emptyList();
+      type_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -81684,6 +84325,9 @@ public final class Cstrike15Gcmessages {
       }
       for (int i = 0; i < viewangles_.size(); i++) {
         output.writeUInt32(2, viewangles_.get(i));
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(3, type_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -81706,6 +84350,10 @@ public final class Cstrike15Gcmessages {
         }
         size += dataSize;
         size += 1 * getViewanglesList().size();
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, type_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -81827,6 +84475,8 @@ public final class Cstrike15Gcmessages {
         bitField0_ = (bitField0_ & ~0x00000001);
         viewangles_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000002);
+        type_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -81864,6 +84514,10 @@ public final class Cstrike15Gcmessages {
           bitField0_ = (bitField0_ & ~0x00000002);
         }
         result.viewangles_ = viewangles_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.type_ = type_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -81892,6 +84546,9 @@ public final class Cstrike15Gcmessages {
             viewangles_.addAll(other.viewangles_);
           }
           onChanged();
+        }
+        if (other.hasType()) {
+          setType(other.getType());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -82015,6 +84672,39 @@ public final class Cstrike15Gcmessages {
       public Builder clearViewangles() {
         viewangles_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 type = 3;
+      private int type_ ;
+      /**
+       * <code>optional uint32 type = 3;</code>
+       */
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional uint32 type = 3;</code>
+       */
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <code>optional uint32 type = 3;</code>
+       */
+      public Builder setType(int value) {
+        bitField0_ |= 0x00000004;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 type = 3;</code>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        type_ = 0;
         onChanged();
         return this;
       }
@@ -85803,6 +88493,4480 @@ public final class Cstrike15Gcmessages {
     // @@protoc_insertion_point(class_scope:CMsgGCCStrike15_v2_Server2GCPureServerValidationFailure)
   }
 
+  public interface CMsgGCCStrike15_v2_GC2ClientTournamentInfoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint32 eventid = 1;
+    /**
+     * <code>optional uint32 eventid = 1;</code>
+     */
+    boolean hasEventid();
+    /**
+     * <code>optional uint32 eventid = 1;</code>
+     */
+    int getEventid();
+
+    // optional uint32 stageid = 2;
+    /**
+     * <code>optional uint32 stageid = 2;</code>
+     */
+    boolean hasStageid();
+    /**
+     * <code>optional uint32 stageid = 2;</code>
+     */
+    int getStageid();
+
+    // optional uint32 game_type = 3;
+    /**
+     * <code>optional uint32 game_type = 3;</code>
+     */
+    boolean hasGameType();
+    /**
+     * <code>optional uint32 game_type = 3;</code>
+     */
+    int getGameType();
+
+    // repeated uint32 teamids = 4;
+    /**
+     * <code>repeated uint32 teamids = 4;</code>
+     */
+    java.util.List<java.lang.Integer> getTeamidsList();
+    /**
+     * <code>repeated uint32 teamids = 4;</code>
+     */
+    int getTeamidsCount();
+    /**
+     * <code>repeated uint32 teamids = 4;</code>
+     */
+    int getTeamids(int index);
+  }
+  /**
+   * Protobuf type {@code CMsgGCCStrike15_v2_GC2ClientTournamentInfo}
+   */
+  public static final class CMsgGCCStrike15_v2_GC2ClientTournamentInfo extends
+      com.google.protobuf.GeneratedMessage
+      implements CMsgGCCStrike15_v2_GC2ClientTournamentInfoOrBuilder {
+    // Use CMsgGCCStrike15_v2_GC2ClientTournamentInfo.newBuilder() to construct.
+    private CMsgGCCStrike15_v2_GC2ClientTournamentInfo(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CMsgGCCStrike15_v2_GC2ClientTournamentInfo(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CMsgGCCStrike15_v2_GC2ClientTournamentInfo defaultInstance;
+    public static CMsgGCCStrike15_v2_GC2ClientTournamentInfo getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CMsgGCCStrike15_v2_GC2ClientTournamentInfo getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CMsgGCCStrike15_v2_GC2ClientTournamentInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              eventid_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              stageid_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              gameType_ = input.readUInt32();
+              break;
+            }
+            case 32: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                teamids_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              teamids_.add(input.readUInt32());
+              break;
+            }
+            case 34: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
+                teamids_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                teamids_.add(input.readUInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          teamids_ = java.util.Collections.unmodifiableList(teamids_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo.class, Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CMsgGCCStrike15_v2_GC2ClientTournamentInfo> PARSER =
+        new com.google.protobuf.AbstractParser<CMsgGCCStrike15_v2_GC2ClientTournamentInfo>() {
+      public CMsgGCCStrike15_v2_GC2ClientTournamentInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CMsgGCCStrike15_v2_GC2ClientTournamentInfo(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CMsgGCCStrike15_v2_GC2ClientTournamentInfo> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional uint32 eventid = 1;
+    public static final int EVENTID_FIELD_NUMBER = 1;
+    private int eventid_;
+    /**
+     * <code>optional uint32 eventid = 1;</code>
+     */
+    public boolean hasEventid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 eventid = 1;</code>
+     */
+    public int getEventid() {
+      return eventid_;
+    }
+
+    // optional uint32 stageid = 2;
+    public static final int STAGEID_FIELD_NUMBER = 2;
+    private int stageid_;
+    /**
+     * <code>optional uint32 stageid = 2;</code>
+     */
+    public boolean hasStageid() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 stageid = 2;</code>
+     */
+    public int getStageid() {
+      return stageid_;
+    }
+
+    // optional uint32 game_type = 3;
+    public static final int GAME_TYPE_FIELD_NUMBER = 3;
+    private int gameType_;
+    /**
+     * <code>optional uint32 game_type = 3;</code>
+     */
+    public boolean hasGameType() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional uint32 game_type = 3;</code>
+     */
+    public int getGameType() {
+      return gameType_;
+    }
+
+    // repeated uint32 teamids = 4;
+    public static final int TEAMIDS_FIELD_NUMBER = 4;
+    private java.util.List<java.lang.Integer> teamids_;
+    /**
+     * <code>repeated uint32 teamids = 4;</code>
+     */
+    public java.util.List<java.lang.Integer>
+        getTeamidsList() {
+      return teamids_;
+    }
+    /**
+     * <code>repeated uint32 teamids = 4;</code>
+     */
+    public int getTeamidsCount() {
+      return teamids_.size();
+    }
+    /**
+     * <code>repeated uint32 teamids = 4;</code>
+     */
+    public int getTeamids(int index) {
+      return teamids_.get(index);
+    }
+
+    private void initFields() {
+      eventid_ = 0;
+      stageid_ = 0;
+      gameType_ = 0;
+      teamids_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, eventid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, stageid_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(3, gameType_);
+      }
+      for (int i = 0; i < teamids_.size(); i++) {
+        output.writeUInt32(4, teamids_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, eventid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, stageid_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, gameType_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < teamids_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(teamids_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getTeamidsList().size();
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CMsgGCCStrike15_v2_GC2ClientTournamentInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo.class, Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        eventid_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        stageid_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        gameType_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        teamids_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo build() {
+        Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo buildPartial() {
+        Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo result = new Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.eventid_ = eventid_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.stageid_ = stageid_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.gameType_ = gameType_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          teamids_ = java.util.Collections.unmodifiableList(teamids_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.teamids_ = teamids_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo) {
+          return mergeFrom((Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo other) {
+        if (other == Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo.getDefaultInstance()) return this;
+        if (other.hasEventid()) {
+          setEventid(other.getEventid());
+        }
+        if (other.hasStageid()) {
+          setStageid(other.getStageid());
+        }
+        if (other.hasGameType()) {
+          setGameType(other.getGameType());
+        }
+        if (!other.teamids_.isEmpty()) {
+          if (teamids_.isEmpty()) {
+            teamids_ = other.teamids_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureTeamidsIsMutable();
+            teamids_.addAll(other.teamids_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CMsgGCCStrike15_v2_GC2ClientTournamentInfo) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint32 eventid = 1;
+      private int eventid_ ;
+      /**
+       * <code>optional uint32 eventid = 1;</code>
+       */
+      public boolean hasEventid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 eventid = 1;</code>
+       */
+      public int getEventid() {
+        return eventid_;
+      }
+      /**
+       * <code>optional uint32 eventid = 1;</code>
+       */
+      public Builder setEventid(int value) {
+        bitField0_ |= 0x00000001;
+        eventid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 eventid = 1;</code>
+       */
+      public Builder clearEventid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        eventid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 stageid = 2;
+      private int stageid_ ;
+      /**
+       * <code>optional uint32 stageid = 2;</code>
+       */
+      public boolean hasStageid() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 stageid = 2;</code>
+       */
+      public int getStageid() {
+        return stageid_;
+      }
+      /**
+       * <code>optional uint32 stageid = 2;</code>
+       */
+      public Builder setStageid(int value) {
+        bitField0_ |= 0x00000002;
+        stageid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 stageid = 2;</code>
+       */
+      public Builder clearStageid() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        stageid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 game_type = 3;
+      private int gameType_ ;
+      /**
+       * <code>optional uint32 game_type = 3;</code>
+       */
+      public boolean hasGameType() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional uint32 game_type = 3;</code>
+       */
+      public int getGameType() {
+        return gameType_;
+      }
+      /**
+       * <code>optional uint32 game_type = 3;</code>
+       */
+      public Builder setGameType(int value) {
+        bitField0_ |= 0x00000004;
+        gameType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 game_type = 3;</code>
+       */
+      public Builder clearGameType() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        gameType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // repeated uint32 teamids = 4;
+      private java.util.List<java.lang.Integer> teamids_ = java.util.Collections.emptyList();
+      private void ensureTeamidsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          teamids_ = new java.util.ArrayList<java.lang.Integer>(teamids_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      /**
+       * <code>repeated uint32 teamids = 4;</code>
+       */
+      public java.util.List<java.lang.Integer>
+          getTeamidsList() {
+        return java.util.Collections.unmodifiableList(teamids_);
+      }
+      /**
+       * <code>repeated uint32 teamids = 4;</code>
+       */
+      public int getTeamidsCount() {
+        return teamids_.size();
+      }
+      /**
+       * <code>repeated uint32 teamids = 4;</code>
+       */
+      public int getTeamids(int index) {
+        return teamids_.get(index);
+      }
+      /**
+       * <code>repeated uint32 teamids = 4;</code>
+       */
+      public Builder setTeamids(
+          int index, int value) {
+        ensureTeamidsIsMutable();
+        teamids_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 teamids = 4;</code>
+       */
+      public Builder addTeamids(int value) {
+        ensureTeamidsIsMutable();
+        teamids_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 teamids = 4;</code>
+       */
+      public Builder addAllTeamids(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureTeamidsIsMutable();
+        super.addAll(values, teamids_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 teamids = 4;</code>
+       */
+      public Builder clearTeamids() {
+        teamids_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CMsgGCCStrike15_v2_GC2ClientTournamentInfo)
+    }
+
+    static {
+      defaultInstance = new CMsgGCCStrike15_v2_GC2ClientTournamentInfo(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CMsgGCCStrike15_v2_GC2ClientTournamentInfo)
+  }
+
+  public interface CSOEconCouponOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint32 entryid = 1;
+    /**
+     * <code>optional uint32 entryid = 1;</code>
+     */
+    boolean hasEntryid();
+    /**
+     * <code>optional uint32 entryid = 1;</code>
+     */
+    int getEntryid();
+
+    // optional uint32 defidx = 2;
+    /**
+     * <code>optional uint32 defidx = 2;</code>
+     */
+    boolean hasDefidx();
+    /**
+     * <code>optional uint32 defidx = 2;</code>
+     */
+    int getDefidx();
+
+    // optional fixed32 expiration_date = 3;
+    /**
+     * <code>optional fixed32 expiration_date = 3;</code>
+     */
+    boolean hasExpirationDate();
+    /**
+     * <code>optional fixed32 expiration_date = 3;</code>
+     */
+    int getExpirationDate();
+  }
+  /**
+   * Protobuf type {@code CSOEconCoupon}
+   */
+  public static final class CSOEconCoupon extends
+      com.google.protobuf.GeneratedMessage
+      implements CSOEconCouponOrBuilder {
+    // Use CSOEconCoupon.newBuilder() to construct.
+    private CSOEconCoupon(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CSOEconCoupon(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CSOEconCoupon defaultInstance;
+    public static CSOEconCoupon getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CSOEconCoupon getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CSOEconCoupon(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              entryid_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              defidx_ = input.readUInt32();
+              break;
+            }
+            case 29: {
+              bitField0_ |= 0x00000004;
+              expirationDate_ = input.readFixed32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CSOEconCoupon_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CSOEconCoupon_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CSOEconCoupon.class, Cstrike15Gcmessages.CSOEconCoupon.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CSOEconCoupon> PARSER =
+        new com.google.protobuf.AbstractParser<CSOEconCoupon>() {
+      public CSOEconCoupon parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CSOEconCoupon(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CSOEconCoupon> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional uint32 entryid = 1;
+    public static final int ENTRYID_FIELD_NUMBER = 1;
+    private int entryid_;
+    /**
+     * <code>optional uint32 entryid = 1;</code>
+     */
+    public boolean hasEntryid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 entryid = 1;</code>
+     */
+    public int getEntryid() {
+      return entryid_;
+    }
+
+    // optional uint32 defidx = 2;
+    public static final int DEFIDX_FIELD_NUMBER = 2;
+    private int defidx_;
+    /**
+     * <code>optional uint32 defidx = 2;</code>
+     */
+    public boolean hasDefidx() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 defidx = 2;</code>
+     */
+    public int getDefidx() {
+      return defidx_;
+    }
+
+    // optional fixed32 expiration_date = 3;
+    public static final int EXPIRATION_DATE_FIELD_NUMBER = 3;
+    private int expirationDate_;
+    /**
+     * <code>optional fixed32 expiration_date = 3;</code>
+     */
+    public boolean hasExpirationDate() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional fixed32 expiration_date = 3;</code>
+     */
+    public int getExpirationDate() {
+      return expirationDate_;
+    }
+
+    private void initFields() {
+      entryid_ = 0;
+      defidx_ = 0;
+      expirationDate_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, entryid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, defidx_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeFixed32(3, expirationDate_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, entryid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, defidx_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(3, expirationDate_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CSOEconCoupon parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CSOEconCoupon parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOEconCoupon parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CSOEconCoupon parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOEconCoupon parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CSOEconCoupon parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOEconCoupon parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CSOEconCoupon parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOEconCoupon parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CSOEconCoupon parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CSOEconCoupon prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CSOEconCoupon}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CSOEconCouponOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CSOEconCoupon_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CSOEconCoupon_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CSOEconCoupon.class, Cstrike15Gcmessages.CSOEconCoupon.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CSOEconCoupon.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        entryid_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        defidx_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        expirationDate_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CSOEconCoupon_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CSOEconCoupon getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CSOEconCoupon.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CSOEconCoupon build() {
+        Cstrike15Gcmessages.CSOEconCoupon result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CSOEconCoupon buildPartial() {
+        Cstrike15Gcmessages.CSOEconCoupon result = new Cstrike15Gcmessages.CSOEconCoupon(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.entryid_ = entryid_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.defidx_ = defidx_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.expirationDate_ = expirationDate_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CSOEconCoupon) {
+          return mergeFrom((Cstrike15Gcmessages.CSOEconCoupon)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CSOEconCoupon other) {
+        if (other == Cstrike15Gcmessages.CSOEconCoupon.getDefaultInstance()) return this;
+        if (other.hasEntryid()) {
+          setEntryid(other.getEntryid());
+        }
+        if (other.hasDefidx()) {
+          setDefidx(other.getDefidx());
+        }
+        if (other.hasExpirationDate()) {
+          setExpirationDate(other.getExpirationDate());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CSOEconCoupon parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CSOEconCoupon) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint32 entryid = 1;
+      private int entryid_ ;
+      /**
+       * <code>optional uint32 entryid = 1;</code>
+       */
+      public boolean hasEntryid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 entryid = 1;</code>
+       */
+      public int getEntryid() {
+        return entryid_;
+      }
+      /**
+       * <code>optional uint32 entryid = 1;</code>
+       */
+      public Builder setEntryid(int value) {
+        bitField0_ |= 0x00000001;
+        entryid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 entryid = 1;</code>
+       */
+      public Builder clearEntryid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        entryid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 defidx = 2;
+      private int defidx_ ;
+      /**
+       * <code>optional uint32 defidx = 2;</code>
+       */
+      public boolean hasDefidx() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 defidx = 2;</code>
+       */
+      public int getDefidx() {
+        return defidx_;
+      }
+      /**
+       * <code>optional uint32 defidx = 2;</code>
+       */
+      public Builder setDefidx(int value) {
+        bitField0_ |= 0x00000002;
+        defidx_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 defidx = 2;</code>
+       */
+      public Builder clearDefidx() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        defidx_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional fixed32 expiration_date = 3;
+      private int expirationDate_ ;
+      /**
+       * <code>optional fixed32 expiration_date = 3;</code>
+       */
+      public boolean hasExpirationDate() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional fixed32 expiration_date = 3;</code>
+       */
+      public int getExpirationDate() {
+        return expirationDate_;
+      }
+      /**
+       * <code>optional fixed32 expiration_date = 3;</code>
+       */
+      public Builder setExpirationDate(int value) {
+        bitField0_ |= 0x00000004;
+        expirationDate_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional fixed32 expiration_date = 3;</code>
+       */
+      public Builder clearExpirationDate() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        expirationDate_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CSOEconCoupon)
+    }
+
+    static {
+      defaultInstance = new CSOEconCoupon(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CSOEconCoupon)
+  }
+
+  public interface CSOQuestProgressOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint32 questid = 1;
+    /**
+     * <code>optional uint32 questid = 1;</code>
+     */
+    boolean hasQuestid();
+    /**
+     * <code>optional uint32 questid = 1;</code>
+     */
+    int getQuestid();
+
+    // optional uint32 points_remaining = 2;
+    /**
+     * <code>optional uint32 points_remaining = 2;</code>
+     */
+    boolean hasPointsRemaining();
+    /**
+     * <code>optional uint32 points_remaining = 2;</code>
+     */
+    int getPointsRemaining();
+
+    // optional uint32 bonus_points = 3;
+    /**
+     * <code>optional uint32 bonus_points = 3;</code>
+     */
+    boolean hasBonusPoints();
+    /**
+     * <code>optional uint32 bonus_points = 3;</code>
+     */
+    int getBonusPoints();
+  }
+  /**
+   * Protobuf type {@code CSOQuestProgress}
+   */
+  public static final class CSOQuestProgress extends
+      com.google.protobuf.GeneratedMessage
+      implements CSOQuestProgressOrBuilder {
+    // Use CSOQuestProgress.newBuilder() to construct.
+    private CSOQuestProgress(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CSOQuestProgress(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CSOQuestProgress defaultInstance;
+    public static CSOQuestProgress getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CSOQuestProgress getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CSOQuestProgress(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              questid_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              pointsRemaining_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              bonusPoints_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CSOQuestProgress_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CSOQuestProgress_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CSOQuestProgress.class, Cstrike15Gcmessages.CSOQuestProgress.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CSOQuestProgress> PARSER =
+        new com.google.protobuf.AbstractParser<CSOQuestProgress>() {
+      public CSOQuestProgress parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CSOQuestProgress(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CSOQuestProgress> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional uint32 questid = 1;
+    public static final int QUESTID_FIELD_NUMBER = 1;
+    private int questid_;
+    /**
+     * <code>optional uint32 questid = 1;</code>
+     */
+    public boolean hasQuestid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 questid = 1;</code>
+     */
+    public int getQuestid() {
+      return questid_;
+    }
+
+    // optional uint32 points_remaining = 2;
+    public static final int POINTS_REMAINING_FIELD_NUMBER = 2;
+    private int pointsRemaining_;
+    /**
+     * <code>optional uint32 points_remaining = 2;</code>
+     */
+    public boolean hasPointsRemaining() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 points_remaining = 2;</code>
+     */
+    public int getPointsRemaining() {
+      return pointsRemaining_;
+    }
+
+    // optional uint32 bonus_points = 3;
+    public static final int BONUS_POINTS_FIELD_NUMBER = 3;
+    private int bonusPoints_;
+    /**
+     * <code>optional uint32 bonus_points = 3;</code>
+     */
+    public boolean hasBonusPoints() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional uint32 bonus_points = 3;</code>
+     */
+    public int getBonusPoints() {
+      return bonusPoints_;
+    }
+
+    private void initFields() {
+      questid_ = 0;
+      pointsRemaining_ = 0;
+      bonusPoints_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, questid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, pointsRemaining_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(3, bonusPoints_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, questid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, pointsRemaining_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, bonusPoints_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CSOQuestProgress parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CSOQuestProgress parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOQuestProgress parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CSOQuestProgress parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOQuestProgress parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CSOQuestProgress parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOQuestProgress parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CSOQuestProgress parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOQuestProgress parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CSOQuestProgress parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CSOQuestProgress prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CSOQuestProgress}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CSOQuestProgressOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CSOQuestProgress_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CSOQuestProgress_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CSOQuestProgress.class, Cstrike15Gcmessages.CSOQuestProgress.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CSOQuestProgress.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        questid_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pointsRemaining_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        bonusPoints_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CSOQuestProgress_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CSOQuestProgress getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CSOQuestProgress.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CSOQuestProgress build() {
+        Cstrike15Gcmessages.CSOQuestProgress result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CSOQuestProgress buildPartial() {
+        Cstrike15Gcmessages.CSOQuestProgress result = new Cstrike15Gcmessages.CSOQuestProgress(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.questid_ = questid_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.pointsRemaining_ = pointsRemaining_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.bonusPoints_ = bonusPoints_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CSOQuestProgress) {
+          return mergeFrom((Cstrike15Gcmessages.CSOQuestProgress)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CSOQuestProgress other) {
+        if (other == Cstrike15Gcmessages.CSOQuestProgress.getDefaultInstance()) return this;
+        if (other.hasQuestid()) {
+          setQuestid(other.getQuestid());
+        }
+        if (other.hasPointsRemaining()) {
+          setPointsRemaining(other.getPointsRemaining());
+        }
+        if (other.hasBonusPoints()) {
+          setBonusPoints(other.getBonusPoints());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CSOQuestProgress parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CSOQuestProgress) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint32 questid = 1;
+      private int questid_ ;
+      /**
+       * <code>optional uint32 questid = 1;</code>
+       */
+      public boolean hasQuestid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 questid = 1;</code>
+       */
+      public int getQuestid() {
+        return questid_;
+      }
+      /**
+       * <code>optional uint32 questid = 1;</code>
+       */
+      public Builder setQuestid(int value) {
+        bitField0_ |= 0x00000001;
+        questid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 questid = 1;</code>
+       */
+      public Builder clearQuestid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        questid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 points_remaining = 2;
+      private int pointsRemaining_ ;
+      /**
+       * <code>optional uint32 points_remaining = 2;</code>
+       */
+      public boolean hasPointsRemaining() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 points_remaining = 2;</code>
+       */
+      public int getPointsRemaining() {
+        return pointsRemaining_;
+      }
+      /**
+       * <code>optional uint32 points_remaining = 2;</code>
+       */
+      public Builder setPointsRemaining(int value) {
+        bitField0_ |= 0x00000002;
+        pointsRemaining_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 points_remaining = 2;</code>
+       */
+      public Builder clearPointsRemaining() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        pointsRemaining_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 bonus_points = 3;
+      private int bonusPoints_ ;
+      /**
+       * <code>optional uint32 bonus_points = 3;</code>
+       */
+      public boolean hasBonusPoints() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional uint32 bonus_points = 3;</code>
+       */
+      public int getBonusPoints() {
+        return bonusPoints_;
+      }
+      /**
+       * <code>optional uint32 bonus_points = 3;</code>
+       */
+      public Builder setBonusPoints(int value) {
+        bitField0_ |= 0x00000004;
+        bonusPoints_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 bonus_points = 3;</code>
+       */
+      public Builder clearBonusPoints() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        bonusPoints_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CSOQuestProgress)
+    }
+
+    static {
+      defaultInstance = new CSOQuestProgress(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CSOQuestProgress)
+  }
+
+  public interface CSOPersonaDataPublicOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int32 player_level = 1;
+    /**
+     * <code>optional int32 player_level = 1;</code>
+     */
+    boolean hasPlayerLevel();
+    /**
+     * <code>optional int32 player_level = 1;</code>
+     */
+    int getPlayerLevel();
+
+    // optional .PlayerCommendationInfo commendation = 2;
+    /**
+     * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+     */
+    boolean hasCommendation();
+    /**
+     * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+     */
+    Cstrike15Gcmessages.PlayerCommendationInfo getCommendation();
+    /**
+     * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+     */
+    Cstrike15Gcmessages.PlayerCommendationInfoOrBuilder getCommendationOrBuilder();
+  }
+  /**
+   * Protobuf type {@code CSOPersonaDataPublic}
+   */
+  public static final class CSOPersonaDataPublic extends
+      com.google.protobuf.GeneratedMessage
+      implements CSOPersonaDataPublicOrBuilder {
+    // Use CSOPersonaDataPublic.newBuilder() to construct.
+    private CSOPersonaDataPublic(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CSOPersonaDataPublic(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CSOPersonaDataPublic defaultInstance;
+    public static CSOPersonaDataPublic getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CSOPersonaDataPublic getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CSOPersonaDataPublic(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              playerLevel_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              Cstrike15Gcmessages.PlayerCommendationInfo.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = commendation_.toBuilder();
+              }
+              commendation_ = input.readMessage(Cstrike15Gcmessages.PlayerCommendationInfo.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(commendation_);
+                commendation_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CSOPersonaDataPublic_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CSOPersonaDataPublic_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CSOPersonaDataPublic.class, Cstrike15Gcmessages.CSOPersonaDataPublic.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CSOPersonaDataPublic> PARSER =
+        new com.google.protobuf.AbstractParser<CSOPersonaDataPublic>() {
+      public CSOPersonaDataPublic parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CSOPersonaDataPublic(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CSOPersonaDataPublic> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int32 player_level = 1;
+    public static final int PLAYER_LEVEL_FIELD_NUMBER = 1;
+    private int playerLevel_;
+    /**
+     * <code>optional int32 player_level = 1;</code>
+     */
+    public boolean hasPlayerLevel() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 player_level = 1;</code>
+     */
+    public int getPlayerLevel() {
+      return playerLevel_;
+    }
+
+    // optional .PlayerCommendationInfo commendation = 2;
+    public static final int COMMENDATION_FIELD_NUMBER = 2;
+    private Cstrike15Gcmessages.PlayerCommendationInfo commendation_;
+    /**
+     * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+     */
+    public boolean hasCommendation() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+     */
+    public Cstrike15Gcmessages.PlayerCommendationInfo getCommendation() {
+      return commendation_;
+    }
+    /**
+     * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+     */
+    public Cstrike15Gcmessages.PlayerCommendationInfoOrBuilder getCommendationOrBuilder() {
+      return commendation_;
+    }
+
+    private void initFields() {
+      playerLevel_ = 0;
+      commendation_ = Cstrike15Gcmessages.PlayerCommendationInfo.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, playerLevel_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, commendation_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, playerLevel_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, commendation_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CSOPersonaDataPublic parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CSOPersonaDataPublic prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CSOPersonaDataPublic}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CSOPersonaDataPublicOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CSOPersonaDataPublic_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CSOPersonaDataPublic_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CSOPersonaDataPublic.class, Cstrike15Gcmessages.CSOPersonaDataPublic.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CSOPersonaDataPublic.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getCommendationFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        playerLevel_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (commendationBuilder_ == null) {
+          commendation_ = Cstrike15Gcmessages.PlayerCommendationInfo.getDefaultInstance();
+        } else {
+          commendationBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CSOPersonaDataPublic_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CSOPersonaDataPublic getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CSOPersonaDataPublic.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CSOPersonaDataPublic build() {
+        Cstrike15Gcmessages.CSOPersonaDataPublic result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CSOPersonaDataPublic buildPartial() {
+        Cstrike15Gcmessages.CSOPersonaDataPublic result = new Cstrike15Gcmessages.CSOPersonaDataPublic(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.playerLevel_ = playerLevel_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (commendationBuilder_ == null) {
+          result.commendation_ = commendation_;
+        } else {
+          result.commendation_ = commendationBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CSOPersonaDataPublic) {
+          return mergeFrom((Cstrike15Gcmessages.CSOPersonaDataPublic)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CSOPersonaDataPublic other) {
+        if (other == Cstrike15Gcmessages.CSOPersonaDataPublic.getDefaultInstance()) return this;
+        if (other.hasPlayerLevel()) {
+          setPlayerLevel(other.getPlayerLevel());
+        }
+        if (other.hasCommendation()) {
+          mergeCommendation(other.getCommendation());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CSOPersonaDataPublic parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CSOPersonaDataPublic) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int32 player_level = 1;
+      private int playerLevel_ ;
+      /**
+       * <code>optional int32 player_level = 1;</code>
+       */
+      public boolean hasPlayerLevel() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 player_level = 1;</code>
+       */
+      public int getPlayerLevel() {
+        return playerLevel_;
+      }
+      /**
+       * <code>optional int32 player_level = 1;</code>
+       */
+      public Builder setPlayerLevel(int value) {
+        bitField0_ |= 0x00000001;
+        playerLevel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 player_level = 1;</code>
+       */
+      public Builder clearPlayerLevel() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        playerLevel_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional .PlayerCommendationInfo commendation = 2;
+      private Cstrike15Gcmessages.PlayerCommendationInfo commendation_ = Cstrike15Gcmessages.PlayerCommendationInfo.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          Cstrike15Gcmessages.PlayerCommendationInfo, Cstrike15Gcmessages.PlayerCommendationInfo.Builder, Cstrike15Gcmessages.PlayerCommendationInfoOrBuilder> commendationBuilder_;
+      /**
+       * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+       */
+      public boolean hasCommendation() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+       */
+      public Cstrike15Gcmessages.PlayerCommendationInfo getCommendation() {
+        if (commendationBuilder_ == null) {
+          return commendation_;
+        } else {
+          return commendationBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+       */
+      public Builder setCommendation(Cstrike15Gcmessages.PlayerCommendationInfo value) {
+        if (commendationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          commendation_ = value;
+          onChanged();
+        } else {
+          commendationBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+       */
+      public Builder setCommendation(
+          Cstrike15Gcmessages.PlayerCommendationInfo.Builder builderForValue) {
+        if (commendationBuilder_ == null) {
+          commendation_ = builderForValue.build();
+          onChanged();
+        } else {
+          commendationBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+       */
+      public Builder mergeCommendation(Cstrike15Gcmessages.PlayerCommendationInfo value) {
+        if (commendationBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              commendation_ != Cstrike15Gcmessages.PlayerCommendationInfo.getDefaultInstance()) {
+            commendation_ =
+              Cstrike15Gcmessages.PlayerCommendationInfo.newBuilder(commendation_).mergeFrom(value).buildPartial();
+          } else {
+            commendation_ = value;
+          }
+          onChanged();
+        } else {
+          commendationBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+       */
+      public Builder clearCommendation() {
+        if (commendationBuilder_ == null) {
+          commendation_ = Cstrike15Gcmessages.PlayerCommendationInfo.getDefaultInstance();
+          onChanged();
+        } else {
+          commendationBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+       */
+      public Cstrike15Gcmessages.PlayerCommendationInfo.Builder getCommendationBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getCommendationFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+       */
+      public Cstrike15Gcmessages.PlayerCommendationInfoOrBuilder getCommendationOrBuilder() {
+        if (commendationBuilder_ != null) {
+          return commendationBuilder_.getMessageOrBuilder();
+        } else {
+          return commendation_;
+        }
+      }
+      /**
+       * <code>optional .PlayerCommendationInfo commendation = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          Cstrike15Gcmessages.PlayerCommendationInfo, Cstrike15Gcmessages.PlayerCommendationInfo.Builder, Cstrike15Gcmessages.PlayerCommendationInfoOrBuilder> 
+          getCommendationFieldBuilder() {
+        if (commendationBuilder_ == null) {
+          commendationBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              Cstrike15Gcmessages.PlayerCommendationInfo, Cstrike15Gcmessages.PlayerCommendationInfo.Builder, Cstrike15Gcmessages.PlayerCommendationInfoOrBuilder>(
+                  commendation_,
+                  getParentForChildren(),
+                  isClean());
+          commendation_ = null;
+        }
+        return commendationBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CSOPersonaDataPublic)
+    }
+
+    static {
+      defaultInstance = new CSOPersonaDataPublic(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CSOPersonaDataPublic)
+  }
+
+  public interface CMsgGC_GlobalGame_SubscribeOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint64 ticket = 1;
+    /**
+     * <code>optional uint64 ticket = 1;</code>
+     */
+    boolean hasTicket();
+    /**
+     * <code>optional uint64 ticket = 1;</code>
+     */
+    long getTicket();
+  }
+  /**
+   * Protobuf type {@code CMsgGC_GlobalGame_Subscribe}
+   */
+  public static final class CMsgGC_GlobalGame_Subscribe extends
+      com.google.protobuf.GeneratedMessage
+      implements CMsgGC_GlobalGame_SubscribeOrBuilder {
+    // Use CMsgGC_GlobalGame_Subscribe.newBuilder() to construct.
+    private CMsgGC_GlobalGame_Subscribe(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CMsgGC_GlobalGame_Subscribe(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CMsgGC_GlobalGame_Subscribe defaultInstance;
+    public static CMsgGC_GlobalGame_Subscribe getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CMsgGC_GlobalGame_Subscribe getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CMsgGC_GlobalGame_Subscribe(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              ticket_ = input.readUInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Subscribe_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Subscribe_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe.class, Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CMsgGC_GlobalGame_Subscribe> PARSER =
+        new com.google.protobuf.AbstractParser<CMsgGC_GlobalGame_Subscribe>() {
+      public CMsgGC_GlobalGame_Subscribe parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CMsgGC_GlobalGame_Subscribe(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CMsgGC_GlobalGame_Subscribe> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional uint64 ticket = 1;
+    public static final int TICKET_FIELD_NUMBER = 1;
+    private long ticket_;
+    /**
+     * <code>optional uint64 ticket = 1;</code>
+     */
+    public boolean hasTicket() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint64 ticket = 1;</code>
+     */
+    public long getTicket() {
+      return ticket_;
+    }
+
+    private void initFields() {
+      ticket_ = 0L;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt64(1, ticket_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, ticket_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CMsgGC_GlobalGame_Subscribe}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CMsgGC_GlobalGame_SubscribeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Subscribe_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Subscribe_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe.class, Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        ticket_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Subscribe_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe build() {
+        Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe buildPartial() {
+        Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe result = new Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.ticket_ = ticket_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe) {
+          return mergeFrom((Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe other) {
+        if (other == Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe.getDefaultInstance()) return this;
+        if (other.hasTicket()) {
+          setTicket(other.getTicket());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CMsgGC_GlobalGame_Subscribe) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint64 ticket = 1;
+      private long ticket_ ;
+      /**
+       * <code>optional uint64 ticket = 1;</code>
+       */
+      public boolean hasTicket() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint64 ticket = 1;</code>
+       */
+      public long getTicket() {
+        return ticket_;
+      }
+      /**
+       * <code>optional uint64 ticket = 1;</code>
+       */
+      public Builder setTicket(long value) {
+        bitField0_ |= 0x00000001;
+        ticket_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint64 ticket = 1;</code>
+       */
+      public Builder clearTicket() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        ticket_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CMsgGC_GlobalGame_Subscribe)
+    }
+
+    static {
+      defaultInstance = new CMsgGC_GlobalGame_Subscribe(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CMsgGC_GlobalGame_Subscribe)
+  }
+
+  public interface CMsgGC_GlobalGame_UnsubscribeOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int32 timeleft = 1;
+    /**
+     * <code>optional int32 timeleft = 1;</code>
+     */
+    boolean hasTimeleft();
+    /**
+     * <code>optional int32 timeleft = 1;</code>
+     */
+    int getTimeleft();
+  }
+  /**
+   * Protobuf type {@code CMsgGC_GlobalGame_Unsubscribe}
+   */
+  public static final class CMsgGC_GlobalGame_Unsubscribe extends
+      com.google.protobuf.GeneratedMessage
+      implements CMsgGC_GlobalGame_UnsubscribeOrBuilder {
+    // Use CMsgGC_GlobalGame_Unsubscribe.newBuilder() to construct.
+    private CMsgGC_GlobalGame_Unsubscribe(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CMsgGC_GlobalGame_Unsubscribe(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CMsgGC_GlobalGame_Unsubscribe defaultInstance;
+    public static CMsgGC_GlobalGame_Unsubscribe getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CMsgGC_GlobalGame_Unsubscribe getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CMsgGC_GlobalGame_Unsubscribe(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              timeleft_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Unsubscribe_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Unsubscribe_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe.class, Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CMsgGC_GlobalGame_Unsubscribe> PARSER =
+        new com.google.protobuf.AbstractParser<CMsgGC_GlobalGame_Unsubscribe>() {
+      public CMsgGC_GlobalGame_Unsubscribe parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CMsgGC_GlobalGame_Unsubscribe(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CMsgGC_GlobalGame_Unsubscribe> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int32 timeleft = 1;
+    public static final int TIMELEFT_FIELD_NUMBER = 1;
+    private int timeleft_;
+    /**
+     * <code>optional int32 timeleft = 1;</code>
+     */
+    public boolean hasTimeleft() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 timeleft = 1;</code>
+     */
+    public int getTimeleft() {
+      return timeleft_;
+    }
+
+    private void initFields() {
+      timeleft_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, timeleft_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, timeleft_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CMsgGC_GlobalGame_Unsubscribe}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CMsgGC_GlobalGame_UnsubscribeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Unsubscribe_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Unsubscribe_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe.class, Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        timeleft_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Unsubscribe_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe build() {
+        Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe buildPartial() {
+        Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe result = new Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.timeleft_ = timeleft_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe) {
+          return mergeFrom((Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe other) {
+        if (other == Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe.getDefaultInstance()) return this;
+        if (other.hasTimeleft()) {
+          setTimeleft(other.getTimeleft());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CMsgGC_GlobalGame_Unsubscribe) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int32 timeleft = 1;
+      private int timeleft_ ;
+      /**
+       * <code>optional int32 timeleft = 1;</code>
+       */
+      public boolean hasTimeleft() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 timeleft = 1;</code>
+       */
+      public int getTimeleft() {
+        return timeleft_;
+      }
+      /**
+       * <code>optional int32 timeleft = 1;</code>
+       */
+      public Builder setTimeleft(int value) {
+        bitField0_ |= 0x00000001;
+        timeleft_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 timeleft = 1;</code>
+       */
+      public Builder clearTimeleft() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        timeleft_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CMsgGC_GlobalGame_Unsubscribe)
+    }
+
+    static {
+      defaultInstance = new CMsgGC_GlobalGame_Unsubscribe(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CMsgGC_GlobalGame_Unsubscribe)
+  }
+
+  public interface CMsgGC_GlobalGame_PlayOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint64 ticket = 1;
+    /**
+     * <code>optional uint64 ticket = 1;</code>
+     */
+    boolean hasTicket();
+    /**
+     * <code>optional uint64 ticket = 1;</code>
+     */
+    long getTicket();
+
+    // optional uint32 gametimems = 2;
+    /**
+     * <code>optional uint32 gametimems = 2;</code>
+     */
+    boolean hasGametimems();
+    /**
+     * <code>optional uint32 gametimems = 2;</code>
+     */
+    int getGametimems();
+
+    // optional uint32 msperpoint = 3;
+    /**
+     * <code>optional uint32 msperpoint = 3;</code>
+     */
+    boolean hasMsperpoint();
+    /**
+     * <code>optional uint32 msperpoint = 3;</code>
+     */
+    int getMsperpoint();
+  }
+  /**
+   * Protobuf type {@code CMsgGC_GlobalGame_Play}
+   */
+  public static final class CMsgGC_GlobalGame_Play extends
+      com.google.protobuf.GeneratedMessage
+      implements CMsgGC_GlobalGame_PlayOrBuilder {
+    // Use CMsgGC_GlobalGame_Play.newBuilder() to construct.
+    private CMsgGC_GlobalGame_Play(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CMsgGC_GlobalGame_Play(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CMsgGC_GlobalGame_Play defaultInstance;
+    public static CMsgGC_GlobalGame_Play getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CMsgGC_GlobalGame_Play getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CMsgGC_GlobalGame_Play(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              ticket_ = input.readUInt64();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              gametimems_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              msperpoint_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Play_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Play_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CMsgGC_GlobalGame_Play.class, Cstrike15Gcmessages.CMsgGC_GlobalGame_Play.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CMsgGC_GlobalGame_Play> PARSER =
+        new com.google.protobuf.AbstractParser<CMsgGC_GlobalGame_Play>() {
+      public CMsgGC_GlobalGame_Play parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CMsgGC_GlobalGame_Play(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CMsgGC_GlobalGame_Play> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional uint64 ticket = 1;
+    public static final int TICKET_FIELD_NUMBER = 1;
+    private long ticket_;
+    /**
+     * <code>optional uint64 ticket = 1;</code>
+     */
+    public boolean hasTicket() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint64 ticket = 1;</code>
+     */
+    public long getTicket() {
+      return ticket_;
+    }
+
+    // optional uint32 gametimems = 2;
+    public static final int GAMETIMEMS_FIELD_NUMBER = 2;
+    private int gametimems_;
+    /**
+     * <code>optional uint32 gametimems = 2;</code>
+     */
+    public boolean hasGametimems() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 gametimems = 2;</code>
+     */
+    public int getGametimems() {
+      return gametimems_;
+    }
+
+    // optional uint32 msperpoint = 3;
+    public static final int MSPERPOINT_FIELD_NUMBER = 3;
+    private int msperpoint_;
+    /**
+     * <code>optional uint32 msperpoint = 3;</code>
+     */
+    public boolean hasMsperpoint() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional uint32 msperpoint = 3;</code>
+     */
+    public int getMsperpoint() {
+      return msperpoint_;
+    }
+
+    private void initFields() {
+      ticket_ = 0L;
+      gametimems_ = 0;
+      msperpoint_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt64(1, ticket_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, gametimems_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(3, msperpoint_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, ticket_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, gametimems_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, msperpoint_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGC_GlobalGame_Play prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CMsgGC_GlobalGame_Play}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CMsgGC_GlobalGame_PlayOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Play_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Play_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CMsgGC_GlobalGame_Play.class, Cstrike15Gcmessages.CMsgGC_GlobalGame_Play.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CMsgGC_GlobalGame_Play.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        ticket_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        gametimems_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        msperpoint_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CMsgGC_GlobalGame_Play_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_GlobalGame_Play getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CMsgGC_GlobalGame_Play.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_GlobalGame_Play build() {
+        Cstrike15Gcmessages.CMsgGC_GlobalGame_Play result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CMsgGC_GlobalGame_Play buildPartial() {
+        Cstrike15Gcmessages.CMsgGC_GlobalGame_Play result = new Cstrike15Gcmessages.CMsgGC_GlobalGame_Play(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.ticket_ = ticket_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.gametimems_ = gametimems_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.msperpoint_ = msperpoint_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CMsgGC_GlobalGame_Play) {
+          return mergeFrom((Cstrike15Gcmessages.CMsgGC_GlobalGame_Play)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGC_GlobalGame_Play other) {
+        if (other == Cstrike15Gcmessages.CMsgGC_GlobalGame_Play.getDefaultInstance()) return this;
+        if (other.hasTicket()) {
+          setTicket(other.getTicket());
+        }
+        if (other.hasGametimems()) {
+          setGametimems(other.getGametimems());
+        }
+        if (other.hasMsperpoint()) {
+          setMsperpoint(other.getMsperpoint());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CMsgGC_GlobalGame_Play parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CMsgGC_GlobalGame_Play) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint64 ticket = 1;
+      private long ticket_ ;
+      /**
+       * <code>optional uint64 ticket = 1;</code>
+       */
+      public boolean hasTicket() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint64 ticket = 1;</code>
+       */
+      public long getTicket() {
+        return ticket_;
+      }
+      /**
+       * <code>optional uint64 ticket = 1;</code>
+       */
+      public Builder setTicket(long value) {
+        bitField0_ |= 0x00000001;
+        ticket_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint64 ticket = 1;</code>
+       */
+      public Builder clearTicket() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        ticket_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 gametimems = 2;
+      private int gametimems_ ;
+      /**
+       * <code>optional uint32 gametimems = 2;</code>
+       */
+      public boolean hasGametimems() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 gametimems = 2;</code>
+       */
+      public int getGametimems() {
+        return gametimems_;
+      }
+      /**
+       * <code>optional uint32 gametimems = 2;</code>
+       */
+      public Builder setGametimems(int value) {
+        bitField0_ |= 0x00000002;
+        gametimems_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 gametimems = 2;</code>
+       */
+      public Builder clearGametimems() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        gametimems_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 msperpoint = 3;
+      private int msperpoint_ ;
+      /**
+       * <code>optional uint32 msperpoint = 3;</code>
+       */
+      public boolean hasMsperpoint() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional uint32 msperpoint = 3;</code>
+       */
+      public int getMsperpoint() {
+        return msperpoint_;
+      }
+      /**
+       * <code>optional uint32 msperpoint = 3;</code>
+       */
+      public Builder setMsperpoint(int value) {
+        bitField0_ |= 0x00000004;
+        msperpoint_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 msperpoint = 3;</code>
+       */
+      public Builder clearMsperpoint() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        msperpoint_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CMsgGC_GlobalGame_Play)
+    }
+
+    static {
+      defaultInstance = new CMsgGC_GlobalGame_Play(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CMsgGC_GlobalGame_Play)
+  }
+
+  public interface CMsgGCCStrike15_v2_AcknowledgePenaltyOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int32 acknowledged = 1;
+    /**
+     * <code>optional int32 acknowledged = 1;</code>
+     */
+    boolean hasAcknowledged();
+    /**
+     * <code>optional int32 acknowledged = 1;</code>
+     */
+    int getAcknowledged();
+  }
+  /**
+   * Protobuf type {@code CMsgGCCStrike15_v2_AcknowledgePenalty}
+   */
+  public static final class CMsgGCCStrike15_v2_AcknowledgePenalty extends
+      com.google.protobuf.GeneratedMessage
+      implements CMsgGCCStrike15_v2_AcknowledgePenaltyOrBuilder {
+    // Use CMsgGCCStrike15_v2_AcknowledgePenalty.newBuilder() to construct.
+    private CMsgGCCStrike15_v2_AcknowledgePenalty(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CMsgGCCStrike15_v2_AcknowledgePenalty(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CMsgGCCStrike15_v2_AcknowledgePenalty defaultInstance;
+    public static CMsgGCCStrike15_v2_AcknowledgePenalty getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CMsgGCCStrike15_v2_AcknowledgePenalty getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CMsgGCCStrike15_v2_AcknowledgePenalty(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              acknowledged_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty.class, Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CMsgGCCStrike15_v2_AcknowledgePenalty> PARSER =
+        new com.google.protobuf.AbstractParser<CMsgGCCStrike15_v2_AcknowledgePenalty>() {
+      public CMsgGCCStrike15_v2_AcknowledgePenalty parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CMsgGCCStrike15_v2_AcknowledgePenalty(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CMsgGCCStrike15_v2_AcknowledgePenalty> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int32 acknowledged = 1;
+    public static final int ACKNOWLEDGED_FIELD_NUMBER = 1;
+    private int acknowledged_;
+    /**
+     * <code>optional int32 acknowledged = 1;</code>
+     */
+    public boolean hasAcknowledged() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 acknowledged = 1;</code>
+     */
+    public int getAcknowledged() {
+      return acknowledged_;
+    }
+
+    private void initFields() {
+      acknowledged_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, acknowledged_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, acknowledged_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CMsgGCCStrike15_v2_AcknowledgePenalty}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenaltyOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty.class, Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        acknowledged_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty build() {
+        Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty buildPartial() {
+        Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty result = new Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.acknowledged_ = acknowledged_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty) {
+          return mergeFrom((Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty other) {
+        if (other == Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty.getDefaultInstance()) return this;
+        if (other.hasAcknowledged()) {
+          setAcknowledged(other.getAcknowledged());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CMsgGCCStrike15_v2_AcknowledgePenalty) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int32 acknowledged = 1;
+      private int acknowledged_ ;
+      /**
+       * <code>optional int32 acknowledged = 1;</code>
+       */
+      public boolean hasAcknowledged() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 acknowledged = 1;</code>
+       */
+      public int getAcknowledged() {
+        return acknowledged_;
+      }
+      /**
+       * <code>optional int32 acknowledged = 1;</code>
+       */
+      public Builder setAcknowledged(int value) {
+        bitField0_ |= 0x00000001;
+        acknowledged_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 acknowledged = 1;</code>
+       */
+      public Builder clearAcknowledged() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        acknowledged_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CMsgGCCStrike15_v2_AcknowledgePenalty)
+    }
+
+    static {
+      defaultInstance = new CMsgGCCStrike15_v2_AcknowledgePenalty(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CMsgGCCStrike15_v2_AcknowledgePenalty)
+  }
+
+  public interface CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoinOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin}
+   */
+  public static final class CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin extends
+      com.google.protobuf.GeneratedMessage
+      implements CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoinOrBuilder {
+    // Use CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin.newBuilder() to construct.
+    private CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin defaultInstance;
+    public static CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin.class, Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin> PARSER =
+        new com.google.protobuf.AbstractParser<CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin>() {
+      public CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin> getParserForType() {
+      return PARSER;
+    }
+
+    private void initFields() {
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoinOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin.class, Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin.Builder.class);
+      }
+
+      // Construct using Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return Cstrike15Gcmessages.internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_descriptor;
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin getDefaultInstanceForType() {
+        return Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin.getDefaultInstance();
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin build() {
+        Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin buildPartial() {
+        Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin result = new Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin(this);
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin) {
+          return mergeFrom((Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin other) {
+        if (other == Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Cstrike15Gcmessages.CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin)
+    }
+
+    static {
+      defaultInstance = new CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin)
+  }
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GameServerPing_descriptor;
   private static
@@ -85883,6 +93047,26 @@ public final class Cstrike15Gcmessages {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_IpAddressMask_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_XpProgressData_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_XpProgressData_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_PlayerQuestData_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_PlayerQuestData_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_PlayerQuestData_QuestItemData_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_PlayerQuestData_QuestItemData_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CMsgGC_ServerQuestUpdateData_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CMsgGC_ServerQuestUpdateData_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_CMsgGCCStrike15_v2_MatchmakingGCOperationalStats_descriptor;
   private static
@@ -86064,6 +93248,11 @@ public final class Cstrike15Gcmessages {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_CMsgGCCstrike15_v2_ClientRequestNewMission_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_CMsgGCCStrike15_v2_WatchInfoUsers_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -86078,11 +93267,6 @@ public final class Cstrike15Gcmessages {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_CMsgGCCStrike15_v2_PlayersProfile_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseUpdate_descriptor;
   private static
@@ -86113,21 +93297,6 @@ public final class Cstrike15Gcmessages {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_CMsgGCCStrike15_v2_Client2GCTextMsg_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_CMsgGC_ServerQuestUpdateData_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_CMsgGC_ServerQuestUpdateData_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_CMsgGCCStrike15_v2_MatchEndRunRewardDrops_descriptor;
   private static
@@ -86288,6 +93457,51 @@ public final class Cstrike15Gcmessages {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_CMsgGCCStrike15_v2_Server2GCPureServerValidationFailure_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CSOEconCoupon_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CSOEconCoupon_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CSOQuestProgress_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CSOQuestProgress_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CSOPersonaDataPublic_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CSOPersonaDataPublic_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CMsgGC_GlobalGame_Subscribe_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CMsgGC_GlobalGame_Subscribe_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CMsgGC_GlobalGame_Unsubscribe_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CMsgGC_GlobalGame_Unsubscribe_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CMsgGC_GlobalGame_Play_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CMsgGC_GlobalGame_Play_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -86336,445 +93550,478 @@ public final class Cstrike15Gcmessages {
       "ccount_id\030\001 \001(\r\022\017\n\007rank_id\030\002 \001(\r\022\014\n\004wins" +
       "\030\003 \001(\r\022\023\n\013rank_change\030\004 \001(\002\"X\n\026PlayerCom" +
       "mendationInfo\022\024\n\014cmd_friendly\030\001 \001(\r\022\024\n\014c" +
-      "md_teaching\030\002 \001(\r\022\022\n\ncmd_leader\030\004 \001(\r\"\341\001",
+      "md_teaching\030\002 \001(\r\022\022\n\ncmd_leader\030\004 \001(\r\"\300\001",
       "\n\020PlayerMedalsInfo\022\022\n\nmedal_team\030\001 \001(\r\022\024" +
       "\n\014medal_combat\030\002 \001(\r\022\024\n\014medal_weapon\030\003 \001" +
       "(\r\022\024\n\014medal_global\030\004 \001(\r\022\022\n\nmedal_arms\030\005" +
-      " \001(\r\022\037\n\027legacy__coin_op_payback\030\006 \001(\r\022\034\n" +
-      "\024display_items_defidx\030\007 \003(\r\022$\n\034featured_" +
-      "display_item_defidx\030\010 \001(\r\">\n\017AccountActi" +
-      "vity\022\020\n\010activity\030\001 \001(\r\022\014\n\004mode\030\002 \001(\r\022\013\n\003" +
-      "map\030\003 \001(\r\"g\n\024TournamentMatchSetup\022\020\n\010eve" +
-      "nt_id\030\001 \001(\005\022\022\n\nteam_id_ct\030\002 \001(\005\022\021\n\tteam_" +
-      "id_t\030\003 \001(\005\022\026\n\016event_stage_id\030\004 \001(\005\"\300\003\n\016S",
-      "erverHltvInfo\022\023\n\013tv_udp_port\030\001 \001(\r\022\024\n\014tv" +
-      "_watch_key\030\002 \001(\004\022\020\n\010tv_slots\030\003 \001(\r\022\022\n\ntv" +
-      "_clients\030\004 \001(\r\022\022\n\ntv_proxies\030\005 \001(\r\022\017\n\007tv" +
-      "_time\030\006 \001(\r\022\021\n\tgame_type\030\010 \001(\r\022\025\n\rgame_m" +
-      "apgroup\030\t \001(\t\022\020\n\010game_map\030\n \001(\t\022\031\n\021tv_ma" +
-      "ster_steamid\030\013 \001(\004\022\026\n\016tv_local_slots\030\014 \001" +
-      "(\r\022\030\n\020tv_local_clients\030\r \001(\r\022\030\n\020tv_local" +
-      "_proxies\030\016 \001(\r\022\026\n\016tv_relay_slots\030\017 \001(\r\022\030" +
-      "\n\020tv_relay_clients\030\020 \001(\r\022\030\n\020tv_relay_pro" +
-      "xies\030\021 \001(\r\022\030\n\020tv_relay_address\030\022 \001(\r\022\025\n\r",
-      "tv_relay_port\030\023 \001(\r\022\030\n\020tv_relay_steamid\030" +
-      "\024 \001(\004\"X\n\rIpAddressMask\022\t\n\001a\030\001 \001(\r\022\t\n\001b\030\002" +
-      " \001(\r\022\t\n\001c\030\003 \001(\r\022\t\n\001d\030\004 \001(\r\022\014\n\004bits\030\005 \001(\r" +
-      "\022\r\n\005token\030\006 \001(\r\"\247\001\n0CMsgGCCStrike15_v2_M" +
-      "atchmakingGCOperationalStats\022\020\n\010packetid" +
-      "\030\001 \001(\005\0222\n\010namekeys\030\002 \003(\0132 .OperationalSt" +
-      "atisticDescription\022-\n\007packets\030\003 \003(\0132\034.Op" +
-      "erationalStatisticsPacket\"`\n.CMsgGCCStri" +
-      "ke15_v2_MatchmakingGC2ServerConfirm\022\r\n\005t" +
-      "oken\030\001 \001(\r\022\r\n\005stamp\030\002 \001(\r\022\020\n\010exchange\030\003 ",
-      "\001(\004\"o\n-CMsgGCCStrike15_v2_GC2ServerReser" +
-      "vationUpdate\022\036\n\026viewers_external_total\030\001" +
-      " \001(\r\022\036\n\026viewers_external_steam\030\002 \001(\r\"\253\001\n" +
-      "#CMsgGCCStrike15_v2_MatchmakingStart\022\023\n\013" +
-      "account_ids\030\001 \003(\r\022\021\n\tgame_type\030\002 \001(\r\022\023\n\013" +
-      "ticket_data\030\003 \001(\t\022\026\n\016client_version\030\004 \001(" +
-      "\r\022/\n\020tournament_match\030\005 \001(\0132\025.Tournament" +
-      "MatchSetup\"5\n\"CMsgGCCStrike15_v2_Matchma" +
-      "kingStop\022\017\n\007abandon\030\001 \001(\005\"\206\001\n/CMsgGCCStr" +
-      "ike15_v2_MatchmakingClient2ServerPing\022(\n",
-      "\017gameserverpings\030\001 \003(\0132\017.GameServerPing\022" +
-      "\024\n\014offset_index\030\002 \001(\005\022\023\n\013final_batch\030\003 \001" +
-      "(\005\"\317\004\n-CMsgGCCStrike15_v2_MatchmakingGC2" +
-      "ClientUpdate\022\023\n\013matchmaking\030\001 \001(\005\022#\n\033wai" +
-      "ting_account_id_sessions\030\002 \003(\r\022\r\n\005error\030" +
-      "\003 \001(\t\022(\n ongoingmatch_account_id_session" +
-      "s\030\006 \003(\r\022\'\n\014global_stats\030\007 \001(\0132\021.GlobalSt" +
-      "atistics\022$\n\034failping_account_id_sessions" +
-      "\030\010 \003(\r\022#\n\033penalty_account_id_sessions\030\t " +
-      "\003(\r\022%\n\035failready_account_id_sessions\030\n \003",
-      "(\r\022%\n\035vacbanned_account_id_sessions\030\013 \003(" +
-      "\r\022-\n\025server_ipaddress_mask\030\014 \001(\0132\016.IpAdd" +
-      "ressMask\022B\n\005notes\030\r \003(\01323.CMsgGCCStrike1" +
-      "5_v2_MatchmakingGC2ClientUpdate.Note\022)\n!" +
-      "penalty_account_id_sessions_green\030\016 \003(\r\032" +
-      "K\n\004Note\022\014\n\004type\030\001 \001(\005\022\021\n\tregion_id\030\002 \001(\005" +
-      "\022\020\n\010region_r\030\003 \001(\002\022\020\n\010distance\030\004 \001(\002\"\326\002\n" +
-      "(CDataGCCStrike15_v2_TournamentMatchDraf" +
-      "t\022\020\n\010event_id\030\001 \001(\005\022\026\n\016event_stage_id\030\002 " +
-      "\001(\005\022\021\n\tteam_id_0\030\003 \001(\005\022\021\n\tteam_id_1\030\004 \001(",
-      "\005\022\022\n\nmaps_count\030\005 \001(\005\022\024\n\014maps_current\030\006 " +
-      "\001(\005\022\025\n\rteam_id_start\030\007 \001(\005\022\025\n\rteam_id_ve" +
-      "to1\030\010 \001(\005\022\025\n\rteam_id_pickn\030\t \001(\005\022?\n\006draf" +
-      "ts\030\n \003(\0132/.CDataGCCStrike15_v2_Tournamen" +
-      "tMatchDraft.Entry\032*\n\005Entry\022\r\n\005mapid\030\001 \001(" +
-      "\005\022\022\n\nteam_id_ct\030\002 \001(\005\"\355\001\n\021CPreMatchInfoD" +
-      "ata\022\027\n\017predictions_pct\030\001 \001(\005\0228\n\005draft\030\004 " +
-      "\001(\0132).CDataGCCStrike15_v2_TournamentMatc" +
-      "hDraft\022+\n\005stats\030\005 \003(\0132\034.CPreMatchInfoDat" +
-      "a.TeamStats\032X\n\tTeamStats\022\031\n\021match_info_i",
-      "dxtxt\030\001 \001(\005\022\026\n\016match_info_txt\030\002 \001(\t\022\030\n\020m" +
-      "atch_info_teams\030\003 \003(\t\"\362\003\n.CMsgGCCStrike1" +
-      "5_v2_MatchmakingGC2ServerReserve\022\023\n\013acco" +
-      "unt_ids\030\001 \003(\r\022\021\n\tgame_type\030\002 \001(\r\022\020\n\010matc" +
-      "h_id\030\003 \001(\004\022\026\n\016server_version\030\004 \001(\r\022$\n\010ra" +
-      "nkings\030\005 \003(\0132\022.PlayerRankingInfo\022\026\n\016encr" +
-      "yption_key\030\006 \001(\004\022\032\n\022encryption_key_pub\030\007" +
-      " \001(\004\022\021\n\tparty_ids\030\010 \003(\r\022!\n\twhitelist\030\t \003" +
-      "(\0132\016.IpAddressMask\022\031\n\021tv_master_steamid\030" +
-      "\n \001(\004\022*\n\020tournament_event\030\013 \001(\0132\020.Tourna",
-      "mentEvent\022)\n\020tournament_teams\030\014 \003(\0132\017.To" +
-      "urnamentTeam\022&\n\036tournament_casters_accou" +
-      "nt_ids\030\r \003(\r\022\030\n\020tv_relay_steamid\030\016 \001(\004\022*" +
-      "\n\016pre_match_data\030\017 \001(\0132\022.CPreMatchInfoDa" +
-      "ta\"\321\003\n7CMsgGCCStrike15_v2_MatchmakingSer" +
-      "verReservationResponse\022\025\n\rreservationid\030" +
-      "\001 \001(\004\022D\n\013reservation\030\002 \001(\0132/.CMsgGCCStri" +
-      "ke15_v2_MatchmakingGC2ServerReserve\022\013\n\003m" +
-      "ap\030\003 \001(\t\022\033\n\023gc_reservation_sent\030\004 \001(\004\022\026\n" +
-      "\016server_version\030\005 \001(\r\022 \n\007tv_info\030\006 \001(\0132\017",
-      ".ServerHltvInfo\022\036\n\026reward_player_account" +
-      "s\030\007 \003(\r\022\034\n\024idle_player_accounts\030\010 \003(\r\022 \n" +
-      "\030reward_item_attr_def_idx\030\t \001(\r\022\036\n\026rewar" +
-      "d_item_attr_value\030\n \001(\r\022#\n\033reward_item_a" +
-      "ttr_reward_idx\030\013 \001(\r\022\030\n\020reward_drop_list" +
-      "\030\014 \001(\r\022\026\n\016tournament_tag\030\r \001(\t\"\322\001\n.CMsgG" +
-      "CCStrike15_v2_MatchmakingGC2ClientReserv" +
-      "e\022\020\n\010serverid\030\001 \001(\004\022\020\n\010serverip\030\002 \001(\r\022\022\n" +
-      "\nserverport\030\003 \001(\r\022\025\n\rreservationid\030\004 \001(\004" +
-      "\022D\n\013reservation\030\005 \001(\0132/.CMsgGCCStrike15_",
-      "v2_MatchmakingGC2ServerReserve\022\013\n\003map\030\006 " +
-      "\001(\t\"\370\004\n.CMsgGCCStrike15_v2_MatchmakingSe" +
-      "rverRoundStats\022\025\n\rreservationid\030\001 \001(\004\022D\n" +
+      " \001(\r\022\034\n\024display_items_defidx\030\007 \003(\r\022$\n\034fe" +
+      "atured_display_item_defidx\030\010 \001(\r\">\n\017Acco" +
+      "untActivity\022\020\n\010activity\030\001 \001(\r\022\014\n\004mode\030\002 " +
+      "\001(\r\022\013\n\003map\030\003 \001(\r\"g\n\024TournamentMatchSetup" +
+      "\022\020\n\010event_id\030\001 \001(\005\022\022\n\nteam_id_ct\030\002 \001(\005\022\021" +
+      "\n\tteam_id_t\030\003 \001(\005\022\026\n\016event_stage_id\030\004 \001(" +
+      "\005\"\300\003\n\016ServerHltvInfo\022\023\n\013tv_udp_port\030\001 \001(",
+      "\r\022\024\n\014tv_watch_key\030\002 \001(\004\022\020\n\010tv_slots\030\003 \001(" +
+      "\r\022\022\n\ntv_clients\030\004 \001(\r\022\022\n\ntv_proxies\030\005 \001(" +
+      "\r\022\017\n\007tv_time\030\006 \001(\r\022\021\n\tgame_type\030\010 \001(\r\022\025\n" +
+      "\rgame_mapgroup\030\t \001(\t\022\020\n\010game_map\030\n \001(\t\022\031" +
+      "\n\021tv_master_steamid\030\013 \001(\004\022\026\n\016tv_local_sl" +
+      "ots\030\014 \001(\r\022\030\n\020tv_local_clients\030\r \001(\r\022\030\n\020t" +
+      "v_local_proxies\030\016 \001(\r\022\026\n\016tv_relay_slots\030" +
+      "\017 \001(\r\022\030\n\020tv_relay_clients\030\020 \001(\r\022\030\n\020tv_re" +
+      "lay_proxies\030\021 \001(\r\022\030\n\020tv_relay_address\030\022 " +
+      "\001(\r\022\025\n\rtv_relay_port\030\023 \001(\r\022\030\n\020tv_relay_s",
+      "teamid\030\024 \001(\004\"X\n\rIpAddressMask\022\t\n\001a\030\001 \001(\r" +
+      "\022\t\n\001b\030\002 \001(\r\022\t\n\001c\030\003 \001(\r\022\t\n\001d\030\004 \001(\r\022\014\n\004bit" +
+      "s\030\005 \001(\r\022\r\n\005token\030\006 \001(\r\"8\n\016XpProgressData" +
+      "\022\021\n\txp_points\030\001 \001(\r\022\023\n\013xp_category\030\002 \001(\005" +
+      "\"\246\002\n\017PlayerQuestData\022\032\n\022quester_account_" +
+      "id\030\001 \001(\r\0227\n\017quest_item_data\030\002 \003(\0132\036.Play" +
+      "erQuestData.QuestItemData\022)\n\020xp_progress" +
+      "_data\030\003 \003(\0132\017.XpProgressData\022\023\n\013time_pla" +
+      "yed\030\004 \001(\r\022\024\n\014mm_game_mode\030\005 \001(\r\032h\n\rQuest" +
+      "ItemData\022\020\n\010quest_id\030\001 \001(\004\022\"\n\032quest_norm",
+      "al_points_earned\030\002 \001(\005\022!\n\031quest_bonus_po" +
+      "ints_earned\030\003 \001(\005\"K\n\034CMsgGC_ServerQuestU" +
+      "pdateData\022+\n\021player_quest_data\030\001 \003(\0132\020.P" +
+      "layerQuestData\"\247\001\n0CMsgGCCStrike15_v2_Ma" +
+      "tchmakingGCOperationalStats\022\020\n\010packetid\030" +
+      "\001 \001(\005\0222\n\010namekeys\030\002 \003(\0132 .OperationalSta" +
+      "tisticDescription\022-\n\007packets\030\003 \003(\0132\034.Ope" +
+      "rationalStatisticsPacket\"`\n.CMsgGCCStrik" +
+      "e15_v2_MatchmakingGC2ServerConfirm\022\r\n\005to" +
+      "ken\030\001 \001(\r\022\r\n\005stamp\030\002 \001(\r\022\020\n\010exchange\030\003 \001",
+      "(\004\"o\n-CMsgGCCStrike15_v2_GC2ServerReserv" +
+      "ationUpdate\022\036\n\026viewers_external_total\030\001 " +
+      "\001(\r\022\036\n\026viewers_external_steam\030\002 \001(\r\"\253\001\n#" +
+      "CMsgGCCStrike15_v2_MatchmakingStart\022\023\n\013a" +
+      "ccount_ids\030\001 \003(\r\022\021\n\tgame_type\030\002 \001(\r\022\023\n\013t" +
+      "icket_data\030\003 \001(\t\022\026\n\016client_version\030\004 \001(\r" +
+      "\022/\n\020tournament_match\030\005 \001(\0132\025.TournamentM" +
+      "atchSetup\"5\n\"CMsgGCCStrike15_v2_Matchmak" +
+      "ingStop\022\017\n\007abandon\030\001 \001(\005\"\206\001\n/CMsgGCCStri" +
+      "ke15_v2_MatchmakingClient2ServerPing\022(\n\017",
+      "gameserverpings\030\001 \003(\0132\017.GameServerPing\022\024" +
+      "\n\014offset_index\030\002 \001(\005\022\023\n\013final_batch\030\003 \001(" +
+      "\005\"\363\004\n-CMsgGCCStrike15_v2_MatchmakingGC2C" +
+      "lientUpdate\022\023\n\013matchmaking\030\001 \001(\005\022#\n\033wait" +
+      "ing_account_id_sessions\030\002 \003(\r\022\r\n\005error\030\003" +
+      " \001(\t\022(\n ongoingmatch_account_id_sessions" +
+      "\030\006 \003(\r\022\'\n\014global_stats\030\007 \001(\0132\021.GlobalSta" +
+      "tistics\022$\n\034failping_account_id_sessions\030" +
+      "\010 \003(\r\022#\n\033penalty_account_id_sessions\030\t \003" +
+      "(\r\022%\n\035failready_account_id_sessions\030\n \003(",
+      "\r\022%\n\035vacbanned_account_id_sessions\030\013 \003(\r" +
+      "\022-\n\025server_ipaddress_mask\030\014 \001(\0132\016.IpAddr" +
+      "essMask\022B\n\005notes\030\r \003(\01323.CMsgGCCStrike15" +
+      "_v2_MatchmakingGC2ClientUpdate.Note\022)\n!p" +
+      "enalty_account_id_sessions_green\030\016 \003(\r\022\"" +
+      "\n\032insufficientlevel_sessions\030\017 \003(\r\032K\n\004No" +
+      "te\022\014\n\004type\030\001 \001(\005\022\021\n\tregion_id\030\002 \001(\005\022\020\n\010r" +
+      "egion_r\030\003 \001(\002\022\020\n\010distance\030\004 \001(\002\"\326\002\n(CDat" +
+      "aGCCStrike15_v2_TournamentMatchDraft\022\020\n\010" +
+      "event_id\030\001 \001(\005\022\026\n\016event_stage_id\030\002 \001(\005\022\021",
+      "\n\tteam_id_0\030\003 \001(\005\022\021\n\tteam_id_1\030\004 \001(\005\022\022\n\n" +
+      "maps_count\030\005 \001(\005\022\024\n\014maps_current\030\006 \001(\005\022\025" +
+      "\n\rteam_id_start\030\007 \001(\005\022\025\n\rteam_id_veto1\030\010" +
+      " \001(\005\022\025\n\rteam_id_pickn\030\t \001(\005\022?\n\006drafts\030\n " +
+      "\003(\0132/.CDataGCCStrike15_v2_TournamentMatc" +
+      "hDraft.Entry\032*\n\005Entry\022\r\n\005mapid\030\001 \001(\005\022\022\n\n" +
+      "team_id_ct\030\002 \001(\005\"\355\001\n\021CPreMatchInfoData\022\027" +
+      "\n\017predictions_pct\030\001 \001(\005\0228\n\005draft\030\004 \001(\0132)" +
+      ".CDataGCCStrike15_v2_TournamentMatchDraf" +
+      "t\022+\n\005stats\030\005 \003(\0132\034.CPreMatchInfoData.Tea",
+      "mStats\032X\n\tTeamStats\022\031\n\021match_info_idxtxt" +
+      "\030\001 \001(\005\022\026\n\016match_info_txt\030\002 \001(\t\022\030\n\020match_" +
+      "info_teams\030\003 \003(\t\"\362\003\n.CMsgGCCStrike15_v2_" +
+      "MatchmakingGC2ServerReserve\022\023\n\013account_i" +
+      "ds\030\001 \003(\r\022\021\n\tgame_type\030\002 \001(\r\022\020\n\010match_id\030" +
+      "\003 \001(\004\022\026\n\016server_version\030\004 \001(\r\022$\n\010ranking" +
+      "s\030\005 \003(\0132\022.PlayerRankingInfo\022\026\n\016encryptio" +
+      "n_key\030\006 \001(\004\022\032\n\022encryption_key_pub\030\007 \001(\004\022" +
+      "\021\n\tparty_ids\030\010 \003(\r\022!\n\twhitelist\030\t \003(\0132\016." +
+      "IpAddressMask\022\031\n\021tv_master_steamid\030\n \001(\004",
+      "\022*\n\020tournament_event\030\013 \001(\0132\020.TournamentE" +
+      "vent\022)\n\020tournament_teams\030\014 \003(\0132\017.Tournam" +
+      "entTeam\022&\n\036tournament_casters_account_id" +
+      "s\030\r \003(\r\022\030\n\020tv_relay_steamid\030\016 \001(\004\022*\n\016pre" +
+      "_match_data\030\017 \001(\0132\022.CPreMatchInfoData\"\321\003" +
+      "\n7CMsgGCCStrike15_v2_MatchmakingServerRe" +
+      "servationResponse\022\025\n\rreservationid\030\001 \001(\004" +
+      "\022D\n\013reservation\030\002 \001(\0132/.CMsgGCCStrike15_" +
+      "v2_MatchmakingGC2ServerReserve\022\013\n\003map\030\003 " +
+      "\001(\t\022\033\n\023gc_reservation_sent\030\004 \001(\004\022\026\n\016serv",
+      "er_version\030\005 \001(\r\022 \n\007tv_info\030\006 \001(\0132\017.Serv" +
+      "erHltvInfo\022\036\n\026reward_player_accounts\030\007 \003" +
+      "(\r\022\034\n\024idle_player_accounts\030\010 \003(\r\022 \n\030rewa" +
+      "rd_item_attr_def_idx\030\t \001(\r\022\036\n\026reward_ite" +
+      "m_attr_value\030\n \001(\r\022#\n\033reward_item_attr_r" +
+      "eward_idx\030\013 \001(\r\022\030\n\020reward_drop_list\030\014 \001(" +
+      "\r\022\026\n\016tournament_tag\030\r \001(\t\"\322\001\n.CMsgGCCStr" +
+      "ike15_v2_MatchmakingGC2ClientReserve\022\020\n\010" +
+      "serverid\030\001 \001(\004\022\020\n\010serverip\030\002 \001(\r\022\022\n\nserv" +
+      "erport\030\003 \001(\r\022\025\n\rreservationid\030\004 \001(\004\022D\n\013r",
+      "eservation\030\005 \001(\0132/.CMsgGCCStrike15_v2_Ma" +
+      "tchmakingGC2ServerReserve\022\013\n\003map\030\006 \001(\t\"\221" +
+      "\005\n.CMsgGCCStrike15_v2_MatchmakingServerR" +
+      "oundStats\022\025\n\rreservationid\030\001 \001(\004\022D\n\013rese" +
+      "rvation\030\002 \001(\0132/.CMsgGCCStrike15_v2_Match" +
+      "makingGC2ServerReserve\022\013\n\003map\030\003 \001(\t\022\r\n\005r" +
+      "ound\030\004 \001(\005\022\r\n\005kills\030\005 \003(\005\022\017\n\007assists\030\006 \003" +
+      "(\005\022\016\n\006deaths\030\007 \003(\005\022\016\n\006scores\030\010 \003(\005\022\r\n\005pi" +
+      "ngs\030\t \003(\005\022\024\n\014round_result\030\n \001(\005\022\024\n\014match" +
+      "_result\030\013 \001(\005\022\023\n\013team_scores\030\014 \003(\005\022@\n\007co",
+      "nfirm\030\r \001(\0132/.CMsgGCCStrike15_v2_Matchma" +
+      "kingGC2ServerConfirm\022\031\n\021reservation_stag" +
+      "e\030\016 \001(\005\022\026\n\016match_duration\030\017 \001(\005\022\023\n\013enemy" +
+      "_kills\030\020 \003(\005\022\027\n\017enemy_headshots\030\021 \003(\005\022\021\n" +
+      "\tenemy_3ks\030\022 \003(\005\022\021\n\tenemy_4ks\030\023 \003(\005\022\021\n\te" +
+      "nemy_5ks\030\024 \003(\005\022\014\n\004mvps\030\025 \003(\005\022\030\n\020spectato" +
+      "rs_count\030\026 \001(\r\022\033\n\023spectators_count_tv\030\027 " +
+      "\001(\r\022\034\n\024spectators_count_lnk\030\030 \001(\r\022\027\n\017ene" +
+      "my_kills_agg\030\031 \003(\005\"\306\002\n,CMsgGCCStrike15_v" +
+      "2_MatchmakingServerMatchEnd\022>\n\005stats\030\001 \001",
+      "(\0132/.CMsgGCCStrike15_v2_MatchmakingServe" +
+      "rRoundStats\022@\n\007confirm\030\003 \001(\0132/.CMsgGCCSt" +
+      "rike15_v2_MatchmakingGC2ServerConfirm\022\017\n" +
+      "\007rematch\030\004 \001(\004\022\024\n\014replay_token\030\005 \001(\r\022\031\n\021" +
+      "replay_cluster_id\030\006 \001(\r\022\025\n\raborted_match" +
+      "\030\007 \001(\010\022;\n\024match_end_quest_data\030\010 \001(\0132\035.C" +
+      "MsgGC_ServerQuestUpdateData\".\n,CMsgGCCSt" +
+      "rike15_v2_MatchmakingClient2GCHello\"\255\005\n," +
+      "CMsgGCCStrike15_v2_MatchmakingGC2ClientH" +
+      "ello\022\022\n\naccount_id\030\001 \001(\r\022E\n\014ongoingmatch",
+      "\030\002 \001(\0132/.CMsgGCCStrike15_v2_MatchmakingG" +
+      "C2ClientReserve\022\'\n\014global_stats\030\003 \001(\0132\021." +
+      "GlobalStatistics\022\027\n\017penalty_seconds\030\004 \001(" +
+      "\r\022\026\n\016penalty_reason\030\005 \001(\r\022\022\n\nvac_banned\030" +
+      "\006 \001(\005\022#\n\007ranking\030\007 \001(\0132\022.PlayerRankingIn" +
+      "fo\022-\n\014commendation\030\010 \001(\0132\027.PlayerCommend" +
+      "ationInfo\022!\n\006medals\030\t \001(\0132\021.PlayerMedals" +
+      "Info\022*\n\020my_current_event\030\n \001(\0132\020.Tournam" +
+      "entEvent\022/\n\026my_current_event_teams\030\013 \003(\013" +
+      "2\017.TournamentTeam\022(\n\017my_current_team\030\014 \001",
+      "(\0132\017.TournamentTeam\0221\n\027my_current_event_" +
+      "stages\030\r \003(\0132\020.TournamentEvent\022\023\n\013survey" +
+      "_vote\030\016 \001(\r\022\"\n\010activity\030\017 \001(\0132\020.AccountA" +
+      "ctivity\022\024\n\014player_level\030\021 \001(\005\022\025\n\rplayer_" +
+      "cur_xp\030\022 \001(\005\022\035\n\025player_xp_bonus_flags\030\023 " +
+      "\001(\005\"\251\001\n)CMsgGCCStrike15_v2_AccountPrivac" +
+      "ySettings\022D\n\010settings\030\001 \003(\01322.CMsgGCCStr" +
+      "ike15_v2_AccountPrivacySettings.Setting\032" +
+      "6\n\007Setting\022\024\n\014setting_type\030\001 \001(\r\022\025\n\rsett" +
+      "ing_value\030\002 \001(\r\"\277\001\n.CMsgGCCStrike15_v2_M",
+      "atchmakingGC2ClientAbandon\022\022\n\naccount_id" +
+      "\030\001 \001(\r\022H\n\017abandoned_match\030\002 \001(\0132/.CMsgGC" +
+      "CStrike15_v2_MatchmakingGC2ClientReserve" +
+      "\022\027\n\017penalty_seconds\030\003 \001(\r\022\026\n\016penalty_rea" +
+      "son\030\004 \001(\r\"\227\001\n+CMsgGCCStrike15_v2_Matchma" +
+      "kingServer2GCKick\022\022\n\naccount_id\030\001 \001(\r\022D\n" +
       "\013reservation\030\002 \001(\0132/.CMsgGCCStrike15_v2_" +
-      "MatchmakingGC2ServerReserve\022\013\n\003map\030\003 \001(\t" +
-      "\022\r\n\005round\030\004 \001(\005\022\r\n\005kills\030\005 \003(\005\022\017\n\007assist" +
-      "s\030\006 \003(\005\022\016\n\006deaths\030\007 \003(\005\022\016\n\006scores\030\010 \003(\005\022" +
-      "\r\n\005pings\030\t \003(\005\022\024\n\014round_result\030\n \001(\005\022\024\n\014" +
-      "match_result\030\013 \001(\005\022\023\n\013team_scores\030\014 \003(\005\022" +
-      "@\n\007confirm\030\r \001(\0132/.CMsgGCCStrike15_v2_Ma",
-      "tchmakingGC2ServerConfirm\022\031\n\021reservation" +
-      "_stage\030\016 \001(\005\022\026\n\016match_duration\030\017 \001(\005\022\023\n\013" +
-      "enemy_kills\030\020 \003(\005\022\027\n\017enemy_headshots\030\021 \003" +
-      "(\005\022\021\n\tenemy_3ks\030\022 \003(\005\022\021\n\tenemy_4ks\030\023 \003(\005" +
-      "\022\021\n\tenemy_5ks\030\024 \003(\005\022\014\n\004mvps\030\025 \003(\005\022\030\n\020spe" +
-      "ctators_count\030\026 \001(\r\022\033\n\023spectators_count_" +
-      "tv\030\027 \001(\r\022\034\n\024spectators_count_lnk\030\030 \001(\r\"\211" +
-      "\002\n,CMsgGCCStrike15_v2_MatchmakingServerM" +
-      "atchEnd\022>\n\005stats\030\001 \001(\0132/.CMsgGCCStrike15" +
-      "_v2_MatchmakingServerRoundStats\022@\n\007confi",
-      "rm\030\003 \001(\0132/.CMsgGCCStrike15_v2_Matchmakin" +
-      "gGC2ServerConfirm\022\017\n\007rematch\030\004 \001(\004\022\024\n\014re" +
-      "play_token\030\005 \001(\r\022\031\n\021replay_cluster_id\030\006 " +
-      "\001(\r\022\025\n\raborted_match\030\007 \001(\010\".\n,CMsgGCCStr" +
-      "ike15_v2_MatchmakingClient2GCHello\"\205\005\n,C" +
-      "MsgGCCStrike15_v2_MatchmakingGC2ClientHe" +
-      "llo\022\022\n\naccount_id\030\001 \001(\r\022E\n\014ongoingmatch\030" +
-      "\002 \001(\0132/.CMsgGCCStrike15_v2_MatchmakingGC" +
-      "2ClientReserve\022\'\n\014global_stats\030\003 \001(\0132\021.G" +
-      "lobalStatistics\022\027\n\017penalty_seconds\030\004 \001(\r",
-      "\022\026\n\016penalty_reason\030\005 \001(\r\022\022\n\nvac_banned\030\006" +
-      " \001(\005\022#\n\007ranking\030\007 \001(\0132\022.PlayerRankingInf" +
-      "o\022-\n\014commendation\030\010 \001(\0132\027.PlayerCommenda" +
-      "tionInfo\022!\n\006medals\030\t \001(\0132\021.PlayerMedalsI" +
-      "nfo\022*\n\020my_current_event\030\n \001(\0132\020.Tourname" +
-      "ntEvent\022/\n\026my_current_event_teams\030\013 \003(\0132" +
-      "\017.TournamentTeam\022(\n\017my_current_team\030\014 \001(" +
-      "\0132\017.TournamentTeam\0221\n\027my_current_event_s" +
-      "tages\030\r \003(\0132\020.TournamentEvent\022\023\n\013survey_" +
-      "vote\030\016 \001(\r\022\"\n\010activity\030\017 \001(\0132\020.AccountAc",
-      "tivity\022\"\n\032seconds_until_next_mission\030\020 \001" +
-      "(\005\"\251\001\n)CMsgGCCStrike15_v2_AccountPrivacy" +
-      "Settings\022D\n\010settings\030\001 \003(\01322.CMsgGCCStri" +
-      "ke15_v2_AccountPrivacySettings.Setting\0326" +
-      "\n\007Setting\022\024\n\014setting_type\030\001 \001(\r\022\025\n\rsetti" +
-      "ng_value\030\002 \001(\r\"\277\001\n.CMsgGCCStrike15_v2_Ma" +
-      "tchmakingGC2ClientAbandon\022\022\n\naccount_id\030" +
-      "\001 \001(\r\022H\n\017abandoned_match\030\002 \001(\0132/.CMsgGCC" +
-      "Strike15_v2_MatchmakingGC2ClientReserve\022" +
-      "\027\n\017penalty_seconds\030\003 \001(\r\022\026\n\016penalty_reas",
-      "on\030\004 \001(\r\"\227\001\n+CMsgGCCStrike15_v2_Matchmak" +
-      "ingServer2GCKick\022\022\n\naccount_id\030\001 \001(\r\022D\n\013" +
-      "reservation\030\002 \001(\0132/.CMsgGCCStrike15_v2_M" +
-      "atchmakingGC2ServerReserve\022\016\n\006reason\030\003 \001" +
-      "(\r\"\257\002\n,CDataGCCStrike15_v2_MatchmakingLo" +
-      "ckedInMatch\022K\n\022client_reservation\030\001 \001(\0132" +
-      "/.CMsgGCCStrike15_v2_MatchmakingGC2Clien" +
-      "tReserve\022E\n\014server_stats\030\002 \001(\0132/.CMsgGCC" +
-      "Strike15_v2_MatchmakingServerRoundStats\022" +
-      "\033\n\023rtime32_server_info\030\003 \001(\r\022N\n\025last_rou",
-      "nd_stats_temp\030\004 \001(\0132/.CMsgGCCStrike15_v2" +
-      "_MatchmakingServerRoundStats\"k\n1CMsgGCCS" +
-      "trike15_v2_MatchmakingGC2ServerRankUpdat" +
-      "e\022$\n\010rankings\030\001 \003(\0132\022.PlayerRankingInfo\022" +
-      "\020\n\010match_id\030\002 \001(\004\"L\n3CMsgGCCStrike15_v2_" +
-      "MatchmakingOperator2GCBlogUpdate\022\025\n\rmain" +
-      "_post_url\030\001 \001(\t\"j\n3CMsgGCCStrike15_v2_Se" +
-      "rverNotificationForUserPenalty\022\022\n\naccoun" +
-      "t_id\030\001 \001(\r\022\016\n\006reason\030\002 \001(\r\022\017\n\007seconds\030\003 " +
-      "\001(\r\"\323\001\n%CMsgGCCStrike15_v2_ClientReportP",
-      "layer\022\022\n\naccount_id\030\001 \001(\r\022\022\n\nrpt_aimbot\030" +
-      "\002 \001(\r\022\024\n\014rpt_wallhack\030\003 \001(\r\022\025\n\rrpt_speed" +
-      "hack\030\004 \001(\r\022\024\n\014rpt_teamharm\030\005 \001(\r\022\025\n\rrpt_" +
-      "textabuse\030\006 \001(\r\022\026\n\016rpt_voiceabuse\030\007 \001(\r\022" +
-      "\020\n\010match_id\030\010 \001(\004\"\215\001\n&CMsgGCCStrike15_v2" +
-      "_ClientCommendPlayer\022\022\n\naccount_id\030\001 \001(\r" +
-      "\022\020\n\010match_id\030\010 \001(\004\022-\n\014commendation\030\t \001(\013" +
-      "2\027.PlayerCommendationInfo\022\016\n\006tokens\030\n \001(" +
-      "\r\"\231\001\n%CMsgGCCStrike15_v2_ClientReportSer" +
-      "ver\022\024\n\014rpt_poorperf\030\001 \001(\r\022\031\n\021rpt_abusive",
-      "models\030\002 \001(\r\022\023\n\013rpt_badmotd\030\003 \001(\r\022\030\n\020rpt" +
-      "_listingabuse\030\004 \001(\r\022\020\n\010match_id\030\010 \001(\004\"\251\001" +
-      "\n\'CMsgGCCStrike15_v2_ClientReportRespons" +
-      "e\022\027\n\017confirmation_id\030\001 \001(\004\022\022\n\naccount_id" +
-      "\030\002 \001(\r\022\021\n\tserver_ip\030\003 \001(\r\022\025\n\rresponse_ty" +
-      "pe\030\004 \001(\r\022\027\n\017response_result\030\005 \001(\r\022\016\n\006tok" +
-      "ens\030\006 \001(\r\"~\n0CMsgGCCStrike15_v2_ClientRe" +
-      "questWatchInfoFriends\022\022\n\nrequest_id\030\001 \001(" +
-      "\r\022\023\n\013account_ids\030\002 \003(\r\022\020\n\010serverid\030\003 \001(\004" +
-      "\022\017\n\007matchid\030\004 \001(\004\"\260\002\n\022WatchableMatchInfo",
-      "\022\021\n\tserver_ip\030\001 \001(\r\022\017\n\007tv_port\030\002 \001(\r\022\025\n\r" +
-      "tv_spectators\030\003 \001(\r\022\017\n\007tv_time\030\004 \001(\r\022\031\n\021" +
-      "tv_watch_password\030\005 \001(\014\022\032\n\022cl_decryptdat" +
-      "a_key\030\006 \001(\004\022\036\n\026cl_decryptdata_key_pub\030\007 " +
-      "\001(\004\022\021\n\tgame_type\030\010 \001(\r\022\025\n\rgame_mapgroup\030" +
-      "\t \001(\t\022\020\n\010game_map\030\n \001(\t\022\021\n\tserver_id\030\013 \001" +
-      "(\004\022\020\n\010match_id\030\014 \001(\004\022\026\n\016reservation_id\030\r" +
-      " \001(\004\"\313\001\n.CMsgGCCStrike15_v2_ClientReques" +
-      "tJoinFriendData\022\017\n\007version\030\001 \001(\r\022\022\n\nacco" +
-      "unt_id\030\002 \001(\r\022\022\n\njoin_token\030\003 \001(\r\022\020\n\010join",
-      "_ipp\030\004 \001(\r\022<\n\003res\030\005 \001(\0132/.CMsgGCCStrike1" +
-      "5_v2_MatchmakingGC2ClientReserve\022\020\n\010erro" +
-      "rmsg\030\006 \001(\t\"\315\001\n.CMsgGCCStrike15_v2_Client" +
-      "RequestJoinServerData\022\017\n\007version\030\001 \001(\r\022\022" +
-      "\n\naccount_id\030\002 \001(\r\022\020\n\010serverid\030\003 \001(\004\022\021\n\t" +
-      "server_ip\030\004 \001(\r\022\023\n\013server_port\030\005 \001(\r\022<\n\003" +
-      "res\030\006 \001(\0132/.CMsgGCCStrike15_v2_Matchmaki" +
-      "ngGC2ClientReserve\"Z\n*CMsgGCCstrike15_v2" +
-      "_ClientRequestNewMission\022\030\n\020campaign_ite" +
-      "m_id\030\001 \001(\004\022\022\n\nmission_id\030\002 \001(\r\"\232\001\n!CMsgG",
-      "CCStrike15_v2_WatchInfoUsers\022\022\n\nrequest_" +
-      "id\030\001 \001(\r\022\023\n\013account_ids\030\002 \003(\r\0222\n\025watchab" +
-      "le_match_infos\030\003 \003(\0132\023.WatchableMatchInf" +
-      "o\022\030\n\020extended_timeout\030\005 \001(\r\"\234\001\n.CMsgGCCS" +
-      "trike15_v2_ClientRequestPlayersProfile\022\036" +
-      "\n\026request_id__deprecated\030\001 \001(\r\022\037\n\027accoun" +
-      "t_ids__deprecated\030\002 \003(\r\022\022\n\naccount_id\030\003 " +
-      "\001(\r\022\025\n\rrequest_level\030\004 \001(\r\"\200\001\n!CMsgGCCSt" +
-      "rike15_v2_PlayersProfile\022\022\n\nrequest_id\030\001" +
-      " \001(\r\022G\n\020account_profiles\030\002 \003(\0132-.CMsgGCC",
-      "Strike15_v2_MatchmakingGC2ClientHello\"\213\001" +
-      "\n1CMsgGCCStrike15_v2_PlayerEarnedRewardN" +
-      "otification\022\022\n\naccount_id\030\001 \001(\r\022\026\n\016item_" +
-      "def_index\030\002 \001(\r\022\026\n\016attr_def_index\030\003 \001(\r\022" +
-      "\022\n\nattr_value\030\004 \001(\r\"\314\001\n,CMsgGCCStrike15_" +
-      "v2_PlayerOverwatchCaseUpdate\022\016\n\006caseid\030\001" +
-      " \001(\004\022\021\n\tsuspectid\030\003 \001(\r\022\022\n\nfractionid\030\004 " +
-      "\001(\r\022\022\n\nrpt_aimbot\030\005 \001(\r\022\024\n\014rpt_wallhack\030" +
-      "\006 \001(\r\022\025\n\rrpt_speedhack\030\007 \001(\r\022\024\n\014rpt_team" +
-      "harm\030\010 \001(\r\022\016\n\006reason\030\t \001(\r\"\215\002\n0CMsgGCCSt",
-      "rike15_v2_PlayerOverwatchCaseAssignment\022" +
-      "\016\n\006caseid\030\001 \001(\004\022\017\n\007caseurl\030\002 \001(\t\022\017\n\007verd" +
-      "ict\030\003 \001(\r\022\021\n\ttimestamp\030\004 \001(\r\022\027\n\017throttle" +
-      "seconds\030\005 \001(\r\022\021\n\tsuspectid\030\006 \001(\r\022\022\n\nfrac" +
-      "tionid\030\007 \001(\r\022\021\n\tnumrounds\030\010 \001(\r\022\026\n\016fract" +
-      "ionrounds\030\t \001(\r\022\031\n\021streakconvictions\030\n \001" +
-      "(\005\022\016\n\006reason\030\013 \001(\r\"P\n,CMsgGCCStrike15_v2" +
-      "_PlayerOverwatchCaseStatus\022\016\n\006caseid\030\001 \001" +
-      "(\004\022\020\n\010statusid\030\002 \001(\r\"C\n\036CClientHeaderOve" +
-      "rwatchEvidence\022\021\n\taccountid\030\001 \001(\r\022\016\n\006cas",
-      "eid\030\002 \001(\004\"P\n#CMsgGCCStrike15_v2_GC2Clien" +
-      "tTextMsg\022\n\n\002id\030\001 \001(\r\022\014\n\004type\030\002 \001(\r\022\017\n\007pa" +
-      "yload\030\003 \001(\014\"?\n#CMsgGCCStrike15_v2_Client" +
-      "2GCTextMsg\022\n\n\002id\030\001 \001(\r\022\014\n\004args\030\002 \003(\014\"\263\002\n" +
-      "\034CMsgGC_ServerQuestUpdateData\022H\n\021player_" +
-      "quest_data\030\001 \003(\0132-.CMsgGC_ServerQuestUpd" +
-      "ateData.PlayerQuestData\032\310\001\n\017PlayerQuestD" +
-      "ata\022\032\n\022quester_account_id\030\001 \001(\r\022T\n\017quest" +
-      "_item_data\030\002 \003(\0132;.CMsgGC_ServerQuestUpd" +
-      "ateData.PlayerQuestData.QuestItemData\032C\n",
-      "\rQuestItemData\022\025\n\rquest_item_id\030\001 \001(\004\022\033\n" +
-      "\023quest_points_earned\030\002 \001(\005\"\266\001\n)CMsgGCCSt" +
-      "rike15_v2_MatchEndRunRewardDrops\022L\n\nserv" +
-      "erinfo\030\003 \001(\01328.CMsgGCCStrike15_v2_Matchm" +
-      "akingServerReservationResponse\022;\n\024match_" +
-      "end_quest_data\030\004 \001(\0132\035.CMsgGC_ServerQues" +
-      "tUpdateData\"\271\003\n\031CEconItemPreviewDataBloc" +
-      "k\022\021\n\taccountid\030\001 \001(\r\022\016\n\006itemid\030\002 \001(\004\022\020\n\010" +
-      "defindex\030\003 \001(\r\022\022\n\npaintindex\030\004 \001(\r\022\016\n\006ra" +
-      "rity\030\005 \001(\r\022\017\n\007quality\030\006 \001(\r\022\021\n\tpaintwear",
-      "\030\007 \001(\r\022\021\n\tpaintseed\030\010 \001(\r\022\032\n\022killeatersc" +
-      "oretype\030\t \001(\r\022\026\n\016killeatervalue\030\n \001(\r\022\022\n" +
-      "\ncustomname\030\013 \001(\t\0224\n\010stickers\030\014 \003(\0132\".CE" +
-      "conItemPreviewDataBlock.Sticker\022\021\n\tinven" +
-      "tory\030\r \001(\r\022\016\n\006origin\030\016 \001(\r\022\017\n\007questid\030\017 " +
-      "\001(\r\032Z\n\007Sticker\022\014\n\004slot\030\001 \001(\r\022\022\n\nsticker_" +
-      "id\030\002 \001(\r\022\014\n\004wear\030\003 \001(\002\022\r\n\005scale\030\004 \001(\002\022\020\n" +
-      "\010rotation\030\005 \001(\002\"b\n2CMsgGCCStrike15_v2_Ma" +
-      "tchEndRewardDropsNotification\022,\n\010iteminf" +
-      "o\030\006 \001(\0132\032.CEconItemPreviewDataBlock\"D\n\024C",
-      "MsgItemAcknowledged\022,\n\010iteminfo\030\001 \001(\0132\032." +
-      "CEconItemPreviewDataBlock\"}\n7CMsgGCCStri" +
-      "ke15_v2_Client2GCEconPreviewDataBlockReq" +
-      "uest\022\017\n\007param_s\030\001 \001(\004\022\017\n\007param_a\030\002 \001(\004\022\017" +
-      "\n\007param_d\030\003 \001(\004\022\017\n\007param_m\030\004 \001(\004\"h\n8CMsg" +
-      "GCCStrike15_v2_Client2GCEconPreviewDataB" +
-      "lockResponse\022,\n\010iteminfo\030\001 \001(\0132\032.CEconIt" +
-      "emPreviewDataBlock\"s\n9CMsgGCCStrike15_v2" +
-      "_TournamentMatchRewardDropsNotification\022" +
-      "\020\n\010match_id\030\001 \001(\004\022\020\n\010defindex\030\002 \001(\r\022\022\n\na",
-      "ccountids\030\003 \003(\r\"5\n3CMsgGCCStrike15_v2_Ma" +
-      "tchListRequestCurrentLiveGames\"G\n2CMsgGC" +
-      "CStrike15_v2_MatchListRequestLiveGameFor" +
-      "User\022\021\n\taccountid\030\001 \001(\r\"G\n2CMsgGCCStrike" +
-      "15_v2_MatchListRequestRecentUserGames\022\021\n" +
-      "\taccountid\030\001 \001(\r\"E\n2CMsgGCCStrike15_v2_M" +
-      "atchListRequestTournamentGames\022\017\n\007eventi" +
-      "d\030\001 \001(\005\"d\n/CMsgGCCStrike15_v2_MatchListR" +
-      "equestFullGameInfo\022\017\n\007matchid\030\001 \001(\004\022\021\n\to" +
-      "utcomeid\030\002 \001(\004\022\r\n\005token\030\003 \001(\r\"\271\001\n\035CDataG",
-      "CCStrike15_v2_MatchInfo\022\017\n\007matchid\030\001 \001(\004" +
-      "\022\021\n\tmatchtime\030\002 \001(\r\022/\n\022watchablematchinf" +
-      "o\030\003 \001(\0132\023.WatchableMatchInfo\022C\n\nroundsta" +
-      "ts\030\004 \001(\0132/.CMsgGCCStrike15_v2_Matchmakin" +
-      "gServerRoundStats\"^\n\'CDataGCCStrike15_v2" +
-      "_TournamentGroupTeam\022\017\n\007team_id\030\001 \001(\005\022\r\n" +
-      "\005score\030\002 \001(\005\022\023\n\013correctpick\030\003 \001(\010\"\370\001\n#CD" +
-      "ataGCCStrike15_v2_TournamentGroup\022\017\n\007gro" +
-      "upid\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\014\n\004desc\030\003 \001(\t\022\r" +
-      "\n\005picks\030\004 \001(\r\0227\n\005teams\030\005 \003(\0132(.CDataGCCS",
-      "trike15_v2_TournamentGroupTeam\022\021\n\tstage_" +
-      "ids\030\006 \003(\005\022\031\n\021picklockuntiltime\030\007 \001(\r\022\025\n\r" +
-      "pickableteams\030\010 \001(\r\022\027\n\017points_per_pick\030\t" +
-      " \001(\r\"\214\001\n%CDataGCCStrike15_v2_TournamentS" +
-      "ection\022\021\n\tsectionid\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\022" +
-      "\014\n\004desc\030\003 \001(\t\0224\n\006groups\030\004 \003(\0132$.CDataGCC" +
-      "Strike15_v2_TournamentGroup\"\265\001\n\"CDataGCC" +
-      "Strike15_v2_TournamentInfo\0228\n\010sections\030\001" +
-      " \003(\0132&.CDataGCCStrike15_v2_TournamentSec" +
-      "tion\022*\n\020tournament_event\030\002 \001(\0132\020.Tournam",
-      "entEvent\022)\n\020tournament_teams\030\003 \003(\0132\017.Tou" +
-      "rnamentTeam\"\353\001\n\034CMsgGCCStrike15_v2_Match" +
-      "List\022\024\n\014msgrequestid\030\001 \001(\r\022\021\n\taccountid\030" +
-      "\002 \001(\r\022\022\n\nservertime\030\003 \001(\r\022/\n\007matches\030\004 \003" +
-      "(\0132\036.CDataGCCStrike15_v2_MatchInfo\022 \n\007st" +
-      "reams\030\005 \003(\0132\017.TournamentTeam\022;\n\016tourname" +
-      "ntinfo\030\006 \001(\0132#.CDataGCCStrike15_v2_Tourn" +
-      "amentInfo\"\357\001\n\036CMsgGCCStrike15_v2_Predict" +
-      "ions\022\020\n\010event_id\030\001 \001(\r\022R\n\026group_match_te" +
-      "am_picks\030\002 \003(\01322.CMsgGCCStrike15_v2_Pred",
-      "ictions.GroupMatchTeamPick\032g\n\022GroupMatch" +
-      "TeamPick\022\021\n\tsectionid\030\001 \001(\005\022\017\n\007groupid\030\002" +
-      " \001(\005\022\r\n\005index\030\003 \001(\005\022\016\n\006teamid\030\004 \001(\005\022\016\n\006i" +
-      "temid\030\005 \001(\004\"\"\n\021CAttribute_String\022\r\n\005valu" +
-      "e\030\001 \001(\t\"\032\n\030CMsgGCToGCReloadVersions\"\262\001\n\024" +
-      "CMsgCStrike15Welcome\022\027\n\017store_item_hash\030" +
-      "\005 \001(\r\022\037\n\027timeplayedconsecutively\030\006 \001(\r\022\031" +
-      "\n\021time_first_played\030\n \001(\r\022\030\n\020last_time_p" +
-      "layed\030\014 \001(\r\022\027\n\017last_ip_address\030\r \001(\r\022\022\n\n" +
-      "gscookieid\030\022 \001(\004\"\233\001\n1CMsgGCCStrike15_v2_",
-      "ClientVarValueNotificationInfo\022\022\n\nvalue_" +
-      "name\030\001 \001(\t\022\021\n\tvalue_int\030\002 \001(\005\022\023\n\013server_" +
-      "addr\030\003 \001(\r\022\023\n\013server_port\030\004 \001(\r\022\025\n\rchoke" +
-      "d_blocks\030\005 \003(\t\"Z\n1CMsgGCCStrike15_v2_Ser" +
-      "verVarValueNotificationInfo\022\021\n\taccountid" +
-      "\030\001 \001(\r\022\022\n\nviewangles\030\002 \003(\r\",\n*CMsgGCCStr" +
-      "ike15_v2_GiftsLeaderboardRequest\"\235\002\n+CMs" +
-      "gGCCStrike15_v2_GiftsLeaderboardResponse" +
-      "\022\022\n\nservertime\030\001 \001(\r\022\033\n\023time_period_seco" +
-      "nds\030\002 \001(\r\022\031\n\021total_gifts_given\030\003 \001(\r\022\024\n\014",
-      "total_givers\030\004 \001(\r\022R\n\007entries\030\005 \003(\0132A.CM" +
-      "sgGCCStrike15_v2_GiftsLeaderboardRespons" +
-      "e.GiftLeaderboardEntry\0328\n\024GiftLeaderboar" +
-      "dEntry\022\021\n\taccountid\030\001 \001(\r\022\r\n\005gifts\030\002 \001(\r" +
-      "\"L\n)CMsgGCCStrike15_v2_ClientSubmitSurve" +
-      "yVote\022\021\n\tsurvey_id\030\001 \001(\r\022\014\n\004vote\030\002 \001(\r\"?" +
-      "\n*CMsgGCCStrike15_v2_Server2GCClientVali" +
-      "date\022\021\n\taccountid\030\001 \001(\r\"\273\001\n7CMsgGCCStrik" +
+      "MatchmakingGC2ServerReserve\022\016\n\006reason\030\003 " +
+      "\001(\r\"\257\002\n,CDataGCCStrike15_v2_MatchmakingL" +
+      "ockedInMatch\022K\n\022client_reservation\030\001 \001(\013",
+      "2/.CMsgGCCStrike15_v2_MatchmakingGC2Clie" +
+      "ntReserve\022E\n\014server_stats\030\002 \001(\0132/.CMsgGC" +
+      "CStrike15_v2_MatchmakingServerRoundStats" +
+      "\022\033\n\023rtime32_server_info\030\003 \001(\r\022N\n\025last_ro" +
+      "und_stats_temp\030\004 \001(\0132/.CMsgGCCStrike15_v" +
+      "2_MatchmakingServerRoundStats\"k\n1CMsgGCC" +
+      "Strike15_v2_MatchmakingGC2ServerRankUpda" +
+      "te\022$\n\010rankings\030\001 \003(\0132\022.PlayerRankingInfo" +
+      "\022\020\n\010match_id\030\002 \001(\004\"L\n3CMsgGCCStrike15_v2" +
+      "_MatchmakingOperator2GCBlogUpdate\022\025\n\rmai",
+      "n_post_url\030\001 \001(\t\"j\n3CMsgGCCStrike15_v2_S" +
+      "erverNotificationForUserPenalty\022\022\n\naccou" +
+      "nt_id\030\001 \001(\r\022\016\n\006reason\030\002 \001(\r\022\017\n\007seconds\030\003" +
+      " \001(\r\"\323\001\n%CMsgGCCStrike15_v2_ClientReport" +
+      "Player\022\022\n\naccount_id\030\001 \001(\r\022\022\n\nrpt_aimbot" +
+      "\030\002 \001(\r\022\024\n\014rpt_wallhack\030\003 \001(\r\022\025\n\rrpt_spee" +
+      "dhack\030\004 \001(\r\022\024\n\014rpt_teamharm\030\005 \001(\r\022\025\n\rrpt" +
+      "_textabuse\030\006 \001(\r\022\026\n\016rpt_voiceabuse\030\007 \001(\r" +
+      "\022\020\n\010match_id\030\010 \001(\004\"\215\001\n&CMsgGCCStrike15_v" +
+      "2_ClientCommendPlayer\022\022\n\naccount_id\030\001 \001(",
+      "\r\022\020\n\010match_id\030\010 \001(\004\022-\n\014commendation\030\t \001(" +
+      "\0132\027.PlayerCommendationInfo\022\016\n\006tokens\030\n \001" +
+      "(\r\"\231\001\n%CMsgGCCStrike15_v2_ClientReportSe" +
+      "rver\022\024\n\014rpt_poorperf\030\001 \001(\r\022\031\n\021rpt_abusiv" +
+      "emodels\030\002 \001(\r\022\023\n\013rpt_badmotd\030\003 \001(\r\022\030\n\020rp" +
+      "t_listingabuse\030\004 \001(\r\022\020\n\010match_id\030\010 \001(\004\"\251" +
+      "\001\n\'CMsgGCCStrike15_v2_ClientReportRespon" +
+      "se\022\027\n\017confirmation_id\030\001 \001(\004\022\022\n\naccount_i" +
+      "d\030\002 \001(\r\022\021\n\tserver_ip\030\003 \001(\r\022\025\n\rresponse_t" +
+      "ype\030\004 \001(\r\022\027\n\017response_result\030\005 \001(\r\022\016\n\006to",
+      "kens\030\006 \001(\r\"~\n0CMsgGCCStrike15_v2_ClientR" +
+      "equestWatchInfoFriends\022\022\n\nrequest_id\030\001 \001" +
+      "(\r\022\023\n\013account_ids\030\002 \003(\r\022\020\n\010serverid\030\003 \001(" +
+      "\004\022\017\n\007matchid\030\004 \001(\004\"\260\002\n\022WatchableMatchInf" +
+      "o\022\021\n\tserver_ip\030\001 \001(\r\022\017\n\007tv_port\030\002 \001(\r\022\025\n" +
+      "\rtv_spectators\030\003 \001(\r\022\017\n\007tv_time\030\004 \001(\r\022\031\n" +
+      "\021tv_watch_password\030\005 \001(\014\022\032\n\022cl_decryptda" +
+      "ta_key\030\006 \001(\004\022\036\n\026cl_decryptdata_key_pub\030\007" +
+      " \001(\004\022\021\n\tgame_type\030\010 \001(\r\022\025\n\rgame_mapgroup" +
+      "\030\t \001(\t\022\020\n\010game_map\030\n \001(\t\022\021\n\tserver_id\030\013 ",
+      "\001(\004\022\020\n\010match_id\030\014 \001(\004\022\026\n\016reservation_id\030" +
+      "\r \001(\004\"\313\001\n.CMsgGCCStrike15_v2_ClientReque" +
+      "stJoinFriendData\022\017\n\007version\030\001 \001(\r\022\022\n\nacc" +
+      "ount_id\030\002 \001(\r\022\022\n\njoin_token\030\003 \001(\r\022\020\n\010joi" +
+      "n_ipp\030\004 \001(\r\022<\n\003res\030\005 \001(\0132/.CMsgGCCStrike" +
+      "15_v2_MatchmakingGC2ClientReserve\022\020\n\010err" +
+      "ormsg\030\006 \001(\t\"\315\001\n.CMsgGCCStrike15_v2_Clien" +
+      "tRequestJoinServerData\022\017\n\007version\030\001 \001(\r\022" +
+      "\022\n\naccount_id\030\002 \001(\r\022\020\n\010serverid\030\003 \001(\004\022\021\n" +
+      "\tserver_ip\030\004 \001(\r\022\023\n\013server_port\030\005 \001(\r\022<\n",
+      "\003res\030\006 \001(\0132/.CMsgGCCStrike15_v2_Matchmak" +
+      "ingGC2ClientReserve\"U\n*CMsgGCCstrike15_v" +
+      "2_ClientRequestNewMission\022\022\n\nmission_id\030" +
+      "\002 \001(\r\022\023\n\013campaign_id\030\003 \001(\r\"\261\001\n,CMsgGCCst" +
+      "rike15_v2_GC2ServerNotifyXPRewarded\022)\n\020x" +
+      "p_progress_data\030\001 \003(\0132\017.XpProgressData\022\022" +
+      "\n\naccount_id\030\002 \001(\r\022\022\n\ncurrent_xp\030\003 \001(\r\022\025" +
+      "\n\rcurrent_level\030\004 \001(\r\022\027\n\017upgraded_defidx" +
+      "\030\005 \001(\r\"\232\001\n!CMsgGCCStrike15_v2_WatchInfoU" +
+      "sers\022\022\n\nrequest_id\030\001 \001(\r\022\023\n\013account_ids\030",
+      "\002 \003(\r\0222\n\025watchable_match_infos\030\003 \003(\0132\023.W" +
+      "atchableMatchInfo\022\030\n\020extended_timeout\030\005 " +
+      "\001(\r\"\234\001\n.CMsgGCCStrike15_v2_ClientRequest" +
+      "PlayersProfile\022\036\n\026request_id__deprecated" +
+      "\030\001 \001(\r\022\037\n\027account_ids__deprecated\030\002 \003(\r\022" +
+      "\022\n\naccount_id\030\003 \001(\r\022\025\n\rrequest_level\030\004 \001" +
+      "(\r\"\200\001\n!CMsgGCCStrike15_v2_PlayersProfile" +
+      "\022\022\n\nrequest_id\030\001 \001(\r\022G\n\020account_profiles" +
+      "\030\002 \003(\0132-.CMsgGCCStrike15_v2_MatchmakingG" +
+      "C2ClientHello\"\314\001\n,CMsgGCCStrike15_v2_Pla",
+      "yerOverwatchCaseUpdate\022\016\n\006caseid\030\001 \001(\004\022\021" +
+      "\n\tsuspectid\030\003 \001(\r\022\022\n\nfractionid\030\004 \001(\r\022\022\n" +
+      "\nrpt_aimbot\030\005 \001(\r\022\024\n\014rpt_wallhack\030\006 \001(\r\022" +
+      "\025\n\rrpt_speedhack\030\007 \001(\r\022\024\n\014rpt_teamharm\030\010" +
+      " \001(\r\022\016\n\006reason\030\t \001(\r\"\215\002\n0CMsgGCCStrike15" +
+      "_v2_PlayerOverwatchCaseAssignment\022\016\n\006cas" +
+      "eid\030\001 \001(\004\022\017\n\007caseurl\030\002 \001(\t\022\017\n\007verdict\030\003 " +
+      "\001(\r\022\021\n\ttimestamp\030\004 \001(\r\022\027\n\017throttlesecond" +
+      "s\030\005 \001(\r\022\021\n\tsuspectid\030\006 \001(\r\022\022\n\nfractionid" +
+      "\030\007 \001(\r\022\021\n\tnumrounds\030\010 \001(\r\022\026\n\016fractionrou",
+      "nds\030\t \001(\r\022\031\n\021streakconvictions\030\n \001(\005\022\016\n\006" +
+      "reason\030\013 \001(\r\"P\n,CMsgGCCStrike15_v2_Playe" +
+      "rOverwatchCaseStatus\022\016\n\006caseid\030\001 \001(\004\022\020\n\010" +
+      "statusid\030\002 \001(\r\"C\n\036CClientHeaderOverwatch" +
+      "Evidence\022\021\n\taccountid\030\001 \001(\r\022\016\n\006caseid\030\002 " +
+      "\001(\004\"P\n#CMsgGCCStrike15_v2_GC2ClientTextM" +
+      "sg\022\n\n\002id\030\001 \001(\r\022\014\n\004type\030\002 \001(\r\022\017\n\007payload\030" +
+      "\003 \001(\014\"?\n#CMsgGCCStrike15_v2_Client2GCTex" +
+      "tMsg\022\n\n\002id\030\001 \001(\r\022\014\n\004args\030\002 \003(\014\"\266\001\n)CMsgG" +
+      "CCStrike15_v2_MatchEndRunRewardDrops\022L\n\n",
+      "serverinfo\030\003 \001(\01328.CMsgGCCStrike15_v2_Ma" +
+      "tchmakingServerReservationResponse\022;\n\024ma" +
+      "tch_end_quest_data\030\004 \001(\0132\035.CMsgGC_Server" +
+      "QuestUpdateData\"\315\003\n\031CEconItemPreviewData" +
+      "Block\022\021\n\taccountid\030\001 \001(\r\022\016\n\006itemid\030\002 \001(\004" +
+      "\022\020\n\010defindex\030\003 \001(\r\022\022\n\npaintindex\030\004 \001(\r\022\016" +
+      "\n\006rarity\030\005 \001(\r\022\017\n\007quality\030\006 \001(\r\022\021\n\tpaint" +
+      "wear\030\007 \001(\r\022\021\n\tpaintseed\030\010 \001(\r\022\032\n\022killeat" +
+      "erscoretype\030\t \001(\r\022\026\n\016killeatervalue\030\n \001(" +
+      "\r\022\022\n\ncustomname\030\013 \001(\t\0224\n\010stickers\030\014 \003(\0132",
+      "\".CEconItemPreviewDataBlock.Sticker\022\021\n\ti" +
+      "nventory\030\r \001(\r\022\016\n\006origin\030\016 \001(\r\022\017\n\007questi" +
+      "d\030\017 \001(\r\022\022\n\ndropreason\030\020 \001(\r\032Z\n\007Sticker\022\014" +
+      "\n\004slot\030\001 \001(\r\022\022\n\nsticker_id\030\002 \001(\r\022\014\n\004wear" +
+      "\030\003 \001(\002\022\r\n\005scale\030\004 \001(\002\022\020\n\010rotation\030\005 \001(\002\"" +
+      "b\n2CMsgGCCStrike15_v2_MatchEndRewardDrop" +
+      "sNotification\022,\n\010iteminfo\030\006 \001(\0132\032.CEconI" +
+      "temPreviewDataBlock\"D\n\024CMsgItemAcknowled" +
+      "ged\022,\n\010iteminfo\030\001 \001(\0132\032.CEconItemPreview" +
+      "DataBlock\"}\n7CMsgGCCStrike15_v2_Client2G",
+      "CEconPreviewDataBlockRequest\022\017\n\007param_s\030" +
+      "\001 \001(\004\022\017\n\007param_a\030\002 \001(\004\022\017\n\007param_d\030\003 \001(\004\022" +
+      "\017\n\007param_m\030\004 \001(\004\"h\n8CMsgGCCStrike15_v2_C" +
+      "lient2GCEconPreviewDataBlockResponse\022,\n\010" +
+      "iteminfo\030\001 \001(\0132\032.CEconItemPreviewDataBlo" +
+      "ck\"s\n9CMsgGCCStrike15_v2_TournamentMatch" +
+      "RewardDropsNotification\022\020\n\010match_id\030\001 \001(" +
+      "\004\022\020\n\010defindex\030\002 \001(\r\022\022\n\naccountids\030\003 \003(\r\"" +
+      "5\n3CMsgGCCStrike15_v2_MatchListRequestCu" +
+      "rrentLiveGames\"G\n2CMsgGCCStrike15_v2_Mat",
+      "chListRequestLiveGameForUser\022\021\n\taccounti" +
+      "d\030\001 \001(\r\"G\n2CMsgGCCStrike15_v2_MatchListR" +
+      "equestRecentUserGames\022\021\n\taccountid\030\001 \001(\r" +
+      "\"E\n2CMsgGCCStrike15_v2_MatchListRequestT" +
+      "ournamentGames\022\017\n\007eventid\030\001 \001(\005\"d\n/CMsgG" +
+      "CCStrike15_v2_MatchListRequestFullGameIn" +
+      "fo\022\017\n\007matchid\030\001 \001(\004\022\021\n\toutcomeid\030\002 \001(\004\022\r" +
+      "\n\005token\030\003 \001(\r\"\210\002\n\035CDataGCCStrike15_v2_Ma" +
+      "tchInfo\022\017\n\007matchid\030\001 \001(\004\022\021\n\tmatchtime\030\002 " +
+      "\001(\r\022/\n\022watchablematchinfo\030\003 \001(\0132\023.Watcha",
+      "bleMatchInfo\022J\n\021roundstats_legacy\030\004 \001(\0132" +
+      "/.CMsgGCCStrike15_v2_MatchmakingServerRo" +
+      "undStats\022F\n\rroundstatsall\030\005 \003(\0132/.CMsgGC" +
+      "CStrike15_v2_MatchmakingServerRoundStats" +
+      "\"^\n\'CDataGCCStrike15_v2_TournamentGroupT" +
+      "eam\022\017\n\007team_id\030\001 \001(\005\022\r\n\005score\030\002 \001(\005\022\023\n\013c" +
+      "orrectpick\030\003 \001(\010\"\370\001\n#CDataGCCStrike15_v2" +
+      "_TournamentGroup\022\017\n\007groupid\030\001 \001(\r\022\014\n\004nam" +
+      "e\030\002 \001(\t\022\014\n\004desc\030\003 \001(\t\022\r\n\005picks\030\004 \001(\r\0227\n\005" +
+      "teams\030\005 \003(\0132(.CDataGCCStrike15_v2_Tourna",
+      "mentGroupTeam\022\021\n\tstage_ids\030\006 \003(\005\022\031\n\021pick" +
+      "lockuntiltime\030\007 \001(\r\022\025\n\rpickableteams\030\010 \001" +
+      "(\r\022\027\n\017points_per_pick\030\t \001(\r\"\214\001\n%CDataGCC" +
+      "Strike15_v2_TournamentSection\022\021\n\tsection" +
+      "id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\014\n\004desc\030\003 \001(\t\0224\n\006" +
+      "groups\030\004 \003(\0132$.CDataGCCStrike15_v2_Tourn" +
+      "amentGroup\"\265\001\n\"CDataGCCStrike15_v2_Tourn" +
+      "amentInfo\0228\n\010sections\030\001 \003(\0132&.CDataGCCSt" +
+      "rike15_v2_TournamentSection\022*\n\020tournamen" +
+      "t_event\030\002 \001(\0132\020.TournamentEvent\022)\n\020tourn",
+      "ament_teams\030\003 \003(\0132\017.TournamentTeam\"\353\001\n\034C" +
+      "MsgGCCStrike15_v2_MatchList\022\024\n\014msgreques" +
+      "tid\030\001 \001(\r\022\021\n\taccountid\030\002 \001(\r\022\022\n\nserverti" +
+      "me\030\003 \001(\r\022/\n\007matches\030\004 \003(\0132\036.CDataGCCStri" +
+      "ke15_v2_MatchInfo\022 \n\007streams\030\005 \003(\0132\017.Tou" +
+      "rnamentTeam\022;\n\016tournamentinfo\030\006 \001(\0132#.CD" +
+      "ataGCCStrike15_v2_TournamentInfo\"\357\001\n\036CMs" +
+      "gGCCStrike15_v2_Predictions\022\020\n\010event_id\030" +
+      "\001 \001(\r\022R\n\026group_match_team_picks\030\002 \003(\01322." +
+      "CMsgGCCStrike15_v2_Predictions.GroupMatc",
+      "hTeamPick\032g\n\022GroupMatchTeamPick\022\021\n\tsecti" +
+      "onid\030\001 \001(\005\022\017\n\007groupid\030\002 \001(\005\022\r\n\005index\030\003 \001" +
+      "(\005\022\016\n\006teamid\030\004 \001(\005\022\016\n\006itemid\030\005 \001(\004\"\"\n\021CA" +
+      "ttribute_String\022\r\n\005value\030\001 \001(\t\"\032\n\030CMsgGC" +
+      "ToGCReloadVersions\"\304\001\n\024CMsgCStrike15Welc" +
+      "ome\022\027\n\017store_item_hash\030\005 \001(\r\022\037\n\027timeplay" +
+      "edconsecutively\030\006 \001(\r\022\031\n\021time_first_play" +
+      "ed\030\n \001(\r\022\030\n\020last_time_played\030\014 \001(\r\022\027\n\017la" +
+      "st_ip_address\030\r \001(\r\022\022\n\ngscookieid\030\022 \001(\004\022" +
+      "\020\n\010uniqueid\030\023 \001(\004\"\233\001\n1CMsgGCCStrike15_v2",
+      "_ClientVarValueNotificationInfo\022\022\n\nvalue" +
+      "_name\030\001 \001(\t\022\021\n\tvalue_int\030\002 \001(\005\022\023\n\013server" +
+      "_addr\030\003 \001(\r\022\023\n\013server_port\030\004 \001(\r\022\025\n\rchok" +
+      "ed_blocks\030\005 \003(\t\"h\n1CMsgGCCStrike15_v2_Se" +
+      "rverVarValueNotificationInfo\022\021\n\taccounti" +
+      "d\030\001 \001(\r\022\022\n\nviewangles\030\002 \003(\r\022\014\n\004type\030\003 \001(" +
+      "\r\",\n*CMsgGCCStrike15_v2_GiftsLeaderboard" +
+      "Request\"\235\002\n+CMsgGCCStrike15_v2_GiftsLead" +
+      "erboardResponse\022\022\n\nservertime\030\001 \001(\r\022\033\n\023t" +
+      "ime_period_seconds\030\002 \001(\r\022\031\n\021total_gifts_",
+      "given\030\003 \001(\r\022\024\n\014total_givers\030\004 \001(\r\022R\n\007ent" +
+      "ries\030\005 \003(\0132A.CMsgGCCStrike15_v2_GiftsLea" +
+      "derboardResponse.GiftLeaderboardEntry\0328\n" +
+      "\024GiftLeaderboardEntry\022\021\n\taccountid\030\001 \001(\r" +
+      "\022\r\n\005gifts\030\002 \001(\r\"L\n)CMsgGCCStrike15_v2_Cl" +
+      "ientSubmitSurveyVote\022\021\n\tsurvey_id\030\001 \001(\r\022" +
+      "\014\n\004vote\030\002 \001(\r\"?\n*CMsgGCCStrike15_v2_Serv" +
+      "er2GCClientValidate\022\021\n\taccountid\030\001 \001(\r\"\273" +
+      "\001\n7CMsgGCCStrike15_v2_Server2GCPureServe" +
+      "rValidationFailure\022\021\n\taccountid\030\001 \001(\r\022\014\n",
+      "\004path\030\002 \001(\t\022\014\n\004file\030\003 \001(\t\022\013\n\003crc\030\004 \001(\r\022\014" +
+      "\n\004hash\030\005 \001(\005\022\013\n\003len\030\006 \001(\005\022\023\n\013pack_number" +
+      "\030\007 \001(\005\022\024\n\014pack_file_id\030\010 \001(\005\"r\n*CMsgGCCS" +
+      "trike15_v2_GC2ClientTournamentInfo\022\017\n\007ev" +
+      "entid\030\001 \001(\r\022\017\n\007stageid\030\002 \001(\r\022\021\n\tgame_typ" +
+      "e\030\003 \001(\r\022\017\n\007teamids\030\004 \003(\r\"I\n\rCSOEconCoupo" +
+      "n\022\017\n\007entryid\030\001 \001(\r\022\016\n\006defidx\030\002 \001(\r\022\027\n\017ex" +
+      "piration_date\030\003 \001(\007\"S\n\020CSOQuestProgress\022" +
+      "\017\n\007questid\030\001 \001(\r\022\030\n\020points_remaining\030\002 \001" +
+      "(\r\022\024\n\014bonus_points\030\003 \001(\r\"[\n\024CSOPersonaDa",
+      "taPublic\022\024\n\014player_level\030\001 \001(\005\022-\n\014commen" +
+      "dation\030\002 \001(\0132\027.PlayerCommendationInfo\"-\n" +
+      "\033CMsgGC_GlobalGame_Subscribe\022\016\n\006ticket\030\001" +
+      " \001(\004\"1\n\035CMsgGC_GlobalGame_Unsubscribe\022\020\n" +
+      "\010timeleft\030\001 \001(\005\"P\n\026CMsgGC_GlobalGame_Pla" +
+      "y\022\016\n\006ticket\030\001 \001(\004\022\022\n\ngametimems\030\002 \001(\r\022\022\n" +
+      "\nmsperpoint\030\003 \001(\r\"=\n%CMsgGCCStrike15_v2_" +
+      "AcknowledgePenalty\022\024\n\014acknowledged\030\001 \001(\005" +
+      "\"1\n/CMsgGCCStrike15_v2_Client2GCRequestP" +
+      "restigeCoin*\311\034\n\nECsgoGCMsg\022\036\n\031k_EMsgGCCS",
+      "trike15_v2_Base\020\214G\022*\n%k_EMsgGCCStrike15_" +
+      "v2_MatchmakingStart\020\215G\022)\n$k_EMsgGCCStrik" +
+      "e15_v2_MatchmakingStop\020\216G\0226\n1k_EMsgGCCSt" +
+      "rike15_v2_MatchmakingClient2ServerPing\020\217" +
+      "G\0224\n/k_EMsgGCCStrike15_v2_MatchmakingGC2" +
+      "ClientUpdate\020\220G\0225\n0k_EMsgGCCStrike15_v2_" +
+      "MatchmakingGC2ServerReserve\020\221G\022>\n9k_EMsg" +
+      "GCCStrike15_v2_MatchmakingServerReservat" +
+      "ionResponse\020\222G\0225\n0k_EMsgGCCStrike15_v2_M" +
+      "atchmakingGC2ClientReserve\020\223G\0225\n0k_EMsgG",
+      "CCStrike15_v2_MatchmakingServerRoundStat" +
+      "s\020\224G\0223\n.k_EMsgGCCStrike15_v2_Matchmaking" +
+      "Client2GCHello\020\225G\0223\n.k_EMsgGCCStrike15_v" +
+      "2_MatchmakingGC2ClientHello\020\226G\0223\n.k_EMsg" +
+      "GCCStrike15_v2_MatchmakingServerMatchEnd" +
+      "\020\227G\0225\n0k_EMsgGCCStrike15_v2_MatchmakingG" +
+      "C2ClientAbandon\020\230G\0222\n-k_EMsgGCCStrike15_" +
+      "v2_MatchmakingServer2GCKick\020\231G\0225\n0k_EMsg" +
+      "GCCStrike15_v2_MatchmakingGC2ServerConfi" +
+      "rm\020\232G\0227\n2k_EMsgGCCStrike15_v2_Matchmakin",
+      "gGCOperationalStats\020\233G\0228\n3k_EMsgGCCStrik" +
+      "e15_v2_MatchmakingGC2ServerRankUpdate\020\234G" +
+      "\022:\n5k_EMsgGCCStrike15_v2_MatchmakingOper" +
+      "ator2GCBlogUpdate\020\235G\022:\n5k_EMsgGCCStrike1" +
+      "5_v2_ServerNotificationForUserPenalty\020\236G" +
+      "\022,\n\'k_EMsgGCCStrike15_v2_ClientReportPla" +
+      "yer\020\237G\022,\n\'k_EMsgGCCStrike15_v2_ClientRep" +
+      "ortServer\020\240G\022-\n(k_EMsgGCCStrike15_v2_Cli" +
+      "entCommendPlayer\020\241G\022.\n)k_EMsgGCCStrike15" +
+      "_v2_ClientReportResponse\020\242G\0222\n-k_EMsgGCC",
+      "Strike15_v2_ClientCommendPlayerQuery\020\243G\022" +
+      ":\n5k_EMsgGCCStrike15_v2_ClientCommendPla" +
+      "yerQueryResponse\020\244G\022(\n#k_EMsgGCCStrike15" +
+      "_v2_WatchInfoUsers\020\246G\0225\n0k_EMsgGCCStrike" +
+      "15_v2_ClientRequestPlayersProfile\020\247G\022(\n#" +
+      "k_EMsgGCCStrike15_v2_PlayersProfile\020\250G\022)" +
+      "\n$k_EMsgGCCStrike15_v2_SetMyMedalsInfo\020\251" +
+      "G\0223\n.k_EMsgGCCStrike15_v2_PlayerOverwatc" +
+      "hCaseUpdate\020\253G\0227\n2k_EMsgGCCStrike15_v2_P" +
+      "layerOverwatchCaseAssignment\020\254G\0223\n.k_EMs",
+      "gGCCStrike15_v2_PlayerOverwatchCaseStatu" +
+      "s\020\255G\022*\n%k_EMsgGCCStrike15_v2_GC2ClientTe" +
+      "xtMsg\020\256G\022*\n%k_EMsgGCCStrike15_v2_Client2" +
+      "GCTextMsg\020\257G\0220\n+k_EMsgGCCStrike15_v2_Mat" +
+      "chEndRunRewardDrops\020\260G\0229\n4k_EMsgGCCStrik" +
+      "e15_v2_MatchEndRewardDropsNotification\020\261" +
+      "G\0228\n3k_EMsgGCCStrike15_v2_ClientRequestW" +
+      "atchInfoFriends2\020\262G\022#\n\036k_EMsgGCCStrike15" +
+      "_v2_MatchList\020\263G\022:\n5k_EMsgGCCStrike15_v2" +
+      "_MatchListRequestCurrentLiveGames\020\264G\0229\n4",
+      "k_EMsgGCCStrike15_v2_MatchListRequestRec" +
+      "entUserGames\020\265G\0224\n/k_EMsgGCCStrike15_v2_" +
+      "GC2ServerReservationUpdate\020\266G\0228\n3k_EMsgG" +
+      "CCStrike15_v2_ClientVarValueNotification" +
+      "Info\020\270G\022@\n;k_EMsgGCCStrike15_v2_Tourname" +
+      "ntMatchRewardDropsNotification\020\271G\0229\n4k_E" +
+      "MsgGCCStrike15_v2_MatchListRequestTourna" +
+      "mentGames\020\272G\0226\n1k_EMsgGCCStrike15_v2_Mat" +
+      "chListRequestFullGameInfo\020\273G\0221\n,k_EMsgGC" +
+      "CStrike15_v2_GiftsLeaderboardRequest\020\274G\022",
+      "2\n-k_EMsgGCCStrike15_v2_GiftsLeaderboard" +
+      "Response\020\275G\0228\n3k_EMsgGCCStrike15_v2_Serv" +
+      "erVarValueNotificationInfo\020\276G\022\037\n\032k_EMsgG" +
+      "CToGCReloadVersions\020\277G\0220\n+k_EMsgGCCStrik" +
+      "e15_v2_ClientSubmitSurveyVote\020\300G\0221\n,k_EM" +
+      "sgGCCStrike15_v2_Server2GCClientValidate" +
+      "\020\301G\0229\n4k_EMsgGCCStrike15_v2_MatchListReq" +
+      "uestLiveGameForUser\020\302G\022>\n9k_EMsgGCCStrik" +
       "e15_v2_Server2GCPureServerValidationFail" +
-      "ure\022\021\n\taccountid\030\001 \001(\r\022\014\n\004path\030\002 \001(\t\022\014\n\004",
-      "file\030\003 \001(\t\022\013\n\003crc\030\004 \001(\r\022\014\n\004hash\030\005 \001(\005\022\013\n" +
-      "\003len\030\006 \001(\005\022\023\n\013pack_number\030\007 \001(\005\022\024\n\014pack_" +
-      "file_id\030\010 \001(\005*\314\032\n\nECsgoGCMsg\022\036\n\031k_EMsgGC" +
-      "CStrike15_v2_Base\020\214G\022*\n%k_EMsgGCCStrike1" +
-      "5_v2_MatchmakingStart\020\215G\022)\n$k_EMsgGCCStr" +
-      "ike15_v2_MatchmakingStop\020\216G\0226\n1k_EMsgGCC" +
-      "Strike15_v2_MatchmakingClient2ServerPing" +
-      "\020\217G\0224\n/k_EMsgGCCStrike15_v2_MatchmakingG" +
-      "C2ClientUpdate\020\220G\0225\n0k_EMsgGCCStrike15_v" +
-      "2_MatchmakingGC2ServerReserve\020\221G\022>\n9k_EM",
-      "sgGCCStrike15_v2_MatchmakingServerReserv" +
-      "ationResponse\020\222G\0225\n0k_EMsgGCCStrike15_v2" +
-      "_MatchmakingGC2ClientReserve\020\223G\0225\n0k_EMs" +
-      "gGCCStrike15_v2_MatchmakingServerRoundSt" +
-      "ats\020\224G\0223\n.k_EMsgGCCStrike15_v2_Matchmaki" +
-      "ngClient2GCHello\020\225G\0223\n.k_EMsgGCCStrike15" +
-      "_v2_MatchmakingGC2ClientHello\020\226G\0223\n.k_EM" +
-      "sgGCCStrike15_v2_MatchmakingServerMatchE" +
-      "nd\020\227G\0225\n0k_EMsgGCCStrike15_v2_Matchmakin" +
-      "gGC2ClientAbandon\020\230G\0222\n-k_EMsgGCCStrike1",
-      "5_v2_MatchmakingServer2GCKick\020\231G\0225\n0k_EM" +
-      "sgGCCStrike15_v2_MatchmakingGC2ServerCon" +
-      "firm\020\232G\0227\n2k_EMsgGCCStrike15_v2_Matchmak" +
-      "ingGCOperationalStats\020\233G\0228\n3k_EMsgGCCStr" +
-      "ike15_v2_MatchmakingGC2ServerRankUpdate\020" +
-      "\234G\022:\n5k_EMsgGCCStrike15_v2_MatchmakingOp" +
-      "erator2GCBlogUpdate\020\235G\022:\n5k_EMsgGCCStrik" +
-      "e15_v2_ServerNotificationForUserPenalty\020" +
-      "\236G\022,\n\'k_EMsgGCCStrike15_v2_ClientReportP" +
-      "layer\020\237G\022,\n\'k_EMsgGCCStrike15_v2_ClientR",
-      "eportServer\020\240G\022-\n(k_EMsgGCCStrike15_v2_C" +
-      "lientCommendPlayer\020\241G\022.\n)k_EMsgGCCStrike" +
-      "15_v2_ClientReportResponse\020\242G\0222\n-k_EMsgG" +
-      "CCStrike15_v2_ClientCommendPlayerQuery\020\243" +
-      "G\022:\n5k_EMsgGCCStrike15_v2_ClientCommendP" +
-      "layerQueryResponse\020\244G\022(\n#k_EMsgGCCStrike" +
-      "15_v2_WatchInfoUsers\020\246G\0225\n0k_EMsgGCCStri" +
-      "ke15_v2_ClientRequestPlayersProfile\020\247G\022(" +
-      "\n#k_EMsgGCCStrike15_v2_PlayersProfile\020\250G" +
-      "\022)\n$k_EMsgGCCStrike15_v2_SetMyMedalsInfo",
-      "\020\251G\0228\n3k_EMsgGCCStrike15_v2_PlayerEarned" +
-      "RewardNotification\020\252G\0223\n.k_EMsgGCCStrike" +
-      "15_v2_PlayerOverwatchCaseUpdate\020\253G\0227\n2k_" +
-      "EMsgGCCStrike15_v2_PlayerOverwatchCaseAs" +
-      "signment\020\254G\0223\n.k_EMsgGCCStrike15_v2_Play" +
-      "erOverwatchCaseStatus\020\255G\022*\n%k_EMsgGCCStr" +
-      "ike15_v2_GC2ClientTextMsg\020\256G\022*\n%k_EMsgGC" +
-      "CStrike15_v2_Client2GCTextMsg\020\257G\0220\n+k_EM" +
-      "sgGCCStrike15_v2_MatchEndRunRewardDrops\020" +
-      "\260G\0229\n4k_EMsgGCCStrike15_v2_MatchEndRewar",
-      "dDropsNotification\020\261G\0228\n3k_EMsgGCCStrike" +
-      "15_v2_ClientRequestWatchInfoFriends2\020\262G\022" +
-      "#\n\036k_EMsgGCCStrike15_v2_MatchList\020\263G\022:\n5" +
-      "k_EMsgGCCStrike15_v2_MatchListRequestCur" +
-      "rentLiveGames\020\264G\0229\n4k_EMsgGCCStrike15_v2" +
-      "_MatchListRequestRecentUserGames\020\265G\0224\n/k" +
-      "_EMsgGCCStrike15_v2_GC2ServerReservation" +
-      "Update\020\266G\0228\n3k_EMsgGCCStrike15_v2_Client" +
-      "VarValueNotificationInfo\020\270G\022@\n;k_EMsgGCC" +
-      "Strike15_v2_TournamentMatchRewardDropsNo",
-      "tification\020\271G\0229\n4k_EMsgGCCStrike15_v2_Ma" +
-      "tchListRequestTournamentGames\020\272G\0226\n1k_EM" +
-      "sgGCCStrike15_v2_MatchListRequestFullGam" +
-      "eInfo\020\273G\0221\n,k_EMsgGCCStrike15_v2_GiftsLe" +
-      "aderboardRequest\020\274G\0222\n-k_EMsgGCCStrike15" +
-      "_v2_GiftsLeaderboardResponse\020\275G\0228\n3k_EMs" +
-      "gGCCStrike15_v2_ServerVarValueNotificati" +
-      "onInfo\020\276G\022\037\n\032k_EMsgGCToGCReloadVersions\020" +
-      "\277G\0220\n+k_EMsgGCCStrike15_v2_ClientSubmitS" +
-      "urveyVote\020\300G\0221\n,k_EMsgGCCStrike15_v2_Ser",
-      "ver2GCClientValidate\020\301G\0229\n4k_EMsgGCCStri" +
-      "ke15_v2_MatchListRequestLiveGameForUser\020" +
-      "\302G\022>\n9k_EMsgGCCStrike15_v2_Server2GCPure" +
-      "ServerValidationFailure\020\303G\022>\n9k_EMsgGCCS" +
-      "trike15_v2_Client2GCEconPreviewDataBlock" +
-      "Request\020\304G\022?\n:k_EMsgGCCStrike15_v2_Clien" +
-      "t2GCEconPreviewDataBlockResponse\020\305G\0220\n+k" +
-      "_EMsgGCCStrike15_v2_AccountPrivacySettin" +
-      "gs\020\306G\022+\n&k_EMsgGCCStrike15_v2_SetMyActiv" +
-      "ityInfo\020\307G\022?\n:k_EMsgGCCStrike15_v2_Match",
-      "ListRequestTournamentPredictions\020\310G\022>\n9k" +
-      "_EMsgGCCStrike15_v2_MatchListUploadTourn" +
-      "amentPredictions\020\311G\022&\n!k_EMsgGCCStrike15" +
-      "_v2_DraftSummary\020\312G\0225\n0k_EMsgGCCStrike15" +
-      "_v2_ClientRequestJoinFriendData\020\313G\0225\n0k_" +
-      "EMsgGCCStrike15_v2_ClientRequestJoinServ" +
-      "erData\020\314G\0221\n,k_EMsgGCCStrike15_v2_Client" +
-      "RequestNewMission\020\315G"
+      "ure\020\303G\022>\n9k_EMsgGCCStrike15_v2_Client2GC",
+      "EconPreviewDataBlockRequest\020\304G\022?\n:k_EMsg" +
+      "GCCStrike15_v2_Client2GCEconPreviewDataB" +
+      "lockResponse\020\305G\0220\n+k_EMsgGCCStrike15_v2_" +
+      "AccountPrivacySettings\020\306G\022+\n&k_EMsgGCCSt" +
+      "rike15_v2_SetMyActivityInfo\020\307G\022?\n:k_EMsg" +
+      "GCCStrike15_v2_MatchListRequestTournamen" +
+      "tPredictions\020\310G\022>\n9k_EMsgGCCStrike15_v2_" +
+      "MatchListUploadTournamentPredictions\020\311G\022" +
+      "&\n!k_EMsgGCCStrike15_v2_DraftSummary\020\312G\022" +
+      "5\n0k_EMsgGCCStrike15_v2_ClientRequestJoi",
+      "nFriendData\020\313G\0225\n0k_EMsgGCCStrike15_v2_C" +
+      "lientRequestJoinServerData\020\314G\0221\n,k_EMsgG" +
+      "CCStrike15_v2_ClientRequestNewMission\020\315G" +
+      "\0223\n.k_EMsgGCCStrike15_v2_GC2ServerNotify" +
+      "XPRewarded\020\316G\0221\n,k_EMsgGCCStrike15_v2_GC" +
+      "2ClientTournamentInfo\020\317G\022\"\n\035k_EMsgGC_Glo" +
+      "balGame_Subscribe\020\320G\022$\n\037k_EMsgGC_GlobalG" +
+      "ame_Unsubscribe\020\321G\022\035\n\030k_EMsgGC_GlobalGam" +
+      "e_Play\020\322G\022,\n\'k_EMsgGCCStrike15_v2_Acknow" +
+      "ledgePenalty\020\323G\0226\n1k_EMsgGCCStrike15_v2_",
+      "Client2GCRequestPrestigeCoin\020\324G"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -86852,7 +94099,7 @@ public final class Cstrike15Gcmessages {
           internal_static_PlayerMedalsInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PlayerMedalsInfo_descriptor,
-              new java.lang.String[] { "MedalTeam", "MedalCombat", "MedalWeapon", "MedalGlobal", "MedalArms", "LegacyCoinOpPayback", "DisplayItemsDefidx", "FeaturedDisplayItemDefidx", });
+              new java.lang.String[] { "MedalTeam", "MedalCombat", "MedalWeapon", "MedalGlobal", "MedalArms", "DisplayItemsDefidx", "FeaturedDisplayItemDefidx", });
           internal_static_AccountActivity_descriptor =
             getDescriptor().getMessageTypes().get(12);
           internal_static_AccountActivity_fieldAccessorTable = new
@@ -86877,48 +94124,72 @@ public final class Cstrike15Gcmessages {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_IpAddressMask_descriptor,
               new java.lang.String[] { "A", "B", "C", "D", "Bits", "Token", });
-          internal_static_CMsgGCCStrike15_v2_MatchmakingGCOperationalStats_descriptor =
+          internal_static_XpProgressData_descriptor =
             getDescriptor().getMessageTypes().get(16);
+          internal_static_XpProgressData_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_XpProgressData_descriptor,
+              new java.lang.String[] { "XpPoints", "XpCategory", });
+          internal_static_PlayerQuestData_descriptor =
+            getDescriptor().getMessageTypes().get(17);
+          internal_static_PlayerQuestData_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_PlayerQuestData_descriptor,
+              new java.lang.String[] { "QuesterAccountId", "QuestItemData", "XpProgressData", "TimePlayed", "MmGameMode", });
+          internal_static_PlayerQuestData_QuestItemData_descriptor =
+            internal_static_PlayerQuestData_descriptor.getNestedTypes().get(0);
+          internal_static_PlayerQuestData_QuestItemData_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_PlayerQuestData_QuestItemData_descriptor,
+              new java.lang.String[] { "QuestId", "QuestNormalPointsEarned", "QuestBonusPointsEarned", });
+          internal_static_CMsgGC_ServerQuestUpdateData_descriptor =
+            getDescriptor().getMessageTypes().get(18);
+          internal_static_CMsgGC_ServerQuestUpdateData_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CMsgGC_ServerQuestUpdateData_descriptor,
+              new java.lang.String[] { "PlayerQuestData", });
+          internal_static_CMsgGCCStrike15_v2_MatchmakingGCOperationalStats_descriptor =
+            getDescriptor().getMessageTypes().get(19);
           internal_static_CMsgGCCStrike15_v2_MatchmakingGCOperationalStats_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingGCOperationalStats_descriptor,
               new java.lang.String[] { "Packetid", "Namekeys", "Packets", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ServerConfirm_descriptor =
-            getDescriptor().getMessageTypes().get(17);
+            getDescriptor().getMessageTypes().get(20);
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ServerConfirm_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ServerConfirm_descriptor,
               new java.lang.String[] { "Token", "Stamp", "Exchange", });
           internal_static_CMsgGCCStrike15_v2_GC2ServerReservationUpdate_descriptor =
-            getDescriptor().getMessageTypes().get(18);
+            getDescriptor().getMessageTypes().get(21);
           internal_static_CMsgGCCStrike15_v2_GC2ServerReservationUpdate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_GC2ServerReservationUpdate_descriptor,
               new java.lang.String[] { "ViewersExternalTotal", "ViewersExternalSteam", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingStart_descriptor =
-            getDescriptor().getMessageTypes().get(19);
+            getDescriptor().getMessageTypes().get(22);
           internal_static_CMsgGCCStrike15_v2_MatchmakingStart_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingStart_descriptor,
               new java.lang.String[] { "AccountIds", "GameType", "TicketData", "ClientVersion", "TournamentMatch", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingStop_descriptor =
-            getDescriptor().getMessageTypes().get(20);
+            getDescriptor().getMessageTypes().get(23);
           internal_static_CMsgGCCStrike15_v2_MatchmakingStop_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingStop_descriptor,
               new java.lang.String[] { "Abandon", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingClient2ServerPing_descriptor =
-            getDescriptor().getMessageTypes().get(21);
+            getDescriptor().getMessageTypes().get(24);
           internal_static_CMsgGCCStrike15_v2_MatchmakingClient2ServerPing_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingClient2ServerPing_descriptor,
               new java.lang.String[] { "Gameserverpings", "OffsetIndex", "FinalBatch", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientUpdate_descriptor =
-            getDescriptor().getMessageTypes().get(22);
+            getDescriptor().getMessageTypes().get(25);
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientUpdate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientUpdate_descriptor,
-              new java.lang.String[] { "Matchmaking", "WaitingAccountIdSessions", "Error", "OngoingmatchAccountIdSessions", "GlobalStats", "FailpingAccountIdSessions", "PenaltyAccountIdSessions", "FailreadyAccountIdSessions", "VacbannedAccountIdSessions", "ServerIpaddressMask", "Notes", "PenaltyAccountIdSessionsGreen", });
+              new java.lang.String[] { "Matchmaking", "WaitingAccountIdSessions", "Error", "OngoingmatchAccountIdSessions", "GlobalStats", "FailpingAccountIdSessions", "PenaltyAccountIdSessions", "FailreadyAccountIdSessions", "VacbannedAccountIdSessions", "ServerIpaddressMask", "Notes", "PenaltyAccountIdSessionsGreen", "InsufficientlevelSessions", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientUpdate_Note_descriptor =
             internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientUpdate_descriptor.getNestedTypes().get(0);
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientUpdate_Note_fieldAccessorTable = new
@@ -86926,7 +94197,7 @@ public final class Cstrike15Gcmessages {
               internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientUpdate_Note_descriptor,
               new java.lang.String[] { "Type", "RegionId", "RegionR", "Distance", });
           internal_static_CDataGCCStrike15_v2_TournamentMatchDraft_descriptor =
-            getDescriptor().getMessageTypes().get(23);
+            getDescriptor().getMessageTypes().get(26);
           internal_static_CDataGCCStrike15_v2_TournamentMatchDraft_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CDataGCCStrike15_v2_TournamentMatchDraft_descriptor,
@@ -86938,7 +94209,7 @@ public final class Cstrike15Gcmessages {
               internal_static_CDataGCCStrike15_v2_TournamentMatchDraft_Entry_descriptor,
               new java.lang.String[] { "Mapid", "TeamIdCt", });
           internal_static_CPreMatchInfoData_descriptor =
-            getDescriptor().getMessageTypes().get(24);
+            getDescriptor().getMessageTypes().get(27);
           internal_static_CPreMatchInfoData_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CPreMatchInfoData_descriptor,
@@ -86950,49 +94221,49 @@ public final class Cstrike15Gcmessages {
               internal_static_CPreMatchInfoData_TeamStats_descriptor,
               new java.lang.String[] { "MatchInfoIdxtxt", "MatchInfoTxt", "MatchInfoTeams", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ServerReserve_descriptor =
-            getDescriptor().getMessageTypes().get(25);
+            getDescriptor().getMessageTypes().get(28);
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ServerReserve_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ServerReserve_descriptor,
               new java.lang.String[] { "AccountIds", "GameType", "MatchId", "ServerVersion", "Rankings", "EncryptionKey", "EncryptionKeyPub", "PartyIds", "Whitelist", "TvMasterSteamid", "TournamentEvent", "TournamentTeams", "TournamentCastersAccountIds", "TvRelaySteamid", "PreMatchData", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingServerReservationResponse_descriptor =
-            getDescriptor().getMessageTypes().get(26);
+            getDescriptor().getMessageTypes().get(29);
           internal_static_CMsgGCCStrike15_v2_MatchmakingServerReservationResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingServerReservationResponse_descriptor,
               new java.lang.String[] { "Reservationid", "Reservation", "Map", "GcReservationSent", "ServerVersion", "TvInfo", "RewardPlayerAccounts", "IdlePlayerAccounts", "RewardItemAttrDefIdx", "RewardItemAttrValue", "RewardItemAttrRewardIdx", "RewardDropList", "TournamentTag", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve_descriptor =
-            getDescriptor().getMessageTypes().get(27);
+            getDescriptor().getMessageTypes().get(30);
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve_descriptor,
               new java.lang.String[] { "Serverid", "Serverip", "Serverport", "Reservationid", "Reservation", "Map", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingServerRoundStats_descriptor =
-            getDescriptor().getMessageTypes().get(28);
+            getDescriptor().getMessageTypes().get(31);
           internal_static_CMsgGCCStrike15_v2_MatchmakingServerRoundStats_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingServerRoundStats_descriptor,
-              new java.lang.String[] { "Reservationid", "Reservation", "Map", "Round", "Kills", "Assists", "Deaths", "Scores", "Pings", "RoundResult", "MatchResult", "TeamScores", "Confirm", "ReservationStage", "MatchDuration", "EnemyKills", "EnemyHeadshots", "Enemy3Ks", "Enemy4Ks", "Enemy5Ks", "Mvps", "SpectatorsCount", "SpectatorsCountTv", "SpectatorsCountLnk", });
+              new java.lang.String[] { "Reservationid", "Reservation", "Map", "Round", "Kills", "Assists", "Deaths", "Scores", "Pings", "RoundResult", "MatchResult", "TeamScores", "Confirm", "ReservationStage", "MatchDuration", "EnemyKills", "EnemyHeadshots", "Enemy3Ks", "Enemy4Ks", "Enemy5Ks", "Mvps", "SpectatorsCount", "SpectatorsCountTv", "SpectatorsCountLnk", "EnemyKillsAgg", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingServerMatchEnd_descriptor =
-            getDescriptor().getMessageTypes().get(29);
+            getDescriptor().getMessageTypes().get(32);
           internal_static_CMsgGCCStrike15_v2_MatchmakingServerMatchEnd_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingServerMatchEnd_descriptor,
-              new java.lang.String[] { "Stats", "Confirm", "Rematch", "ReplayToken", "ReplayClusterId", "AbortedMatch", });
+              new java.lang.String[] { "Stats", "Confirm", "Rematch", "ReplayToken", "ReplayClusterId", "AbortedMatch", "MatchEndQuestData", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingClient2GCHello_descriptor =
-            getDescriptor().getMessageTypes().get(30);
+            getDescriptor().getMessageTypes().get(33);
           internal_static_CMsgGCCStrike15_v2_MatchmakingClient2GCHello_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingClient2GCHello_descriptor,
               new java.lang.String[] { });
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientHello_descriptor =
-            getDescriptor().getMessageTypes().get(31);
+            getDescriptor().getMessageTypes().get(34);
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientHello_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientHello_descriptor,
-              new java.lang.String[] { "AccountId", "Ongoingmatch", "GlobalStats", "PenaltySeconds", "PenaltyReason", "VacBanned", "Ranking", "Commendation", "Medals", "MyCurrentEvent", "MyCurrentEventTeams", "MyCurrentTeam", "MyCurrentEventStages", "SurveyVote", "Activity", "SecondsUntilNextMission", });
+              new java.lang.String[] { "AccountId", "Ongoingmatch", "GlobalStats", "PenaltySeconds", "PenaltyReason", "VacBanned", "Ranking", "Commendation", "Medals", "MyCurrentEvent", "MyCurrentEventTeams", "MyCurrentTeam", "MyCurrentEventStages", "SurveyVote", "Activity", "PlayerLevel", "PlayerCurXp", "PlayerXpBonusFlags", });
           internal_static_CMsgGCCStrike15_v2_AccountPrivacySettings_descriptor =
-            getDescriptor().getMessageTypes().get(32);
+            getDescriptor().getMessageTypes().get(35);
           internal_static_CMsgGCCStrike15_v2_AccountPrivacySettings_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_AccountPrivacySettings_descriptor,
@@ -87004,185 +94275,167 @@ public final class Cstrike15Gcmessages {
               internal_static_CMsgGCCStrike15_v2_AccountPrivacySettings_Setting_descriptor,
               new java.lang.String[] { "SettingType", "SettingValue", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientAbandon_descriptor =
-            getDescriptor().getMessageTypes().get(33);
+            getDescriptor().getMessageTypes().get(36);
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientAbandon_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ClientAbandon_descriptor,
               new java.lang.String[] { "AccountId", "AbandonedMatch", "PenaltySeconds", "PenaltyReason", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingServer2GCKick_descriptor =
-            getDescriptor().getMessageTypes().get(34);
+            getDescriptor().getMessageTypes().get(37);
           internal_static_CMsgGCCStrike15_v2_MatchmakingServer2GCKick_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingServer2GCKick_descriptor,
               new java.lang.String[] { "AccountId", "Reservation", "Reason", });
           internal_static_CDataGCCStrike15_v2_MatchmakingLockedInMatch_descriptor =
-            getDescriptor().getMessageTypes().get(35);
+            getDescriptor().getMessageTypes().get(38);
           internal_static_CDataGCCStrike15_v2_MatchmakingLockedInMatch_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CDataGCCStrike15_v2_MatchmakingLockedInMatch_descriptor,
               new java.lang.String[] { "ClientReservation", "ServerStats", "Rtime32ServerInfo", "LastRoundStatsTemp", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ServerRankUpdate_descriptor =
-            getDescriptor().getMessageTypes().get(36);
+            getDescriptor().getMessageTypes().get(39);
           internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ServerRankUpdate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingGC2ServerRankUpdate_descriptor,
               new java.lang.String[] { "Rankings", "MatchId", });
           internal_static_CMsgGCCStrike15_v2_MatchmakingOperator2GCBlogUpdate_descriptor =
-            getDescriptor().getMessageTypes().get(37);
+            getDescriptor().getMessageTypes().get(40);
           internal_static_CMsgGCCStrike15_v2_MatchmakingOperator2GCBlogUpdate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchmakingOperator2GCBlogUpdate_descriptor,
               new java.lang.String[] { "MainPostUrl", });
           internal_static_CMsgGCCStrike15_v2_ServerNotificationForUserPenalty_descriptor =
-            getDescriptor().getMessageTypes().get(38);
+            getDescriptor().getMessageTypes().get(41);
           internal_static_CMsgGCCStrike15_v2_ServerNotificationForUserPenalty_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ServerNotificationForUserPenalty_descriptor,
               new java.lang.String[] { "AccountId", "Reason", "Seconds", });
           internal_static_CMsgGCCStrike15_v2_ClientReportPlayer_descriptor =
-            getDescriptor().getMessageTypes().get(39);
+            getDescriptor().getMessageTypes().get(42);
           internal_static_CMsgGCCStrike15_v2_ClientReportPlayer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientReportPlayer_descriptor,
               new java.lang.String[] { "AccountId", "RptAimbot", "RptWallhack", "RptSpeedhack", "RptTeamharm", "RptTextabuse", "RptVoiceabuse", "MatchId", });
           internal_static_CMsgGCCStrike15_v2_ClientCommendPlayer_descriptor =
-            getDescriptor().getMessageTypes().get(40);
+            getDescriptor().getMessageTypes().get(43);
           internal_static_CMsgGCCStrike15_v2_ClientCommendPlayer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientCommendPlayer_descriptor,
               new java.lang.String[] { "AccountId", "MatchId", "Commendation", "Tokens", });
           internal_static_CMsgGCCStrike15_v2_ClientReportServer_descriptor =
-            getDescriptor().getMessageTypes().get(41);
+            getDescriptor().getMessageTypes().get(44);
           internal_static_CMsgGCCStrike15_v2_ClientReportServer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientReportServer_descriptor,
               new java.lang.String[] { "RptPoorperf", "RptAbusivemodels", "RptBadmotd", "RptListingabuse", "MatchId", });
           internal_static_CMsgGCCStrike15_v2_ClientReportResponse_descriptor =
-            getDescriptor().getMessageTypes().get(42);
+            getDescriptor().getMessageTypes().get(45);
           internal_static_CMsgGCCStrike15_v2_ClientReportResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientReportResponse_descriptor,
               new java.lang.String[] { "ConfirmationId", "AccountId", "ServerIp", "ResponseType", "ResponseResult", "Tokens", });
           internal_static_CMsgGCCStrike15_v2_ClientRequestWatchInfoFriends_descriptor =
-            getDescriptor().getMessageTypes().get(43);
+            getDescriptor().getMessageTypes().get(46);
           internal_static_CMsgGCCStrike15_v2_ClientRequestWatchInfoFriends_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientRequestWatchInfoFriends_descriptor,
               new java.lang.String[] { "RequestId", "AccountIds", "Serverid", "Matchid", });
           internal_static_WatchableMatchInfo_descriptor =
-            getDescriptor().getMessageTypes().get(44);
+            getDescriptor().getMessageTypes().get(47);
           internal_static_WatchableMatchInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_WatchableMatchInfo_descriptor,
               new java.lang.String[] { "ServerIp", "TvPort", "TvSpectators", "TvTime", "TvWatchPassword", "ClDecryptdataKey", "ClDecryptdataKeyPub", "GameType", "GameMapgroup", "GameMap", "ServerId", "MatchId", "ReservationId", });
           internal_static_CMsgGCCStrike15_v2_ClientRequestJoinFriendData_descriptor =
-            getDescriptor().getMessageTypes().get(45);
+            getDescriptor().getMessageTypes().get(48);
           internal_static_CMsgGCCStrike15_v2_ClientRequestJoinFriendData_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientRequestJoinFriendData_descriptor,
               new java.lang.String[] { "Version", "AccountId", "JoinToken", "JoinIpp", "Res", "Errormsg", });
           internal_static_CMsgGCCStrike15_v2_ClientRequestJoinServerData_descriptor =
-            getDescriptor().getMessageTypes().get(46);
+            getDescriptor().getMessageTypes().get(49);
           internal_static_CMsgGCCStrike15_v2_ClientRequestJoinServerData_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientRequestJoinServerData_descriptor,
               new java.lang.String[] { "Version", "AccountId", "Serverid", "ServerIp", "ServerPort", "Res", });
           internal_static_CMsgGCCstrike15_v2_ClientRequestNewMission_descriptor =
-            getDescriptor().getMessageTypes().get(47);
+            getDescriptor().getMessageTypes().get(50);
           internal_static_CMsgGCCstrike15_v2_ClientRequestNewMission_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCstrike15_v2_ClientRequestNewMission_descriptor,
-              new java.lang.String[] { "CampaignItemId", "MissionId", });
+              new java.lang.String[] { "MissionId", "CampaignId", });
+          internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_descriptor =
+            getDescriptor().getMessageTypes().get(51);
+          internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded_descriptor,
+              new java.lang.String[] { "XpProgressData", "AccountId", "CurrentXp", "CurrentLevel", "UpgradedDefidx", });
           internal_static_CMsgGCCStrike15_v2_WatchInfoUsers_descriptor =
-            getDescriptor().getMessageTypes().get(48);
+            getDescriptor().getMessageTypes().get(52);
           internal_static_CMsgGCCStrike15_v2_WatchInfoUsers_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_WatchInfoUsers_descriptor,
               new java.lang.String[] { "RequestId", "AccountIds", "WatchableMatchInfos", "ExtendedTimeout", });
           internal_static_CMsgGCCStrike15_v2_ClientRequestPlayersProfile_descriptor =
-            getDescriptor().getMessageTypes().get(49);
+            getDescriptor().getMessageTypes().get(53);
           internal_static_CMsgGCCStrike15_v2_ClientRequestPlayersProfile_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientRequestPlayersProfile_descriptor,
               new java.lang.String[] { "RequestIdDeprecated", "AccountIdsDeprecated", "AccountId", "RequestLevel", });
           internal_static_CMsgGCCStrike15_v2_PlayersProfile_descriptor =
-            getDescriptor().getMessageTypes().get(50);
+            getDescriptor().getMessageTypes().get(54);
           internal_static_CMsgGCCStrike15_v2_PlayersProfile_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_PlayersProfile_descriptor,
               new java.lang.String[] { "RequestId", "AccountProfiles", });
-          internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_descriptor =
-            getDescriptor().getMessageTypes().get(51);
-          internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_CMsgGCCStrike15_v2_PlayerEarnedRewardNotification_descriptor,
-              new java.lang.String[] { "AccountId", "ItemDefIndex", "AttrDefIndex", "AttrValue", });
           internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseUpdate_descriptor =
-            getDescriptor().getMessageTypes().get(52);
+            getDescriptor().getMessageTypes().get(55);
           internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseUpdate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseUpdate_descriptor,
               new java.lang.String[] { "Caseid", "Suspectid", "Fractionid", "RptAimbot", "RptWallhack", "RptSpeedhack", "RptTeamharm", "Reason", });
           internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseAssignment_descriptor =
-            getDescriptor().getMessageTypes().get(53);
+            getDescriptor().getMessageTypes().get(56);
           internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseAssignment_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseAssignment_descriptor,
               new java.lang.String[] { "Caseid", "Caseurl", "Verdict", "Timestamp", "Throttleseconds", "Suspectid", "Fractionid", "Numrounds", "Fractionrounds", "Streakconvictions", "Reason", });
           internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseStatus_descriptor =
-            getDescriptor().getMessageTypes().get(54);
+            getDescriptor().getMessageTypes().get(57);
           internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseStatus_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_PlayerOverwatchCaseStatus_descriptor,
               new java.lang.String[] { "Caseid", "Statusid", });
           internal_static_CClientHeaderOverwatchEvidence_descriptor =
-            getDescriptor().getMessageTypes().get(55);
+            getDescriptor().getMessageTypes().get(58);
           internal_static_CClientHeaderOverwatchEvidence_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CClientHeaderOverwatchEvidence_descriptor,
               new java.lang.String[] { "Accountid", "Caseid", });
           internal_static_CMsgGCCStrike15_v2_GC2ClientTextMsg_descriptor =
-            getDescriptor().getMessageTypes().get(56);
+            getDescriptor().getMessageTypes().get(59);
           internal_static_CMsgGCCStrike15_v2_GC2ClientTextMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_GC2ClientTextMsg_descriptor,
               new java.lang.String[] { "Id", "Type", "Payload", });
           internal_static_CMsgGCCStrike15_v2_Client2GCTextMsg_descriptor =
-            getDescriptor().getMessageTypes().get(57);
+            getDescriptor().getMessageTypes().get(60);
           internal_static_CMsgGCCStrike15_v2_Client2GCTextMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_Client2GCTextMsg_descriptor,
               new java.lang.String[] { "Id", "Args", });
-          internal_static_CMsgGC_ServerQuestUpdateData_descriptor =
-            getDescriptor().getMessageTypes().get(58);
-          internal_static_CMsgGC_ServerQuestUpdateData_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_CMsgGC_ServerQuestUpdateData_descriptor,
-              new java.lang.String[] { "PlayerQuestData", });
-          internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_descriptor =
-            internal_static_CMsgGC_ServerQuestUpdateData_descriptor.getNestedTypes().get(0);
-          internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_descriptor,
-              new java.lang.String[] { "QuesterAccountId", "QuestItemData", });
-          internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_descriptor =
-            internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_descriptor.getNestedTypes().get(0);
-          internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_CMsgGC_ServerQuestUpdateData_PlayerQuestData_QuestItemData_descriptor,
-              new java.lang.String[] { "QuestItemId", "QuestPointsEarned", });
           internal_static_CMsgGCCStrike15_v2_MatchEndRunRewardDrops_descriptor =
-            getDescriptor().getMessageTypes().get(59);
+            getDescriptor().getMessageTypes().get(61);
           internal_static_CMsgGCCStrike15_v2_MatchEndRunRewardDrops_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchEndRunRewardDrops_descriptor,
               new java.lang.String[] { "Serverinfo", "MatchEndQuestData", });
           internal_static_CEconItemPreviewDataBlock_descriptor =
-            getDescriptor().getMessageTypes().get(60);
+            getDescriptor().getMessageTypes().get(62);
           internal_static_CEconItemPreviewDataBlock_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CEconItemPreviewDataBlock_descriptor,
-              new java.lang.String[] { "Accountid", "Itemid", "Defindex", "Paintindex", "Rarity", "Quality", "Paintwear", "Paintseed", "Killeaterscoretype", "Killeatervalue", "Customname", "Stickers", "Inventory", "Origin", "Questid", });
+              new java.lang.String[] { "Accountid", "Itemid", "Defindex", "Paintindex", "Rarity", "Quality", "Paintwear", "Paintseed", "Killeaterscoretype", "Killeatervalue", "Customname", "Stickers", "Inventory", "Origin", "Questid", "Dropreason", });
           internal_static_CEconItemPreviewDataBlock_Sticker_descriptor =
             internal_static_CEconItemPreviewDataBlock_descriptor.getNestedTypes().get(0);
           internal_static_CEconItemPreviewDataBlock_Sticker_fieldAccessorTable = new
@@ -87190,103 +94443,103 @@ public final class Cstrike15Gcmessages {
               internal_static_CEconItemPreviewDataBlock_Sticker_descriptor,
               new java.lang.String[] { "Slot", "StickerId", "Wear", "Scale", "Rotation", });
           internal_static_CMsgGCCStrike15_v2_MatchEndRewardDropsNotification_descriptor =
-            getDescriptor().getMessageTypes().get(61);
+            getDescriptor().getMessageTypes().get(63);
           internal_static_CMsgGCCStrike15_v2_MatchEndRewardDropsNotification_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchEndRewardDropsNotification_descriptor,
               new java.lang.String[] { "Iteminfo", });
           internal_static_CMsgItemAcknowledged_descriptor =
-            getDescriptor().getMessageTypes().get(62);
+            getDescriptor().getMessageTypes().get(64);
           internal_static_CMsgItemAcknowledged_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgItemAcknowledged_descriptor,
               new java.lang.String[] { "Iteminfo", });
           internal_static_CMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockRequest_descriptor =
-            getDescriptor().getMessageTypes().get(63);
+            getDescriptor().getMessageTypes().get(65);
           internal_static_CMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockRequest_descriptor,
               new java.lang.String[] { "ParamS", "ParamA", "ParamD", "ParamM", });
           internal_static_CMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse_descriptor =
-            getDescriptor().getMessageTypes().get(64);
+            getDescriptor().getMessageTypes().get(66);
           internal_static_CMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse_descriptor,
               new java.lang.String[] { "Iteminfo", });
           internal_static_CMsgGCCStrike15_v2_TournamentMatchRewardDropsNotification_descriptor =
-            getDescriptor().getMessageTypes().get(65);
+            getDescriptor().getMessageTypes().get(67);
           internal_static_CMsgGCCStrike15_v2_TournamentMatchRewardDropsNotification_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_TournamentMatchRewardDropsNotification_descriptor,
               new java.lang.String[] { "MatchId", "Defindex", "Accountids", });
           internal_static_CMsgGCCStrike15_v2_MatchListRequestCurrentLiveGames_descriptor =
-            getDescriptor().getMessageTypes().get(66);
+            getDescriptor().getMessageTypes().get(68);
           internal_static_CMsgGCCStrike15_v2_MatchListRequestCurrentLiveGames_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchListRequestCurrentLiveGames_descriptor,
               new java.lang.String[] { });
           internal_static_CMsgGCCStrike15_v2_MatchListRequestLiveGameForUser_descriptor =
-            getDescriptor().getMessageTypes().get(67);
+            getDescriptor().getMessageTypes().get(69);
           internal_static_CMsgGCCStrike15_v2_MatchListRequestLiveGameForUser_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchListRequestLiveGameForUser_descriptor,
               new java.lang.String[] { "Accountid", });
           internal_static_CMsgGCCStrike15_v2_MatchListRequestRecentUserGames_descriptor =
-            getDescriptor().getMessageTypes().get(68);
+            getDescriptor().getMessageTypes().get(70);
           internal_static_CMsgGCCStrike15_v2_MatchListRequestRecentUserGames_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchListRequestRecentUserGames_descriptor,
               new java.lang.String[] { "Accountid", });
           internal_static_CMsgGCCStrike15_v2_MatchListRequestTournamentGames_descriptor =
-            getDescriptor().getMessageTypes().get(69);
+            getDescriptor().getMessageTypes().get(71);
           internal_static_CMsgGCCStrike15_v2_MatchListRequestTournamentGames_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchListRequestTournamentGames_descriptor,
               new java.lang.String[] { "Eventid", });
           internal_static_CMsgGCCStrike15_v2_MatchListRequestFullGameInfo_descriptor =
-            getDescriptor().getMessageTypes().get(70);
+            getDescriptor().getMessageTypes().get(72);
           internal_static_CMsgGCCStrike15_v2_MatchListRequestFullGameInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchListRequestFullGameInfo_descriptor,
               new java.lang.String[] { "Matchid", "Outcomeid", "Token", });
           internal_static_CDataGCCStrike15_v2_MatchInfo_descriptor =
-            getDescriptor().getMessageTypes().get(71);
+            getDescriptor().getMessageTypes().get(73);
           internal_static_CDataGCCStrike15_v2_MatchInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CDataGCCStrike15_v2_MatchInfo_descriptor,
-              new java.lang.String[] { "Matchid", "Matchtime", "Watchablematchinfo", "Roundstats", });
+              new java.lang.String[] { "Matchid", "Matchtime", "Watchablematchinfo", "RoundstatsLegacy", "Roundstatsall", });
           internal_static_CDataGCCStrike15_v2_TournamentGroupTeam_descriptor =
-            getDescriptor().getMessageTypes().get(72);
+            getDescriptor().getMessageTypes().get(74);
           internal_static_CDataGCCStrike15_v2_TournamentGroupTeam_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CDataGCCStrike15_v2_TournamentGroupTeam_descriptor,
               new java.lang.String[] { "TeamId", "Score", "Correctpick", });
           internal_static_CDataGCCStrike15_v2_TournamentGroup_descriptor =
-            getDescriptor().getMessageTypes().get(73);
+            getDescriptor().getMessageTypes().get(75);
           internal_static_CDataGCCStrike15_v2_TournamentGroup_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CDataGCCStrike15_v2_TournamentGroup_descriptor,
               new java.lang.String[] { "Groupid", "Name", "Desc", "Picks", "Teams", "StageIds", "Picklockuntiltime", "Pickableteams", "PointsPerPick", });
           internal_static_CDataGCCStrike15_v2_TournamentSection_descriptor =
-            getDescriptor().getMessageTypes().get(74);
+            getDescriptor().getMessageTypes().get(76);
           internal_static_CDataGCCStrike15_v2_TournamentSection_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CDataGCCStrike15_v2_TournamentSection_descriptor,
               new java.lang.String[] { "Sectionid", "Name", "Desc", "Groups", });
           internal_static_CDataGCCStrike15_v2_TournamentInfo_descriptor =
-            getDescriptor().getMessageTypes().get(75);
+            getDescriptor().getMessageTypes().get(77);
           internal_static_CDataGCCStrike15_v2_TournamentInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CDataGCCStrike15_v2_TournamentInfo_descriptor,
               new java.lang.String[] { "Sections", "TournamentEvent", "TournamentTeams", });
           internal_static_CMsgGCCStrike15_v2_MatchList_descriptor =
-            getDescriptor().getMessageTypes().get(76);
+            getDescriptor().getMessageTypes().get(78);
           internal_static_CMsgGCCStrike15_v2_MatchList_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_MatchList_descriptor,
               new java.lang.String[] { "Msgrequestid", "Accountid", "Servertime", "Matches", "Streams", "Tournamentinfo", });
           internal_static_CMsgGCCStrike15_v2_Predictions_descriptor =
-            getDescriptor().getMessageTypes().get(77);
+            getDescriptor().getMessageTypes().get(79);
           internal_static_CMsgGCCStrike15_v2_Predictions_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_Predictions_descriptor,
@@ -87298,43 +94551,43 @@ public final class Cstrike15Gcmessages {
               internal_static_CMsgGCCStrike15_v2_Predictions_GroupMatchTeamPick_descriptor,
               new java.lang.String[] { "Sectionid", "Groupid", "Index", "Teamid", "Itemid", });
           internal_static_CAttribute_String_descriptor =
-            getDescriptor().getMessageTypes().get(78);
+            getDescriptor().getMessageTypes().get(80);
           internal_static_CAttribute_String_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CAttribute_String_descriptor,
               new java.lang.String[] { "Value", });
           internal_static_CMsgGCToGCReloadVersions_descriptor =
-            getDescriptor().getMessageTypes().get(79);
+            getDescriptor().getMessageTypes().get(81);
           internal_static_CMsgGCToGCReloadVersions_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCToGCReloadVersions_descriptor,
               new java.lang.String[] { });
           internal_static_CMsgCStrike15Welcome_descriptor =
-            getDescriptor().getMessageTypes().get(80);
+            getDescriptor().getMessageTypes().get(82);
           internal_static_CMsgCStrike15Welcome_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgCStrike15Welcome_descriptor,
-              new java.lang.String[] { "StoreItemHash", "Timeplayedconsecutively", "TimeFirstPlayed", "LastTimePlayed", "LastIpAddress", "Gscookieid", });
+              new java.lang.String[] { "StoreItemHash", "Timeplayedconsecutively", "TimeFirstPlayed", "LastTimePlayed", "LastIpAddress", "Gscookieid", "Uniqueid", });
           internal_static_CMsgGCCStrike15_v2_ClientVarValueNotificationInfo_descriptor =
-            getDescriptor().getMessageTypes().get(81);
+            getDescriptor().getMessageTypes().get(83);
           internal_static_CMsgGCCStrike15_v2_ClientVarValueNotificationInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientVarValueNotificationInfo_descriptor,
               new java.lang.String[] { "ValueName", "ValueInt", "ServerAddr", "ServerPort", "ChokedBlocks", });
           internal_static_CMsgGCCStrike15_v2_ServerVarValueNotificationInfo_descriptor =
-            getDescriptor().getMessageTypes().get(82);
+            getDescriptor().getMessageTypes().get(84);
           internal_static_CMsgGCCStrike15_v2_ServerVarValueNotificationInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ServerVarValueNotificationInfo_descriptor,
-              new java.lang.String[] { "Accountid", "Viewangles", });
+              new java.lang.String[] { "Accountid", "Viewangles", "Type", });
           internal_static_CMsgGCCStrike15_v2_GiftsLeaderboardRequest_descriptor =
-            getDescriptor().getMessageTypes().get(83);
+            getDescriptor().getMessageTypes().get(85);
           internal_static_CMsgGCCStrike15_v2_GiftsLeaderboardRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_GiftsLeaderboardRequest_descriptor,
               new java.lang.String[] { });
           internal_static_CMsgGCCStrike15_v2_GiftsLeaderboardResponse_descriptor =
-            getDescriptor().getMessageTypes().get(84);
+            getDescriptor().getMessageTypes().get(86);
           internal_static_CMsgGCCStrike15_v2_GiftsLeaderboardResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_GiftsLeaderboardResponse_descriptor,
@@ -87346,23 +94599,77 @@ public final class Cstrike15Gcmessages {
               internal_static_CMsgGCCStrike15_v2_GiftsLeaderboardResponse_GiftLeaderboardEntry_descriptor,
               new java.lang.String[] { "Accountid", "Gifts", });
           internal_static_CMsgGCCStrike15_v2_ClientSubmitSurveyVote_descriptor =
-            getDescriptor().getMessageTypes().get(85);
+            getDescriptor().getMessageTypes().get(87);
           internal_static_CMsgGCCStrike15_v2_ClientSubmitSurveyVote_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_ClientSubmitSurveyVote_descriptor,
               new java.lang.String[] { "SurveyId", "Vote", });
           internal_static_CMsgGCCStrike15_v2_Server2GCClientValidate_descriptor =
-            getDescriptor().getMessageTypes().get(86);
+            getDescriptor().getMessageTypes().get(88);
           internal_static_CMsgGCCStrike15_v2_Server2GCClientValidate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_Server2GCClientValidate_descriptor,
               new java.lang.String[] { "Accountid", });
           internal_static_CMsgGCCStrike15_v2_Server2GCPureServerValidationFailure_descriptor =
-            getDescriptor().getMessageTypes().get(87);
+            getDescriptor().getMessageTypes().get(89);
           internal_static_CMsgGCCStrike15_v2_Server2GCPureServerValidationFailure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_CMsgGCCStrike15_v2_Server2GCPureServerValidationFailure_descriptor,
               new java.lang.String[] { "Accountid", "Path", "File", "Crc", "Hash", "Len", "PackNumber", "PackFileId", });
+          internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_descriptor =
+            getDescriptor().getMessageTypes().get(90);
+          internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CMsgGCCStrike15_v2_GC2ClientTournamentInfo_descriptor,
+              new java.lang.String[] { "Eventid", "Stageid", "GameType", "Teamids", });
+          internal_static_CSOEconCoupon_descriptor =
+            getDescriptor().getMessageTypes().get(91);
+          internal_static_CSOEconCoupon_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CSOEconCoupon_descriptor,
+              new java.lang.String[] { "Entryid", "Defidx", "ExpirationDate", });
+          internal_static_CSOQuestProgress_descriptor =
+            getDescriptor().getMessageTypes().get(92);
+          internal_static_CSOQuestProgress_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CSOQuestProgress_descriptor,
+              new java.lang.String[] { "Questid", "PointsRemaining", "BonusPoints", });
+          internal_static_CSOPersonaDataPublic_descriptor =
+            getDescriptor().getMessageTypes().get(93);
+          internal_static_CSOPersonaDataPublic_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CSOPersonaDataPublic_descriptor,
+              new java.lang.String[] { "PlayerLevel", "Commendation", });
+          internal_static_CMsgGC_GlobalGame_Subscribe_descriptor =
+            getDescriptor().getMessageTypes().get(94);
+          internal_static_CMsgGC_GlobalGame_Subscribe_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CMsgGC_GlobalGame_Subscribe_descriptor,
+              new java.lang.String[] { "Ticket", });
+          internal_static_CMsgGC_GlobalGame_Unsubscribe_descriptor =
+            getDescriptor().getMessageTypes().get(95);
+          internal_static_CMsgGC_GlobalGame_Unsubscribe_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CMsgGC_GlobalGame_Unsubscribe_descriptor,
+              new java.lang.String[] { "Timeleft", });
+          internal_static_CMsgGC_GlobalGame_Play_descriptor =
+            getDescriptor().getMessageTypes().get(96);
+          internal_static_CMsgGC_GlobalGame_Play_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CMsgGC_GlobalGame_Play_descriptor,
+              new java.lang.String[] { "Ticket", "Gametimems", "Msperpoint", });
+          internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_descriptor =
+            getDescriptor().getMessageTypes().get(97);
+          internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CMsgGCCStrike15_v2_AcknowledgePenalty_descriptor,
+              new java.lang.String[] { "Acknowledged", });
+          internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_descriptor =
+            getDescriptor().getMessageTypes().get(98);
+          internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_CMsgGCCStrike15_v2_Client2GCRequestPrestigeCoin_descriptor,
+              new java.lang.String[] { });
           return null;
         }
       };
