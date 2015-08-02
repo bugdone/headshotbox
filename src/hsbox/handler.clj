@@ -12,9 +12,18 @@
             [ring.middleware.json :refer [wrap-json-body
                                           wrap-json-response]]
             [ring.util.response :refer [response redirect]]
-            [taoensso.timbre :as timbre]))
+            [cemerick.friend :as friend]
+            [cemerick.friend.openid :as openid]
+            [taoensso.timbre :as timbre])
+  (:import (org.openid4java.consumer ConsumerManager InMemoryConsumerAssociationStore InMemoryNonceVerifier)))
 
 (timbre/refer-timbre)
+
+(def openid-settings (atom {}))
+
+(defn set-openid-settings [{:keys [openid-realm admin-steamid]}]
+  (when (and (not-empty openid-realm) (not-empty admin-steamid))
+    (swap! openid-settings #(assoc % :realm openid-realm :steamid admin-steamid))))
 
 (defn parse-filters [{:keys [startDate endDate demoType mapName teammates]}]
   {:start-date (if (nil? startDate) nil (Long/parseLong startDate))
@@ -23,6 +32,12 @@
    :map-name   mapName
    :teammates  (if (empty? teammates) #{}
                                       (set (map #(Long/parseLong %) (clojure.string/split teammates #","))))})
+
+(defn authorize-admin [handler]
+  (fn [request]
+    (if (empty? @openid-settings)
+     (handler request)
+     ((friend/wrap-authorize handler #{::admin}) request))))
 
 (defroutes api-routes
            (context "/player/:steamid" [steamid]
@@ -46,9 +61,9 @@
                           (response (stats/get-demo-stats demoid)))
                         (GET "/notes" []
                           (response {:notes (db/get-demo-notes demoid)}))
-                        (POST "/notes" {body :body}
-                          (response (db/set-demo-notes demoid (:notes body))))))
-
+                        (authorize-admin
+                          (POST "/notes" {body :body}
+                            (response (db/set-demo-notes demoid (:notes body)))))))
            (GET "/round/search" [search-string]
              (response (stats/search-rounds search-string)))
            (GET "/steamids/info" [steamids]
@@ -61,16 +76,26 @@
                        (map #(Long/parseLong %) steamids-list)
                        (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {}))
                      (steamapi/get-steamids-info steamids-list))))))
-           (GET "/indexer" []
-             (response {:running (indexer/is-running?)}))
-           (POST "/indexer" {state :body}
-             (indexer/set-indexing-state (:running state))
-             (response "ok"))
-           (GET "/config" []
-             (response (db/get-config)))
-           (POST "/config" {config :body}
-             (indexer/set-config config)
-             (response "ok"))
+           (context "/indexer" []
+             (authorize-admin
+               (defroutes indexer-routes
+                          (GET "/" []
+                            (response {:running (indexer/is-running?)}))
+                          (POST "/" {state :body}
+                            (indexer/set-indexing-state (:running state))
+                            (response "ok")))))
+           (context "/config" []
+             (authorize-admin
+               (defroutes config-routes
+                         (GET "/" []
+                           (response (db/get-config)))
+                         (POST "/" {config :body}
+                           (indexer/set-config config)
+                           (response "ok")))))
+           (GET "/authorized" request (response {:authorized
+                                                 (if (empty? @openid-settings)
+                                                   true
+                                                   (friend/authorized? #{::admin} (friend/identity request)))}))
            (GET "/version" []
              (response {:current (version/get-version)
                         :latest  @version/latest-version}))
@@ -87,6 +112,8 @@
 
 (defroutes app-routes
            (GET "/" [] (redirect "index.html"))
+           (GET "/openid/logout" req
+             (friend/logout* (redirect (str (:context req) "/"))))
            (context "/api" [] (api-handlers api-routes))
            (wrap-not-modified (route/resources "/"))
            (route/not-found "Not Found"))
@@ -98,7 +125,29 @@
            (error e)
            (throw e)))))
 
-(def app
-  (-> app-routes
+(defn credential-fn [stuff]
+  (if (= (:identity stuff) (str "http://steamcommunity.com/openid/id/" (:steamid @openid-settings)))
+    (assoc stuff :roles #{::admin})
+    nil))
+
+(defn create-secured-app []
+  (let [max-nonce-age 60000
+        mgr (doto (ConsumerManager.)
+              ; Seems like Steam's OpenID service is using Stateless-mode.
+              (.setMaxAssocAttempts 0)
+              (.setAssociations (InMemoryConsumerAssociationStore.))
+              (.setNonceVerifier (InMemoryNonceVerifier. (/ max-nonce-age 1000))))]
+    (-> app-routes
+        (friend/authenticate {:workflows
+                              [(openid/workflow :openid-uri "/openid"
+                                                :login-failure-handler (fn [_] (print "login-failure-handler") (redirect "index.html"))
+                                                :realm (:realm @openid-settings)
+                                                :credential-fn credential-fn
+                                                :consumer-manager mgr)]}))))
+
+(defn create-app []
+  (-> (if (empty? @openid-settings)
+        app-routes
+        (create-secured-app))
       wrap-exception
       handler/site))

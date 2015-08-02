@@ -89,6 +89,13 @@ tr th{
     line-height: 30px;
 }
 
+.my-nav-button {
+    display: block;
+    padding: 10px 15px;
+    padding-bottom: 15px;
+    padding-top: 20px !important;
+}
+
 .panel-default>.panel-heading{
     color: #fff;
     border-bottom: #333;

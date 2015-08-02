@@ -11,6 +11,16 @@
       <ul class="nav navbar-nav">
         <li ng-class="{active: $scope.active == 'player_list'}"><a href="#/player_list" ng-click="$scope.active = 'player_list'"><i class="fa fa-users"></i> Player List<span class="sr-only">(current)</span></a></li>
         <li ng-class="{active: $scope.active == 'settings'}"><a href="#/settings" ng-click="$scope.active = 'settings'"><i class="fa fa-cogs"></i> Settings</a></li>
+        <li>
+          <div ng-switch="isAuthorized" class="my-nav-button">
+            <a ng-switch-when="hsbox.handler/admin" href="/openid/logout">Log out</a>
+
+            <form ng-switch-when="null" action="/openid" method="POST">
+              <input name="identifier" value="http://steamcommunity.com/openid" type="hidden">
+              <button class="btn btn-sm btn-default no-bg" value="steam" type="submit"><i class="fa fa-steam"></i> Login with Steam</button>
+            </form>
+          </div>
+        </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

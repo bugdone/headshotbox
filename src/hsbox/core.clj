@@ -1,5 +1,5 @@
 (ns hsbox.core
-  (:require [hsbox.handler :refer [app]]
+  (:require [hsbox.handler :refer [create-app set-openid-settings]]
             [hsbox.db :as db]
             [hsbox.version :as version]
             [hsbox.indexer :as indexer]
@@ -13,7 +13,6 @@
   (:gen-class))
 
 (timbre/set-config! [:appenders :spit :enabled?] true)
-(timbre/set-config! [:shared-appender-config :spit-filename] (File. db/app-config-dir "headshotbox.log"))
 (timbre/refer-timbre)
 
 (def cli-options
@@ -23,6 +22,8 @@
     :validate [#(< 0 % 0x10000) "Must be a number between 1 and 65535"]]
    [nil "--portable" "Uses current directory for .sqlite and .log files"]
    [nil "--no-indexer" "Does not parse new demos from the demo directory"]
+   [nil "--admin-steamid steamid64" "Changing settings and adding notes requires logging in with this steamid64"]
+   [nil "--openid-realm url" "Realm url used by OpenID"]
    ["-h" "--help"]
    ])
 
@@ -41,14 +42,17 @@
           portable? (:portable options)
           run-indexer? (not (:no-indexer options))]
       (cond (:help options) (exit 0 summary)
-            errors (exit 1 (error-msg errors)))
+            errors (exit 1 (str summary (error-msg errors))))
 
-      (info "HeadshotBox" (version/get-version) (if portable? "portable" "")
-            (if (not run-indexer?) "no indexer" ""))
       (when portable?
         (db/set-portable))
+      (timbre/set-config! [:shared-appender-config :spit-filename] (File. db/app-config-dir "headshotbox.log"))
+      (info "HeadshotBox" (version/get-version) (if portable? "portable" "")
+            (if (not run-indexer?) "no indexer" ""))
       (future (version/update-latest-version-every-day))
-      (.start (ring.adapter.jetty/run-jetty #'app {:port (:port options) :join? false}))
+
+      (set-openid-settings options)
+      (.start (ring.adapter.jetty/run-jetty (create-app) {:port (:port options) :join? false}))
       (db/init-db-if-absent)
       (db/upgrade-db)
       (when run-indexer?

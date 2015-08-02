@@ -86,7 +86,7 @@ function getStats($scope, $http) {
     });
 }
 
-hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce) {
+hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce, $rootScope) {
     $scope.valveOnly = false;
     $scope.playerMaps = [];
     $scope.playerTeammates = [];
@@ -154,9 +154,10 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
             $scope.notesControls.demoNotesView = $sce.trustAsHtml($scope.addLinks($scope.notesControls.demoNotesInput));
     };
     $scope.updateDemoNotes2 = function() {
-        $http.post(serverUrl + '/demo/' + $scope.visibleDemo + '/notes', {'notes': $scope.notesControls.demoNotesInput}).success(function() {
-            $scope.updateDemoNotesView();
-        });
+        if ($rootScope.isAuthorized)
+            $http.post(serverUrl + '/demo/' + $scope.visibleDemo + '/notes', {'notes': $scope.notesControls.demoNotesInput}).success(function() {
+                $scope.updateDemoNotesView();
+            });
     }
 
     $scope.resetNotesControls();
@@ -304,7 +305,7 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
     }
 });
 
-hsboxControllers.controller('Settings', function ($scope, $http) {
+hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
     $scope.steamApiCollapsed = true;
     $scope.demoDirectoryCollapsed = true;
     $scope.getSettings = function() {
@@ -312,7 +313,7 @@ hsboxControllers.controller('Settings', function ($scope, $http) {
             $scope.config = data;
         });
     };
-    $scope.config = $scope.getSettings();
+    $scope.config = {};
     $scope.updateSettings = function() {
         $http.post(serverUrl + '/config', $scope.config).success(function(data) {
         });
@@ -332,10 +333,16 @@ hsboxControllers.controller('Settings', function ($scope, $http) {
         });
     };
 
-    $scope.getIndexerState();
+    $rootScope.$watch('isAuthorized', function() {
+        if ($rootScope.isAuthorized) {
+            $scope.getSettings();
+            $scope.getIndexerState();
+        }
+    });
 });
 
-hsboxControllers.controller('Navbar', function ($scope, $http, $interval) {
+hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootScope) {
+    $rootScope.isAuthorized = false;
     $scope.active = 'player_list';
     $scope.version = '';
     $scope.newVersionAvailable = false;
@@ -349,4 +356,12 @@ hsboxControllers.controller('Navbar', function ($scope, $http, $interval) {
     $scope.checkVersion($scope);
     $interval(function(){ $scope.checkVersion($scope); }, 1000 * 3600 * 24);
     // TODO user route params to set active?
+
+    $rootScope.getAuthorizationState = function() {
+        $http.get(serverUrl + '/authorized').success(function(data) {
+            $rootScope.isAuthorized = data.authorized;
+        });
+    };
+
+    $rootScope.getAuthorizationState();
 });

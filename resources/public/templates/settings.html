@@ -22,7 +22,8 @@
 
           <div class="col-md-3">
           </div>
-          <div class="col-md-2">
+
+          <div class="col-md-2" ng-if="isAuthorized">
             <div class="text-center">
               <button class="btn btn-default" ng-click="invertIndexerState()">
                 {{indexerRunning == true ? 'Pause Demo Analyzer' : (indexerRunning == false ? 'Resume Demo Analyzer' : '')}}
@@ -31,7 +32,7 @@
           </div>
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body" ng-if="isAuthorized">
           <form ng-submit="updateSettings()">
             <div class="input-group my-input-group">
               <span class="input-group-addon">Demo directory</span>
@@ -41,16 +42,16 @@
               </span>
             </div>
             <div collapse="demoDirectoryCollapsed">
-	             <div class="well well-lg text-left">
-                  HeadshotBox indexes demos present in this directory.
-                  <p/>
-                  If you download demos from the Watch tab in-game (or with certain other third party software),
-                  for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
-                  This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
-                  If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
-                  Otherwise, the date of the demo file is used.
-                  <p/>
-                  <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted. If you change the demo directory path <b>all</b> notes will be deleted.
+	      <div class="well well-lg text-left">
+                HeadshotBox indexes demos present in this directory.
+                <p/>
+                If you download demos from the Watch tab in-game (or with certain other third party software),
+                for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
+                This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
+                If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
+                Otherwise, the date of the demo file is used.
+                <p/>
+                <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted. If you change the demo directory path <b>all</b> notes will be deleted.
               </div>
             </div>
 
@@ -75,6 +76,7 @@
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </div>

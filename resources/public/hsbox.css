@@ -43,6 +43,13 @@ h1 {
   line-height: 30px;
 }
 
+.my-nav-button {
+    display: block;
+    padding: 10px 15px;
+    padding-bottom: 15px;
+    padding-top: 20px !important;
+}
+
 #stats-tables, #tabs {
     text-align: center;
 }
@@ -203,4 +210,10 @@ a {
 
 .my-input-group {
     padding: 10px 14px !important;
+}
+
+.steam-btn {
+  text-align: center;
+  margin-right: 0px;
+  padding: 0px 0px;
 }

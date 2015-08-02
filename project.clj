@@ -14,6 +14,7 @@
                  [org.clojure/data.json "0.2.6"]
                  [com.taoensso/timbre "3.4.0"]
                  [org.clojure/tools.cli "0.3.2"]
+                 [com.cemerick/friend "0.2.1"]
                  [org.flatland/protobuf "0.8.1"]]
   :git-dependencies [["https://github.com/nicknovitski/watt.git"]]
   :plugins [[lein-ring "0.9.3"]
