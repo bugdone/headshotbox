@@ -20,7 +20,7 @@ for os_name in ['linux', 'win']:
     shutil.copytree(demoinfogo, path)
     shutil.copy('target/' + jar, path)
     with open(path + '/headshotbox.' + ('bat' if os_name == 'win' else 'sh'), 'w') as f:
-        f.write('java -jar %s 4000' % jar)
+        f.write('java -jar %s --port 4000' % jar)
     if os_name == 'linux':
         os.system('chmod +x %s/headshotbox.sh' % path)
 
