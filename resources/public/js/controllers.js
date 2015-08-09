@@ -45,22 +45,22 @@ function bannedSinceDemo(banTimestamp, demoTimestamp) {
     return ((banTimestamp - demoTimestamp) / (24 * 3600) | 0);
 }
 
-function vacInfo(player) {
-    var tooltip = "";
+function banInfo(player) {
+    var info = "";
     if (player == null)
         return "";
     if (player['NumberOfVACBans'] > 0)
-        tooltip = player['NumberOfVACBans'] + " VAC bans";
+        info = player['NumberOfVACBans'] + " VAC bans";
     if (player['NumberOfGameBans'] > 0) {
-        if (tooltip != "")
-            tooltip += ", ";
-        tooltip += player['NumberOfGameBans'] + " game bans";
+        if (info != "")
+            info += ", ";
+        info += player['NumberOfGameBans'] + " game bans";
     }
-    return tooltip;
+    return info;
 }
 
 function bansTooltip(player, demoTimestamp) {
-    var tooltip = vacInfo(player);
+    var tooltip = banInfo(player);
     if (tooltip != "") {
         tooltip += ", " + player['DaysSinceLastBan'] + " days since last ban";
         var banTimestamp = getBanTimestamp(player);
@@ -120,7 +120,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     $scope.bannedSinceDemo = bannedSinceDemo;
     $scope.getBanTimestamp = getBanTimestamp;
     $scope.bansTooltip = bansTooltip;
-    $scope.vacInfo = vacInfo;
+    $scope.banInfo = banInfo;
     steamid = $routeParams.steamid;
     $scope.orderWeapons = '-kills';
     $scope.steamid = steamid;
