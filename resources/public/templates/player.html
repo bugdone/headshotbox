@@ -166,6 +166,50 @@
           <div ng-include src="'templates/search_round.html'"></div>
         </tab>
 
+        <tab heading="Banned players">
+          <p/>
+          <div class="row banned-text">
+            <div class="checkbox col-md-10">
+              <b>{{filteredBanned.length}}</b> banned players
+            </div>
+            <div class="col-md-2">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-click="filterBanned()">
+                  Only opponents
+                </label>
+              </div>
+            </div>
+          </div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="text-left">Player</th>
+                <th class="text-center"><a ng-click="orderBanned = 'DaysSinceLastBan'">Last Ban</a></th>
+                <th class="text-center"><a ng-click="orderBanned = 'days_banned_after_last_played'">Days to ban after last played</a></th>
+                <th class="text-right"><a ng-click="orderBanned = '-timestamp'">Last played</a></th>
+              </tr>
+            </thead>
+            <tr ng-repeat="banned_player in filteredBanned | orderBy:orderBanned">
+              <td class="text-left">
+                <a href="http://steamcommunity.com/profiles/{{banned_player.steamid}}"><img ng-src="{{banned_player.avatar}}" class="list-avatar"/></a>
+                <a href="#/player/{{banned_player.steamid}}">{{banned_player.personaname}}</a>
+                <span style="color: gray">({{banInfo(banned_player)}})</span>
+              </td>
+              <td class="text-center">
+                {{banned_player.DaysSinceLastBan}} days ago
+              </td>
+              <td class="text-center">
+                {{banned_player.days_banned_after_last_played}} days
+              </td>
+              <td class="text-right">
+                <span ng-class="{red: banned_player.opponent, green: !banned_player.opponent}">{{banned_player.opponent ? "against" : "with"}}</span>
+                on {{banned_player.last_played}}
+              </td>
+            </tr>
+          </table>
+        </tab>
+
       </tabset>
     </div>
   </div>
@@ -227,30 +271,30 @@
         <!-- <div class="panel panel-default"> -->
         <!--   <div class="panel-heading">Teammates</div> -->
         <!--   <div class="panel-body"> -->
-            <div class="btn dropdown">
-              <button type="button" class="btn btn-default dropdown-toggle no-bg" ng-disabled="filterTeammates.length == 4">
-                <i class="fa fa-plus green"></i> teammate
-              </button>
-              <ul class="dropdown-menu text-left teammates-list" role="menu">
-                <li ng-repeat="teammate in playerTeammates" ng-click="addTeammate(teammate)">
-                  <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
-                  {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}} ({{teammate.demos}} demos)</li>
-              </ul>
-            </div>
+        <div class="btn dropdown">
+          <button type="button" class="btn btn-default dropdown-toggle no-bg" ng-disabled="filterTeammates.length == 4">
+            <i class="fa fa-plus green"></i> teammate
+          </button>
+          <ul class="dropdown-menu text-left teammates-list" role="menu">
+            <li ng-repeat="teammate in playerTeammates" ng-click="addTeammate(teammate)">
+              <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
+              {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}} ({{teammate.demos}} demos)</li>
+          </ul>
+        </div>
 
-            <ul class="list-group teammates-box">
-              <li ng-repeat="teammate in filterTeammates" class="row list-group-item teammate">
-                <div class="col-sm-10 text-left">
-                  <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
-                  {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}}
-                </div>
-                <div class="col-sm-2 text-right">
-                  <button type="button" class="btn btn-default remove-teammate no-bg" ng-click="removeTeammate(teammate)">
-                    <i class="fa fa-times red"></i>
-                  </button>
-                </div>
-              </li>
-            </ul>
+        <ul class="list-group teammates-box">
+          <li ng-repeat="teammate in filterTeammates" class="row list-group-item teammate">
+            <div class="col-sm-10 text-left">
+              <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
+              {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}}
+            </div>
+            <div class="col-sm-2 text-right">
+              <button type="button" class="btn btn-default remove-teammate no-bg" ng-click="removeTeammate(teammate)">
+                <i class="fa fa-times red"></i>
+              </button>
+            </div>
+          </li>
+        </ul>
         <!--   </div> -->
         <!-- </div> -->
       </div>

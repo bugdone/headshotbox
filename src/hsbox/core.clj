@@ -63,6 +63,7 @@
                            file-seq
                            (map #(.getName %)))))
       (stats/init-cache)
+      (future (stats/update-players-steam-info))
       (when run-indexer?
         (indexer/add-demo-directory (db/get-demo-directory))
         (indexer/run)))

@@ -37,7 +37,15 @@ function watchDemoUrl(path, steamid, tick, highlight) {
         (highlight == 'lowlights' ? ' lowlights' : '');
 }
 
-function bansTooltip(player, demoTimestamp) {
+function getBanTimestamp(player) {
+    return date2timestamp(Date.now()) - 3600 * 24 * player['DaysSinceLastBan'];
+}
+
+function bannedSinceDemo(banTimestamp, demoTimestamp) {
+    return ((banTimestamp - demoTimestamp) / (24 * 3600) | 0);
+}
+
+function vacInfo(player) {
     var tooltip = "";
     if (player == null)
         return "";
@@ -48,11 +56,16 @@ function bansTooltip(player, demoTimestamp) {
             tooltip += ", ";
         tooltip += player['NumberOfGameBans'] + " game bans";
     }
+    return tooltip;
+}
+
+function bansTooltip(player, demoTimestamp) {
+    var tooltip = vacInfo(player);
     if (tooltip != "") {
         tooltip += ", " + player['DaysSinceLastBan'] + " days since last ban";
-        var banTime = date2timestamp(Date.now()) - 3600 * 24 * player['DaysSinceLastBan'];
-        if (banTime >= demoTimestamp)
-             return tooltip + " (" + ((banTime - demoTimestamp) / (24 * 3600) | 0) + " days after this game)";
+        var banTimestamp = getBanTimestamp(player);
+        if (banTimestamp >= demoTimestamp)
+             return tooltip + " (" + bannedSinceDemo(banTimestamp, demoTimestamp) + " days since this game)";
     }
     return "";
 }
@@ -90,14 +103,29 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     $scope.valveOnly = false;
     $scope.playerMaps = [];
     $scope.playerTeammates = [];
+    $scope.banned = []
+    $scope.filteredBanned = [];
+    $scope.opponentsOnly = true;
+    $scope.filterBanned = function() {
+        $scope.opponentsOnly = !$scope.opponentsOnly;
+        $scope.filteredBanned = $scope.banned.filter(function (p) {
+            if ($scope.opponentsOnly)
+                return p.opponent;
+            return true;
+        });
+    };
     $scope.filterDemos = {'startDate': null, 'endDate': null};
     $scope.filterTeammates = [];
     $scope.watchDemoUrl = watchDemoUrl;
+    $scope.bannedSinceDemo = bannedSinceDemo;
+    $scope.getBanTimestamp = getBanTimestamp;
     $scope.bansTooltip = bansTooltip;
+    $scope.vacInfo = vacInfo;
     steamid = $routeParams.steamid;
     $scope.orderWeapons = '-kills';
     $scope.steamid = steamid;
     $scope.orderDemos = '-timestamp';
+    $scope.orderBanned = 'DaysSinceLastBan';
     $scope.demoStats = {}
     $scope.steamAccounts = {}
     $scope.visibleDemo = ''
@@ -131,6 +159,16 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         if (!$scope.$$phase)
             $scope.$apply();
     });
+    $http.get(serverUrl + '/player/' + steamid + '/banned').success(function (data) {
+        $scope.banned = data;
+        $scope.banned.forEach(function (b) {
+            b.last_played = timestamp2date(b.timestamp);
+            b.ban_timestamp = getBanTimestamp(b);
+            b.days_banned_after_last_played = bannedSinceDemo(b.ban_timestamp, b.timestamp);
+        });
+        $scope.filterBanned($scope.opponentsOnly);
+    });
+
     $scope.resetNotesControls = function() {
         $scope.notesControls = {'demoNotesInput': '', 'demoNotesView': ''};
     };

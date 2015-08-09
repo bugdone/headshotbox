@@ -19,6 +19,8 @@
             summaries (apply player-summaries call-args)]
         (log-fail bans)
         (log-fail summaries)
+        ; Sleep 1s after two steam api calls
+        (Thread/sleep 1000)
         (->>
           (concat (-> bans :body :players) (-> summaries :body :response :players))
           (reduce #(let [steamid (Long/parseLong (get %2 :steamid (get %2 :SteamId)))]

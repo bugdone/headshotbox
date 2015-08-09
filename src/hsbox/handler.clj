@@ -41,19 +41,22 @@
 
 (defroutes api-routes
            (context "/player/:steamid" [steamid]
-             (defroutes player-routes
-                        (GET "/stats" req
-                          (response (stats/get-stats-for-steamid
-                                      (Long/parseLong (get-in req [:params :steamid]))
-                                      (parse-filters (get req :params)))))
-                        (GET "/demos" req
-                          (response (stats/get-demos-for-steamid
-                                      (Long/parseLong (get-in req [:params :steamid]))
-                                      (parse-filters (get req :params)))))
-                        (GET "/teammates" []
-                          (response (stats/get-teammates-for-steamid (Long/parseLong steamid))))
-                        (GET "/maps" []
-                          (response (stats/get-maps-for-steamid (Long/parseLong steamid))))))
+             (let [steamid (Long/parseLong steamid)]
+               (defroutes player-routes
+                          (GET "/stats" req
+                            (response (stats/get-stats-for-steamid
+                                        steamid
+                                        (parse-filters (get req :params)))))
+                          (GET "/demos" req
+                            (response (stats/get-demos-for-steamid
+                                        steamid
+                                        (parse-filters (get req :params)))))
+                          (GET "/teammates" []
+                            (response (stats/get-teammates-for-steamid steamid)))
+                          (GET "/banned" [only_opponents]
+                            (response (stats/get-banned-players steamid only_opponents)))
+                          (GET "/maps" []
+                            (response (stats/get-maps-for-steamid steamid))))))
 
            (context "/demo/:demoid" [demoid]
              (defroutes demo-routes

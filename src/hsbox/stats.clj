@@ -1,6 +1,8 @@
 (ns hsbox.stats
   (:require [clojure.string :as str]
             [clojure.set :refer [subset?]]
+            [hsbox.steamapi :as steamapi]
+            [hsbox.util :refer [current-timestamp]]
             [hsbox.db :as db :refer [demo-path get-steam-api-key]]))
 
 (taoensso.timbre/refer-timbre)
@@ -35,9 +37,12 @@
 (defn get-player-latest-name [steamid]
   (get-player-name-in-demo steamid (first (sorted-demos-for-steamid steamid))))
 
-(defn get-teammates [demo steamid]
+(defn get-players-in-team [demo steamid same-team?]
   (let [team (get-in demo [:players steamid :team])]
-    (set (for [p (:players demo) :when (and (not= (key p) steamid) (= (:team (val p)) team))] (key p)))))
+    (set (for [p (:players demo) :when (and (not= (key p) steamid) ((if same-team? = not=) (:team (val p)) team))] (key p)))))
+
+(defn get-teammates [demo steamid]
+  (get-players-in-team demo steamid true))
 
 (defn get-teammates-for-steamid [steamid]
   (letfn [(update-teammates [teammates demo]
@@ -372,6 +377,41 @@
 ;    (map #(:weapon %))
 ;    (set)))
 
+(defn get-banned-players [steamid only-opponents?]
+  (let [demos (vals (get player-demos steamid))
+        get-team (fn [demo steamid] (get-in demo [:players steamid :team]))
+        get-players-data (fn [demo]
+                           (map
+                             #(vector % (:timestamp demo) (not= (get-team demo steamid) (get-team demo %)))
+                             (->
+                               (set (concat (get-players-in-team demo steamid false)
+                                            (if only-opponents?
+                                              []
+                                              (get-players-in-team demo steamid true))))
+                               (disj steamid))))
+        played-with (mapcat get-players-data demos)
+        players (reduce #(let [already (get % (first %2) {:timestamp 0})]
+                          (assoc % (first %2) {:timestamp (max (second %2) (:timestamp already))
+                                               :opponent  (if (< (:timestamp already) (second %2))
+                                                            (last %2)
+                                                            (:opponent already))}))
+                        {}
+                        played-with)
+        steam-info (apply hash-map (mapcat #(vector (:steamid %) %) (db/get-steamid-info (keys players))))
+        now (current-timestamp)]
+    (->>
+      (filter #(let [info (get steam-info (key %))]
+               (and info
+                    (or (pos? (:NumberOfVACBans info)) (pos? (:NumberOfGameBans info)))
+                    (>= (- now (* 3600 24 (:DaysSinceLastBan info))) (:timestamp (val %)))))
+             players)
+      (map #(assoc
+             (merge (val %) (-> steam-info
+                              (get (key %))
+                              (dissoc :timestamp)))
+             :steamid
+             (str (key %)))))))
+
 (defn init-cache []
   (doseq [demo (db/get-all-demos)]
     (add-demo demo)))
@@ -379,3 +419,8 @@
 (defn load-cache []
   (hsbox.db/init-db-if-absent)
   (init-cache))
+
+(defn update-players-steam-info []
+  (while true
+    (steamapi/get-steamids-info (keys player-demos))
+    (Thread/sleep (* 1000 3600))))

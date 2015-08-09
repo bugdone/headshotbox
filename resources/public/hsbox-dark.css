@@ -370,3 +370,7 @@ a {
     background: inherit;
     color: white;
 }
+
+.banned-text {
+    color: white;
+}
