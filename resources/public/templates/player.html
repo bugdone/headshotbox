@@ -91,9 +91,9 @@
                 <th class="text-center" ng-if="valveOnly">Rank</th>
                 <th class="text-left">Map</th>
                 <th class="text-center">Score</th>
-                <th class="text-center"><a ng-click="orderDemos = '-kills'">Kills</a></th>
-                <th class="text-center">Assists</th>
-                <th class="text-center">Deaths</th>
+                <th class="text-center"><a ng-click="orderDemos = '-kills'">K</a></th>
+                <th class="text-center">A</th>
+                <th class="text-center">D</th>
                 <th class="text-center"><a ng-click="orderDemos = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
                 <th class="text-center"><a ng-click="orderDemos = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
                 <th class="text-center">Watch</th>
@@ -101,7 +101,15 @@
             </thead>
             <tbody ng-repeat="demo in demos | orderBy:orderDemos">
               <tr ng-class="{won_background: demo.outcome == 'won', lost_background: demo.outcome == 'lost', tied_background: demo.outcome == 'tied'}" data-ng-click="makeVisible(demo.demoid)">
-                <td class="text-left">{{demo.date}}</td>
+                <td class="text-left">
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <img class="demo-avatar" src="img/vac.png" ng-if="demo.banned_players" width="24" title="{{demo.banned_players}} banned players"/>
+                    </div>
+                    <div class="col-sm-10">
+                      {{demo.date}}
+                    </div>
+                  </div>
                 <td class="text-center" ng-if="!valveOnly"><img ng-src="img/{{demo.type}}.png" width="50"/></td>
                 <td class="text-center" ng-if="valveOnly">
                   <img ng-if="demo.mm_rank_update.rank_old" ng-src="img/ranks/{{demo.mm_rank_update.rank_old}}.png"/>
