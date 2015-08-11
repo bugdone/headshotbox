@@ -82,7 +82,11 @@
 
     <div id="tabs" class="center-block">
       <tabset>
-        <tab heading="Demos">
+        <tab>
+          <tab-heading>
+            <i class="fa fa-history"></i>
+            Demos
+          </tab-heading>
           <table id="demos" class="table">
             <thead>
               <tr>
@@ -149,7 +153,11 @@
           </table>
         </tab>
 
-        <tab heading="Weapon Stats">
+        <tab>
+          <tab-heading>
+            <i class="fa fa-bullseye"></i>
+            Weapon Stats
+          </tab-heading>
           <table id="weapon-stats" class="table table-hover">
             <thead>
               <tr>
@@ -170,11 +178,19 @@
           </table>
         </tab>
 
-        <tab heading="Search Round">
+        <tab>
+          <tab-heading>
+            <i class="fa fa-search"></i>
+            Search Round
+          </tab-heading>
           <div ng-include src="'templates/search_round.html'"></div>
         </tab>
 
-        <tab heading="Banned players">
+        <tab>
+          <tab-heading>
+            <i class="fa fa-ban"></i>
+            Banned players
+          </tab-heading>
           <p/>
           <div class="row banned-text">
             <div class="col-md-2">
