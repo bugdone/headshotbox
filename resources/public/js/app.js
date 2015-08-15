@@ -1,6 +1,6 @@
 var serverUrl = '/api';
 
-var hsboxApp = angular.module('hsboxApp', ['ui.bootstrap', 'ngRoute', 'hsboxControllers']);
+var hsboxApp = angular.module('hsboxApp', ['ui.bootstrap', 'ngRoute', 'hsboxControllers', 'highcharts-ng']);
 
 hsboxApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.

@@ -87,6 +87,7 @@ function getStats($scope, $http) {
     $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': params}).success(function(data) {
         $scope.demos = data;
         var $valveOnly = true;
+        var $maps = {};
         $scope.demos.forEach(function (m) {
             m.kdd = m.kills - m.deaths;
             if (!m.timestamp)
@@ -94,8 +95,16 @@ function getStats($scope, $http) {
             if (m.type != 'valve')
                 $valveOnly = false;
             m.date = timestamp2date(m.timestamp);
+            // Compute maps played
+            var $before = $maps[m.map];
+            if ($before == undefined)
+                $before = 0;
+            $maps[m.map] = $before + 1;
         });
         $scope.valveOnly = $valveOnly;
+        for (var key in $maps) {
+            $scope.mapsPlayedConfig.series[0].data.push({name: key, y: $maps[key]});
+        }
     });
 }
 
@@ -296,6 +305,30 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         if ($changed)
             getStats($scope, $http);
     });
+
+    $scope.mapsPlayedConfig = {
+        options: {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Maps played'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}: {point.y}',
+                        connectorColor: 'silver'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Matches',
+            data: []
+        }]
+    }
 });
 
 hsboxControllers.controller('PlayerList', function ($scope, $http) {
