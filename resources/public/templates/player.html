@@ -81,9 +81,9 @@
   </div>
 
   <div class="col-md-3">
-    <div class="filters">
+    <div class="inline">
       <!-- Demo type -->
-      <div class="btn dropdown">
+      <div class="form-group btn-group dropdown inline">
         <button type="button" class="btn btn-default dropdown-toggle no-bg">
           Demo type {{filterDemos.demoType}} <span class="caret"></span>
         </button>
@@ -95,7 +95,7 @@
         </ul>
       </div>
       <!-- Map -->
-      <div class="btn dropdown">
+      <div class="form-group btn-group dropdown inline">
         <button type="button" class="btn btn-default dropdown-toggle no-bg">
           Map {{filterDemos.mapName}} <span class="caret"></span>
         </button>
@@ -105,12 +105,13 @@
         </ul>
       </div>
       <!-- Start date -->
-      <div class="input-group my-input-group">
+      <div class="form-group input-group">
         <span class="input-group-addon">Start</span>
-        <input type="text" class="form-control"
+        <input type="text"
+               class="form-control"
                is-open="datepickerStatus[0]"
                datepicker-popup="dd.MM.yyyy"
-               starting-day=1
+               starting-day="1"
                ng-model="startDate"
                close-text="Close"/>
         <span class="input-group-btn">
@@ -118,12 +119,13 @@
         </span>
       </div>
       <!-- End date -->
-      <div class="input-group my-input-group">
+      <div class="form-group input-group">
         <span class="input-group-addon">End</span>
-        <input type="text" class="form-control"
+        <input type="text"
+               class="form-control"
                is-open="datepickerStatus[1]"
                datepicker-popup="dd.MM.yyyy"
-               starting-day=1
+               starting-day="1"
                ng-model="endDate"
                close-text="Close"/>
         <span class="input-group-btn">
@@ -131,7 +133,7 @@
         </span>
       </div>
       <!-- Teammate -->
-      <div class="btn dropdown">
+      <div class="form-group dropdown">
         <button type="button" class="btn btn-default dropdown-toggle no-bg" ng-disabled="filterTeammates.length == 4">
           <i class="fa fa-plus green"></i> teammate
         </button>
