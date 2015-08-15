@@ -216,3 +216,7 @@ a {
 
 .banned-text {
 }
+
+.filters {
+    display: inline-block;
+}

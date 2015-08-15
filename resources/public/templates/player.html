@@ -1,6 +1,5 @@
 <div class="row">
-  <div class="col-md-3">
-  </div>
+  <div class="col-md-3"></div>
   <div class="col-md-6">
     <div class="name">
       <a href="http://steamcommunity.com/profiles/{{steamid}}">
@@ -42,7 +41,7 @@
           <td>{{stats.hs_percent | number:2}}</td>
         </tr>
         <tr>
-          <th>Rating <a href="http://www.hltv.org/?pageid=242" title="HLTV Rating" style="color: black">(?)</th>
+          <th>Rating <a href="http://www.hltv.org/?pageid=242" title="HLTV Rating" style="color: black">(?)</a></th>
           <td>{{stats.rating  | number:2}}</td>
         </tr>
         <tr>
@@ -79,7 +78,89 @@
         </tr>
       </table>
     </div>
+  </div>
 
+  <div class="col-md-3">
+    <div class="filters">
+      <!-- Demo type -->
+      <div class="btn dropdown">
+        <button type="button" class="btn btn-default dropdown-toggle no-bg">
+          Demo type {{filterDemos.demoType}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-click="setDemoType(null)">All</li>
+          <li ng-click="setDemoType('valve')"><img ng-src="img/valve.png" width="50"/></li>
+          <li ng-click="setDemoType('esea')"><img ng-src="img/esea.png" width="50"/></li>
+          <li ng-click="setDemoType('faceit')"><img ng-src="img/faceit.png" width="50"/></li>
+        </ul>
+      </div>
+      <!-- Map -->
+      <div class="btn dropdown">
+        <button type="button" class="btn btn-default dropdown-toggle no-bg">
+          Map {{filterDemos.mapName}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-click="setMap(null)">All</li>
+          <li ng-repeat="map in playerMaps" ng-click="setMap(map)">{{map}}</li>
+        </ul>
+      </div>
+      <!-- Start date -->
+      <div class="input-group my-input-group">
+        <span class="input-group-addon">Start</span>
+        <input type="text" class="form-control"
+               is-open="datepickerStatus[0]"
+               datepicker-popup="dd.MM.yyyy"
+               starting-day=1
+               ng-model="startDate"
+               close-text="Close"/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default no-bg" ng-click="openDatepicker($event, 0)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </div>
+      <!-- End date -->
+      <div class="input-group my-input-group">
+        <span class="input-group-addon">End</span>
+        <input type="text" class="form-control"
+               is-open="datepickerStatus[1]"
+               datepicker-popup="dd.MM.yyyy"
+               starting-day=1
+               ng-model="endDate"
+               close-text="Close"/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default no-bg" ng-click="openDatepicker($event, 1)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </div>
+      <!-- Teammate -->
+      <div class="btn dropdown">
+        <button type="button" class="btn btn-default dropdown-toggle no-bg" ng-disabled="filterTeammates.length == 4">
+          <i class="fa fa-plus green"></i> teammate
+        </button>
+        <ul class="dropdown-menu text-left teammates-list" role="menu">
+          <li ng-repeat="teammate in playerTeammates" ng-click="addTeammate(teammate)">
+            <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
+            {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}} ({{teammate.demos}} demos)</li>
+        </ul>
+      </div>
+      <ul class="list-group teammates-box">
+        <li ng-repeat="teammate in filterTeammates" class="row list-group-item teammate">
+          <div class="col-sm-10 text-left">
+            <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
+            {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}}
+          </div>
+          <div class="col-sm-2 text-right">
+            <button type="button" class="btn btn-default remove-teammate no-bg" ng-click="removeTeammate(teammate)">
+              <i class="fa fa-times red"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
     <div id="tabs" class="center-block">
       <tabset>
         <tab ng-repeat="tab in tabs" select="loadTab(tab)">
@@ -97,92 +178,5 @@
       </tabset>
     </div>
   </div>
-
-  <div class="col-md-3">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="btn dropdown">
-          <button type="button" class="btn btn-default dropdown-toggle no-bg">
-            Demo type {{filterDemos.demoType}} <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li ng-click="setDemoType(null)">All</li>
-            <li ng-click="setDemoType('valve')"><img ng-src="img/valve.png" width="50"/></li>
-            <li ng-click="setDemoType('esea')"><img ng-src="img/esea.png" width="50"/></li>
-            <li ng-click="setDemoType('faceit')"><img ng-src="img/faceit.png" width="50"/></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="btn dropdown">
-          <button type="button" class="btn btn-default dropdown-toggle no-bg">
-            Map {{filterDemos.mapName}} <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li ng-click="setMap(null)">All</li>
-            <li ng-repeat="map in playerMaps" ng-click="setMap(map)">{{map}}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="input-group my-input-group">
-          <span class="input-group-addon">Start</span>
-          <input type="text" class="form-control" is-open="datepickerStatus[0]" datepicker-popup="dd.MM.yyyy" starting-day=1 ng-model="startDate" ng-required="true" close-text="Close"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default no-bg" ng-click="openDatepicker($event, 0)"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="input-group my-input-group">
-          <span class="input-group-addon">End</span>
-          <input type="text" class="form-control" is-open="datepickerStatus[1]" datepicker-popup="dd.MM.yyyy" starting-day=1 ng-model="endDate" ng-required="true" close-text="Close"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default no-bg" ng-click="openDatepicker($event, 1)"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-8">
-        <!-- <div class="panel panel-default"> -->
-        <!--   <div class="panel-heading">Teammates</div> -->
-        <!--   <div class="panel-body"> -->
-        <div class="btn dropdown">
-          <button type="button" class="btn btn-default dropdown-toggle no-bg" ng-disabled="filterTeammates.length == 4">
-            <i class="fa fa-plus green"></i> teammate
-          </button>
-          <ul class="dropdown-menu text-left teammates-list" role="menu">
-            <li ng-repeat="teammate in playerTeammates" ng-click="addTeammate(teammate)">
-              <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
-              {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}} ({{teammate.demos}} demos)</li>
-          </ul>
-        </div>
-
-        <ul class="list-group teammates-box">
-          <li ng-repeat="teammate in filterTeammates" class="row list-group-item teammate">
-            <div class="col-sm-10 text-left">
-              <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
-              {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}}
-            </div>
-            <div class="col-sm-2 text-right">
-              <button type="button" class="btn btn-default remove-teammate no-bg" ng-click="removeTeammate(teammate)">
-                <i class="fa fa-times red"></i>
-              </button>
-            </div>
-          </li>
-        </ul>
-        <!--   </div> -->
-        <!-- </div> -->
-      </div>
-    </div>
-
-  </div>
+  <div class="col-md-2"></div>
 </div>
