@@ -23,10 +23,6 @@ h1 {
     text-align: center;
 }
 
-.container {
-    max-width: 1000px;
-}
-
 .navbar-default {
     border-radius: 0px;
 }
