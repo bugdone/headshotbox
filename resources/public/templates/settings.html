@@ -1,80 +1,84 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
     <div class="panel panel-default panel-center">
       <div class="panel-heading">
         Settings
       </div>
 
       <div class="panel-body">
-        <div class="col-md-2">
-          <div class="dropdown theme-select">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-              Select theme
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-              <li role="presentation"><a href="javascript:;" onclick="setActiveStyleSheet('dark'); return false;">Select Dark theme</a></li>
-              <li role="presentation"><a href="javascript:;" onclick="setActiveStyleSheet('light'); return false;">Select Light theme</a></li>
-            </ul>
-          </div>
+        <div class="dropdown theme-select form-group">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            Select theme
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a href="javascript:;" onclick="setActiveStyleSheet('dark'); return false;">Select Dark theme</a></li>
+            <li role="presentation"><a href="javascript:;" onclick="setActiveStyleSheet('light'); return false;">Select Light theme</a></li>
+          </ul>
         </div>
 
-        <div class="col-md-3">
-        </div>
-
-        <div class="col-md-2" ng-if="isAuthorized">
-          <div class="text-center">
+        <div ng-if="isAuthorized">
+          <div class="form-group">
             <button class="btn btn-default" ng-click="invertIndexerState()">
               {{indexerRunning == true ? 'Pause Demo Analyzer' : (indexerRunning == false ? 'Resume Demo Analyzer' : '')}}
             </button>
           </div>
+
+          <form ng-submit="updateSettings()">
+            <div class="form-group input-group">
+              <span class="input-group-addon">Demo directory</span>
+              <input type="text"
+                     class="form-control"
+                     aria-describedby="demo-dir-help"
+                     ng-model="config.demo_directory">
+              <span class="input-group-addon" id="demo-dir-help">
+                <button type="button"
+                        class="btn btn-default btn-xs glyphicon glyphicon-question-sign help-button"
+                        ng-click="demoDirectoryCollapsed = !demoDirectoryCollapsed">
+                </button>
+              </span>
+            </div>
+            <div collapse="demoDirectoryCollapsed">
+              <div class="well well-lg text-left">
+                HeadshotBox indexes demos present in this directory.<p/>
+                If you download demos from the Watch tab in-game (or with certain other third party software),
+                for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
+                This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
+                If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
+                Otherwise, the date of the demo file is used.
+                <p/>
+                <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted.
+                If you change the demo directory path <b>all</b> notes will be deleted.
+              </div>
+            </div>
+
+            <div class="form-group input-group">
+              <span class="input-group-addon">Steam Web API Key</span>
+              <input type="text"
+                     class="form-control"
+                     aria-describedby="steam-api-help"
+                     ng-model="config.steam_api_key">
+              <span class="input-group-addon" id="steam-api-help">
+                <button type="button"
+                        class="btn btn-default btn-xs glyphicon glyphicon-question-sign help-button"
+                        ng-click="steamApiCollapsed = !steamApiCollapsed">
+                </button>
+              </span>
+            </div>
+            <div collapse="steamApiCollapsed">
+              <div class="well well-lg text-left">
+                The Steam Web API key is used to fetch the latest name, avatar and VAC status for steam accounts.<br/>
+                You can get you own key <a href="http://steamcommunity.com/dev/apikey" class="steam-api-link">here</a>.
+              </div>
+            </div>
+
+            <div class="text-center">
+              <input type="submit" value="Update" class="btn btn-default">
+            </div>
+          </form>
         </div>
       </div>
-
-      <div class="panel-body" ng-if="isAuthorized">
-        <form ng-submit="updateSettings()">
-          <div class="input-group my-input-group">
-            <span class="input-group-addon">Demo directory</span>
-            <input type="text" class="form-control" aria-describedby="demo-dir-help" ng-value="config.demo_directory" ng-model="config.demo_directory">
-            <span class="input-group-addon" id="demo-dir-help">
-              <button type="button" class="btn btn-default btn-xs glyphicon glyphicon-question-sign help-button" ng-click="demoDirectoryCollapsed = !demoDirectoryCollapsed"><div/></button>
-            </span>
-          </div>
-          <div collapse="demoDirectoryCollapsed">
-        <div class="well well-lg text-left">
-              HeadshotBox indexes demos present in this directory.
-              <p/>
-              If you download demos from the Watch tab in-game (or with certain other third party software),
-              for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
-              This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
-              If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
-              Otherwise, the date of the demo file is used.
-              <p/>
-              <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted. If you change the demo directory path <b>all</b> notes will be deleted.
-            </div>
-          </div>
-
-          <div class="input-group my-input-group">
-            <span class="input-group-addon">Steam Web API Key</span>
-            <input type="text" class="form-control" aria-describedby="steam-api-help" ng-value="config.steam_api_key" ng-model="config.steam_api_key">
-            <span class="input-group-addon" id="steam-api-help">
-              <button type="button" class="btn btn-default btn-xs glyphicon glyphicon-question-sign help-button" ng-click="steamApiCollapsed = !steamApiCollapsed"><div/></button>
-            </span>
-          </div>
-          <div collapse="steamApiCollapsed">
-        <div class="well well-lg text-left">
-              The Steam Web API key is used to fetch the latest name, avatar and VAC status for steam accounts.
-              <br/>
-              You can get you own key <a href="http://steamcommunity.com/dev/apikey" class="steam-api-link">here</a>.
-            </div>
-          </div>
-
-          <div class="text-center">
-            <input type="submit" value="Update" class="btn btn-default"></input>
-          </div>
-        </form>
-      </div>
     </div>
-
   </div>
 </div>
