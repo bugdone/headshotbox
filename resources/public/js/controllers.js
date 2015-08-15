@@ -102,6 +102,7 @@ function getStats($scope, $http) {
             $maps[m.map] = $before + 1;
         });
         $scope.valveOnly = $valveOnly;
+        $scope.mapsPlayedConfig.series[0].data = [];
         for (var key in $maps) {
             $scope.mapsPlayedConfig.series[0].data.push({name: key, y: $maps[key]});
         }
