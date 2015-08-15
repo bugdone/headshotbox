@@ -88,10 +88,10 @@
           Demo type {{filterDemos.demoType}} <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-          <li ng-click="setDemoType(null)">All</li>
-          <li ng-click="setDemoType('valve')"><img ng-src="img/valve.png" width="50"/></li>
-          <li ng-click="setDemoType('esea')"><img ng-src="img/esea.png" width="50"/></li>
-          <li ng-click="setDemoType('faceit')"><img ng-src="img/faceit.png" width="50"/></li>
+          <li><a ng-click="setDemoType(null)">All</a></li>
+          <li><a ng-click="setDemoType('valve')"><img ng-src="img/valve.png" width="50"/></a></li>
+          <li><a ng-click="setDemoType('esea')"><img ng-src="img/esea.png" width="50"/></a></li>
+          <li><a ng-click="setDemoType('faceit')"><img ng-src="img/faceit.png" width="50"/></a></li>
         </ul>
       </div>
       <!-- Map -->
@@ -100,8 +100,8 @@
           Map {{filterDemos.mapName}} <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-          <li ng-click="setMap(null)">All</li>
-          <li ng-repeat="map in playerMaps" ng-click="setMap(map)">{{map}}</li>
+          <li><a ng-click="setMap(null)">All</a></li>
+          <li ng-repeat="map in playerMaps"><a ng-click="setMap(map)">{{map}}</a></li>
         </ul>
       </div>
       <!-- Start date -->
@@ -135,12 +135,14 @@
       <!-- Teammate -->
       <div class="form-group dropdown">
         <button type="button" class="btn btn-default dropdown-toggle no-bg" ng-disabled="filterTeammates.length == 4">
-          <i class="fa fa-plus green"></i> teammate
+          <i class="fa fa-plus green"></i> Teammate
         </button>
         <ul class="dropdown-menu text-left teammates-list" role="menu">
           <li ng-repeat="teammate in playerTeammates" ng-click="addTeammate(teammate)">
-            <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
-            {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}} ({{teammate.demos}} demos)</li>
+            <a>
+              <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
+              {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}} ({{teammate.demos}} demos)</li>
+            </a>
         </ul>
       </div>
       <ul class="list-group teammates-box">
@@ -150,9 +152,9 @@
             {{steamaccounts[teammate.steamid] ? steamaccounts[teammate.steamid].personaname : teammate.name}}
           </div>
           <div class="col-sm-2 text-right">
-            <button type="button" class="btn btn-default remove-teammate no-bg" ng-click="removeTeammate(teammate)">
-              <i class="fa fa-times red"></i>
-            </button>
+            <a class="remove-teammate" ng-click="removeTeammate(teammate)">
+              <i class="fa fa-minus red"></i>
+            </a>
           </div>
         </li>
       </ul>
