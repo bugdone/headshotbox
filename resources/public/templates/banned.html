@@ -1,0 +1,44 @@
+          <p/>
+          <div class="row banned-text">
+            <div class="col-md-2">
+            </div>
+            <div class="checkbox col-md-8">
+              <b style="font-size: medium">{{filteredBanned.length}}</b>
+              <abbr title="the bans could be for other games than CS:GO">banned players</abbr>
+            </div>
+            <div class="col-md-2">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-click="filterBanned()">
+                  Only opponents
+                </label>
+              </div>
+            </div>
+          </div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="text-left">Player</th>
+                <th class="text-center"><a ng-click="orderBanned = 'DaysSinceLastBan'">Last Ban</a></th>
+                <th class="text-center"><a ng-click="orderBanned = 'days_banned_after_last_played'">Days to ban after last played</a></th>
+                <th class="text-right"><a ng-click="orderBanned = '-timestamp'">Last played</a></th>
+              </tr>
+            </thead>
+            <tr ng-repeat="banned_player in filteredBanned | orderBy:orderBanned">
+              <td class="text-left">
+                <a href="http://steamcommunity.com/profiles/{{banned_player.steamid}}"><img ng-src="{{banned_player.avatar}}" class="list-avatar"/></a>
+                <a href="#/player/{{banned_player.steamid}}">{{banned_player.personaname}}</a>
+                <span style="color: gray">({{banInfo(banned_player)}})</span>
+              </td>
+              <td class="text-center">
+                {{banned_player.DaysSinceLastBan}} days ago
+              </td>
+              <td class="text-center">
+                {{banned_player.days_banned_after_last_played}} days
+              </td>
+              <td class="text-right">
+                <span ng-class="{red: banned_player.opponent, green: !banned_player.opponent}">{{banned_player.opponent ? "against" : "with"}}</span>
+                on {{banned_player.last_played}}
+              </td>
+            </tr>
+          </table>

@@ -168,15 +168,6 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         if (!$scope.$$phase)
             $scope.$apply();
     });
-    $http.get(serverUrl + '/player/' + steamid + '/banned').success(function (data) {
-        $scope.banned = data;
-        $scope.banned.forEach(function (b) {
-            b.last_played = timestamp2date(b.timestamp);
-            b.ban_timestamp = getBanTimestamp(b);
-            b.days_banned_after_last_played = bannedSinceDemo(b.ban_timestamp, b.timestamp);
-        });
-        $scope.filterBanned($scope.opponentsOnly);
-    });
 
     $scope.resetNotesControls = function() {
         $scope.notesControls = {'demoNotesInput': '', 'demoNotesView': ''};
@@ -306,6 +297,41 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
             getStats($scope, $http);
     });
 
+    var setTabLoaded = function($content) {
+        $scope.tabs.forEach(function(part, index, theArray) {
+            if (theArray[index].content == $content) {
+                theArray[index].isLoaded = true;
+            }
+        });
+    }
+
+    // Tabs
+    var loadBanned = function() {
+        $http.get(serverUrl + '/player/' + steamid + '/banned').success(function (data) {
+            $scope.banned = data;
+            $scope.banned.forEach(function (b) {
+                b.last_played = timestamp2date(b.timestamp);
+                b.ban_timestamp = getBanTimestamp(b);
+                b.days_banned_after_last_played = bannedSinceDemo(b.ban_timestamp, b.timestamp);
+            });
+            $scope.filterBanned($scope.opponentsOnly);
+            setTabLoaded('banned');
+        });
+    };
+    $scope.tabs = [
+        { heading: 'Demos', content: 'demos', icon: 'history', isLoaded: true },
+        { heading: 'Weapon Stats', content: 'weapon_stats', icon: 'bullseye', isLoaded: true },
+        { heading: 'Banned Players', content: 'banned', icon: 'ban', isLoaded: false, load: loadBanned },
+        { heading: 'Search Round', content: 'search_round', icon: 'search', isLoaded: true },
+        { heading: 'Charts', content: 'charts', icon: 'bar-chart', isLoaded: true }
+    ];
+    $scope.loadTab = function ($tab) {
+        if ($tab.isLoaded || $tab.load == undefined)
+            return;
+        $tab.load();
+    };
+
+    // Charts
     $scope.mapsPlayedConfig = {
         options: {
             chart: {
