@@ -327,6 +327,8 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         { heading: 'Charts', content: 'charts', icon: 'bar-chart', isLoaded: true }
     ];
     $scope.loadTab = function ($tab) {
+        if ($tab.content == 'charts')
+            $(window).resize();
         if ($tab.isLoaded || $tab.load == undefined)
             return;
         $tab.load();
