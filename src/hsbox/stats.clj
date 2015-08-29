@@ -214,6 +214,46 @@
             )
           demos))
 
+(defn update-map-stats-with-demo [stats demo]
+  (let [steamid (:steamid stats)
+        rounds-stats (reduce
+                       #(let [round-team (team-number steamid %2)]
+                         (-> %
+                             (inc-stat-maybe :t_rounds (= 2 round-team))
+                             (inc-stat-maybe :ct_rounds (= 3 round-team))
+                             (inc-stat-maybe :ct_rounds_won (and (= 3 round-team (:winner %2))))
+                             (inc-stat-maybe :t_rounds_won (and (= 2 round-team (:winner %2))))))
+                       {}
+                       (:rounds demo))
+        stats (assoc stats (:map demo) (merge-with
+                                         +
+                                         rounds-stats
+                                         (get stats (:map demo) {:t_rounds         0
+                                                                 :ct_rounds        0
+                                                                 :t_rounds_won     0
+                                                                 :ct_rounds_won    0
+                                                                 :played           0
+                                                                 :won              0
+                                                                 :lost             0
+                                                                 :won_starting_ct  0
+                                                                 :lost_starting_ct 0})))
+        inc-map-stat-maybe (fn [stats stat pred] (inc-stat-maybe stats [(:map demo) stat] pred))
+        outcome (demo-outcome demo steamid)
+        team (team-number steamid (first (:rounds demo)))]
+    (-> stats
+        (inc-map-stat-maybe :played true)
+        (inc-map-stat-maybe :won (= :won outcome))
+        (inc-map-stat-maybe :lost (= :lost outcome))
+        (inc-map-stat-maybe :won_starting_ct (and (= :won outcome) (= 3 team)))
+        (inc-map-stat-maybe :lost_starting_ct (and (= :lost outcome) (= 3 team))))))
+
+(defn get-maps-stats-for-steamid [steamid filters]
+  (->
+    (->> (vals (get player-demos steamid))
+         (filter-demos steamid filters)
+         (reduce update-map-stats-with-demo {:steamid steamid}))
+    (dissoc :steamid)))
+
 (defn get-stats-for-steamid [steamid filters]
   (->
     (->> (vals (get player-demos steamid))

@@ -176,7 +176,7 @@
             <ng-include src="'templates/' + tab.content + '.html'"></ng-include>
           </div>
           <div ng-hide="tab.isLoaded">
-            Loading...
+            <div ng-include src="'templates/loading.html'"></div>
           </div>
         </tab>
       </tabset>

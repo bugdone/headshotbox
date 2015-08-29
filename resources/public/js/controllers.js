@@ -87,7 +87,6 @@ function getStats($scope, $http) {
     $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': params}).success(function(data) {
         $scope.demos = data;
         var $valveOnly = true;
-        var $maps = {};
         $scope.demos.forEach(function (m) {
             m.kdd = m.kills - m.deaths;
             if (!m.timestamp)
@@ -95,17 +94,8 @@ function getStats($scope, $http) {
             if (m.type != 'valve')
                 $valveOnly = false;
             m.date = timestamp2date(m.timestamp);
-            // Compute maps played
-            var $before = $maps[m.map];
-            if ($before == undefined)
-                $before = 0;
-            $maps[m.map] = $before + 1;
         });
         $scope.valveOnly = $valveOnly;
-        $scope.mapsPlayedConfig.series[0].data = [];
-        for (var key in $maps) {
-            $scope.mapsPlayedConfig.series[0].data.push({name: key, y: $maps[key]});
-        }
     });
 }
 
@@ -141,6 +131,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     $scope.visibleDemo = ''
     $scope.visibleRound = 0
     $scope.orderTeams = '-kills';
+    $scope.chartSelected = 'mapswin';
     $scope.getPlayersInfo = function(missingPlayers) {
         if (missingPlayers.length == 0)
             return;
@@ -319,16 +310,54 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
             setTabLoaded('banned');
         });
     };
+    var loadMaps = function() {
+        $http.get(serverUrl + '/player/' + steamid + '/maps/statistics').success(function (data) {
+            $scope.mapsPlayedConfig.series[0].data = [];
+            $scope.mapsWinConfig.series[0].data = [];
+            $scope.mapsWinConfig.series[1].data = [];
+            $scope.mapsWinConfig.series[2].data = [];
+            $scope.mapsWinConfig.xAxis.categories = [];
+            $scope.roundsWinConfig.series[0].data = [];
+            $scope.roundsWinConfig.series[1].data = [];
+            for (var key in data) {
+                $scope.mapsWinConfig.xAxis.categories.push(key);
+                $scope.roundsWinConfig.xAxis.categories.push(key);
+                $scope.mapsPlayedConfig.series[0].data.push({name: key, y: data[key].played});
+                var t_won = data[key].won - data[key].won_starting_ct;
+                var t_lost = data[key].lost - data[key].lost_starting_ct;
+                var games = data[key].won + data[key].lost;
+                var started_t = t_won + t_lost;
+                var started_ct = data[key].won_starting_ct + data[key].lost_starting_ct;
+                $scope.mapsWinConfig.series[0].data.push({name: key, y: (t_won + t_lost) ? t_won / started_t * 100 | 0: null,
+                                                          played: started_t,
+                                                          won: t_won});
+                $scope.mapsWinConfig.series[1].data.push({name: key, y: data[key].won_starting_ct / started_ct * 100 | 0,
+                                                          played: started_ct, won: data[key].won_starting_ct});
+                $scope.mapsWinConfig.series[2].data.push({name: key, y: data[key].won / games * 100 | 0,
+                                                          played: games,
+                                                          won: data[key].won});
+                $scope.roundsWinConfig.series[0].data.push({name: key, y: data[key].t_rounds ? data[key].t_rounds_won / data[key].t_rounds * 100 | 0: null,
+                                                            played: data[key].t_rounds,
+                                                            won: data[key].t_rounds_won});
+                $scope.roundsWinConfig.series[1].data.push({name: key, y: data[key].ct_rounds ? data[key].ct_rounds_won / data[key].ct_rounds * 100 | 0: null,
+                                                            played: data[key].ct_rounds,
+                                                            won: data[key].ct_rounds_won});
+            }
+            setTimeout(function(){
+                window.dispatchEvent(new Event('resize'));
+            }, 0);
+            setTabLoaded('charts');
+        });
+    };
+
     $scope.tabs = [
         { heading: 'Demos', content: 'demos', icon: 'history', isLoaded: true },
         { heading: 'Weapon Stats', content: 'weapon_stats', icon: 'bullseye', isLoaded: true },
         { heading: 'Banned Players', content: 'banned', icon: 'ban', isLoaded: false, load: loadBanned },
         { heading: 'Search Round', content: 'search_round', icon: 'search', isLoaded: true },
-        { heading: 'Charts', content: 'charts', icon: 'bar-chart', isLoaded: true }
+        { heading: 'Maps', content: 'charts', icon: 'bar-chart', isLoaded: false, load: loadMaps }
     ];
     $scope.loadTab = function ($tab) {
-        if ($tab.content == 'charts')
-            $(window).resize();
         if ($tab.isLoaded || $tab.load == undefined)
             return;
         $tab.load();
@@ -338,26 +367,116 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     $scope.mapsPlayedConfig = {
         options: {
             chart: {
-                type: 'pie'
+                type: 'pie',
+                animation: false
             },
             title: {
-                text: 'Maps played'
+                text: null
             },
             plotOptions: {
                 pie: {
                     dataLabels: {
                         enabled: true,
                         format: '{point.name}: {point.y}',
-                        connectorColor: 'silver'
+                        connectorColor: 'green'
                     }
-                }
+                },
+                series: {animation: false}
             }
         },
-        series: [{
-            name: 'Matches',
-            data: []
-        }]
-    }
+        series: [{name: 'Matches'}]
+    };
+
+
+    var pointFormat = '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}%</b> ({point.won}/{point.played})<br/>';
+    $scope.mapsWinConfig = {
+        options: {
+            chart: {
+                type: 'column',
+                animation: false
+            },
+            title: {
+                text: null
+            },
+            plotOptions: {
+                column: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:,.0f}'
+                    }
+                },
+                series: {
+                    pointWidth: 10,
+                    animation: false
+                }
+            },
+            xAxis: {
+                gridLineWidth: 0,
+                minorGridLineWidth: 0,
+                tickAmount: 0,
+                lineColor: 'transparent'
+            },
+            yAxis: {
+                gridLineWidth: 0,
+                minorGridLineWidth: 0,
+                tickAmount: 0,
+                lineColor: 'transparent',
+                showLastLabel: false,
+                showFirstLabel: false,
+                title: {text: 'Win%'}
+            },
+            colors: ['red', 'blue', 'green'],
+            tooltip: { pointFormat: pointFormat }
+        },
+        xAxis: {categories: []},
+        series: [{name: 'Starting T'},
+                 {name: 'Starting CT'},
+                 {name: 'Overall'}]
+    };
+
+    $scope.roundsWinConfig = {
+        options: {
+            chart: {
+                type: 'column',
+                animation: false
+            },
+            title: {
+                text: null
+            },
+            plotOptions: {
+                column: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:,.0f}'
+                    }
+                },
+                series: {
+                    pointWidth: 10,
+                    animation: false
+                }
+            },
+            xAxis: {
+                gridLineWidth: 0,
+                minorGridLineWidth: 0,
+                tickAmount: 0,
+                lineColor: 'transparent'
+            },
+            yAxis: {
+                gridLineWidth: 0,
+                minorGridLineWidth: 0,
+                tickAmount: 0,
+                lineColor: 'transparent',
+                showLastLabel: false,
+                showFirstLabel: false,
+                title: {text: 'Win%'}
+            },
+            colors: ['red', 'blue'],
+            tooltip: { pointFormat: pointFormat }
+        },
+        xAxis: {categories: []},
+        series: [{name: 'T Rounds'},
+                 {name: 'CT Rounds'}]
+    };
 });
 
 hsboxControllers.controller('PlayerList', function ($scope, $http) {
