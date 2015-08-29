@@ -70,7 +70,7 @@ function bansTooltip(player, demoTimestamp) {
     return "";
 }
 
-function getStats($scope, $http) {
+function getRequestFilters($scope) {
     var params = JSON.parse(JSON.stringify($scope.filterDemos));
     var teammates = [];
     $scope.filterTeammates.forEach(function (t) {
@@ -78,25 +78,20 @@ function getStats($scope, $http) {
     });
     if (teammates.length > 0)
         params['teammates'] = teammates.join();
+    return params;
+}
+
+function filtersChanged($scope, $http) {
+    var params = getRequestFilters($scope);
     $http.get(serverUrl + '/player/' + steamid + '/stats', {'params': params}).success(function(data) {
         $scope.stats = data;
         $scope.stats.weapons.forEach(function (p) {
             p.hs_percent = (p.hs / p.kills) * 100;
         });
     });
-    $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': params}).success(function(data) {
-        $scope.demos = data;
-        var $valveOnly = true;
-        $scope.demos.forEach(function (m) {
-            m.kdd = m.kills - m.deaths;
-            if (!m.timestamp)
-                m.timestamp = 0;
-            if (m.type != 'valve')
-                $valveOnly = false;
-            m.date = timestamp2date(m.timestamp);
-        });
-        $scope.valveOnly = $valveOnly;
-    });
+    $scope.tabs.demos.isLoaded = $scope.tabs.charts.isLoaded = false;
+    if (!$scope.tabs[$scope.activeTab].isLoaded)
+        $scope.loadTab($scope.tabs[$scope.activeTab]);
 }
 
 hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce, $rootScope) {
@@ -141,25 +136,6 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
             }
         });
     };
-
-    getStats($scope, $http);
-    $http.get(getPlayerSummaries([steamid])).success(function (response) {
-        $scope.player = response[steamid];
-    });
-    $http.get(serverUrl + '/player/' + steamid + '/maps').success(function(data) {
-        $scope.playerMaps = data;
-    });
-    $http.get(serverUrl + '/player/' + steamid + '/teammates').success(function(data) {
-        $scope.playerTeammates = data;
-        missingPlayers = []
-        $scope.playerTeammates.forEach(function (p) {
-            if (!$scope.steamAccounts[p.steamid])
-                missingPlayers[missingPlayers.length] = p.steamid;
-        });
-        $scope.getPlayersInfo(missingPlayers);
-        if (!$scope.$$phase)
-            $scope.$apply();
-    });
 
     $scope.resetNotesControls = function() {
         $scope.notesControls = {'demoNotesInput': '', 'demoNotesView': ''};
@@ -246,12 +222,12 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
 
     $scope.setDemoType = function(demoType) {
         $scope.filterDemos.demoType = demoType;
-        getStats($scope, $http);
+        filtersChanged($scope, $http);
     };
 
     $scope.setMap = function(map) {
         $scope.filterDemos.mapName = map;
-        getStats($scope, $http);
+        filtersChanged($scope, $http);
     };
 
     $scope.datepickerStatus = [false, false];
@@ -265,7 +241,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         if ($scope.filterTeammates.indexOf(teammate) != -1 || $scope.filterTeammates.length == 4)
             return;
         $scope.filterTeammates.push(teammate);
-        getStats($scope, $http);
+        filtersChanged($scope, $http);
     };
 
     $scope.removeTeammate = function(teammate) {
@@ -273,28 +249,24 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         if ($i == -1)
             return;
         $scope.filterTeammates.splice($i, 1);
-        getStats($scope, $http);
+        filtersChanged($scope, $http);
     };
 
     $scope.$watch('startDate', function() {
         var $changed = $scope.filterDemos.startDate != date2timestamp($scope.startDate);
         $scope.filterDemos.startDate = date2timestamp($scope.startDate);
         if ($changed)
-            getStats($scope, $http);
+            filtersChanged($scope, $http);
     });
     $scope.$watch('endDate', function() {
         var $changed = $scope.filterDemos.endDate != date2timestamp($scope.endDate);
         $scope.filterDemos.endDate = date2timestamp($scope.endDate);
         if ($changed)
-            getStats($scope, $http);
+            filtersChanged($scope, $http);
     });
 
-    var setTabLoaded = function($content) {
-        $scope.tabs.forEach(function(part, index, theArray) {
-            if (theArray[index].content == $content) {
-                theArray[index].isLoaded = true;
-            }
-        });
+    $scope.setTabLoaded = function($content) {
+        $scope.tabs[$content].isLoaded = true;
     }
 
     // Tabs
@@ -307,11 +279,12 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
                 b.days_banned_after_last_played = bannedSinceDemo(b.ban_timestamp, b.timestamp);
             });
             $scope.filterBanned($scope.opponentsOnly);
-            setTabLoaded('banned');
+            $scope.setTabLoaded('banned');
         });
     };
     var loadMaps = function() {
-        $http.get(serverUrl + '/player/' + steamid + '/maps/statistics').success(function (data) {
+        var params = getRequestFilters($scope);
+        $http.get(serverUrl + '/player/' + steamid + '/maps/statistics', {'params': params}).success(function (data) {
             $scope.mapsPlayedConfig.series[0].data = [];
             $scope.mapsWinConfig.series[0].data = [];
             $scope.mapsWinConfig.series[1].data = [];
@@ -346,18 +319,41 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
             setTimeout(function(){
                 window.dispatchEvent(new Event('resize'));
             }, 0);
-            setTabLoaded('charts');
+            $scope.setTabLoaded('charts');
+        });
+    };
+    var getDemos = function() {
+        var params = getRequestFilters($scope);
+        $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': params}).success(function(data) {
+            $scope.demos = data;
+            var $valveOnly = true;
+            $scope.demos.forEach(function (m) {
+                m.kdd = m.kills - m.deaths;
+                if (!m.timestamp)
+                    m.timestamp = 0;
+                if (m.type != 'valve')
+                    $valveOnly = false;
+                m.date = timestamp2date(m.timestamp);
+            });
+            $scope.valveOnly = $valveOnly;
+            $scope.setTabLoaded('demos');
         });
     };
 
-    $scope.tabs = [
-        { heading: 'Demos', content: 'demos', icon: 'history', isLoaded: true },
-        { heading: 'Weapon Stats', content: 'weapon_stats', icon: 'bullseye', isLoaded: true },
-        { heading: 'Banned Players', content: 'banned', icon: 'ban', isLoaded: false, load: loadBanned },
-        { heading: 'Search Round', content: 'search_round', icon: 'search', isLoaded: true },
-        { heading: 'Maps', content: 'charts', icon: 'bar-chart', isLoaded: false, load: loadMaps }
-    ];
+    $scope.activeTab = 'demos';
+    $scope.tabs = {
+        'demos': { heading: 'Demos', content: 'demos', icon: 'history', isLoaded: true, load: getDemos },
+        'weapon_stats': { heading: 'Weapon Stats', content: 'weapon_stats', icon: 'bullseye', isLoaded: true },
+        'banned': { heading: 'Banned Players', content: 'banned', icon: 'ban', isLoaded: false, load: loadBanned },
+        'search_round': { heading: 'Search Round', content: 'search_round', icon: 'search', isLoaded: true },
+        'charts': { heading: 'Maps', content: 'charts', icon: 'bar-chart', isLoaded: false, load: loadMaps }
+    };
+    $scope.tabArray = [];
+    for (var tab in $scope.tabs) {
+        $scope.tabArray.push($scope.tabs[tab]);
+    };
     $scope.loadTab = function ($tab) {
+        $scope.activeTab = $tab.content;
         if ($tab.isLoaded || $tab.load == undefined)
             return;
         $tab.load();
@@ -477,6 +473,25 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         series: [{name: 'T Rounds'},
                  {name: 'CT Rounds'}]
     };
+
+    filtersChanged($scope, $http);
+    $http.get(getPlayerSummaries([steamid])).success(function (response) {
+        $scope.player = response[steamid];
+    });
+    $http.get(serverUrl + '/player/' + steamid + '/maps').success(function(data) {
+        $scope.playerMaps = data;
+    });
+    $http.get(serverUrl + '/player/' + steamid + '/teammates').success(function(data) {
+        $scope.playerTeammates = data;
+        missingPlayers = []
+        $scope.playerTeammates.forEach(function (p) {
+            if (!$scope.steamAccounts[p.steamid])
+                missingPlayers[missingPlayers.length] = p.steamid;
+        });
+        $scope.getPlayersInfo(missingPlayers);
+        if (!$scope.$$phase)
+            $scope.$apply();
+    });
 });
 
 hsboxControllers.controller('PlayerList', function ($scope, $http) {
