@@ -14,11 +14,18 @@ function demoOutcome(demoStats) {
     return outcome + '! ';
 }
 
-function timestamp2date(timestamp) {
+function timestamp2date(timestamp, only_date) {
     if (!timestamp)
         return '';
+    only_date = typeof only_date !== 'undefined' ? only_date : false;
     d = new Date(timestamp * 1000);
-    format = {day: 'numeric', month: 'short', hour: "2-digit", minute: "2-digit", hour12: false};
+    format = {day: 'numeric', month: 'short'};
+    if (!only_date) {
+        var time_format = {hour: "2-digit", minute: "2-digit", hour12: false};
+        for (var attrname in time_format) {
+            format[attrname] = time_format[attrname];
+        }
+    }
     if (d.getFullYear() != (new Date()).getFullYear())
         format.year = 'numeric';
     return d.toLocaleString(undefined, format);
@@ -126,7 +133,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     $scope.visibleDemo = ''
     $scope.visibleRound = 0
     $scope.orderTeams = '-kills';
-    $scope.chartSelected = 'mapswin';
+    $scope.chartSelected = 'mapsplayed';
     $scope.getPlayersInfo = function(missingPlayers) {
         if (missingPlayers.length == 0)
             return;
@@ -335,6 +342,15 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
                     $valveOnly = false;
                 m.date = timestamp2date(m.timestamp);
             });
+            if ($scope.rankConfig.series[0].data == null) {
+                var d = [];
+                $scope.demos.forEach(function (m) {
+                    if (m.mm_rank_update != null && m.mm_rank_update.rank_new != 0) {
+                        d.push({x: m.timestamp, y: m.mm_rank_update.rank_new, date: m.date, old: m.mm_rank_update.rank_old, wins: m.mm_rank_update.num_wins});
+                    }
+                });
+                $scope.rankConfig.series[0].data = d;
+            }
             $scope.valveOnly = $valveOnly;
             $scope.setTabLoaded('demos');
         });
@@ -346,7 +362,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         'weapon_stats': { heading: 'Weapon Stats', content: 'weapon_stats', icon: 'bullseye', isLoaded: true },
         'banned': { heading: 'Banned Players', content: 'banned', icon: 'ban', isLoaded: false, load: loadBanned },
         'search_round': { heading: 'Search Round', content: 'search_round', icon: 'search', isLoaded: true },
-        'charts': { heading: 'Maps', content: 'charts', icon: 'bar-chart', isLoaded: false, load: loadMaps }
+        'charts': { heading: 'Charts', content: 'charts', icon: 'bar-chart', isLoaded: false, load: loadMaps }
     };
     $scope.tabArray = [];
     for (var tab in $scope.tabs) {
@@ -472,6 +488,68 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         xAxis: {categories: []},
         series: [{name: 'T Rounds'},
                  {name: 'CT Rounds'}]
+    };
+
+    var rankNames = ['Silver I',
+                     'Silver II',
+                     'Silver III',
+                     'Silver IV',
+                     'Silver Elite',
+                     'Silver Elite Master',
+                     'Gold Nova I',
+                     'Gold Nova II',
+                     'Gold Nova III',
+                     'Gold Nova Master',
+                     'Master Guardian I',
+                     'Master Guardian II',
+                     'Master Guardian Elite',
+                     'Distinguished Master Guardian',
+                     'Legendary Eagle',
+                     'Legendary Eagle Master',
+                     'Supreme Master First Class',
+                     'Global Elite'];
+    var rankImg = function(rank) { return '<img src="img/ranks/' + rank + '.png" title="' + rankNames[rank - 1] + '"></img>'; };
+    var rankTooltipFormatter = function() {
+        return this.date + ' '
+             + (this.old != this.y ? (this.old == 0 ? '' : rankImg(this.old)) + '<i class="fa fa-long-arrow-right"></i>': '')
+             + rankImg(this.y) + '<br/>' + this.wins + ' competitive wins';
+    };
+    $scope.rankConfig = {
+        options: {
+            chart: {
+                type: 'line',
+                animation: false
+            },
+            title: {
+                text: null
+            },
+            plotOptions: {
+                column: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    }
+                },
+                series: {
+                    pointWidth: 10,
+                    animation: false
+                }
+            },
+            xAxis: {
+                labels: {formatter: function() { return timestamp2date(this.value, true); }}
+            },
+            yAxis: {
+                title: {text: null},
+                labels: {
+                    useHTML: true,
+                    formatter: function() { return rankImg(this.value); }
+                }
+            },
+            tooltip: { pointFormatter: rankTooltipFormatter,
+                       headerFormat: '',
+                       useHTML: true}
+        },
+        series: [{name: 'Rank', data: null}]
     };
 
     filtersChanged($scope, $http);

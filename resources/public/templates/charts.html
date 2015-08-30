@@ -3,7 +3,9 @@
   <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'mapsplayed'">Maps Played</label>
   <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'mapswin'">Map Win %</label>
   <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'roundswin'">Round Win %</label>
+  <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'rank'">MM Rank</label>
 </div>
 <highchart id="mapsPlayed" config="mapsPlayedConfig" ng-if="chartSelected=='mapsplayed'"></highchart>
 <highchart id="mapsWin" config="mapsWinConfig" ng-if="chartSelected=='mapswin'"></highchart>
 <highchart id="roundsWin" config="roundsWinConfig" ng-if="chartSelected=='roundswin'"></highchart>
+<highchart id="rank" config="rankConfig" ng-if="chartSelected=='rank'"></highchart>
