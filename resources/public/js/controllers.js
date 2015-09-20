@@ -508,7 +508,11 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
                      'Legendary Eagle Master',
                      'Supreme Master First Class',
                      'Global Elite'];
-    var rankImg = function(rank) { return '<img src="img/ranks/' + rank + '.png" title="' + rankNames[rank - 1] + '"></img>'; };
+    var rankImg = function(rank) {
+        if (rank < 1 || rank > 18)
+            return '';
+        return '<img src="img/ranks/' + rank + '.png" title="' + rankNames[rank - 1] + '"></img>';
+    };
     var rankTooltipFormatter = function() {
         return this.date + ' '
              + (this.old != this.y ? (this.old == 0 ? '' : rankImg(this.old)) + '<i class="fa fa-long-arrow-right"></i>': '')
@@ -540,6 +544,9 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
             },
             yAxis: {
                 title: {text: null},
+                allowDecimals: false,
+                floor: 1 ,
+                ceiling: 18,
                 labels: {
                     useHTML: true,
                     formatter: function() { return rankImg(this.value); }
