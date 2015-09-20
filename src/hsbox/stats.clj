@@ -299,6 +299,8 @@
     (->>
       (filter #(let [info (get steam-info (key %))]
                 (and info
+                     (:NumberOfVACBans info)
+                     (:NumberOfGameBans info)
                      (or (pos? (:NumberOfVACBans info)) (pos? (:NumberOfGameBans info)))
                      (>= (- now (* 3600 24 (:DaysSinceLastBan info))) (:timestamp (val %)))))
               players)
