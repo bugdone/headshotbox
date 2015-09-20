@@ -172,10 +172,10 @@
             <i class="fa fa-{{tab.icon}}"></i>
             {{tab.heading}}
           </tab-heading>
-          <div ng-hide="!tab.isLoaded">
+          <div ng-hide="tab.status != 'loaded'">
             <ng-include src="'templates/' + tab.content + '.html'"></ng-include>
           </div>
-          <div ng-hide="tab.isLoaded">
+          <div ng-hide="tab.status != 'loading'">
             <div ng-include src="'templates/loading.html'"></div>
           </div>
         </tab>

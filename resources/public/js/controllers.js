@@ -96,8 +96,8 @@ function filtersChanged($scope, $http) {
             p.hs_percent = (p.hs / p.kills) * 100;
         });
     });
-    $scope.tabs.demos.isLoaded = $scope.tabs.charts.isLoaded = false;
-    if (!$scope.tabs[$scope.activeTab].isLoaded)
+    $scope.tabs.demos.status = $scope.tabs.charts.status = null;
+    if (!$scope.tabs[$scope.activeTab].status)
         $scope.loadTab($scope.tabs[$scope.activeTab]);
 }
 
@@ -273,7 +273,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     });
 
     $scope.setTabLoaded = function($content) {
-        $scope.tabs[$content].isLoaded = true;
+        $scope.tabs[$content].status = 'loaded';
     }
 
     // Tabs
@@ -358,11 +358,11 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
 
     $scope.activeTab = 'demos';
     $scope.tabs = {
-        'demos': { heading: 'Demos', content: 'demos', icon: 'history', isLoaded: true, load: getDemos },
-        'weapon_stats': { heading: 'Weapon Stats', content: 'weapon_stats', icon: 'bullseye', isLoaded: true },
-        'banned': { heading: 'Banned Players', content: 'banned', icon: 'ban', isLoaded: false, load: loadBanned },
-        'search_round': { heading: 'Search Round', content: 'search_round', icon: 'search', isLoaded: true },
-        'charts': { heading: 'Charts', content: 'charts', icon: 'bar-chart', isLoaded: false, load: loadMaps }
+        'demos': { heading: 'Demos', content: 'demos', icon: 'history', status: null, load: getDemos },
+        'weapon_stats': { heading: 'Weapon Stats', content: 'weapon_stats', icon: 'bullseye', status: 'loaded' },
+        'banned': { heading: 'Banned Players', content: 'banned', icon: 'ban', status: null, load: loadBanned },
+        'search_round': { heading: 'Search Round', content: 'search_round', icon: 'search', status: 'loaded' },
+        'charts': { heading: 'Charts', content: 'charts', icon: 'bar-chart', status: null, load: loadMaps }
     };
     $scope.tabArray = [];
     for (var tab in $scope.tabs) {
@@ -370,8 +370,9 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     };
     $scope.loadTab = function ($tab) {
         $scope.activeTab = $tab.content;
-        if ($tab.isLoaded || $tab.load == undefined)
+        if ($tab.status || $tab.load == undefined)
             return;
+        $tab.status = 'loading';
         $tab.load();
     };
 
