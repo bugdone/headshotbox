@@ -380,6 +380,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         options: {
             chart: {
                 type: 'pie',
+                backgroundColor: 'transparent',
                 animation: false
             },
             title: {
@@ -399,11 +400,11 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         series: [{name: 'Matches'}]
     };
 
-
     var pointFormat = '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}%</b> ({point.won}/{point.played})<br/>';
     $scope.mapsWinConfig = {
         options: {
             chart: {
+                backgroundColor: 'transparent',
                 type: 'column',
                 animation: false
             },
@@ -450,6 +451,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         options: {
             chart: {
                 type: 'column',
+                backgroundColor: 'transparent',
                 animation: false
             },
             title: {
@@ -522,6 +524,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         options: {
             chart: {
                 type: 'line',
+                backgroundColor: 'transparent',
                 animation: false
             },
             title: {
@@ -545,7 +548,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
             yAxis: {
                 title: {text: null},
                 allowDecimals: false,
-                floor: 1 ,
+                floor: 1,
                 ceiling: 18,
                 labels: {
                     useHTML: true,
