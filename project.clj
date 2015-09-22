@@ -7,6 +7,7 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/java.jdbc "0.3.6"]
                  [org.xerial/sqlite-jdbc "3.8.6"]
+                 [com.mchange/c3p0 "0.9.2.1"]
                  [compojure "1.3.2"]
                  [ring-cors "0.1.6"]
                  [ring/ring-json "0.3.1"]
