@@ -613,7 +613,9 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
     steamid = $routeParams.steamid;
     $scope.search_string = "";
     $scope.search = function() {
-        $http.get(serverUrl + '/round/search', { params: {'search-string': steamid + ' ' + $scope.search_string} }).success(function(data) {
+        var params = getRequestFilters($scope);
+        params["search-string"] = steamid + ' ' + $scope.search_string;
+        $http.get(serverUrl + '/round/search', { params: params }).success(function(data) {
             $scope.rounds = data;
             $scope.rounds.forEach(function (r) {
                 if (!r.timestamp)

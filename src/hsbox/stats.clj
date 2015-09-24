@@ -441,16 +441,18 @@
                 (if steamid
                   (get player-demos steamid)
                   demos))]
-    (sort #(compare (:timestamp (first %2)) (:timestamp (first %)))
-          (if map
-            (filter #(= (:map %) map) demos)
-            demos))))
+    (if map
+      (filter #(= (:map %) map) demos)
+      demos)))
 
-(defn search-rounds [search-string]
+(defn search-rounds [search-string demo-filters]
   (let [search-string (replace-aliases search-string)
         filters (remove str/blank? (str/split (str/lower-case search-string) #" |\+"))
         steamid (steamid-filter filters)
-        demos (search-demos filters)
+        demos (->>
+                (search-demos filters)
+                (filter-demos steamid demo-filters)
+                (sort #(compare (:timestamp %2) (:timestamp %))))
         round-filters (get-round-filters filters)]
     (take 100 (mapcat #(filter-rounds (first %) (second %) round-filters)
                       (for [demo demos steamid (if steamid [steamid] (keys (:players demo)))] [demo steamid])))))

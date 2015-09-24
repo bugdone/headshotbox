@@ -69,8 +69,8 @@
                         (authorize-admin
                           (POST "/notes" {body :body}
                             (response (db/set-demo-notes demoid (:notes body)))))))
-           (GET "/round/search" [search-string]
-             (response (stats/search-rounds search-string)))
+           (GET "/round/search" req
+             (response (stats/search-rounds (get-in req [:params :search-string]) (parse-filters (get req :params)))))
            (GET "/steamids/info" [steamids]
              (response
                (if (empty? steamids)
