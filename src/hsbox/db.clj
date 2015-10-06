@@ -1,6 +1,3 @@
-; Less c3p0 logging
-(System/setProperty "com.mchange.v2.log.MLog", "com.mchange.v2.log.FallbackMLog")
-(System/setProperty "com.mchange.v2.log.FallbackMLog.DEFAULT_CUTOFF_LEVEL", "WARNING")
 (ns hsbox.db
   (:require [clojure.data.json :as json]
             [clojure.java.jdbc :as jdbc]
@@ -8,7 +5,7 @@
             [clojure.string :as str]
             [hsbox.util :refer [current-timestamp file-exists?]]
             [taoensso.timbre :as timbre])
-  (:import (java.io File) com.mchange.v2.c3p0.ComboPooledDataSource))
+  (:import (java.io File)))
 
 (timbre/refer-timbre)
 (def latest-data-version {"valve" 2
@@ -29,17 +26,6 @@
 
 (def db nil)
 
-(defn pool
-  [spec]
-  (let [cpds (doto (ComboPooledDataSource.)
-               (.setDriverClass (:classname spec))
-               (.setJdbcUrl (str "jdbc:" (:subprotocol spec) ":" (:subname spec)))
-               ;; expire excess connections after 30 minutes of inactivity:
-               (.setMaxIdleTimeExcessConnections (* 30 60))
-               ;; expire connections after 3 hours of inactivity:
-               (.setMaxIdleTime (* 3 60 60)))]
-    {:datasource cpds}))
-
 (defn set-portable []
   (def app-config-dir (File. ".")))
 
@@ -56,13 +42,12 @@
     (jdbc/execute! db ["DELETE FROM demos"])))
 
 (defn init-db-if-absent []
-  (let [db-spec
-        {:classname   "org.sqlite.JDBC"
-         :subprotocol "sqlite"
-         :subname     (File. app-config-dir "headshotbox.sqlite")}]
-    (def hsbox.db/db (pool db-spec))
-    (if-not (file-exists? (str app-config-dir "/headshotbox.sqlite"))
-      (init-db))))
+  (def hsbox.db/db
+    {:classname "org.sqlite.JDBC"
+     :subprotocol "sqlite"
+     :subname (File. app-config-dir "headshotbox.sqlite")})
+  (if-not (file-exists? (str app-config-dir "/headshotbox.sqlite"))
+    (init-db)))
 
 (defn get-meta-value [key]
   (json/read-str (:value (first (jdbc/query db ["SELECT value FROM meta WHERE key=?" key]))) :key-fn keyword))
