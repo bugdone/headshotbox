@@ -25,6 +25,16 @@
     app-config))
 
 (def db nil)
+(def db-lock (Object.))
+
+(defmacro with-db-transaction [& body]
+  `(locking db-lock
+     (jdbc/with-db-transaction [trans# db]
+       ~@body)))
+
+(defn query-db [arg]
+  (with-db-transaction
+    (jdbc/query db arg)))
 
 (defn set-portable []
   (def app-config-dir (File. ".")))
@@ -37,20 +47,18 @@
   (exec-sql-file "sql/create.sql"))
 
 (defn wipe-demos []
-  (jdbc/with-db-transaction
-    [trans db]
+  (with-db-transaction
     (jdbc/execute! db ["DELETE FROM demos"])))
 
 (defn init-db-if-absent []
-  (def hsbox.db/db
-    {:classname "org.sqlite.JDBC"
-     :subprotocol "sqlite"
-     :subname (File. app-config-dir "headshotbox.sqlite")})
+  (def hsbox.db/db {:classname   "org.sqlite.JDBC"
+                    :subprotocol "sqlite"
+                    :subname     (File. app-config-dir "headshotbox.sqlite")})
   (if-not (file-exists? (str app-config-dir "/headshotbox.sqlite"))
     (init-db)))
 
 (defn get-meta-value [key]
-  (json/read-str (:value (first (jdbc/query db ["SELECT value FROM meta WHERE key=?" key]))) :key-fn keyword))
+  (json/read-str (:value (first (query-db ["SELECT value FROM meta WHERE key=?" key]))) :key-fn keyword))
 
 (defn get-current-schema-version [] (get-meta-value "schema_version"))
 
@@ -79,7 +87,7 @@
 
 (defn get-all-demos []
   (->>
-    (jdbc/query db [(str "SELECT demos.demoid, type, data_version, data FROM demos")])
+    (query-db [(str "SELECT demos.demoid, type, data_version, data FROM demos")])
     (filter #(= (latest-data-version (:type %)) (:data_version %)))
     (db-json-to-dict)
     (map #(assoc (:data %) :demoid (:demoid %)))))
@@ -89,7 +97,7 @@
 
 (defn get-all-demos-v1 []
   (->>
-    (jdbc/query db [(str "SELECT demos.demoid, data FROM demos")])
+    (query-db [(str "SELECT demos.demoid, data FROM demos")])
     (db-json-to-dict)
     (map #(assoc (:data %) :demoid (:demoid %)))))
 
@@ -103,7 +111,7 @@
 ; So some systems have subsecond precision...
 ; and for these systems, mtime was a clojure ratio serialized as string
 (defn migrate-3 []
-  (let [demos (jdbc/query db [(str "SELECT demos.demoid, mtime FROM demos")])]
+  (let [demos (query-db [(str "SELECT demos.demoid, mtime FROM demos")])]
     (doseq [demo demos]
         (let [mtime (int (read-string (str (:mtime demo))))]
           (jdbc/execute! db ["UPDATE demos SET mtime = ? WHERE demoid = ?" mtime (:demoid demo)])))))
@@ -128,15 +136,13 @@
   (let [migration-plan (get-migration-plan)]
     (doall (map #(let [version (first %) procedure (second %)]
                   (warn "Migrating from schema version" (get-current-schema-version) "to" version)
-                  (jdbc/with-db-transaction
-                    [trans db]
+                  (with-db-transaction
                     (procedure)
                     (jdbc/execute! db ["UPDATE meta SET value = ? WHERE key = ?" version "schema_version"])))
                 migration-plan))))
 
 (defn set-config [dict]
-  (jdbc/with-db-transaction
-    [trans db]
+  (with-db-transaction
     (jdbc/execute! db ["UPDATE meta SET value=? WHERE key=?" (json/write-str dict) "config"])))
 
 (defn update-config [dict]
@@ -150,13 +156,13 @@
   (.getPath (io/file (get-demo-directory) demoid)))
 
 (defn demoid-present? [demoid]
-  (first (jdbc/query db ["SELECT demoid FROM demos WHERE demoid=?" demoid])))
+  (first (query-db ["SELECT demoid FROM demos WHERE demoid=?" demoid])))
 
 (defn get-data-version [demoid]
-  (first (jdbc/query db ["SELECT type, data_version FROM demos WHERE demoid=?" demoid])))
+  (first (query-db ["SELECT type, data_version FROM demos WHERE demoid=?" demoid])))
 
 (defn get-demo-mtime [demoid]
-  (:mtime (first (jdbc/query db ["SELECT mtime FROM demos WHERE demoid=?" demoid]))))
+  (:mtime (first (query-db ["SELECT mtime FROM demos WHERE demoid=?" demoid]))))
 
 (defn demoid-in-db? [demoid mtime]
   "Returns true if the demo is present, was parsed by the latest version at/after mtime"
@@ -170,8 +176,7 @@
           true)))))
 
 (defn del-demo [demoid]
-  (jdbc/with-db-transaction
-    [trans db]
+  (with-db-transaction
     (jdbc/execute! db ["DELETE FROM demos WHERE demoid=?" demoid])))
 
 (defn add-demo [demoid mtime data]
@@ -179,8 +184,7 @@
         data-str (json/write-str data)
         data-version (get latest-data-version type)]
     (assert (not (and (nil? type) (nil? timestamp) (nil? map))))
-    (jdbc/with-db-transaction
-      [trans db]
+    (with-db-transaction
       (if (demoid-present? demoid)
         (do
           (debug "Updating data for demo" demoid)
@@ -193,19 +197,17 @@
 
 (defn keep-only [demoids]
   (if (count demoids)
-    (jdbc/with-db-transaction
-      [trans db]
+    (with-db-transaction
       (jdbc/execute! db [(str "DELETE FROM demos WHERE demoid NOT IN " (sql-demoids demoids))]))))
 
 (defn get-steamid-info [steamids]
   (->>
-    (jdbc/query db [(str "SELECT steamid, timestamp, data FROM steamids WHERE steamid IN (" (str/join ", " steamids) ")")])
+    (query-db [(str "SELECT steamid, timestamp, data FROM steamids WHERE steamid IN (" (str/join ", " steamids) ")")])
     (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))
     (map #(assoc (:data %) :steamid (:steamid %) :timestamp (:timestamp %)))))
 
 (defn update-steamids [steamids-info]
-  (jdbc/with-db-transaction
-    [trans db]
+  (with-db-transaction
     (do
       (jdbc/execute! db [(str "DELETE FROM steamids WHERE steamid IN (" (str/join ", " (keys steamids-info)) ")")])
       (doseq [steamid-info steamids-info]
@@ -215,11 +217,9 @@
   steamids-info)
 
 (defn get-demo-notes [demoid]
-  (jdbc/with-db-transaction
-    [trans db]
-    (:notes (first (jdbc/query db ["SELECT notes FROM demos WHERE demoid=?" demoid])))))
+  (with-db-transaction
+    (:notes (first (query-db ["SELECT notes FROM demos WHERE demoid=?" demoid])))))
 
 (defn set-demo-notes [demoid notes]
-  (jdbc/with-db-transaction
-    [trans db]
+  (with-db-transaction
     (jdbc/execute! db ["UPDATE demos SET notes=? WHERE demoid=?" notes demoid])))
