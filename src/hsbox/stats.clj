@@ -152,12 +152,15 @@
         multikills (:kills-this-round updated-stats)
         ; Super lame hax horrible code the wurst (somewhat better now)
         demo {:demoid (:demoid stats)}]
-    (-> updated-stats
-        (dissoc :kills-this-round :players)
-        (update-in [:rounds_with_kills multikills] inc)
-        (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round (:steamid stats) demo))
-        (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round (:steamid stats) demo))))
-  )
+    (if (> multikills 5)
+      (do
+        (error "Error in demo" (:demoid stats) ":" (:steamid stats) "had" multikills "kills in round" (:number round))
+        stats)
+      (-> updated-stats
+          (dissoc :kills-this-round :players)
+          (update-in [:rounds_with_kills multikills] inc)
+          (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round (:steamid stats) demo))
+          (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round (:steamid stats) demo))))))
 
 (defn demo-outcome [demo steamid]
   (cond
