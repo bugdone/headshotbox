@@ -165,7 +165,7 @@
 (defn demo-outcome [demo steamid]
   (cond
     (= (:winner demo) 0) :tied
-    (= (:winner demo) (team-number steamid (first (:rounds demo)))) :won
+    (= (:winner demo) (get-in demo [:players steamid :team])) :won
     true :lost))
 
 (defn add-stat [stats stat value]
