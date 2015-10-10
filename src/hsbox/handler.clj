@@ -64,6 +64,8 @@
              (defroutes demo-routes
                         (GET "/stats" []
                           (response (stats/get-demo-stats demoid)))
+                        (GET "/details" []
+                          (response (stats/get-demo-details demoid)))
                         (GET "/notes" []
                           (response {:notes (db/get-demo-notes demoid)}))
                         (authorize-admin

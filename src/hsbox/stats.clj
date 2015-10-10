@@ -332,6 +332,28 @@
                      :1v1_attempted :1v1_won :weapons :tied :won :lost))
        (map #(assoc % :path (demo-path (:demoid %))))))
 
+(defn kw-long-to-str [dict path]
+  (assoc-in dict path (into {} (for [[k v] (get-in dict path)] [(str k) v]))))
+
+(defn get-demo-details [demoid]
+  (let [demo (get demos demoid)
+        convert-death-steamid (fn [death]
+                                (->
+                                  (reduce-kv #(if
+                                               (get #{:assister :victim :attacker} %2)
+                                               (assoc % %2 (str %3))
+                                               (assoc % %2 %3))
+                                            {} death)
+                                  (assoc :weapon_name (weapon-name (:weapon death)))))]
+    (->
+      demo
+      (kw-long-to-str [:players])
+      (assoc :rounds (map #(-> %
+                               (kw-long-to-str [:players])
+                               (assoc :deaths (map convert-death-steamid (:deaths %))))
+                          (:rounds demo))
+             :path (demo-path demoid)))))
+
 (defn get-demo-stats [demoid]
   (let [demo (get demos demoid)]
     (->

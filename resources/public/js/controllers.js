@@ -600,6 +600,24 @@ hsboxControllers.controller('PlayerList', function ($scope, $http) {
     });
 });
 
+hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams) {
+    demoid = $routeParams.demoid;
+    $scope.watchDemoUrl = watchDemoUrl;
+    $http.get(serverUrl + '/demo/' + demoid + '/details').success(function(data) {
+        $scope.demo = data;
+        var s = $scope.demo.detailed_score;
+        var c = 0;
+        for (var i = 0; i < s.length - 1; ++i) {
+            c += s[i][0] + s[i][1];
+            $scope.demo.rounds[c].teams_switched = true;
+        }
+        for (var p in $scope.demo.players) {
+            $scope.steamid = p;
+            break;
+        };
+    });
+});
+
 hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams) {
     $scope.setOrder = function(field) {
         if ($scope.orderRounds == field)

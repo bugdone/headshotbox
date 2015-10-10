@@ -1,0 +1,102 @@
+<div id="tabs" class="center-block">
+  <tabset>
+    <tab ng-repeat="round in demo.rounds" style="display:inline-block;float:none;">
+      <tab-heading>
+        <i class="fa fa-exchange" ng-if="round.teams_switched"></i>
+        <span ng-class="{blue: round.winner == 3, red: round.winner == 2}">{{$index + 1}}</span>
+      </tab-heading>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+          <table class="table">
+            <tr>
+              <td>Tick</td>
+              <td>{{round.tick}} <i class="fa fa-arrow-right"></i> {{round.tick_end}}</td>
+            </tr>
+            <tr>
+              <td>Duration</td>
+              <td>{{(round.tick_end - round.tick) * demo.tickrate | number:0}} seconds</td>
+            </tr>
+            <tr>
+              <td>Kills</td>
+              <td>{{round.deaths.length}}</td>
+            </tr>
+            <tr>
+              <td>Winner</td>
+              <td><span ng-class="{blue: round.winner == 3, red: round.winner == 2}">{{round.winner == 3 ? "CT" : "T"}}</span></td>
+            </tr>
+            <tr>
+              <td>Watch
+              </td>
+              <td class="text-center">
+                <a class="btn btn-success btn-xs" href='{{watchDemoUrl(demo.path, steamid, round.tick)}}'><i class="fa fa-play-circle"></i></a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center">CT</th>
+                  </tr>
+                </thead>
+                <tr ng-repeat="(player, team) in round.players" ng-if="team == 3">
+                  <td>
+                    <span ng-class="{blue: round.players[player] == 3, red: round.players[player] == 2}">{{demo.players[player].name}}</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center">T</th>
+                  </tr>
+                </thead>
+                <tr ng-repeat="(player, team) in round.players" ng-if="team == 2">
+                  <td>
+                    <span ng-class="{blue: round.players[player] == 3, red: round.players[player] == 2}">{{demo.players[player].name}}</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="text-center">Tick</th>
+                <th class="text-center">Kill</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="death in round.deaths">
+              <td>{{death.tick}}</td>
+              <td>
+                <span ng-class="{blue: round.players[death.attacker] == 3, red: round.players[death.attacker] == 2}">{{demo.players[death.attacker].name}}</span>
+                <span ng-if="death.assister != '0'" ng-class="{blue: round.players[death.assister] == 3, red: round.players[death.assister] == 2}"> + {{demo.players[death.assister].name}}</span>
+                <img ng-src="img/weapons/icon-{{death.weapon_name}}_grey.png" ng-if="death.weapon_name" height="20"/>
+                <div ng-if="!death.weapon_name">{{death.weapon}}</div>
+                <img ng-if="death.penetrated" src="img/weapons/icon-penetrate_grey.png" height="20"/>
+                <img ng-if="death.headshot" src="img/weapons/icon-headshot_grey.png" height="20"/>
+                <span ng-class="{blue: round.players[death.victim] == 3, red: round.players[death.victim] == 2}">{{demo.players[death.victim].name}}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-8"></div>
+      </div>
+    </tab>
+  </tabset>
+</div>

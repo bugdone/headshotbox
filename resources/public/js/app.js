@@ -12,6 +12,10 @@ hsboxApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'templates/demo.html',
             controller: 'Demo'
         }).
+        when('/demo/:demoid/log', {
+            templateUrl: 'templates/demo_log.html',
+            controller: 'DemoLog'
+        }).
         when('/player_list', {
             templateUrl: 'templates/player_list.html',
             controller: 'PlayerList'
