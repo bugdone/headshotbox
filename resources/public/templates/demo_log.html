@@ -4,6 +4,7 @@
       <tab-heading>
         <i class="fa fa-exchange" ng-if="round.teams_switched"></i>
         <span ng-class="{blue: round.winner == 3, red: round.winner == 2}">{{$index + 1}}</span>
+        <i class="fa fa-warning" ng-if="round.deaths.length > 10"></i>
       </tab-heading>
 
       <div class="row">
