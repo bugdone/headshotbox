@@ -44,6 +44,7 @@
   (letfn [(has_gotv_bot [name] (some #(.contains % name) (:gotv_bots demo)))]
     (cond
       (.contains (:servername demo) "Valve") "valve"
+      (.contains (:servername demo) "CEVO Server") "cevo"
       (has_gotv_bot "ESEA") "esea"
       (has_gotv_bot "FACEIT GOTV") "faceit")))
 

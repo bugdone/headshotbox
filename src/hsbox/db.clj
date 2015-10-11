@@ -10,7 +10,8 @@
 (timbre/refer-timbre)
 (def latest-data-version {"valve" 2
                           "esea" 2
-                          "faceit" 2})
+                          "faceit" 2
+                          "cevo" 2})
 
 (def schema-version 4)
 ;(set! *warn-on-reflection* true)
