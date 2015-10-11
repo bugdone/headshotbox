@@ -48,7 +48,7 @@
       (has_gotv_bot "ESEA") "esea"
       (has_gotv_bot "FACEIT GOTV") "faceit")))
 
-(defn get-chunks [demo]
+(defn split-by-game-restart [demo]
   (->> (:events demo)
        (partition-by #(= (:type %) "game_restart"))
        (filter #(not= "game_restart" (:type (first %))))))
@@ -58,11 +58,13 @@
     (if (empty? events)
       rounds
       (let [[a b] (split-with #(not= (:type %) "round_end") events)
-            [c d] (split-with #(#{"round_end" "player_death" "score_changed"} (:type %)) b)]
-        (recur (conj rounds (if (first b)
-                              (concat (vec a) c)
-                              (vec a)))
-               d)))))
+            [c d] (split-with #(#{"round_end" "player_death" "score_changed"} (:type %)) b)
+            [e _] (split-with #(not= (:type %) "round_start") d)
+            late-score-changed-events (filter #(= (:type %) "score_changed") e)
+            ; ignore score_changed before round_end
+            before-end (vec (filter #(not= (:type %) "score_changed") a))
+            round-events (concat before-end c late-score-changed-events)]
+        (recur (conj rounds round-events) d)))))
 
 (defn process-round-events [events]
   (letfn [(process
@@ -101,7 +103,7 @@
 
 (defn get-rounds [demo-data demo-type]
   (->> demo-data
-       (get-chunks)
+       (split-by-game-restart)
        (map split-by-round-end)
        (apply concat)
        (filter (fn [events]
