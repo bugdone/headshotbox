@@ -107,7 +107,8 @@
        (filter (fn [events]
                  (and
                    (some #(and (= (:type %) "round_start") (<= 105 (:timelimit %) (round-timelimit demo-type))) events)
-                   (has-event events "round_end"))))
+                   ; Draw rounds can only happen in warmup
+                   (some #(and (= (:type %) "round_end") (not= 1 (:winner %))) events))))
        ((get filter-possible-rounds demo-type identity))
        (map process-round-events)))
 
