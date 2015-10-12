@@ -3,7 +3,7 @@
             [clojure.set :refer [subset? intersection]]
             [hsbox.steamapi :as steamapi]
             [hsbox.util :refer [current-timestamp]]
-            [hsbox.db :as db :refer [demo-path get-steam-api-key]]))
+            [hsbox.db :as db :refer [demo-path get-steam-api-key latest-data-version]]))
 
 (taoensso.timbre/refer-timbre)
 
@@ -209,7 +209,7 @@
 
 (defn filter-demos [steamid {:keys [demo-type start-date end-date map-name teammates]} demos]
   (filter #(and
-            (if (contains? #{"valve" "faceit" "esea"} demo-type) (= demo-type (:type %)) true)
+            (if (contains? (-> latest-data-version keys set) demo-type) (= demo-type (:type %)) true)
             (if map-name (= (:map %) map-name) true)
             (if start-date (>= (:timestamp %) start-date) true)
             (if end-date (<= (:timestamp %) end-date) true)
