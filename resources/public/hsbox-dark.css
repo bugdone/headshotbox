@@ -200,7 +200,7 @@ tr th{
 .table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th{
                                     background: rgba(22, 28, 33, 0.7);
                                     border: 1px solid rgba(0, 0, 0, 0.29);
-                                    color: #fff;w
+                                    color: #fff;
                                 }
 div.demoDiv {
     text-align: left;
@@ -225,6 +225,7 @@ a {
 .red { color: red; }
 .green { color: rgb(10, 250, 10); }
 .blue { color: blue; }
+.lightblue { color: #428BCA; }
 .won_background { background-color:rgba(31, 52, 36, 0.81); color: #fff; cursor: pointer; }
 .lost_background { background-color: rgba(190, 93, 93, 0.17); color:#fff; cursor: pointer; }
 .tied_background { background-color: rgba(16, 84, 140, 0.53); color:#fff; cursor: pointer; }
@@ -282,6 +283,10 @@ a {
 
 .table .table {
     background-color: rgba(22, 28, 33, 0.7) !important;
+    color: #fff !important;
+}
+
+.force-white {
     color: #fff !important;
 }
 

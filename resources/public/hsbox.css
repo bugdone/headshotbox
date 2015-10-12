@@ -109,6 +109,7 @@ a {
 .red { color: red; }
 .green { color: green; }
 .blue { color: blue; }
+.lightblue { color: blue; }
 .won_background { background-color: #F1FFEF; cursor: pointer; }
 .lost_background { background-color: #FFF1EF; cursor: pointer; }
 .tied_background { background-color: #F0F0F0; cursor: pointer; }
