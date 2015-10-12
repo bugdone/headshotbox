@@ -9,7 +9,7 @@
 
 (timbre/refer-timbre)
 (def latest-data-version {"valve" 2
-                          "esea" 2
+                          "esea" 3
                           "faceit" 2
                           "cevo" 2})
 
