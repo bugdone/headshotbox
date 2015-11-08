@@ -168,6 +168,7 @@
         (-> updated-stats
             (dissoc :kills-this-round :players)
             (update-in [:rounds_with_kills multikills] inc)
+            (inc-stat-maybe :rounds true)
             (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round (:steamid stats) demo))
             (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round (:steamid stats) demo)))))
     stats))
@@ -187,7 +188,6 @@
 (defn update-stats-with-demo [stats demo]
   (-> (reduce update-stats-with-round (assoc stats :demoid (:demoid demo)) (add-round-numbers (:rounds demo)))
       (add-stat (demo-outcome demo (:steamid stats)) 1)
-      (add-stat :rounds (count (:rounds demo)))
       (dissoc :demoid)
       (add-hltv-rating)))
 
