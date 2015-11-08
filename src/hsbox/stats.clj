@@ -146,21 +146,23 @@
         (and ((if exact-enemies? = >=) alive-enemies enemies) (= 4 dead-teammates) (if won? (= (:winner round) player-team) true))))))
 
 (defn update-stats-with-round [stats round]
-  (let [updated-stats (reduce update-stats-with-death
-                              (assoc stats :kills-this-round 0 :players (:players round))
-                              (:deaths round))
-        multikills (:kills-this-round updated-stats)
-        ; Super lame hax horrible code the wurst (somewhat better now)
-        demo {:demoid (:demoid stats)}]
-    (if (> multikills 5)
-      (do
-        (error "Error in demo" (:demoid stats) ":" (:steamid stats) "had" multikills "kills in round" (:number round))
-        stats)
-      (-> updated-stats
-          (dissoc :kills-this-round :players)
-          (update-in [:rounds_with_kills multikills] inc)
-          (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round (:steamid stats) demo))
-          (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round (:steamid stats) demo))))))
+  (if ((get stats :round-filter #(or true % %2)) round (:steamid stats))
+    (let [updated-stats (reduce update-stats-with-death
+                                (assoc stats :kills-this-round 0 :players (:players round))
+                                (:deaths round))
+          multikills (:kills-this-round updated-stats)
+          ; Super lame hax horrible code the wurst (somewhat better now)
+          demo {:demoid (:demoid stats)}]
+      (if (> multikills 5)
+        (do
+          (error "Error in demo" (:demoid stats) ":" (:steamid stats) "had" multikills "kills in round" (:number round))
+          stats)
+        (-> updated-stats
+            (dissoc :kills-this-round :players)
+            (update-in [:rounds_with_kills multikills] inc)
+            (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round (:steamid stats) demo))
+            (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round (:steamid stats) demo)))))
+    stats))
 
 (defn demo-outcome [demo steamid]
   (cond
@@ -200,7 +202,7 @@
   (let [make-weapons-list (fn [stats] (assoc stats :weapons (for [[k v] (:weapons stats)] (assoc v :name k))))]
     (-> stats
         (assoc :hs_percent (* (/ (float (:hs stats)) (:kills stats)) 100))
-        (dissoc :steamid)
+        (dissoc :steamid :round-filter)
         (make-weapons-list))))
 
 (defn stats-for-demo [demo steamid]
@@ -257,11 +259,22 @@
          (reduce update-map-stats-with-demo {:steamid steamid}))
     (dissoc :steamid)))
 
+(defn get-round-filter [filters]
+  (let [filter (:rounds filters)]
+    (cond
+      (= filter "pistol") (fn [round _] (#{1 16} (:number round)))
+      (= filter "t") #(= 2 (get-in % [:players %2]))
+      (= filter "ct") #(= 3 (get-in % [:players %2]))
+      :else (fn [_ _] true))))
+
 (defn get-stats-for-steamid [steamid filters]
   (->
     (->> (vals (get player-demos steamid))
          (filter-demos steamid filters)
-         (reduce update-stats-with-demo (initial-stats steamid)))
+         (reduce update-stats-with-demo
+                 (->
+                   (initial-stats steamid)
+                   (assoc :round-filter (get-round-filter filters)))))
     (cleanup-stats)))
 
 (defn add-score [demo]
@@ -415,7 +428,7 @@
                           (:deaths round))]
         (>= (count kills) multiplier)))))
 
-(defn get-round-filters [filters]
+(defn get-search-round-filters [filters]
   (flatten
     (map #(get-filters filters (second %) (first %))
          [[kill-filter #"^(1|2|3|4|5)k(?:<(\d+)s)?$"]
@@ -478,7 +491,8 @@
                 (search-demos filters)
                 (filter-demos steamid demo-filters)
                 (sort #(compare (:timestamp %2) (:timestamp %))))
-        round-filters (get-round-filters filters)]
+        round-filters (conj (get-search-round-filters filters)
+                            (fn [r s _] ((get-round-filter demo-filters) r s)))]
     (take 100 (mapcat #(filter-rounds (first %) (second %) round-filters)
                       (for [demo demos steamid (if steamid [steamid] (keys (:players demo)))] [demo steamid])))))
 

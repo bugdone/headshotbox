@@ -105,6 +105,15 @@
           <li ng-repeat="map in playerMaps"><a ng-click="setMap(map)">{{map}}</a></li>
         </ul>
       </div>
+      <!-- Rounds -->
+      <div class="form-group btn-group dropdown inline">
+        <button type="button" class="btn btn-default dropdown-toggle no-bg">
+          {{filterDemos.rounds}} Rounds <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="roundType in ['All', 'T', 'CT', 'Pistol']"><a ng-click="setRounds(roundType)">{{roundType}}</a></li>
+        </ul>
+      </div>
       <!-- Start date -->
       <div class="form-group input-group">
         <span class="input-group-addon">Start</span>

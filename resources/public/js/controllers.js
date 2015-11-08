@@ -237,6 +237,11 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         filtersChanged($scope, $http);
     };
 
+    $scope.setRounds = function(roundType) {
+        $scope.filterDemos.rounds = roundType;
+        filtersChanged($scope, $http);
+    };
+
     $scope.datepickerStatus = [false, false];
     $scope.openDatepicker = function($event, $no) {
         $event.preventDefault();
