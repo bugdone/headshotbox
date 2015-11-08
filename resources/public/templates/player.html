@@ -63,6 +63,10 @@
           <th><abbr title="Deaths Per Round">DPR</abbr></th>
           <td>{{stats.deaths / stats.rounds | number:2}}</td>
         </tr>
+        <tr>
+          <th><abbr title="Entry Kills Per Round">EKPR</abbr></th>
+          <td>{{stats.entry_kills / stats.rounds_t | number:2}}</td>
+        </tr>
       </table>
       <table class="table player-stats">
         <tr>
@@ -76,6 +80,16 @@
         <tr>
           <th><abbr title="Rounds with 5 kills">5K</abbr></th>
           <td>{{stats.rounds_with_kills[5]}}</td>
+        </tr>
+      </table>
+      <table class="table player-stats">
+        <tr>
+          <th><abbr title="Entry Kill Win % ({{stats.entry_kills}}/{{stats.entry_kills_attempted}})">Entry Win %</abbr></th>
+          <td>{{100 * stats.entry_kills / stats.entry_kills_attempted | number:2}}</td>
+        </tr>
+        <tr>
+          <th><abbr title="First Duel Win % ({{stats.open_kills}}/{{stats.open_kills_attempted}})">First Duel Win %</abbr></th>
+          <td>{{100 * stats.open_kills / stats.open_kills_attempted | number:2}}</td>
         </tr>
       </table>
     </div>

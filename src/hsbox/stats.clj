@@ -155,22 +155,32 @@
 
 (defn update-stats-with-round [stats round]
   (if ((get stats :round-filter #(or true % %2)) round (:steamid stats))
-    (let [updated-stats (reduce update-stats-with-death
+    (let [steamid (:steamid stats)
+          updated-stats (reduce update-stats-with-death
                                 (assoc stats :kills-this-round 0 :players (:players round))
                                 (:deaths round))
           multikills (:kills-this-round updated-stats)
           ; Super lame hax horrible code the wurst (somewhat better now)
-          demo {:demoid (:demoid stats)}]
+          demo {:demoid (:demoid stats)}
+          first-death (first (:deaths round))
+          first-dead (= steamid (:victim first-death))
+          first-killer (= steamid (:attacker first-death))
+          is-t (= 2 (get-in round [:players steamid]))]
       (if (> multikills 5)
         (do
-          (error "Error in demo" (:demoid stats) ":" (:steamid stats) "had" multikills "kills in round" (:number round))
+          (error "Error in demo" (:demoid stats) ":" steamid "had" multikills "kills in round" (:number round))
           stats)
         (-> updated-stats
             (dissoc :kills-this-round :players)
             (update-in [:rounds_with_kills multikills] inc)
             (inc-stat-maybe :rounds true)
-            (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round (:steamid stats) demo))
-            (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round (:steamid stats) demo)))))
+            (inc-stat-maybe :rounds_t is-t)
+            (inc-stat-maybe :entry_kills_attempted (and is-t (or first-dead first-killer)))
+            (inc-stat-maybe :entry_kills (and is-t first-killer))
+            (inc-stat-maybe :open_kills_attempted (or first-dead first-killer))
+            (inc-stat-maybe :open_kills first-killer)
+            (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round steamid demo))
+            (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round steamid demo)))))
     stats))
 
 (defn demo-outcome [demo steamid]
@@ -192,19 +202,24 @@
       (add-hltv-rating)))
 
 (defn initial-stats [steamid]
-  {:steamid           steamid
-   :kills             0
-   :deaths            0
-   :assists           0
-   :rounds            0
-   :won               0
-   :lost              0
-   :tied              0
-   :hs                0
-   :1v1_attempted     0
-   :1v1_won           0
-   :rounds_with_kills {0 0 1 0 2 0 3 0 4 0 5 0}
-   :weapons           {}})
+  {:steamid               steamid
+   :kills                 0
+   :deaths                0
+   :assists               0
+   :rounds                0
+   :rounds_t              0
+   :won                   0
+   :lost                  0
+   :tied                  0
+   :hs                    0
+   :1v1_attempted         0
+   :1v1_won               0
+   :entry_kills           0
+   :entry_kills_attempted 0
+   :open_kills            0
+   :open_kills_attempted  0
+   :rounds_with_kills     {0 0 1 0 2 0 3 0 4 0 5 0}
+   :weapons               {}})
 
 (defn cleanup-stats [stats]
   (let [make-weapons-list (fn [stats] (assoc stats :weapons (for [[k v] (:weapons stats)] (assoc v :name k))))]
@@ -364,7 +379,7 @@
                                                (get #{:assister :victim :attacker} %2)
                                                (assoc % %2 (str %3))
                                                (assoc % %2 %3))
-                                            {} death)
+                                             {} death)
                                   (assoc :weapon_name (weapon-name (:weapon death)))))]
     (->
       demo
