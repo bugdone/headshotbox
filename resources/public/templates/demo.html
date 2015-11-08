@@ -31,7 +31,7 @@
             <a href="#/player/{{player.steamid}}">{{player.name}}</a>
           </td>
           <td ng-if="theDemo.type == 'valve'">
-            <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins"/>
+            <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins" width="50"/>
           </td>
           <td>{{player.kills}}</td>
           <td>{{player.assists}}</td>
@@ -62,7 +62,7 @@
             <a href="#/player/{{player.steamid}}">{{player.name}}</a>
           </td>
           <td ng-if="theDemo.type == 'valve'">
-            <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins"/>
+            <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins" width="50"/>
           </td>
           <td>{{player.kills}}</td>
           <td>{{player.assists}}</td>

@@ -34,6 +34,14 @@
 (defn sorted-demos-for-steamid [steamid]
   (sort #(compare (:timestamp %) (:timestamp %2)) (vals (get player-demos steamid))))
 
+(defn get-last-rank [steamid]
+  (->>
+    (reverse (sorted-demos-for-steamid steamid))
+    (map #(get-in % [:mm_rank_update steamid]))
+    (remove nil?)
+    (first)
+    (:rank_new)))
+
 (defn get-player-latest-name [steamid]
   (get-player-name-in-demo steamid (first (sorted-demos-for-steamid steamid))))
 

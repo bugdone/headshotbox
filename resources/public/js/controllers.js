@@ -519,7 +519,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     var rankImg = function(rank) {
         if (rank < 1 || rank > 18)
             return '';
-        return '<img src="img/ranks/' + rank + '.png" title="' + rankNames[rank - 1] + '"></img>';
+        return '<img src="img/ranks/' + rank + '.png" title="' + rankNames[rank - 1] + '" width="40"></img>';
     };
     var rankTooltipFormatter = function() {
         return this.date + ' '
@@ -591,6 +591,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
 hsboxControllers.controller('PlayerList', function ($scope, $http) {
     $http.get(serverUrl + '/players').success(function (data) {
         $scope.players = data;
+        $scope.orderPlayers = '-demos';
         var steamIds = $scope.players.map(function(p) { return p.steamid; });
         var url = getPlayerSummaries(steamIds);
         $http.get(url).success(function (response) {
@@ -598,6 +599,7 @@ hsboxControllers.controller('PlayerList', function ($scope, $http) {
                 player = $scope.players[i];
                 if (response[player.steamid]) {
                     player.avatar = response[player.steamid].avatar;
+                    player.last_rank = response[player.steamid].last_rank;
                     player.personaname = response[player.steamid].personaname;
                 }
             }

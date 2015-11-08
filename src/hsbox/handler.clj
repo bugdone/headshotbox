@@ -78,12 +78,13 @@
              (response
                (if (empty? steamids)
                  {}
-                 (let [steamids-list (clojure.string/split steamids #",")]
-                   (if (clojure.string/blank? (db/get-steam-api-key))
-                     (->>
-                       (map #(Long/parseLong %) steamids-list)
-                       (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {}))
-                     (steamapi/get-steamids-info steamids-list))))))
+                 (let [steamids-list (clojure.string/split steamids #",")
+                       steamids-info (if (clojure.string/blank? (db/get-steam-api-key))
+                                       (->>
+                                         (map #(Long/parseLong %) steamids-list)
+                                         (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {}))
+                                       (steamapi/get-steamids-info steamids-list))]
+                   (into {} (for [[k v] steamids-info] [k (assoc v :last_rank (stats/get-last-rank (:steamid v)))]))))))
            (context "/indexer" []
              (authorize-admin
                (defroutes indexer-routes
