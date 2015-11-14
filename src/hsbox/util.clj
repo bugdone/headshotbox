@@ -7,7 +7,7 @@
 
 (defn path-exists? [path]
   (let [p (as-file path)]
-    (.exists p)))
+    (and p (.exists p))))
 
 (defn last-modified [path]
   (int (/ (.lastModified (as-file path)) 1000)))
