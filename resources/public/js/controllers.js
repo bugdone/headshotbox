@@ -134,6 +134,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     $scope.visibleRound = 0
     $scope.orderTeams = '-kills';
     $scope.chartSelected = 'mapsplayed';
+    $scope.rankChartXAxis = 'matches';
     $scope.getPlayersInfo = function(missingPlayers) {
         if (missingPlayers.length == 0)
             return;
@@ -348,13 +349,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
                 m.date = timestamp2date(m.timestamp);
             });
             if ($scope.rankConfig.series[0].data == null) {
-                var d = [];
-                $scope.demos.forEach(function (m) {
-                    if (m.mm_rank_update != null && m.mm_rank_update.rank_new != 0) {
-                        d.push({x: m.timestamp, y: m.mm_rank_update.rank_new, date: m.date, old: m.mm_rank_update.rank_old, wins: m.mm_rank_update.num_wins});
-                    }
-                });
-                $scope.rankConfig.series[0].data = d;
+                $scope.setRankChartXAxis($scope.rankChartXAxis);
             }
             $scope.valveOnly = $valveOnly;
             $scope.setTabLoaded('demos');
@@ -380,6 +375,20 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         $tab.status = 'loading';
         $tab.load();
     };
+
+    $scope.setRankChartXAxis = function(what) {
+        $scope.rankChartXAxis = what;
+        var d = [];
+        var i = 0;
+        $scope.demos.forEach(function (m) {
+            i++;
+            if (m.mm_rank_update != null && m.mm_rank_update.rank_new != 0) {
+                d.push({x: $scope.rankChartXAxis == 'timestamp' ? m.timestamp : i, y: m.mm_rank_update.rank_new, date: m.date, old: m.mm_rank_update.rank_old, wins: m.mm_rank_update.num_wins});
+            }
+        });
+        $scope.rankConfig.series[0].data = d;
+        $scope.rankConfig.options.xAxis.labels.formatter = $scope.rankChartXAxis == 'timestamp' ? $scope.rankConfig.options.xAxis.labels.formatter_time : null;
+    }
 
     // Charts
     $scope.mapsPlayedConfig = {
@@ -549,7 +558,10 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
                 }
             },
             xAxis: {
-                labels: {formatter: function() { return timestamp2date(this.value, true); }}
+                labels: {
+                    formatter_time: function() { return timestamp2date(this.value, true); },
+                    formatter: null
+                }
             },
             yAxis: {
                 title: {text: null},

@@ -5,7 +5,11 @@
   <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'roundswin'">Round Win %</label>
   <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'rank'">MM Rank</label>
 </div>
+<div ng-if="chartSelected=='rank'">
+  <button type="button" class="btn btn-default no-bg" ng-click="setRankChartXAxis('timestamp')" ng-disabled="rankChartXAxis=='timestamp'">Time</button>
+  <button type="button" class="btn btn-default no-bg"  ng-click="setRankChartXAxis('matches')" ng-disabled="rankChartXAxis=='matches'">Matches</button>
+  <highchart id="rank" config="rankConfig"></highchart>
+</div>
 <highchart id="mapsPlayed" config="mapsPlayedConfig" ng-if="chartSelected=='mapsplayed'"></highchart>
 <highchart id="mapsWin" config="mapsWinConfig" ng-if="chartSelected=='mapswin'"></highchart>
 <highchart id="roundsWin" config="roundsWinConfig" ng-if="chartSelected=='roundswin'"></highchart>
-<highchart id="rank" config="rankConfig" ng-if="chartSelected=='rank'"></highchart>
