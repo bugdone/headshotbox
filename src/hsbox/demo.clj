@@ -78,7 +78,7 @@
                                round
                                (assoc-in round [:players (:userid event)] (:teamnum event)))
               "player_death" (let [death (conj
-                                           (select-keys event '(:assister :attacker :headshot :penetrated :tick :weapon))
+                                           (select-keys event '(:assister :attacker :headshot :penetrated :tick :weapon :jump))
                                            {:victim (:userid event)})]
                                (update-in round [:deaths] conj death))
               round))]

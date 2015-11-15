@@ -82,6 +82,7 @@
     (.startsWith name "usp_silencer") "usp"
     (= name "m4a1") "m4a4"
     (= name "galilar") "galil"
+    ; TODO Delete this?
     (= name "molotov_projectile") "inferno"
     (.startsWith name "m4a1_silencer") "m4a1"
     :else name))
@@ -439,15 +440,21 @@
 
 (defn weapon-filter [regexp-demo]
   (let [multiplier (if (second regexp-demo) (Integer/parseInt (second regexp-demo)) 1)
-        penetrated (not (nil? (nth regexp-demo 3)))
-        headshot (not (nil? (nth regexp-demo 4)))
+        flags? (not (nil? (nth regexp-demo 3)))
+        flags (nth regexp-demo 3)
+        penetrated (and flags? (.contains flags "bang"))
+        headshot (and flags? (.contains flags "hs"))
+        jump (and flags? (.contains flags "jump"))
         weapon (nth regexp-demo 2)]
     (fn [round steamid demo]
       (let [kills (filter #(and (= steamid (:attacker %))
                                 (not-tk % round demo)
-                                (= weapon (weapon-name (:weapon %)))
+                                (or (= weapon (weapon-name (:weapon %))) (= weapon ""))
                                 (if penetrated (> (:penetrated %) 0) true)
-                                (if headshot (:headshot %) true))
+                                (if headshot (:headshot %) true)
+                                (if jump (and (:jump %)
+                                              (<= 0.1 (* (:tickrate demo) (:jump %)) 0.5)
+                                              (not (#{"hegrenade" "inferno"} (weapon-name (:weapon %))))) true))
                           (:deaths round))]
         (>= (count kills) multiplier)))))
 
@@ -458,8 +465,8 @@
           [side-filter #"^(ct|t)$"]
           [clutch-filter #"^1v(1|2|3|4|5)$"]
           [weapon-filter (re-pattern (str "^(?:(1|2|3|4|5)(?:x)?)?("
-                                          (str/join "|" weapon-names)
-                                          ")(bang)?(hs)?$"))]])))
+                                          (str (str/join "|" weapon-names) "|")
+                                          ")((?:bang|hs|jump)*)$"))]])))
 
 (defn round-kills [round steamid demo]
   (reduce #(let [key {:weapon (weapon-name (:weapon %2)) :headshot (:headshot %2) :penetrated (pos? (:penetrated %2))}]
@@ -482,7 +489,7 @@
          filtered-rounds)))
 
 (defn replace-aliases [s]
-  (reduce #(str/replace % (first %2) (second %2)) s {"hsbang"   "banghs"
+  (reduce #(str/replace % (first %2) (second %2)) s {"kqly"   "jump"
                                                      "ace"      "5k"
                                                      "juandeag" "deaglehs"}))
 
