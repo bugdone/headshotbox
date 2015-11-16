@@ -2,12 +2,12 @@
 <div ng-app="hsboxApp" ng-controller="RoundSearch">
   <form ng-submit="search()">
     <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4 search-box">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 search-box">
         <input type="text" ng-model="search_string" class="form-control" size="50">
         <button type="submit" id="searchround" class="btn btn-default"><i class="fa fa-search"></i></button>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
         <button type="button" class="btn btn-default btn-sm help-button" ng-click="roundHelpIsCollapsed = !roundHelpIsCollapsed">
           <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
         </button>
