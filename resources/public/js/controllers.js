@@ -623,6 +623,11 @@ hsboxControllers.controller('PlayerList', function ($scope, $http) {
 hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams) {
     demoid = $routeParams.demoid;
     $scope.watchDemoUrl = watchDemoUrl;
+    $scope.playerName = function (player) {
+        if (player == null)
+            return 'BOT';
+        return player.name;
+    }
     $http.get(serverUrl + '/demo/' + demoid + '/details').success(function(data) {
         $scope.demo = data;
         var s = $scope.demo.detailed_score;

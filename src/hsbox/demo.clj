@@ -119,14 +119,20 @@
     (- 5 team)
     team))
 
+(defn isHuman? [steamid]
+  (> steamid 76561197960265728))
+
 (defn update-players [demo player team]
   (let [initial-team (get-in demo [:players player :team])]
-    (if initial-team
-      ; Check if teams switched
-      (assoc demo :teams_switched? (not= team initial-team))
-      ; Add new player
-      (assoc-in demo [:players player] {:name (get-in demo [:player_names player])
-                                        :team (real-team demo team)}))))
+    (if (isHuman? player)
+      (if initial-team
+        ; Check if teams switched
+        (assoc demo :teams_switched? (not= team initial-team))
+        ; Add new player
+
+        (assoc-in demo [:players player] {:name (get-in demo [:player_names player])
+                                          :team (real-team demo team)}))
+      demo)))
 
 (defn update-score [demo round]
   (let [score (:detailed_score demo)]
