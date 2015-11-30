@@ -36,9 +36,7 @@
 (defn parse-demo [path]
   (let [proc (clojure.java.shell/sh (str (System/getProperty "user.dir") "/demoinfogo") path "-hsbox")]
     (assert (zero? (:exit proc)))
-    (->>
-      (json/read-str (:out proc) :key-fn keyword)
-      (kw-steamids-to-long [:player_names]))))
+    (:out proc)))
 
 (defn get-demo-type [demo]
   (letfn [(has_gotv_bot [name] (some #(.contains % name) (:gotv_bots demo)))]
@@ -186,8 +184,10 @@
 
 (defn get-demo-info [path]
   (info "Processing" path)
-  (let [demo-data (parse-demo path)
-        demo-data (kw-steamids-to-long [:mm_rank_update] demo-data)
+  (let [demo-data (->>
+                    (json/read-str (parse-demo path) :key-fn keyword)
+                    (kw-steamids-to-long [:player_names])
+                    (kw-steamids-to-long [:mm_rank_update]))
         demo-type (get-demo-type demo-data)
         ; Parse MM dem.info file if available (for demo timestamp)
         scoreboard (try
