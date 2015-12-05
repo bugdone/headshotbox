@@ -13,6 +13,7 @@
 (timbre/refer-timbre)
 (import Cstrike15Gcmessages$CDataGCCStrike15_v2_MatchInfo)
 (def MatchInfo (protodef Cstrike15Gcmessages$CDataGCCStrike15_v2_MatchInfo))
+(def PARSER-CACHE nil)
 
 (defn read-file [file-path]
   (with-open [reader (input-stream file-path)]
@@ -33,10 +34,23 @@
 (defn get-demo-id [path]
   (.getName (clojure.java.io/file path)))
 
+(defn get-parser-cache []
+  (get (System/getenv) "HEADSHOTBOX_PARSER_CACHE" PARSER-CACHE))
+
 (defn parse-demo [path]
-  (let [proc (clojure.java.shell/sh (str (System/getProperty "user.dir") "/demoinfogo") path "-hsbox")]
-    (assert (zero? (:exit proc)))
-    (:out proc)))
+  (let [json-cache (get-parser-cache)
+        json-path (str json-cache "/" (.getName (as-file path)) ".json")
+        do-parse (fn []
+                   (let [proc (clojure.java.shell/sh (str (System/getProperty "user.dir") "/demoinfogo") path "-hsbox")]
+                     (assert (zero? (:exit proc)))
+                     (:out proc)))]
+    (if (nil? json-cache)
+      (do-parse)
+      ; Use the cache, Luke!
+      (do
+        (when (not (.exists (as-file json-path)))
+          (spit json-path (do-parse)))
+        (slurp json-path)))))
 
 (defn get-demo-type [demo]
   (letfn [(has_gotv_bot [name] (some #(.contains % name) (:gotv_bots demo)))]
