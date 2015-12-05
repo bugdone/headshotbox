@@ -189,7 +189,7 @@
                      (catch Throwable e {}))
         last-round-end (last (filter #(= (:type %) "round_end") (:events demo-data)))
         surrendered? (if last-round-end
-                       (contains? #{16 17} (:reason last-round-end))
+                       (.contains (:message last-round-end) "Surrender")
                        false)
         ; If winner gets set here, it will be rewritten when we know if on the last rounds teams were switched
         winner (if surrendered?
