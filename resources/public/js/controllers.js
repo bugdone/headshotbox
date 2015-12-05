@@ -537,6 +537,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     };
     $scope.rankConfig = {
         options: {
+            credits: { enabled: false },
             chart: {
                 type: 'line',
                 backgroundColor: 'transparent',
