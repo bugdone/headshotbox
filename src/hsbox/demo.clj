@@ -60,11 +60,13 @@
       (has_gotv_bot "ESEA") "esea"
       (has_gotv_bot "FACEIT GOTV") "faceit")))
 
-(defn split-by-game-restart [demo]
-  (->> (:events demo)
+(defn split-by-game-restart [demo-events]
+  (->> demo-events
        (partition-by #(= (:type %) "game_restart"))
        (filter #(not= "game_restart" (:type (first %))))))
 
+; A long time ago, the event round_officially_ended didn't exist
+; So use this sad weird heuristic which seems to work
 (defn split-by-round-end [chunk]
   (loop [rounds [] events chunk]
     (if (empty? events)
@@ -78,11 +80,21 @@
             round-events (concat before-end c late-score-changed-events)]
         (recur (conj rounds round-events) d)))))
 
+; round_end events sometimes are missing and hopefully round_officially_ended doesn't
+(defn split-by-round-officially-ended [chunk]
+  (loop [rounds [] events chunk]
+    (if (empty? events)
+      rounds
+      (let [[a b] (split-with #(not= (:type %) "round_officially_ended") events)]
+        (recur (conj rounds a) (rest b))))))
+
 (defn process-round-events [events]
   (letfn [(process
             [round event]
             (case (:type event)
               "round_start" (assoc round :tick (:tick event))
+              "score_changed" (assoc round :score_changed (:score event)
+                                           :score_changed_tick (:tick event))
               "round_end" (assoc round :tick_end (:tick event)
                                        :winner (:winner event)
                                        :win_reason (:reason event))
@@ -113,18 +125,46 @@
     120
     105))
 
-(defn get-rounds [demo-data demo-type]
-  (->> demo-data
-       (split-by-game-restart)
-       (map split-by-round-end)
-       (apply concat)
-       (filter (fn [events]
-                 (and
-                   (some #(and (= (:type %) "round_start") (<= 105 (:timelimit %) (round-timelimit demo-type))) events)
-                   ; Draw rounds can only happen in warmup
-                   (some #(and (= (:type %) "round_end") (not= 1 (:winner %))) events))))
-       ((get filter-possible-rounds demo-type identity))
-       (map process-round-events)))
+; Legit rounds have:
+; - round_start with legit timelimit
+; - either non-draw round_end or the last score_changed happens at least 2s after round_start
+;   (should be 15s (buytime) but I'm too lazy to pass tickrate here;
+;    anyway, uninteresting score_changed happen quickly after the round_start: 0-0 or team switch)
+(defn get-rounds [demo-events demo-type]
+  (let
+    [round-split-func (if (some #(= (:type %) "round_officially_ended") demo-events)
+                        split-by-round-officially-ended
+                        split-by-round-end)
+     split-at-last-round-start (fn [events]
+                                 (split-with #(not= (:type %) "round_start") (reverse events)))]
+    (vec
+     (->> demo-events
+          (split-by-game-restart)
+          ; mapcat?
+          (map round-split-func)
+          (apply concat)
+          ; Remove chunks with no legit start_round event
+          (filter (fn [events]
+                    (not (empty? (filter #(and (= (:type %) "round_start") (<= 105 (:timelimit %) (round-timelimit demo-type))) events)))))
+          ; Remove score_changed events that happen in max 2 seconds after round_start
+          (map (fn [events]
+                 (let [[after-start before-start] (split-at-last-round-start events)
+                       start-tick (:tick (first before-start))]
+                   (reverse (concat
+                              (filter #(or (not= (:type %) "score_changed")
+                                           (and (= (:type %) "score_changed") (< (+ 256 start-tick) (:tick %))))
+                                      after-start)
+                              before-start)))))
+          ; Filter chunks with no round_end or score_changed
+          (filter (fn [events]
+                    (let [[after-start _] (split-at-last-round-start events)]
+                      (true?
+                        (or
+                          ; Draw rounds can only happen in warmup
+                          (not (empty? (filter #(and (= (:type %) "round_end") (not= 1 (:winner %))) after-start)))
+                          (not (empty? (filter #(= (:type %) "score_changed") after-start))))))))
+          ((get filter-possible-rounds demo-type identity))
+          (map process-round-events)))))
 
 (defn real-team [demo team]
   (if (:teams_switched? demo)
@@ -146,12 +186,48 @@
                                           :team (real-team demo team)}))
       demo)))
 
+(defn total-score [demo]
+  (vec (apply map + (:detailed_score demo))))
+
 (defn update-score [demo round]
-  (let [score (:detailed_score demo)]
-    (assoc demo :detailed_score
-                (conj
-                  (vec (butlast score))
-                  (update-in (last score) [(- (real-team demo (:winner round)) 2)] inc)))))
+  (let [score (:detailed_score demo)
+        round-end-missing (nil? (:winner round))
+        score-changed (if (:teams_switched? demo)
+                        (reverse (:score_changed round))
+                        (:score_changed round))
+        ; Hack needed when round_end event is missing
+        ; Compare the score_changed event against the one from last round
+        guess-winner (fn []
+                       (do
+                         (assert (not (nil? (:last_score_changed demo)))
+                                 (str "Round 1 is missing the round_end event in demo " (:path demo)))
+                         (if (< (first (:last_score_changed demo)) (first score-changed))
+                           2
+                           3)))
+        round-winner (if (not round-end-missing)
+                       (:winner round)
+                       (guess-winner))]
+    (-> demo
+        (assoc :detailed_score
+               (conj
+                 (vec (butlast score))
+                 (update-in (last score) [(- (real-team demo round-winner) 2)] inc))
+               :last_score_changed
+               score-changed)
+        ; Check if computed score differs from score_changed
+        ((fn [demo]
+           (do
+             (if (and (not (nil? (:score_changed round)))
+                      (not= (apply + score-changed) (apply + (total-score demo)))
+                      (not= (count (:rounds demo)) (:number round)))
+               (warn "Total number of rounds differs in demo " (:path demo) ": computed score" (:detailed_score demo)
+                     " from score_changed events " score-changed))
+             demo)))
+        (update-in [:rounds (dec (:number round))]
+                   #(-> %
+                        (conj (when round-end-missing [:winner round-winner]))
+                        (conj (when round-end-missing [:tick_end (:score_changed_tick round)]))
+                        (dissoc :score_changed :score_changed_tick))))))
 
 (defn check-ot-half-started [mr round_no]
   (if (or (nil? mr) (<= round_no 30))
@@ -159,7 +235,7 @@
     (= 1 (mod (- round_no 30) mr))))
 
 (defn update-winner [demo]
-  (let [score (vec (apply map + (:detailed_score demo)))
+  (let [score (total-score demo)
         [a_wins b_wins] score]
     (-> demo
         (assoc :score score
@@ -174,7 +250,7 @@
   (->
     ; Update players table
     (reduce-kv update-players demo (:players round))
-    ; Detect MR
+    ; Detect overtime MR6/MR10
     (#(if (and (not= (get % :teams_switched?) (:teams_switched? demo)) (#{34 36} (:number round)))
        (assoc % :mr (- (:number round) 31))
        %))
@@ -185,8 +261,7 @@
               (check-ot-half-started (:mr demo) (:number round)))
        (update-in % [:detailed_score] conj [0 0])
        %))
-    (update-score round)
-    (dissoc :round_no)))
+    (update-score round)))
 
 (defn enrich-demo [demo]
   (let [demo (merge demo {:players         {}
@@ -194,7 +269,7 @@
                           :teams_switched? false})]
     (-> (reduce enrich-with-round demo (add-round-numbers (:rounds demo)))
         (update-winner)
-        (dissoc :teams_switched? :player_names))))
+        (dissoc :teams_switched? :player_names :last_score_changed))))
 
 (defn get-demo-info [path]
   (info "Processing" path)
@@ -215,8 +290,9 @@
         winner (if surrendered?
                  (:winner last-round-end)
                  0)
-        rounds (get-rounds demo-data demo-type)
+        rounds (get-rounds (:events demo-data) demo-type)
         demo (merge {:rounds      rounds
+                     :path path
                      :type        demo-type
                      :timestamp   (get scoreboard :matchtime (last-modified path))
                      :surrendered surrendered?
