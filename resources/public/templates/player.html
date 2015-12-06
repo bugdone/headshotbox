@@ -84,11 +84,11 @@
       </table>
       <table class="table player-stats">
         <tr>
-          <th><abbr title="Entry Kill Win % ({{stats.entry_kills}}/{{stats.entry_kills_attempted}})">Entry Win %</abbr></th>
+          <th><abbr title="First Duel as T Win % ({{stats.entry_kills}}/{{stats.entry_kills_attempted}})">Entry Kill Win %</abbr></th>
           <td>{{100 * stats.entry_kills / stats.entry_kills_attempted | number:2}}</td>
         </tr>
         <tr>
-          <th><abbr title="First Duel Win % ({{stats.open_kills}}/{{stats.open_kills_attempted}})">First Duel Win %</abbr></th>
+          <th><abbr title="First Duel as T or CT Win % ({{stats.open_kills}}/{{stats.open_kills_attempted}})">First Duel Win %</abbr></th>
           <td>{{100 * stats.open_kills / stats.open_kills_attempted | number:2}}</td>
         </tr>
       </table>
