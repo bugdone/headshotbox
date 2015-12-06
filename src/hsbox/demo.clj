@@ -98,6 +98,8 @@
               "round_end" (assoc round :tick_end (:tick event)
                                        :winner (:winner event)
                                        :win_reason (:reason event))
+              "player_hurt" (update-in round [:damage (:attacker event)]
+                                       #(if (nil? %) %2 (+ % %2)) (:dmg_health event))
               "player_spawn" (if (or (= 0 (:teamnum event)) (= 0 (:userid event)))
                                round
                                (assoc-in round [:players (:userid event)] (:teamnum event)))
@@ -108,7 +110,7 @@
               round))]
     ; Filter events before round start tick
     (let [round-tick (:tick (last (filter #(= (:type %) "round_start") events)))]
-      (reduce process {:players {} :deaths []} (filter #(<= round-tick (:tick %)) events)))))
+      (reduce process {:players {} :deaths [] :damage {}} (filter #(<= round-tick (:tick %)) events)))))
 
 (defn has-event [events type]
   (some #(= (:type %) type) events))

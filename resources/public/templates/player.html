@@ -67,6 +67,10 @@
           <th><abbr title="Entry Kills Per Round">EKPR</abbr></th>
           <td>{{stats.entry_kills / stats.rounds_t | number:2}}</td>
         </tr>
+        <tr>
+          <th><abbr title="Average Damage Per Round (takes into account only games after the 30.06.2015 patch)">ADR</abbr></th>
+          <td>{{stats.damage / stats.rounds_with_damage_info | number:2}}</td>
+        </tr>
       </table>
       <table class="table player-stats">
         <tr>

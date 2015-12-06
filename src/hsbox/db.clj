@@ -79,7 +79,9 @@
 
 (defn db-json-to-dict [rows]
   (letfn [(round-players-to-long [rounds]
-                                 (map (partial kw-steamids-to-long [:players]) rounds))]
+                                 (->> rounds
+                                      (map (partial kw-steamids-to-long [:players]))
+                                      (map (partial kw-steamids-to-long [:damage]))))]
     (->> rows
          (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))
          (map (partial kw-steamids-to-long [:data :players]))
