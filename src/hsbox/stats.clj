@@ -82,15 +82,13 @@
     (.startsWith name "usp_silencer") "usp"
     (= name "m4a1") "m4a4"
     (= name "galilar") "galil"
-    ; TODO Delete this?
-    (= name "molotov_projectile") "inferno"
     (.startsWith name "m4a1_silencer") "m4a1"
     :else name))
 
 (def weapon-names ["mag7" "mp9" "inferno" "elite" "g3sg1" "negev" "fiveseven" "hkp2000" "m4a1" "galil" "xm1014"
                    "ssg08" "nova" "flashbang" "ak47" "m4a4" "tec9" "decoy" "hegrenade" "taser" "famas" "ump45"
                    "mp7" "worldspawn" "cz75a" "glock" "sg556" "mac10" "sawedoff" "p90" "usp" "p250" "scar20"
-                   "deagle" "awp" "aug" "world" "m249" "bizon" "knife" "smokegrenade"])
+                   "deagle" "awp" "aug" "world" "m249" "bizon" "knife" "smokegrenade" "molotov_projectile"])
 
 (defn add-hltv-rating [stats]
   "Compute HLTV rating"
