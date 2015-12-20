@@ -125,7 +125,7 @@
 (defn round-timelimit [demo-type]
   (if (= "valve" demo-type)
     120
-    105))
+    115))
 
 ; Legit rounds have:
 ; - round_start with legit timelimit
