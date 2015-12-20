@@ -46,7 +46,9 @@
           <td>{{stats.rating  | number:2}}</td>
         </tr>
         <tr>
-          <th><abbr title="1v1 rounds won / attempted ({{stats.1v1_won}}/{{stats.1v1_attempted}})">Clutch %</abbr></th>
+          <th><abbr title="1v1 rounds won / attempted ({{stats.1v1_won}}/{{stats.1v1_attempted}})">Clutch %</abbr>
+            <abbr title="Only 2v1 rounds that end up in 1v1 are considered (same as hltv.org)">(?)</abbr>
+          </th>
           <td>{{stats.1v1_won / stats.1v1_attempted * 100 | number:2}}</td>
         </tr>
       </table>
