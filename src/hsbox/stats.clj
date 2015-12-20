@@ -448,14 +448,19 @@
         headshot (and flags? (.contains flags "hs"))
         jump (and flags? (.contains flags "jump"))
         smoke (and flags? (.contains flags "smoke"))
+        collateral (and flags? (.contains flags "collateral"))
         weapon (nth regexp-demo 2)]
     (fn [round steamid demo]
-      (let [kills (filter #(and (= steamid (:attacker %))
+      (let [same-weapon-and-tick (fn [kill]
+                                   (filter #(and (= (:tick %) (:tick kill)) (= (:weapon %) (:weapon kill)) (= (:attacker %) (:attacker kill)))
+                                           (:deaths round)))
+            kills (filter #(and (= steamid (:attacker %))
                                 (not-tk % round demo)
                                 (or (= weapon (weapon-name (:weapon %))) (= weapon ""))
                                 (if penetrated (> (:penetrated %) 0) true)
                                 (if headshot (:headshot %) true)
                                 (if smoke (and (:smoke %) (not= (weapon-name (:weapon %)) "inferno")) true)
+                                (if collateral (> (count (same-weapon-and-tick %)) 1) true)
                                 (if jump (and (:jump %)
                                               (<= 0.1 (* (:tickrate demo) (:jump %)) 0.5)
                                               (not (#{"hegrenade" "inferno"} (weapon-name (:weapon %))))) true))
@@ -470,7 +475,7 @@
           [clutch-filter #"^1v(1|2|3|4|5)$"]
           [weapon-filter (re-pattern (str "^(?:(1|2|3|4|5)(?:x)?)?("
                                           (str (str/join "|" weapon-names) "|")
-                                          ")((?:bang|hs|jump|smoke)*)$"))]])))
+                                          ")((?:bang|hs|jump|smoke|collateral)*)$"))]])))
 
 (defn round-kills [round steamid demo]
   (reduce #(let [key {:weapon (weapon-name (:weapon %2)) :headshot (:headshot %2) :penetrated (pos? (:penetrated %2))}]
