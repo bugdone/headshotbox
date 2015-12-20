@@ -268,10 +268,13 @@
 (defn enrich-demo [demo]
   (let [demo (merge demo {:players         {}
                           :detailed_score  [[0 0]]
-                          :teams_switched? false})]
-    (-> (reduce enrich-with-round demo (add-round-numbers (:rounds demo)))
-        (update-winner)
-        (dissoc :teams_switched? :player_names :last_score_changed))))
+                          :teams_switched? false})
+        enriched (-> (reduce enrich-with-round demo (add-round-numbers (:rounds demo)))
+                     (update-winner)
+                     (dissoc :teams_switched? :player_names :last_score_changed))]
+    (assert (not (or (empty? (:rounds demo)) (empty? (:players demo))))
+            (str "Demo " (:path demo) " has " (count (:rounds demo)) " rounds and " (count (:players demo)) " players"))
+    enriched))
 
 (defn get-demo-info [path]
   (info "Processing" path)
