@@ -116,7 +116,7 @@ tr th{
 }
 
 #weapon-stats{
-    width: 33%;
+    width: auto;
     color: #fff;
 }
 .table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th{

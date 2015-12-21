@@ -1,5 +1,39 @@
 var hsboxControllers = angular.module('hsboxControllers', []);
 
+var weapon_prettify = {
+    ak47: "AK-47",
+    bizon: "PP-Bizon",
+    cz75a: "CZ75-Auto",
+    deagle: "Desert Eagle",
+    decoy: "Decoy Grenade",
+    elite: "Duel Berettas",
+    fiveseven: "Five-SeveN",
+    flashbang: "Flashbang",
+    galil: "Galil AR",
+    glock: "Glock",
+    hegrenade: "HE Grenade",
+    hkp2000: "P2000",
+    incgrenade: "Incendiary Grenade",
+    inferno: "Fire",
+    knife: "Knife",
+    m4a1: "M4A1-S",
+    mac10: "MAC-10",
+    mag7: "MAG-7",
+    molotov: "Molotov",
+    negev: "Negev",
+    nova: "Nova",
+    revolver: "R8 Revolver",
+    sawedoff: "Sawed Off",
+    scar20: "SCAR-20",
+    sg556: "SG 553",
+    smokegrenade: "Smoke Grenade",
+    ssg08: "SSG 08",
+    taser: "Zeus x27",
+    tec9: "Tec-9",
+    ump45: "UMP-45",
+    usp: "USP-S"
+}
+
 function getPlayerSummaries(steamids) {
     return serverUrl + '/steamids/info?steamids=' + steamids.join(',');
 }
@@ -93,6 +127,7 @@ function filtersChanged($scope, $http) {
     $http.get(serverUrl + '/player/' + steamid + '/stats', {'params': params}).success(function(data) {
         $scope.stats = data;
         $scope.stats.weapons.forEach(function (p) {
+            p.display_name = (weapon_prettify[p.name]) ? weapon_prettify[p.name] : p.name.toUpperCase();
             p.hs_percent = (p.hs / p.kills) * 100;
         });
     });
