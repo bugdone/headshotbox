@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th></th>
+      <th><a ng-click="orderWeapons = 'keyword'">Keyword</a></th>
       <th><a ng-click="orderWeapons = 'name'">Weapon</a></th>
       <th><a ng-click="orderWeapons = '-kills'">Kills</a></th>
       <th><a ng-click="orderWeapons = '-hs'">HS</a></th>
@@ -11,6 +12,7 @@
   <tr ng-repeat="weapon in stats.weapons | orderBy:orderWeapons">
     <td style="text-align: left"><img ng-src="img/weapons/icon-{{weapon.name}}_grey.png" ng-if="weapon.name" height="20"/></td>
     <td style="text-align: left">{{weapon.name}}</td>
+    <td style="text-align: left">{{weapon.display_name}}</td>
     <td>{{weapon.kills}}</td>
     <td>{{weapon.hs}}</td>
     <td>{{weapon.hs_percent | number:2}}</td>
