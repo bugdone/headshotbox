@@ -203,9 +203,10 @@
                        (do
                          (assert (not (nil? (:last_score_changed demo)))
                                  (str "Round 1 is missing the round_end event in demo " (:path demo)))
-                         (if (< (first (:last_score_changed demo)) (first score-changed))
-                           2
-                           3)))
+                         (real-team demo
+                                    (if (< (first (:last_score_changed demo)) (first score-changed))
+                                      2
+                                      3))))
         round-winner (if (not round-end-missing)
                        (:winner round)
                        (guess-winner))]
