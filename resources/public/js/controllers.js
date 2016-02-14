@@ -137,7 +137,6 @@ function filtersChanged($scope, $http) {
 }
 
 hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce, $rootScope) {
-    $scope.valveOnly = false;
     $scope.playerMaps = [];
     $scope.playerTeammates = [];
     $scope.banned = []
@@ -374,19 +373,15 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         var params = getRequestFilters($scope);
         $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': params}).success(function(data) {
             $scope.demos = data;
-            var $valveOnly = true;
             $scope.demos.forEach(function (m) {
                 m.kdd = m.kills - m.deaths;
                 if (!m.timestamp)
                     m.timestamp = 0;
-                if (m.type != 'valve')
-                    $valveOnly = false;
                 m.date = timestamp2date(m.timestamp);
             });
             if ($scope.rankConfig.series[0].data == null) {
                 $scope.setRankChartXAxis($scope.rankChartXAxis);
             }
-            $scope.valveOnly = $valveOnly;
             $scope.setTabLoaded('demos');
         });
     };

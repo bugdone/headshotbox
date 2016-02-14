@@ -378,3 +378,8 @@ a {
 .banned-text {
     color: white;
 }
+
+.nopadding {
+   padding-right: 0 !important;
+   padding-left: 0 !important;
+}
