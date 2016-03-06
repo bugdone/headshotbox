@@ -71,13 +71,6 @@ function date2timestamp(date) {
     return null;
 }
 
-function watchDemoUrl(path, steamid, tick, highlight) {
-    return 'steam://rungame/730/' + steamid + '/+playdemo "' +
-        encodeURI(path) + (tick ? '@' + tick : '') + '" ' +
-        (highlight ? steamid : '') +
-        (highlight == 'lowlights' ? ' lowlights' : '');
-}
-
 function getBanTimestamp(player) {
     return date2timestamp(Date.now()) - 3600 * 24 * player['DaysSinceLastBan'];
 }
@@ -136,7 +129,8 @@ function filtersChanged($scope, $http) {
         $scope.loadTab($scope.tabs[$scope.activeTab]);
 }
 
-hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sce, $rootScope) {
+hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $rootScope, watchDemo, $compile) {
+    $scope.watchDemo = watchDemo;
     $scope.playerMaps = [];
     $scope.playerTeammates = [];
     $scope.banned = []
@@ -152,7 +146,6 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     };
     $scope.filterDemos = {'startDate': null, 'endDate': null};
     $scope.filterTeammates = [];
-    $scope.watchDemoUrl = watchDemoUrl;
     $scope.bannedSinceDemo = bannedSinceDemo;
     $scope.getBanTimestamp = getBanTimestamp;
     $scope.bansTooltip = bansTooltip;
@@ -182,14 +175,10 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
     $scope.resetNotesControls = function() {
         $scope.notesControls = {'demoNotesInput': '', 'demoNotesView': ''};
     };
-    $scope.linkToTick = function(demo, p1) {
-        tick = parseInt(p1, 10);
-        round = false;
-        if (demo.lastIndexOf('round', 0) === 0) {
-            tick = $scope.theDemo.rounds[tick - 1].tick;
-            round = true;
-        }
-        return "<a href='" + watchDemoUrl($scope.theDemo.path, steamid, tick) + "'>" + demo + "</a>";
+    $scope.linkToTick = function(spec, number) {
+        round = spec.lastIndexOf('round', 0) === 0;
+        return '<a ng-click="watchDemo(\'' + $scope.theDemo.demoid + "', '" + steamid + "', " +
+            (round ? number : 'nil') + ', ' + (round ? 'nil' : number) + ')">' + spec + "</a>";
     }
     $scope.addLinks = function(text) {
         if (text == null)
@@ -198,8 +187,12 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $sc
         return text.replace(/(?:(?:round|tick) ?)(\d+)/g, $scope.linkToTick);
     };
     $scope.updateDemoNotesView = function() {
-        if (typeof $scope.notesControls.demoNotesInput != undefined)
-            $scope.notesControls.demoNotesView = $sce.trustAsHtml($scope.addLinks($scope.notesControls.demoNotesInput));
+        if (typeof $scope.notesControls.demoNotesInput != undefined) {
+            var temp = $compile('<span>' + $scope.addLinks($scope.notesControls.demoNotesInput) + '</span>')($scope);
+            var notesViewNode = angular.element(document.getElementById('notes-view'));
+            notesViewNode.empty();
+            notesViewNode.append(temp);
+        }
     };
     $scope.updateDemoNotes2 = function() {
         if ($rootScope.isAuthorized)
@@ -652,7 +645,6 @@ hsboxControllers.controller('PlayerList', function ($scope, $http) {
 
 hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams) {
     demoid = $routeParams.demoid;
-    $scope.watchDemoUrl = watchDemoUrl;
     $scope.playerName = function (player) {
         if (player == null)
             return 'BOT';
@@ -673,7 +665,8 @@ hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams) {
     });
 });
 
-hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams) {
+hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams, watchDemo) {
+    $scope.watchDemo = watchDemo;
     $scope.setOrder = function(field) {
         if ($scope.orderRounds == field)
             $scope.orderRounds = '-' + field;
@@ -681,7 +674,6 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
             $scope.orderRounds = field;
     }
     $scope.orderRounds = '-timestamp';
-    $scope.watchDemoUrl = watchDemoUrl;
     $scope.roundHelpIsCollapsed = true;
     steamid = $routeParams.steamid;
     $scope.search_string = "";

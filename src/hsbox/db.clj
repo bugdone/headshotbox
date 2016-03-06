@@ -86,6 +86,7 @@
          (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))
          (map (partial kw-steamids-to-long [:data :players]))
          (map (partial kw-steamids-to-long [:data :mm_rank_update]))
+         (map (partial kw-steamids-to-long [:data :player_slots]))
          (map #(assoc-in % [:data :rounds] (round-players-to-long (get-in % [:data :rounds])))))))
 
 (defn get-all-demos []

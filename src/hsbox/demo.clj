@@ -304,7 +304,7 @@
                      :timestamp   (get scoreboard :matchtime (last-modified path))
                      :surrendered surrendered?
                      :winner      winner}
-                    (select-keys demo-data [:map :player_names :tickrate :mm_rank_update]))]
+                    (select-keys demo-data [:map :player_names :tickrate :mm_rank_update :player_slots]))]
     (if (not (contains? latest-data-version demo-type))
       (throw (Exception. "Unknown demo type")))
     (enrich-demo demo)))

@@ -78,7 +78,9 @@
           </td>
           <td class="text-center" ng-class="{green: round.won, red: !round.won}">{{round.won_str}}</td>
           <td class="text-center">
-            <a class="btn btn-success btn-xs" href='{{watchDemoUrl(round.path, steamid, round.tick)}}'><i class="fa fa-play-circle"></i></a>
+            <button type="button" class="btn btn-success btn-xs" ng-click="watchDemo(round.demoid, round.steamid, round.round)">
+              <i class="fa fa-play-circle"></i>
+            </button>
           </td>
           <td ng-click="makeVisible(round.demoid, round.round)" class="clickable text-center">
             <i class="pull-right glyphicon"

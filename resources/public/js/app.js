@@ -43,3 +43,14 @@ hsboxApp.filter('signed', function () {
             return "" + num;
     };
 });
+
+hsboxApp.factory('watchDemo', ['$http', function($http) {
+    return function(demoid, steamid, round, tick, highlight) {
+        var params = {steamid: steamid, round: round, tick: tick};
+        if (highlight)
+            params['highlight'] = highlight;
+        $http.post(serverUrl + '/demo/' + demoid + '/watch', params).success(function(data) {
+            window.location = data.url;
+        });
+    }
+}]);

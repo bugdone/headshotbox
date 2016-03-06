@@ -5,13 +5,14 @@
             [hsbox.stats :as stats]
             [hsbox.indexer :as indexer]
             [hsbox.db :as db]
+            [hsbox.launch :as launch]
             [hsbox.version :as version]
             [hsbox.steamapi :as steamapi]
             [ring.middleware.not-modified :refer [wrap-not-modified]]
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.json :refer [wrap-json-body
                                           wrap-json-response]]
-            [ring.util.response :refer [response redirect]]
+            [ring.util.response :refer [response redirect not-found]]
             [cemerick.friend :as friend]
             [cemerick.friend.openid :as openid]
             [taoensso.timbre :as timbre])
@@ -33,6 +34,15 @@
    :rounds     (if (nil? rounds) nil (clojure.string/lower-case rounds))
    :teammates  (if (empty? teammates) #{}
                                       (set (map #(Long/parseLong %) (clojure.string/split teammates #","))))})
+
+(defn local-address? [address]
+  (re-matches #"127.0.0.\d{1,3}" address))
+
+(defn only-local [handler]
+  (fn [request]
+    (if (local-address? (:remote-addr request))
+      (handler request)
+      (not-found ""))))
 
 (defn authorize-admin [handler]
   (fn [request]
@@ -69,6 +79,13 @@
                           (response (stats/get-demo-details demoid)))
                         (GET "/notes" []
                           (response {:notes (db/get-demo-notes demoid)}))
+                        (only-local
+                          (authorize-admin
+                            (POST "/watch" {{steamid :steamid round :round tick :tick highlight :highlight} :body}
+                              (let [info (launch/watch demoid (Long/parseLong steamid) round tick highlight)]
+                                (if info
+                                  (response info)
+                                  (not-found ""))))))
                         (authorize-admin
                           (POST "/notes" {body :body}
                             (response (db/set-demo-notes demoid (:notes body)))))))

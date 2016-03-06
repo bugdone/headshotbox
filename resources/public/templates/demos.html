@@ -50,9 +50,15 @@
       <td class="text-center nopadding" ng-class="{green: demo.kdd >= 0, red: demo.kdd < 0}">{{demo.kdd | signed}}</td>
       <td class="text-center nopadding">{{demo.hs_percent | number:2}}</td>
       <td class="text-right nopadding" ng-click="$event.stopPropagation()">
-        <a class="btn btn-success btn-xs" href='{{watchDemoUrl(demo.path, steamid)}}'><i class="fa fa-play-circle"></i></a>
-        <a class="btn btn-primary btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, true)}}' title="Highlights">High</a>
-        <a class="btn btn-primary btn-xs" href='{{watchDemoUrl(demo.path, steamid, undefined, "lowlights")}}' title="Lowlights">Low</a>
+        <button type="button" class="btn btn-success btn-xs" ng-click="watchDemo(demo.demoid, steamid, nil, 0)">
+          <i class="fa fa-play-circle"></i>
+        </button>
+        <button type="button" class="btn btn-primary btn-xs" ng-click="watchDemo(demo.demoid, steamid, nil, nil, 'high')">
+          High
+        </button>
+        <button type="button" class="btn btn-primary btn-xs" ng-click="watchDemo(demo.demoid, steamid, nil, nil, 'low')">
+          Low
+        </button>
       </td>
     </tr>
     <tr ng-if="isVisible(demo.demoid)">

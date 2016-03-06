@@ -10,8 +10,7 @@
 (def demos {})
 (def player-demos {})
 
-(defn seconds-to-ticks [seconds tickrate]
-  (* seconds (/ 1 tickrate)))
+(defn seconds-to-ticks [seconds tickrate] (int (* seconds (/ 1 tickrate))))
 
 (defn enumerate [s]
   (map vector (range) s))
@@ -403,7 +402,7 @@
                   :mm_rank_update (get-in demo [:mm_rank_update (first %)]))
                 (seq (:players demo)))
            (group-by #(:team %))
-           (assoc (select-keys demo [:score :winner :surrendered :detailed_score :timestamp :duration :map :type]) :teams))
+           (assoc (select-keys demo [:score :winner :surrendered :detailed_score :timestamp :duration :map :type :demoid]) :teams))
       (merge {:rounds (map #(select-keys % [:tick]) (:rounds demo))
               :path   (demo-path demoid)}))))
 
@@ -489,8 +488,7 @@
         demo-info (select-keys demo [:timestamp :map :demoid])
         make-kill-obj #(merge (first %) {:kills (second %)})]
     (map #(merge demo-info (hash-map :round (:number %)
-                                     :steamid steamid
-                                     :tick (+ (:tick %) (seconds-to-ticks 15 (:tickrate demo)))
+                                     :steamid (str steamid)
                                      :won (= (team-number steamid %) (:winner %))
                                      :side (get {2 "T" 3 "CT"} (team-number steamid %))
                                      :kills (map make-kill-obj (round-kills % steamid demo))
