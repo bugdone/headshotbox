@@ -211,7 +211,9 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
             if ($scope.visibleDemo == demoid) {
                 $scope.demoStats[$scope.visibleDemo].notes = response.notes;
                 $scope.notesControls['demoNotesInput'] = response.notes;
-                $scope.updateDemoNotesView();
+                setTimeout(function(){
+                    $scope.updateDemoNotesView();
+                }, 0);
             }
         });
     };
