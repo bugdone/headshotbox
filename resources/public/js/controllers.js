@@ -700,6 +700,7 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
 hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
     $scope.steamApiCollapsed = true;
     $scope.demoDirectoryCollapsed = true;
+    $scope.vdmCollapsed = true;
     $scope.getSettings = function() {
         $http.get(serverUrl + '/config').success(function(data) {
             $scope.config = data;
