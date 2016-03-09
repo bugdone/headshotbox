@@ -118,6 +118,11 @@
                          (POST "/" {config :body}
                            (indexer/set-config config)
                            (response "ok")))))
+           (only-local
+             (authorize-admin
+               (DELETE "/vdm" []
+                 (launch/delete-generated-files)
+                 (response "ok"))))
            (GET "/authorized" request (response {:authorized
                                                  (if (empty? @openid-settings)
                                                    true

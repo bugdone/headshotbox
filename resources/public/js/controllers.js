@@ -732,6 +732,9 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
             $scope.getIndexerState();
         }
     });
+    $scope.vdm_delete_files = function() {
+        $http.delete(serverUrl + '/vdm');
+    };
 });
 
 hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootScope) {

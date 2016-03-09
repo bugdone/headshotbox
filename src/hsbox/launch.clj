@@ -48,6 +48,10 @@
                     (map vector (rest (range)) commands)))
        "}\n"))
 
+(defn delete-vdm [vdm-path]
+  (debug "Deleting vdm file" vdm-path)
+  (io/delete-file vdm-path true))
+
 (defn watch [demoid steamid round-number tick highlight]
   (let [demo (get stats/demos demoid)
         demo-path (db/demo-path demoid)
@@ -66,8 +70,7 @@
             (and (not (:vdm_enabled (db/get-config)))
                  (file-exists? vdm-path)
                  (generated-by-hsbox vdm-path))
-            (debug "Deleting vdm file" vdm-path)
-            (io/delete-file vdm-path true))
+            (delete-vdm vdm-path))
           (when (and
                   (:vdm_enabled (db/get-config))
                   (file-exists? demo-path)
@@ -76,8 +79,7 @@
                       (generated-by-hsbox vdm-path)))
             (if (#{"high" "low"} highlight)
               (when (file-exists? vdm-path)
-                (debug "Deleting vdm file" vdm-path)
-                (io/delete-file vdm-path true))
+                (delete-vdm vdm-path))
               (do
                 (debug "Writing vdm file" vdm-path)
                 (spit vdm-path (generate-vdm (vdm-watch demo steamid tick
@@ -91,3 +93,11 @@
                      (when tick (str "@" tick)) "\" "
                      (when highlight steamid)
                      (when (= highlight "low") " lowlights"))})))))
+
+(defn delete-generated-files []
+  (let [path (db/get-demo-directory)]
+    (->> (clojure.java.io/as-file path)
+         file-seq
+         (map #(when (and (.endsWith (.getName %) ".vdm") (generated-by-hsbox %))
+                (delete-vdm (.getAbsolutePath %))))
+         dorun)))
