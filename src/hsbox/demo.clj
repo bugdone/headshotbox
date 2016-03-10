@@ -98,8 +98,12 @@
               "round_end" (assoc round :tick_end (:tick event)
                                        :winner (:winner event)
                                        :win_reason (:reason event))
-              "player_hurt" (update-in round [:damage (:attacker event)]
-                                       #(if (nil? %) %2 (+ % %2)) (:dmg_health event))
+              "player_hurt" (let [health (get-in round [:health (:userid event)] 100)
+                                  damage (min (:dmg_health event) health)]
+                              (-> round
+                                  (assoc-in [:health (:userid event)] (:health event))
+                                  (update-in [:damage (:attacker event)]
+                                             #(if (nil? %) %2 (+ % %2)) damage)))
               "player_spawn" (if (or (= 0 (:teamnum event)) (= 0 (:userid event)))
                                round
                                (assoc-in round [:players (:userid event)] (:teamnum event)))
@@ -110,7 +114,7 @@
               round))]
     ; Filter events before round start tick
     (let [round-tick (:tick (last (filter #(= (:type %) "round_start") events)))]
-      (reduce process {:players {} :deaths [] :damage {}} (filter #(<= round-tick (:tick %)) events)))))
+      (reduce process {:players {} :deaths [] :damage {} :health {}} (filter #(<= round-tick (:tick %)) events)))))
 
 (defn has-event [events type]
   (some #(= (:type %) type) events))
@@ -166,7 +170,8 @@
                           (not (empty? (filter #(and (= (:type %) "round_end") (not= 1 (:winner %))) after-start)))
                           (not (empty? (filter #(= (:type %) "score_changed") after-start))))))))
           ((get filter-possible-rounds demo-type identity))
-          (map process-round-events)))))
+          (map process-round-events)
+          (map #(dissoc % :health))))))
 
 (defn real-team [demo team]
   (if (:teams_switched? demo)
