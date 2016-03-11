@@ -104,7 +104,14 @@
            (GET "/authorized" request (response {:authorized
                                                  (if (empty? @openid-settings)
                                                    true
-                                                   (friend/authorized? #{::admin} (friend/identity request)))}))
+                                                   (friend/authorized? #{::admin} (friend/identity request)))
+                                                 :showLogin 
+                                                 (if (empty? @openid-settings)
+                                                  false
+                                                  (if (re-matches (java.util.regex.Pattern/compile (str "htt.*://" (:server-name request) ".*")) (:realm @openid-settings)) 
+                                                    true
+                                                    false))
+                                                }))
            (GET "/version" []
              (response {:current (version/get-version)
                         :latest  @version/latest-version}))
