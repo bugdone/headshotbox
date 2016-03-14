@@ -111,6 +111,7 @@
                                            (select-keys event '(:assister :attacker :headshot :penetrated :tick :weapon :jump :smoke :attacker_pos :victim_pos))
                                            {:victim (:userid event)})]
                                (update-in round [:deaths] conj death))
+              "bomb_defused" (assoc round :bomb_defused (:userid event))
               round))]
     ; Filter events before round start tick
     (let [round-tick (:tick (last (filter #(= (:type %) "round_start") events)))]

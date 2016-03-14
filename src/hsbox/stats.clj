@@ -133,23 +133,23 @@
 (defn team-number [steamid round]
   (get (:players round) steamid 0))
 
+(defn deaths-until-round-end [round]
+  (if (:tick round)
+    (filter #(<= (:tick %) (:tick_end round)) (:deaths round))
+    (:deaths round)))
+
 (defn build-clutch-round-fn [enemies exact-enemies? won?]
   (fn [round steamid demo]
-    (if (nil? (:tick_end round))
-      ; TODO make this check somewhere more sane (eg. when it's read from / written in db)
-      (do
-        (debug "No tick_end for round" (:number round) "in demo" (:demoid demo))
-        false)
-      (let [deaths (filter #(<= (:tick %) (:tick_end round)) (:deaths round))
-            player-team (team-number steamid round)
-            player-death (split-with #(not= (:victim %) steamid) deaths)
-            same-team (fn [death] (= player-team (team-number (:victim death) round)))
-            not-same-team (comp not same-team)
-            last-teammate-death (split-with not-same-team
-                                            (reverse (first player-death)))
-            dead-teammates (count (filter same-team (second last-teammate-death)))
-            alive-enemies (- 5 (count (filter not-same-team (second last-teammate-death))))]
-        (and ((if exact-enemies? = >=) alive-enemies enemies) (= 4 dead-teammates) (if won? (= (:winner round) player-team) true))))))
+    (let [deaths (deaths-until-round-end round)
+          player-team (team-number steamid round)
+          player-death (split-with #(not= (:victim %) steamid) deaths)
+          same-team (fn [death] (= player-team (team-number (:victim death) round)))
+          not-same-team (comp not same-team)
+          last-teammate-death (split-with not-same-team
+                                          (reverse (first player-death)))
+          dead-teammates (count (filter same-team (second last-teammate-death)))
+          alive-enemies (- 5 (count (filter not-same-team (second last-teammate-death))))]
+      (and ((if exact-enemies? = >=) alive-enemies enemies) (= 4 dead-teammates) (if won? (= (:winner round) player-team) true)))))
 
 (defn update-stats-with-round [stats round]
   (if ((get stats :round-filter #(or true % %2)) round (:steamid stats))
@@ -439,6 +439,14 @@
   (let [enemies-str (second regexp-demo)]
     (build-clutch-round-fn (Integer/parseInt enemies-str) false true)))
 
+(defn ninja-filter [regexp-demo]
+  (fn [round steamid demo]
+    (let [deaths (deaths-until-round-end round)
+          dead-ts (count (filter #(= 2 (team-number (:victim %) round)) deaths))
+          dead-cts (- (count deaths) dead-ts)]
+      (and (= (:bomb_defused round) steamid)
+           (>= dead-cts dead-ts)))))
+
 (defn weapon-filter [regexp-demo]
   (let [multiplier (if (second regexp-demo) (Integer/parseInt (second regexp-demo)) 1)
         flags? (not (nil? (nth regexp-demo 3)))
@@ -472,6 +480,7 @@
          [[kill-filter #"^(1|2|3|4|5)k(?:<(\d+)s)?$"]
           [side-filter #"^(ct|t)$"]
           [clutch-filter #"^1v(1|2|3|4|5)$"]
+          [ninja-filter #"ninja"]
           [weapon-filter (re-pattern (str "^(?:(1|2|3|4|5)(?:x)?)?("
                                           (str (str/join "|" weapon-names) "|")
                                           ")((?:bang|hs|jump|smoke|collateral)*)$"))]])))
