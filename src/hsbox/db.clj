@@ -81,6 +81,7 @@
   (letfn [(round-players-to-long [rounds]
                                  (->> rounds
                                       (map (partial kw-steamids-to-long [:players]))
+                                      (map (partial kw-steamids-to-long [:disconnected]))
                                       (map (partial kw-steamids-to-long [:damage]))))]
     (->> rows
          (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))

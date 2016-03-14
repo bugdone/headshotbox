@@ -112,10 +112,16 @@
                                            {:victim (:userid event)})]
                                (update-in round [:deaths] conj death))
               "bomb_defused" (assoc round :bomb_defused (:userid event))
+              ; disconnected players are interesting only when they have spawned and haven't died
+              "player_disconnected" (if (and
+                                          (get-in round [:players (:userid event)])
+                                          (empty? (filter #(= (:victim %) (:userid event)) (:deaths round))))
+                                      (assoc-in round [:disconnected (:userid event)] (:tick event))
+                                      round)
               round))]
     ; Filter events before round start tick
     (let [round-tick (:tick (last (filter #(= (:type %) "round_start") events)))]
-      (reduce process {:players {} :deaths [] :damage {} :health {}} (filter #(<= round-tick (:tick %)) events)))))
+      (reduce process {:players {} :deaths [] :damage {} :health {} :disconnected {}} (filter #(<= round-tick (:tick %)) events)))))
 
 (defn has-event [events type]
   (some #(= (:type %) type) events))
