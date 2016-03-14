@@ -289,6 +289,7 @@
   (let [demo-data (->>
                     (json/read-str (parse-demo path) :key-fn keyword)
                     (kw-steamids-to-long [:player_names])
+                    (kw-steamids-to-long [:player_slots])
                     (kw-steamids-to-long [:mm_rank_update]))
         demo-type (get-demo-type demo-data)
         ; Parse MM dem.info file if available (for demo timestamp)
