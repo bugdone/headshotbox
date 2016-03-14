@@ -441,7 +441,7 @@
 
 (defn ninja-filter [regexp-demo]
   (fn [round steamid demo]
-    (let [deaths (deaths-until-round-end round)
+    (let [deaths (concat (deaths-until-round-end round) (map #(hash-map :victim (first %)) (:disconnected round)))
           dead-ts (count (filter #(= 2 (team-number (:victim %) round)) deaths))
           dead-cts (- (count deaths) dead-ts)]
       (and (= (:bomb_defused round) steamid)
