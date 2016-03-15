@@ -213,7 +213,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
                 $scope.notesControls['demoNotesInput'] = response.notes;
                 setTimeout(function(){
                     $scope.updateDemoNotesView();
-                }, 0);
+                }, 100);
             }
         });
     };
