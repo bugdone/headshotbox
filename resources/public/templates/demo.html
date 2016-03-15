@@ -81,7 +81,7 @@
         <div class="well well-sm" id="notes-view">
         </div>
 
-        <form ng-submit="updateDemoNotes2()">
+        <form ng-submit="updateDemoNotes2()" ng-if="isAuthorized">
           <textarea class="form-control notes" ng-model="notesControls.demoNotesInput"></textarea>
           <button type="button" class="btn btn-default btn-xs help-button"
                   popover="Strings like 'round 3' and 'tick 1234' will be displayed as links to that particular round / tick."
