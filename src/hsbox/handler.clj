@@ -79,13 +79,14 @@
                           (response (stats/get-demo-details demoid)))
                         (GET "/notes" []
                           (response {:notes (db/get-demo-notes demoid)}))
-                        (only-local
+                        (context "/watch" []
+                         (only-local
                           (authorize-admin
-                            (POST "/watch" {{steamid :steamid round :round tick :tick highlight :highlight} :body}
+                            (POST "/" {{steamid :steamid round :round tick :tick highlight :highlight} :body}
                               (let [info (launch/watch demoid (Long/parseLong steamid) round tick highlight)]
                                 (if info
                                   (response info)
-                                  (not-found ""))))))
+                                  (not-found "")))))))
                         (authorize-admin
                           (POST "/notes" {body :body}
                             (response (db/set-demo-notes demoid (:notes body)))))))
