@@ -129,8 +129,9 @@ function filtersChanged($scope, $http) {
         $scope.loadTab($scope.tabs[$scope.activeTab]);
 }
 
-hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $rootScope, watchDemo, $compile) {
+hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $rootScope, watchDemo, downloadDemo, $compile) {
     $scope.watchDemo = watchDemo;
+    $scope.downloadDemo = downloadDemo;
     $scope.playerMaps = [];
     $scope.playerTeammates = [];
     $scope.banned = []
@@ -645,8 +646,9 @@ hsboxControllers.controller('PlayerList', function ($scope, $http) {
     });
 });
 
-hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams, watchDemo) {
+hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams, watchDemo, downloadDemo) {
     $scope.watchDemo = watchDemo;
+    $scope.downloadDemo = downloadDemo;
     demoid = $routeParams.demoid;
     $scope.playerName = function (player) {
         if (player == null)
@@ -668,8 +670,9 @@ hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams, wa
     });
 });
 
-hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams, watchDemo) {
+hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams, watchDemo, downloadDemo) {
     $scope.watchDemo = watchDemo;
+    $scope.downloadDemo = downloadDemo;
     $scope.setOrder = function(field) {
         if ($scope.orderRounds == field)
             $scope.orderRounds = '-' + field;
@@ -702,6 +705,7 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
     $scope.steamApiCollapsed = true;
     $scope.demoDirectoryCollapsed = true;
     $scope.vdmCollapsed = true;
+    $scope.demoloaderBaseurlCollapsed = true;
     $scope.getSettings = function() {
         $http.get(serverUrl + '/config').success(function(data) {
             $scope.config = data;
