@@ -31,7 +31,9 @@
               <td>Watch
               </td>
               <td class="text-center">
-                <a class="btn btn-success btn-xs" href='{{watchDemoUrl(demo.path, steamid, round.tick)}}'><i class="fa fa-play-circle"></i></a>
+                <button type="button" class="btn btn-success btn-xs" ng-click="watchDemo(demo.demoid, steamid, $index + 1)">
+                  <i class="fa fa-play-circle"></i>
+                </button>
               </td>
             </tr>
           </table>
