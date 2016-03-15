@@ -50,6 +50,9 @@
       <td class="text-center nopadding" ng-class="{green: demo.kdd >= 0, red: demo.kdd < 0}">{{demo.kdd | signed}}</td>
       <td class="text-center nopadding">{{demo.hs_percent | number:2}}</td>
       <td class="text-right nopadding" ng-click="$event.stopPropagation()">
+        <button type="button" class="btn btn-success btn-xs" ng-click="downloadDemo(demo.demoid)">
+          <i class="fa fa-download"></i>
+        </button>
         <button type="button" class="btn btn-success btn-xs" ng-click="watchDemo(demo.demoid, steamid, nil, 0)">
           <i class="fa fa-play-circle"></i>
         </button>

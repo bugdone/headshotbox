@@ -54,3 +54,9 @@ hsboxApp.factory('watchDemo', ['$http', function($http) {
         });
     }
 }]);
+
+hsboxApp.factory('downloadDemo', ['$http', function($http) {
+    return function(demoid) {
+        window.location = serverUrl + '/demo/' + demoid + '/download';
+    }
+}]);

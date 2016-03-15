@@ -12,7 +12,7 @@
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.json :refer [wrap-json-body
                                           wrap-json-response]]
-            [ring.util.response :refer [response redirect not-found]]
+            [ring.util.response :refer [response redirect not-found file-response header]]
             [cemerick.friend :as friend]
             [cemerick.friend.openid :as openid]
             [taoensso.timbre :as timbre])
@@ -88,6 +88,12 @@
                                 (response info)
                                 (not-found "")))
                             (not-found "need to be localhost or have WEBmode enabled")))
+                        (GET "/download" []
+                          (if (not (:demoloader_disabled (db/get-config)))
+                            (if (empty? (:demoloader_baseurl (db/get-config)))
+                              (header (file-response demoid {:root (:demo_directory (db/get-config))}) "content-disposition" (str "attachment; filename=" demoid))
+                              (redirect (str (:demoloader_baseurl (db/get-config)) "/" demoid)))
+                            (not-found "404 demo downloads disabled")))
                         (authorize-admin
                           (POST "/notes" {body :body}
                             (response (db/set-demo-notes demoid (:notes body)))))))
