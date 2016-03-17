@@ -334,6 +334,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
             $scope.mapsWinConfig.xAxis.categories = [];
             $scope.roundsWinConfig.series[0].data = [];
             $scope.roundsWinConfig.series[1].data = [];
+            $scope.roundsWinConfig.xAxis.categories = [];
             for (var key in data) {
                 $scope.mapsWinConfig.xAxis.categories.push(key);
                 $scope.roundsWinConfig.xAxis.categories.push(key);
