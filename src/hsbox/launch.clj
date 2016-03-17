@@ -55,7 +55,8 @@
 (defn watch [demoid steamid round-number tick highlight]
   (let [demo (get stats/demos demoid)
         demo-path (db/demo-path demoid)
-        vdm-path (str (subs demo-path 0 (- (count demo-path) 4)) ".vdm")]
+        vdm-path (str (subs demo-path 0 (- (count demo-path) 4)) ".vdm")
+        play-path (if (:demowebmode (db/get-config)) (str "replays/" demoid) (db/demo-path demoid))]
     (if (nil? demo)
       ""
       (do
@@ -66,30 +67,32 @@
                      (+ (:tick round)
                         (stats/seconds-to-ticks 15 (:tickrate demo)))
                      tick)]
-          (when
-            (and (not (:vdm_enabled (db/get-config)))
-                 (file-exists? vdm-path)
-                 (generated-by-hsbox vdm-path))
-            (delete-vdm vdm-path))
-          (when (and
-                  (:vdm_enabled (db/get-config))
-                  (file-exists? demo-path)
-                  ; Don't rewrite the .vdm if not created by headshot box
-                  (or (not (file-exists? vdm-path))
-                      (generated-by-hsbox vdm-path)))
-            (if (#{"high" "low"} highlight)
-              (when (file-exists? vdm-path)
-                (delete-vdm vdm-path))
-              (do
-                (debug "Writing vdm file" vdm-path)
-                (spit vdm-path (generate-vdm (vdm-watch demo steamid tick
-                                                        (when round (+ (:tick_end round)
-                                                                       (stats/seconds-to-ticks 5 (:tickrate demo))))))))))
-          (when (:playdemo_kill_csgo (db/get-config))
-            (if (= os-name "windows")
-             (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
-             (clojure.java.shell/sh "killall" "-9" "csgo_linux")))
-          {:url (str "steam://rungame/730/" steamid "/+playdemo \"" demo-path
+          ; When running on a remote server VDM scripting is disabled and users get "replays/..." links
+          (when (not (:demowebmode (db/get-config)))
+            (when
+              (and (not (:vdm_enabled (db/get-config)))
+                   (file-exists? vdm-path)
+                   (generated-by-hsbox vdm-path))
+              (delete-vdm vdm-path))
+            (when (and
+                    (:vdm_enabled (db/get-config))
+                    (file-exists? demo-path)
+                    ; Don't rewrite the .vdm if not created by headshot box
+                    (or (not (file-exists? vdm-path))
+                        (generated-by-hsbox vdm-path)))
+              (if (and (#{"high" "low"} highlight))
+                (when (file-exists? vdm-path)
+                  (delete-vdm vdm-path))
+                (do
+                  (debug "Writing vdm file" vdm-path)
+                  (spit vdm-path (generate-vdm (vdm-watch demo steamid tick
+                                                          (when round (+ (:tick_end round)
+                                                                         (stats/seconds-to-ticks 5 (:tickrate demo))))))))))
+            (when (and (:playdemo_kill_csgo (db/get-config)))
+              (if (= os-name "windows")
+               (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
+             (clojure.java.shell/sh "killall" "-9" "csgo_linux"))))
+          {:url (str "steam://rungame/730/" steamid "/+playdemo \"" play-path
                      (when tick (str "@" tick)) "\" "
                      (when highlight steamid)
                      (when (= highlight "low") " lowlights"))})))))

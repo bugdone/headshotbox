@@ -79,14 +79,15 @@
                           (response (stats/get-demo-details demoid)))
                         (GET "/notes" []
                           (response {:notes (db/get-demo-notes demoid)}))
-                        (context "/watch" []
-                         (only-local
-                          (authorize-admin
-                            (POST "/" {{steamid :steamid round :round tick :tick highlight :highlight} :body}
-                              (let [info (launch/watch demoid (Long/parseLong steamid) round tick highlight)]
-                                (if info
-                                  (response info)
-                                  (not-found "")))))))
+                        (POST "/watch" {{steamid :steamid round :round tick :tick highlight :highlight} :body remote-addr :remote-addr}
+                          (if (or (local-address? remote-addr)
+                                  ; When running on a remote server VDM scripting is disabled and users get "replays/..." links
+                                  (:demowebmode (db/get-config)))
+                            (let [info (launch/watch demoid (Long/parseLong steamid) round tick highlight)]
+                              (if info
+                                (response info)
+                                (not-found "")))
+                            (not-found "need to be localhost or have WEBmode enabled")))
                         (authorize-admin
                           (POST "/notes" {body :body}
                             (response (db/set-demo-notes demoid (:notes body)))))))
