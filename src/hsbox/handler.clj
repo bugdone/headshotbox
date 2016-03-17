@@ -90,10 +90,12 @@
                             (not-found "need to be localhost or have WEBmode enabled")))
                         (GET "/download" []
                           (if (not (:demoloader_disabled (db/get-config)))
-                            (if (empty? (:demoloader_baseurl (db/get-config)))
-                              (header (file-response demoid {:root (:demo_directory (db/get-config))}) "content-disposition" (str "attachment; filename=" demoid))
-                              (redirect (str (:demoloader_baseurl (db/get-config)) "/" demoid)))
-                            (not-found "404 demo downloads disabled")))
+                            (if (db/demoid-present? demoid)
+                              (if (empty? (:demoloader_baseurl (db/get-config)))
+                                (response {:url (str "demoloader" "/" demoid)})
+                                (response {:url (str (:demoloader_baseurl (db/get-config)) "/" demoid)}))
+                              (not-found "404 demo not found"))
+                            (not-found "423 demoloader is disabled")))
                         (authorize-admin
                           (POST "/notes" {body :body}
                             (response (db/set-demo-notes demoid (:notes body)))))))
@@ -162,6 +164,12 @@
            (GET "/openid/logout" req
              (friend/logout* (redirect (str (:context req) "/"))))
            (context "/api" [] (api-handlers api-routes))
+           (GET "/demoloader/:demoid" [demoid]
+             (if (not (:demoloader_disabled (db/get-config)))
+               (if (db/demoid-present? demoid)
+                 (header (file-response (db/demo-path demoid)) "content-disposition" (str "attachment; filename=" demoid))
+                 (not-found "404 demo not found"))
+               (not-found "423 demoloader is disabled")))
            (wrap-not-modified (route/resources "/"))
            (route/not-found "Not Found"))
 
