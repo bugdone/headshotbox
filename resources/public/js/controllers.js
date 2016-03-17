@@ -645,7 +645,8 @@ hsboxControllers.controller('PlayerList', function ($scope, $http) {
     });
 });
 
-hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams) {
+hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams, watchDemo) {
+    $scope.watchDemo = watchDemo;
     demoid = $routeParams.demoid;
     $scope.playerName = function (player) {
         if (player == null)
