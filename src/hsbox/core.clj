@@ -3,6 +3,7 @@
             [hsbox.db :as db]
             [hsbox.version :as version]
             [hsbox.indexer :as indexer]
+            [hsbox.demo :refer [set-demoinfo-dir]]
             [hsbox.stats :as stats]
             [ring.adapter.jetty]
             [clojure.string :as string]
@@ -24,6 +25,7 @@
    [nil "--no-indexer" "Does not parse new demos from the demo directory"]
    [nil "--admin-steamid steamid64" "Changing settings and adding notes requires logging in with this steamid64"]
    [nil "--openid-realm url" "Realm url used by OpenID"]
+   [nil "--demoinfo-dir directory" "Directory where demoinfogo is located (default is current dir)"]
    ["-h" "--help"]
    ])
 
@@ -40,12 +42,15 @@
   (try
     (let [{:keys [options arguments errors summary]} (cli/parse-opts args cli-options)
           portable? (:portable options)
-          run-indexer? (not (:no-indexer options))]
+          run-indexer? (not (:no-indexer options))
+          demoinfo-dir (:demoinfo-dir options)]
       (cond (:help options) (exit 0 summary)
             errors (exit 1 (str summary (error-msg errors))))
 
       (when portable?
         (db/set-portable))
+      (when (not-empty demoinfo-dir)
+        (set-demoinfo-dir demoinfo-dir))
       (timbre/set-config! [:shared-appender-config :spit-filename] (File. db/app-config-dir "headshotbox.log"))
       (info "HeadshotBox" (version/get-version) (if portable? "portable" "")
             (if (not run-indexer?) "no indexer" ""))
