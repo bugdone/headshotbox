@@ -3,14 +3,21 @@
             [clojure.set :refer [subset? intersection]]
             [hsbox.steamapi :as steamapi]
             [hsbox.util :refer [current-timestamp]]
-            [hsbox.db :as db :refer [demo-path get-steam-api-key latest-data-version]]))
+            [hsbox.db :as db :refer [demo-path get-steam-api-key latest-data-version get-config update-config]]))
 
 (taoensso.timbre/refer-timbre)
 
 (def demos {})
 (def player-demos {})
+(def playerlist_mindemo_default 2)
 
 (defn seconds-to-ticks [seconds tickrate] (int (* seconds (/ 1 tickrate))))
+
+(defn get-min-demo-count []
+  (if (not (:playerlist_mindemo_count (get-config)))
+    ; if not set, initalize with the default to prefill the webUI
+    (update-config {:playerlist_mindemo_count playerlist_mindemo_default}))
+  (int (:playerlist_mindemo_count (get-config))))
 
 (defn enumerate [s]
   (map vector (range) s))
@@ -23,7 +30,7 @@
        (reduce-kv #(conj % {:steamid %2
                             :demos   (count %3)
                             :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
-       (filter #(> (:demos %) 1))
+       (filter #(> (:demos %) (- (get-min-demo-count) 1)))
        (sort #(compare (:demos %2) (:demos %)))
        (map #(assoc % :steamid (str (:steamid %))))))
 
