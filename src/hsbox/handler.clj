@@ -80,13 +80,13 @@
                         (GET "/notes" []
                           (response {:notes (db/get-demo-notes demoid)}))
                         (GET "/download" []
-                          (if (not (:demoloader_disabled (db/get-config)))
+                          (if (:demo_download_enabled (db/get-config))
                             (if (db/demoid-present? demoid)
-                              (if (empty? (:demoloader_baseurl (db/get-config)))
-                                (response {:url (str "demoloader" "/" demoid)})
-                                (response {:url (str (:demoloader_baseurl (db/get-config)) "/" demoid)}))
-                              (not-found "404 demo not found"))
-                            (not-found "423 demoloader is disabled")))
+                              (if (empty? (:demo_download_baseurl (db/get-config)))
+                                (response {:url (str "demo_download" "/" demoid)})
+                                (response {:url (str (:demo_download_baseurl (db/get-config)) "/" demoid)}))
+                              (not-found "demo not found"))
+                            (not-found "demo_download is not enabled")))
                         (context "/watch" []
                          (only-local
                           (authorize-admin
@@ -143,6 +143,10 @@
                                                   (if (re-matches (java.util.regex.Pattern/compile (str "htt.*://" (:server-name request) ".*")) (:realm @openid-settings)) 
                                                     true
                                                     false))
+                                                 :demoDownloadEnabled
+                                                 (if (:demo_download_enabled (db/get-config))
+                                                   true
+                                                   false)
                                                 }))
            (GET "/version" []
              (response {:current (version/get-version)
@@ -163,12 +167,12 @@
            (GET "/openid/logout" req
              (friend/logout* (redirect (str (:context req) "/"))))
            (context "/api" [] (api-handlers api-routes))
-           (GET "/demoloader/:demoid" [demoid]
-             (if (not (:demoloader_disabled (db/get-config)))
+           (GET "/demo_download/:demoid" [demoid]
+             (if (:demo_download_enabled (db/get-config))
                (if (db/demoid-present? demoid)
                  (header (file-response (db/demo-path demoid)) "content-disposition" (str "attachment; filename=" demoid))
-                 (not-found "404 demo not found"))
-               (not-found "423 demoloader is disabled")))
+                 (not-found "demo not found"))
+               (not-found "demo_download is not enabled")))
            (wrap-not-modified (route/resources "/"))
            (route/not-found "Not Found"))
 

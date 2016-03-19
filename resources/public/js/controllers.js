@@ -745,6 +745,7 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
 hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootScope) {
     $rootScope.isAuthorized = false;
     $rootScope.showLogin = true;
+    $rootScope.demoDownloadEnabled = false;
     $scope.active = 'player_list';
     $scope.version = '';
     $scope.newVersionAvailable = false;
@@ -763,6 +764,7 @@ hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootS
         $http.get(serverUrl + '/authorized').success(function(data) {
             $rootScope.isAuthorized = data.authorized;
             $rootScope.showLogin = data.showLogin;
+            $rootScope.demoDownloadEnabled = data.demoDownloadEnabled;
         });
     };
 

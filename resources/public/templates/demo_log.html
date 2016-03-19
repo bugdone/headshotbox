@@ -31,7 +31,7 @@
               <td>Watch
               </td>
               <td class="text-center">
-                <button type="button" class="btn btn-success btn-xs" ng-click="downloadDemo(demo.demoid)">
+                <button type="button" class="btn btn-success btn-xs" ng-click="downloadDemo(demo.demoid)" ng-if="demoDownloadEnabled">
                   <i class="fa fa-download"></i>
                 </button>
                 <button type="button" class="btn btn-success btn-xs" ng-click="watchDemo(demo.demoid, steamid, $index + 1)">
