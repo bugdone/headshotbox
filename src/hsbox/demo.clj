@@ -14,6 +14,7 @@
 (import Cstrike15Gcmessages$CDataGCCStrike15_v2_MatchInfo)
 (def MatchInfo (protodef Cstrike15Gcmessages$CDataGCCStrike15_v2_MatchInfo))
 (def PARSER-CACHE nil)
+(def demoinfo-dir-path (System/getProperty "user.dir"))
 
 (defn read-file [file-path]
   (with-open [reader (input-stream file-path)]
@@ -37,11 +38,17 @@
 (defn get-parser-cache []
   (get (System/getenv) "HEADSHOTBOX_PARSER_CACHE" PARSER-CACHE))
 
+(defn get-demoinfo-dir []
+  demoinfo-dir-path)
+
+(defn set-demoinfo-dir [dir]
+  (def demoinfo-dir-path dir))
+
 (defn parse-demo [path]
   (let [json-cache (get-parser-cache)
         json-path (str json-cache "/" (.getName (as-file path)) ".json")
         do-parse (fn []
-                   (let [proc (clojure.java.shell/sh (str (System/getProperty "user.dir") "/demoinfogo") path "-hsbox")]
+                   (let [proc (clojure.java.shell/sh (str (get-demoinfo-dir) "/demoinfogo") path "-hsbox")]
                      (assert (zero? (:exit proc)))
                      (:out proc)))]
     (if (nil? json-cache)
