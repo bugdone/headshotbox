@@ -78,7 +78,7 @@
           </td>
           <td class="text-center" ng-class="{green: round.won, red: !round.won}">{{round.won_str}}</td>
           <td class="text-center">
-            <button type="button" class="btn btn-success btn-xs" ng-click="downloadDemo(round.demoid)">
+            <button type="button" class="btn btn-success btn-xs" ng-click="downloadDemo(round.demoid)" ng-if="demoDownloadEnabled">
               <i class="fa fa-download"></i>
             </button>
             <button type="button" class="btn btn-success btn-xs" ng-click="watchDemo(round.demoid, round.steamid, round.round)">
