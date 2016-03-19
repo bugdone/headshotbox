@@ -703,6 +703,7 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
     $scope.steamApiCollapsed = true;
     $scope.demoDirectoryCollapsed = true;
     $scope.vdmCollapsed = true;
+    $scope.demowebmodeCollapsed = true;
     $scope.getSettings = function() {
         $http.get(serverUrl + '/config').success(function(data) {
             $scope.config = data;
