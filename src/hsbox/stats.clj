@@ -18,14 +18,18 @@
 (defn get-player-name-in-demo [steamid demo]
   (get-in demo [:players steamid :name]))
 
-(defn get-players []
-  (->> player-demos
-       (reduce-kv #(conj % {:steamid %2
-                            :demos   (count %3)
-                            :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
-       (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
-       (sort #(compare (:demos %2) (:demos %)))
-       (map #(assoc % :steamid (str (:steamid %))))))
+(defn get-players [offset limit]
+  (let [players (->> player-demos
+                     (reduce-kv #(conj % {:steamid %2
+                                          :demos   (count %3)
+                                          :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
+                     (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
+                     (sort #(compare (:demos %2) (:demos %))))]
+    {:player_count (count players)
+     :players      (->> players
+                        (drop offset)
+                        (take limit)
+                        (map #(assoc % :steamid (str (:steamid %)))))}))
 
 (defn get-maps-for-steamid [steamid]
   (set (map #(:map %) (vals (get player-demos steamid)))))

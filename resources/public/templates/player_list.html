@@ -23,5 +23,16 @@
         </td>
       </tr>
     </table>
+    <div class="text-center">
+      <pagination direction-links="false"
+                  boundary-links="true"
+                  boundary-link-numbers="true"
+                  total-items="playerCount"
+                  ng-model="currentPage"
+                  items-per-page="playersPerPage"
+                  max-size="10"
+                  rotate="true"
+                  ng-change="pageChanged()"></pagination>
+    </div>
   </div>
 </div>

@@ -140,8 +140,8 @@
            (GET "/version" []
              (response {:current (version/get-version)
                         :latest  @version/latest-version}))
-           (GET "/players" []
-             (response (stats/get-players))))
+           (GET "/players" [offset limit]
+             (response (stats/get-players (Long/parseLong offset) (Long/parseLong limit)))))
 
 (defn api-handlers [routes]
   (-> routes

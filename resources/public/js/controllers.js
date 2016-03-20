@@ -628,22 +628,30 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
 });
 
 hsboxControllers.controller('PlayerList', function ($scope, $http) {
-    $http.get(serverUrl + '/players').success(function (data) {
-        $scope.players = data;
-        $scope.orderPlayers = '-demos';
-        var steamIds = $scope.players.map(function(p) { return p.steamid; });
-        var url = getPlayerSummaries(steamIds);
-        $http.get(url).success(function (response) {
-            for (var i in $scope.players) {
-                player = $scope.players[i];
-                if (response[player.steamid]) {
-                    player.avatar = response[player.steamid].avatar;
-                    player.last_rank = response[player.steamid].last_rank;
-                    player.personaname = response[player.steamid].personaname;
+    $scope.playerCount = 0;
+    $scope.currentPage = 1;
+    $scope.playersPerPage = 50;
+    $scope.pageChanged = function() {
+        $http.get(serverUrl + '/players', {params: {offset: ($scope.currentPage - 1) * $scope.playersPerPage,
+                                                    limit: $scope.playersPerPage}}).success(function (data) {
+            $scope.players = data.players;
+            $scope.playerCount = data.player_count;
+            $scope.orderPlayers = '-demos';
+            var steamIds = $scope.players.map(function(p) { return p.steamid; });
+            var url = getPlayerSummaries(steamIds);
+            $http.get(url).success(function (response) {
+                for (var i in $scope.players) {
+                    player = $scope.players[i];
+                    if (response[player.steamid]) {
+                        player.avatar = response[player.steamid].avatar;
+                        player.last_rank = response[player.steamid].last_rank;
+                        player.personaname = response[player.steamid].personaname;
+                    }
                 }
-            }
+            });
         });
-    });
+    };
+    $scope.pageChanged();
 });
 
 hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams, watchDemo) {
