@@ -27,6 +27,7 @@
 
 (def db nil)
 (def db-lock (Object.))
+(def config (atom nil))
 
 (defmacro with-db-transaction [& body]
   `(locking db-lock
@@ -64,7 +65,9 @@
 (defn get-current-schema-version [] (get-meta-value "schema_version"))
 
 (defn get-config []
-  (get-meta-value "config"))
+  (when (nil? @config)
+    (reset! config (get-meta-value "config")))
+  @config)
 
 (defn half-parsed-demo? [{:keys [score rounds players]}]
   (let [score1 (first (:score score))
@@ -148,7 +151,8 @@
 
 (defn set-config [dict]
   (with-db-transaction
-    (jdbc/execute! db ["UPDATE meta SET value=? WHERE key=?" (json/write-str dict) "config"])))
+    (jdbc/execute! db ["UPDATE meta SET value=? WHERE key=?" (json/write-str dict) "config"]))
+  (reset! config dict))
 
 (defn update-config [dict]
   (set-config (merge (get-config) dict)))

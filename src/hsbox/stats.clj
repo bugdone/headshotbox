@@ -3,7 +3,7 @@
             [clojure.set :refer [subset? intersection]]
             [hsbox.steamapi :as steamapi]
             [hsbox.util :refer [current-timestamp]]
-            [hsbox.db :as db :refer [demo-path get-steam-api-key latest-data-version]]))
+            [hsbox.db :as db :refer [demo-path get-steam-api-key latest-data-version get-config]]))
 
 (taoensso.timbre/refer-timbre)
 
@@ -23,7 +23,7 @@
        (reduce-kv #(conj % {:steamid %2
                             :demos   (count %3)
                             :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
-       (filter #(> (:demos %) 1))
+       (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
        (sort #(compare (:demos %2) (:demos %)))
        (map #(assoc % :steamid (str (:steamid %))))))
 
