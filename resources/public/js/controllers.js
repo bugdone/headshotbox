@@ -231,6 +231,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
                         if ($scope.theDemo.teams.hasOwnProperty(key)) {
                             $scope.theDemo.teams[key].forEach(function (p) {
                                 p.kdd = p.kills - p.deaths;
+                                p.adr = p.damage / p.rounds_with_damage_info;
                                 if (!$scope.steamAccounts[p.steamid])
                                     missingPlayers[missingPlayers.length] = p.steamid;
                             });
