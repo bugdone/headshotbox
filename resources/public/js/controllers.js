@@ -172,6 +172,9 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
         });
     };
 
+    $scope.makeNotesVisible = function() {
+        $scope.notesVisible = true;
+    };
     $scope.resetNotesControls = function() {
         $scope.notesControls = {'demoNotesInput': '', 'demoNotesView': ''};
     };
@@ -205,12 +208,15 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
     $scope.doMakeVisible = function(demoid, round) {
         $scope.resetNotesControls();
         $scope.visibleDemo = demoid;
+        $scope.notesVisible = false;
         $scope.theDemo = $scope.demoStats[demoid];
         $scope.visibleRound = round;
         $http.get(serverUrl + '/demo/' + demoid + '/notes').success(function (response) {
             if ($scope.visibleDemo == demoid) {
                 $scope.demoStats[$scope.visibleDemo].notes = response.notes;
                 $scope.notesControls['demoNotesInput'] = response.notes;
+                if (response.notes)
+                    $scope.notesVisible = true;
                 setTimeout(function(){
                     $scope.updateDemoNotesView();
                 }, 100);
