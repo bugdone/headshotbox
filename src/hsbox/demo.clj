@@ -46,7 +46,7 @@
         json-path (str json-cache "/" (.getName (as-file path)) ".json")
         do-parse (fn []
                    (let [proc (clojure.java.shell/sh (str demoinfo-dir-path "/demoinfogo") path "-hsbox")]
-                     (assert (zero? (:exit proc)))
+                     (assert (zero? (:exit proc)) (:err proc))
                      (:out proc)))]
     (if (nil? json-cache)
       (do-parse)
