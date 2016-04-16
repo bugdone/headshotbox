@@ -371,7 +371,7 @@
        (map append-demo-stats)
        (map (append-ban-info steamid))
        (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills
-                     :1v1_attempted :1v1_won :weapons :tied :won :lost))
+                     :1v1_attempted :1v1_won :weapons :tied :won :lost :player_slots))
        (map #(assoc % :path (demo-path (:demoid %))))))
 
 (defn kw-long-to-str [dict path]
