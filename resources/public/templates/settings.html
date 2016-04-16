@@ -84,7 +84,7 @@
             <h4>Demo Playback</h4>
             <div class="form-group input-group">
               <span class="input-group-addon"><input type="checkbox" ng-model="config.demowebmode"></span>
-              <span class="form-control">Run in WEB-mode (for Servers)</span>
+              <span class="form-control">Run in web mode</span>
               <span class="input-group-addon" id="demowebmode-help">
                 <button type="button"
                         class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
@@ -94,11 +94,10 @@
             </div>
             <div collapse="demowebmodeCollapsed">
               <div class="well well-lg text-left">
-                If you are running Headshotbox on a public server enabling this setting will allow the <em>watch</em> links to work.<br />
-                -> This expects the user to <em>download</em> the demo and save it to the <em>CSGO/replays</em> folder.<br />
-                <i>(SteamApps\common\Counter-Strike Global Offensive\csgo\replays)</i><br />
+                If you are running HeadshotBox on a public server enabling this setting will allow the <em>watch</em> links to work.<br />
+                This expects the user to <em>download</em> the demo and save it to the <em>csgo/replays</em> folder.<br />
                 <br />
-                <b>This will also disable the VDM scripting below as these files are not downloaded by the user.</b>
+                This will also disable the VDM scripting below as these files are not downloaded by the user.
               </div>
             </div>
 
@@ -155,7 +154,7 @@
             <h4>Demo Downloads</h4>
             <div class="form-group input-group">
               <span class="input-group-addon"><input type="checkbox" ng-model="config.demo_download_enabled"></span>
-              <span class="form-control">Enable demo downloads.</span>
+              <span class="form-control">Enable</span>
             </div>
 
             <div class="form-group input-group">
@@ -174,10 +173,11 @@
             </div>
             <div collapse="demoloaderBaseurlCollapsed">
               <div class="well well-lg text-left">
-                <h4>Optional!</h4>
-                When empty download-requests are handled directly by Headshotbox.<br />
-                If set download-requests can be redirected to an external host.<br />
-                In this case the demo filename is appended like <b>http://cache.domain.tld/demos/</b>match_[...].dem
+                If set, download requests are redirected to an alternative host.<br/>
+                Eg. If the alternative host is set to <em>http://cache.domain.tld/demos</em> and the demo path relative to the demo directory is <em>demo.dem</em>,
+                the download link will point to <em>http://cache.domain.tld/demos/demo.dem</em><br/>
+                <br/>
+                When unset, download requests are handled directly by HeadshotBox.
               </div>
             </div>
 
