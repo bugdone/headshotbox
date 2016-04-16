@@ -13,13 +13,15 @@
   (.startsWith (slurp vdm-path) HEADSHOTBOX-WATERMARK))
 
 (defn vdm-watch [demo steamid tick & [tick-end]]
-  (let [user-id (get (:player_slots demo) steamid)
+  (let [user-id (get (:player_slots demo) steamid 0)
         cfg (:vdm_cfg (db/get-config))
-        commands [{:factory  "PlayCommands"
-                   :tick     (or tick 0)
-                   :commands (str "spec_player " (inc user-id))}]
+        commands []
         append-maybe (fn [x pred xs] (if pred (conj x xs) x))]
     (-> commands
+        (append-maybe (:player_slots demo)
+                      {:factory  "PlayCommands"
+                       :tick     (or tick 0)
+                       :commands (str "spec_player " (inc user-id))})
         (append-maybe (not (empty? cfg))
                       {:factory  "PlayCommands"
                        :tick     (or tick 0)
