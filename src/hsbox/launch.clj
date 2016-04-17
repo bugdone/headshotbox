@@ -54,11 +54,11 @@
   (debug "Deleting vdm file" vdm-path)
   (io/delete-file vdm-path true))
 
-(defn watch [demoid steamid round-number tick highlight]
+(defn watch [local? demoid steamid round-number tick highlight]
   (let [demo (get stats/demos demoid)
         demo-path (db/demo-path demoid)
         vdm-path (str (subs demo-path 0 (- (count demo-path) 4)) ".vdm")
-        play-path (if (:demowebmode (db/get-config)) (str "replays/" demoid) (db/demo-path demoid))]
+        play-path (if local? (db/demo-path demoid) (str "replays/" demoid))]
     (if (nil? demo)
       ""
       (do
@@ -69,8 +69,8 @@
                      (+ (:tick round)
                         (stats/seconds-to-ticks 15 (:tickrate demo)))
                      tick)]
-          ; When running on a remote server VDM scripting is disabled and users get "replays/..." links
-          (when (not (:demowebmode (db/get-config)))
+          ; VDM works only with local requests
+          (when local?
             (when
               (and (not (:vdm_enabled (db/get-config)))
                    (file-exists? vdm-path)

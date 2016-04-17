@@ -96,19 +96,17 @@
               <div class="well well-lg text-left">
                 If you are running HeadshotBox on a public server enabling this setting will allow the <em>watch</em> links to work.<br />
                 This expects the user to <em>download</em> the demo and save it to the <em>csgo/replays</em> folder.<br />
-                <br />
-                This will also disable the VDM scripting below as these files are not downloaded by the user.
               </div>
             </div>
 
             <div class="form-group input-group">
-              <span class="input-group-addon"><input type="checkbox" ng-model="config.playdemo_kill_csgo" ng-disabled="config.demowebmode"></span>
-              <span class="form-control" ng-disabled="config.demowebmode">Kill CSGO if running before playing a demo</span>
+              <span class="input-group-addon"><input type="checkbox" ng-model="config.playdemo_kill_csgo"></span>
+              <span class="form-control">Kill CSGO if running before playing a demo</span>
             </div>
 
             <div class="form-group input-group">
-              <span class="input-group-addon"><input type="checkbox" ng-model="config.vdm_enabled" ng-disabled="config.demowebmode"></span>
-              <span class="form-control" ng-disabled="config.demowebmode">Enable VDM scripting</span>
+              <span class="input-group-addon"><input type="checkbox" ng-model="config.vdm_enabled"></span>
+              <span class="form-control">Enable VDM scripting</span>
               <span class="input-group-addon" id="vdm-help">
                 <button type="button"
                         class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
@@ -136,16 +134,16 @@
             </div>
 
             <div class="form-group input-group">
-              <span class="input-group-addon" ng-disabled="!config.vdm_enabled || config.demowebmode">cfg to execute</span>
+              <span class="input-group-addon" ng-disabled="!config.vdm_enabled">cfg to execute</span>
               <input type="text"
                      class="form-control"
                      ng-model="config.vdm_cfg"
-                     ng-disabled="!config.vdm_enabled || config.demowebmode">
+                     ng-disabled="!config.vdm_enabled">
             </div>
 
             <div class="form-group input-group">
-              <span class="input-group-addon"><input type="checkbox" ng-model="config.vdm_quit_after_playback" ng-disabled="!config.vdm_enabled || config.demowebmode"></span>
-              <span class="form-control" ng-disabled="!config.vdm_enabled || config.demowebmode">Quit on round end</span>
+              <span class="input-group-addon"><input type="checkbox" ng-model="config.vdm_quit_after_playback" ng-disabled="!config.vdm_enabled"></span>
+              <span class="form-control" ng-disabled="!config.vdm_enabled">Quit on round end</span>
               </span>
             </div>
 

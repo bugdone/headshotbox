@@ -81,9 +81,9 @@
                           (response {:notes (db/get-demo-notes demoid)}))
                         (POST "/watch" {{steamid :steamid round :round tick :tick highlight :highlight} :body remote-addr :remote-addr}
                           (if (or (local-address? remote-addr)
-                                  ; When running on a remote server VDM scripting is disabled and users get "replays/..." links
+                                  ; When running on a remote server users get "replays/..." links
                                   (:demowebmode (db/get-config)))
-                            (let [info (launch/watch demoid (Long/parseLong steamid) round tick highlight)]
+                            (let [info (launch/watch (local-address? remote-addr) demoid (Long/parseLong steamid) round tick highlight)]
                               (if info
                                 (response info)
                                 (not-found "")))
