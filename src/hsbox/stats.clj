@@ -65,13 +65,10 @@
       (sort #(compare (:demos %2) (:demos %))))))
 
 (defn add-demo [demo]
-  (if (not (or (empty? (:rounds demo)) (empty? (:players demo))))
-    (do
-      ; TODO use atom
-      (def hsbox.stats/demos (assoc demos (:demoid demo) demo))
-      (doseq [steamid (keys (:players demo))]
-        (def hsbox.stats/player-demos (assoc-in player-demos [steamid (:demoid demo)] demo))))
-    (warn "Demo" (:demoid demo) "has" (count (:rounds demo)) "rounds and" (count (:players demo)) "players")))
+  ; TODO use atom
+  (def hsbox.stats/demos (assoc demos (:demoid demo) demo))
+  (doseq [steamid (keys (:players demo))]
+    (def hsbox.stats/player-demos (assoc-in player-demos [steamid (:demoid demo)] demo))))
 
 (defn del-demo [demoid]
   (let [demo (get demos demoid)]
@@ -143,7 +140,7 @@
     (:deaths round)))
 
 (defn build-clutch-round-fn [enemies exact-enemies? won?]
-  (fn [round steamid demo]
+  (fn [round steamid]
     (let [deaths (deaths-until-round-end round)
           player-team (team-number steamid round)
           player-death (split-with #(not= (:victim %) steamid) deaths)
@@ -162,8 +159,6 @@
                                 (assoc stats :kills-this-round 0 :players (:players round))
                                 (:deaths round))
           multikills (:kills-this-round updated-stats)
-          ; Super lame hax horrible code the wurst (somewhat better now)
-          demo {:demoid (:demoid stats)}
           first-death (first (:deaths round))
           first-dead (= steamid (:victim first-death))
           first-killer (= steamid (:attacker first-death))
@@ -183,8 +178,8 @@
             (inc-stat-maybe :entry_kills (and is-t first-killer))
             (inc-stat-maybe :open_kills_attempted (or first-dead first-killer))
             (inc-stat-maybe :open_kills first-killer)
-            (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round steamid demo))
-            (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round steamid demo)))))
+            (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round steamid))
+            (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round steamid)))))
     stats))
 
 (defn demo-outcome [demo steamid]
@@ -372,7 +367,7 @@
        (map (append-ban-info steamid))
        (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills
                      :1v1_attempted :1v1_won :weapons :tied :won :lost :player_slots))
-       (map #(assoc % :path (demo-path (:demoid %))))))
+       (map #(assoc % :path (demo-path (:path %))))))
 
 (defn kw-long-to-str [dict path]
   (assoc-in dict path (into {} (for [[k v] (get-in dict path)] [(str k) v]))))
@@ -394,7 +389,7 @@
                                (kw-long-to-str [:players])
                                (assoc :deaths (map convert-death-steamid (:deaths %))))
                           (:rounds demo))
-             :path (demo-path demoid)))))
+             :path (demo-path (:path demo))))))
 
 (defn get-demo-stats [demoid]
   (let [demo (get demos demoid)]
@@ -408,7 +403,7 @@
            (group-by #(:team %))
            (assoc (select-keys demo [:score :winner :surrendered :detailed_score :timestamp :duration :map :type :demoid]) :teams))
       (merge {:rounds (map #(select-keys % [:tick]) (:rounds demo))
-              :path   (demo-path demoid)}))))
+              :path   (demo-path (:path demo))}))))
 
 ; Search round
 
@@ -505,7 +500,7 @@
                                      :won (= (team-number steamid %) (:winner %))
                                      :side (get {2 "T" 3 "CT"} (team-number steamid %))
                                      :kills (map make-kill-obj (round-kills % steamid demo))
-                                     :path (demo-path (:demoid demo))))
+                                     :path (demo-path (:path demo))))
          filtered-rounds)))
 
 (defn replace-aliases [s]

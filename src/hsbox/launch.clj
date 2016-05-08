@@ -1,6 +1,6 @@
 (ns hsbox.launch
   (:require [hsbox.stats :as stats])
-  (:require [hsbox.util :refer [file-exists?]])
+  (:require [hsbox.util :refer [file-exists? file-name]])
   (:require [hsbox.db :as db])
   (:require [hsbox.version :refer [os-name]])
   (:require [clojure.java.io :as io]))
@@ -56,9 +56,9 @@
 
 (defn watch [local? demoid steamid round-number tick highlight]
   (let [demo (get stats/demos demoid)
-        demo-path (db/demo-path demoid)
+        demo-path (db/demo-path (:path demo))
         vdm-path (str (subs demo-path 0 (- (count demo-path) 4)) ".vdm")
-        play-path (if local? (db/demo-path demoid) (str "replays/" demoid))]
+        play-path (if local? demo-path (str "replays/" (file-name demo-path)))]
     (if (nil? demo)
       ""
       (do

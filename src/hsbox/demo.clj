@@ -32,9 +32,6 @@
         (protobuf-load MatchInfo (read-file mm-info-path)))
       {})))
 
-(defn get-demo-id [path]
-  (.getName (clojure.java.io/file path)))
-
 (defn get-parser-cache []
   (get (System/getenv) "HEADSHOTBOX_PARSER_CACHE" PARSER-CACHE))
 

@@ -26,7 +26,15 @@
                       (let [entry (first (filter #(= (:path (val %)) (get-Path path)) k))]
                         (if (nil? entry)
                           k
-                          (dissoc k (key entry)))))))
+                          (do
+                            (.cancel (key entry))
+                            (dissoc k (key entry))))))))
+
+(defn unregister-all []
+  (swap! watch-keys (fn [wk]
+                      (do
+                        (map #(.cancel (first %)) wk)
+                        {}))))
 
 (defn watch []
   (while true
@@ -42,5 +50,5 @@
                             str)]
               ((:callback info) path kind))))
         (when (not (.reset key))
-          (warn "Not watching path anymore" (:path info))
+          (debug "Not watching path anymore" (:path info))
           (unregister (str (:path info))))))))

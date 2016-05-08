@@ -72,34 +72,34 @@
                             (response (stats/get-maps-for-steamid steamid))))))
 
            (context "/demo/:demoid" [demoid]
-             (defroutes demo-routes
-                        (GET "/stats" []
-                          (response (stats/get-demo-stats demoid)))
-                        (GET "/details" []
-                          (response (stats/get-demo-details demoid)))
-                        (GET "/notes" []
-                          (response {:notes (db/get-demo-notes demoid)}))
-                        (POST "/watch" {{steamid :steamid round :round tick :tick highlight :highlight} :body remote-addr :remote-addr}
-                          (if (or (local-address? remote-addr)
-                                  ; When running on a remote server users get "replays/..." links
-                                  (:demowebmode (db/get-config)))
-                            (let [info (launch/watch (local-address? remote-addr) demoid (Long/parseLong steamid) round tick highlight)]
-                              (if info
-                                (response info)
-                                (not-found "")))
-                            (not-found "need to be localhost or have WEBmode enabled")))
-                        (GET "/download" []
-                          (if (:demo_download_enabled (db/get-config))
-                            (if (db/demoid-present? demoid)
-
-                              (if (empty? (:demo_download_baseurl (db/get-config)))
-                                (response {:url (str "demo_download" "/" demoid)})
-                                (response {:url (str (:demo_download_baseurl (db/get-config)) "/" demoid)}))
-                              (not-found "demo not found"))
-                            (not-found "demo_download is not enabled")))
-                        (authorize-admin
-                          (POST "/notes" {body :body}
-                            (response (db/set-demo-notes demoid (:notes body)))))))
+             (let [demoid (Long/parseLong demoid)]
+               (defroutes demo-routes
+                          (GET "/stats" []
+                            (response (stats/get-demo-stats demoid)))
+                          (GET "/details" []
+                            (response (stats/get-demo-details demoid)))
+                          (GET "/notes" []
+                            (response {:notes (db/get-demo-notes demoid)}))
+                          (POST "/watch" {{steamid :steamid round :round tick :tick highlight :highlight} :body remote-addr :remote-addr}
+                            (if (or (local-address? remote-addr)
+                                    ; When running on a remote server users get "replays/..." links
+                                    (:demowebmode (db/get-config)))
+                              (let [info (launch/watch (local-address? remote-addr) demoid (Long/parseLong steamid) round tick highlight)]
+                                (if info
+                                  (response info)
+                                  (not-found "")))
+                              (not-found "need to be localhost or have WEBmode enabled")))
+                          (GET "/download" []
+                            (if (:demo_download_enabled (db/get-config))
+                              (if (db/demoid-present? demoid)
+                                (if (empty? (:demo_download_baseurl (db/get-config)))
+                                  (response {:url (str "demo_download" "/" demoid)})
+                                  (response {:url (str (:demo_download_baseurl (db/get-config)) "/"
+                                                       (get-in stats/demos [demoid :path]))})))
+                              (not-found "demo_download is not enabled")))
+                          (authorize-admin
+                            (POST "/notes" {body :body}
+                              (response (db/set-demo-notes demoid (:notes body))))))))
            (GET "/round/search" req
              (response (stats/search-rounds (get-in req [:params :search-string]) (parse-filters (get req :params)))))
            (GET "/steamids/info" [steamids]
@@ -171,9 +171,13 @@
            (context "/api" [] (api-handlers api-routes))
            (GET "/demo_download/:demoid" [demoid]
              (if (:demo_download_enabled (db/get-config))
-               (if (db/demoid-present? demoid)
-                 (header (file-response (db/demo-path demoid)) "content-disposition" (str "attachment; filename=" demoid))
-                 (not-found "demo not found"))
+               (let [demoid (Long/parseLong demoid)]
+                 (if (db/demoid-present? demoid)
+                   (let [abs-path (db/demo-path (get-in stats/demos [demoid :path]))]
+                     (header (file-response abs-path)
+                             "content-disposition" (str "attachment; filename="
+                                                        (hsbox.util/file-name abs-path))))
+                   (not-found "demo not found")))
                (not-found "demo_download is not enabled")))
            (wrap-not-modified (route/resources "/"))
            (route/not-found "Not Found"))

@@ -66,7 +66,8 @@
         (db/keep-only (->> (db/get-demo-directory)
                            (clojure.java.io/as-file)
                            file-seq
-                           (map #(.getName %)))))
+                           (map #(db/get-relative-path %))
+                           (filter #(.endsWith % ".dem")))))
       (stats/init-cache)
       (future (stats/update-players-steam-info))
       (when run-indexer?
