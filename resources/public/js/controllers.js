@@ -781,6 +781,22 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
     };
 });
 
+function cmpVersions(a, b) {
+    var i, diff;
+    var regExStrip0 = /(\.0+)+$/;
+    var segmentsA = a.replace(regExStrip0, '').split('.');
+    var segmentsB = b.replace(regExStrip0, '').split('.');
+    var l = Math.min(segmentsA.length, segmentsB.length);
+
+    for (i = 0; i < l; i++) {
+        diff = parseInt(segmentsA[i], 10) - parseInt(segmentsB[i], 10);
+        if (diff) {
+            return diff;
+        }
+    }
+    return segmentsA.length - segmentsB.length;
+}
+
 hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootScope) {
     $rootScope.isAuthorized = false;
     $rootScope.showLogin = true;
@@ -791,7 +807,7 @@ hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootS
     $scope.checkVersion = function($scope) {
         $http.get(serverUrl + '/version').success(function(data) {
             $scope.version = data.current;
-            if (data.current != data.latest)
+            if (cmpVersions(data.current, data.latest) < 0)
                 $scope.newVersionAvailable = true;
         });
     };
