@@ -134,6 +134,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
     $scope.downloadDemo = downloadDemo;
     $scope.playerMaps = [];
     $scope.playerTeammates = [];
+    $scope.folders = [];
     $scope.banned = []
     $scope.filteredBanned = [];
     $scope.opponentsOnly = true;
@@ -314,6 +315,13 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
         if ($changed)
             filtersChanged($scope, $http);
     });
+
+    $scope.setFolder = function(folder) {
+        if ($scope.filterDemos.folder == folder)
+            return;
+        $scope.filterDemos.folder = folder;
+        filtersChanged($scope, $http);
+    };
 
     $scope.setTabLoaded = function($content) {
         $scope.tabs[$content].status = 'loaded';
@@ -633,15 +641,22 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
         if (!$scope.$$phase)
             $scope.$apply();
     });
+    $http.get(serverUrl + '/folders').success(function(data) {
+        $scope.folders = data;
+    });
 });
 
 hsboxControllers.controller('PlayerList', function ($scope, $http) {
     $scope.playerCount = 0;
     $scope.currentPage = 1;
     $scope.playersPerPage = 50;
+    $scope.folders = [];
+    $scope.folder = null;
     $scope.pageChanged = function() {
-        $http.get(serverUrl + '/players', {params: {offset: ($scope.currentPage - 1) * $scope.playersPerPage,
-                                                    limit: $scope.playersPerPage}}).success(function (data) {
+        $http.get(serverUrl + '/players', {params: {
+            folder: $scope.folder,
+            offset: ($scope.currentPage - 1) * $scope.playersPerPage,
+            limit: $scope.playersPerPage}}).success(function (data) {
             $scope.players = data.players;
             $scope.playerCount = data.player_count;
             $scope.orderPlayers = '-demos';
@@ -660,6 +675,13 @@ hsboxControllers.controller('PlayerList', function ($scope, $http) {
         });
     };
     $scope.pageChanged();
+    $http.get(serverUrl + '/folders').success(function(data) {
+        $scope.folders = data;
+    });
+    $scope.setFolder = function(folder) {
+        $scope.folder = folder;
+        $scope.pageChanged();
+    };
 });
 
 hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams, watchDemo, downloadDemo) {

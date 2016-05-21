@@ -36,3 +36,13 @@
     </div>
   </div>
 </div>
+<div class="col-md-3">
+  <div class="form-group btn-group dropdown inline">
+    <button type="button" class="btn btn-default dropdown-toggle no-bg">
+      Folder: {{folder ? folder : "ALL"}} <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li ng-repeat="folder in folders"><a ng-click="setFolder(folder)">{{folder ? folder : "ALL"}}</a></li>
+    </ul>
+  </div>
+</div>

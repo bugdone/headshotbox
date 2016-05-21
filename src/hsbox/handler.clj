@@ -26,9 +26,10 @@
   (when (and (not-empty openid-realm) (not-empty admin-steamid))
     (swap! openid-settings #(assoc % :realm openid-realm :steamid admin-steamid))))
 
-(defn parse-filters [{:keys [startDate endDate demoType mapName teammates rounds]}]
+(defn parse-filters [{:keys [startDate endDate demoType mapName teammates rounds folder]}]
   {:start-date (if (nil? startDate) nil (Long/parseLong startDate))
    :end-date   (if (nil? endDate) nil (Long/parseLong endDate))
+   :folder     folder
    :demo-type  demoType
    :map-name   mapName
    :rounds     (if (nil? rounds) nil (clojure.string/lower-case rounds))
@@ -153,8 +154,10 @@
            (GET "/version" []
              (response {:current (version/get-version)
                         :latest  @version/latest-version}))
-           (GET "/players" [offset limit]
-             (response (stats/get-players (Long/parseLong offset) (Long/parseLong limit)))))
+           (GET "/folders" []
+             (response (stats/get-folders)))
+           (GET "/players" [folder offset limit]
+             (response (stats/get-players folder (Long/parseLong offset) (Long/parseLong limit)))))
 
 (defn api-handlers [routes]
   (-> routes

@@ -3,6 +3,7 @@
             [clojure.set :refer [subset? intersection]]
             [hsbox.steamapi :as steamapi]
             [hsbox.util :refer [current-timestamp]]
+            [clojure.java.io :refer [as-file]]
             [hsbox.db :as db :refer [demo-path get-steam-api-key latest-data-version get-config]]))
 
 (taoensso.timbre/refer-timbre)
@@ -18,10 +19,13 @@
 (defn get-player-name-in-demo [steamid demo]
   (get-in demo [:players steamid :name]))
 
-(defn get-players [offset limit]
-  (let [players (->> player-demos
+(defn get-players [folder offset limit]
+  (let [folder-filtered (fn [m] (if (nil? folder)
+                                  m
+                                  (select-keys m (for [[k v] m :when (.startsWith (:path v) folder)] k))))
+        players (->> player-demos
                      (reduce-kv #(conj % {:steamid %2
-                                          :demos   (count %3)
+                                          :demos   (count (folder-filtered %3))
                                           :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
                      (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
                      (sort #(compare (:demos %2) (:demos %))))]
@@ -57,7 +61,7 @@
 
 (defn get-teammates-for-steamid [steamid]
   (letfn [(update-teammates [teammates demo]
-                            (reduce #(assoc % %2 (inc (get % %2 0))) teammates (get-teammates demo steamid)))]
+            (reduce #(assoc % %2 (inc (get % %2 0))) teammates (get-teammates demo steamid)))]
     (->>
       (reduce #(update-teammates % %2) {} (vals (get player-demos steamid)))
       (map #(hash-map :steamid (str (key %)) :demos (val %) :name (get-player-latest-name (key %))))
@@ -233,8 +237,9 @@
   (-> (update-stats-with-demo (initial-stats steamid) demo)
       (cleanup-stats)))
 
-(defn filter-demos [steamid {:keys [demo-type start-date end-date map-name teammates]} demos]
+(defn filter-demos [steamid {:keys [folder demo-type start-date end-date map-name teammates]} demos]
   (filter #(and
+            (if folder (.startsWith (:path %) folder) true)
             (if (contains? (-> latest-data-version keys set) demo-type) (= demo-type (:type %)) true)
             (if map-name (= (:map %) map-name) true)
             (if start-date (>= (:timestamp %) start-date) true)
@@ -504,7 +509,7 @@
          filtered-rounds)))
 
 (defn replace-aliases [s]
-  (reduce #(str/replace % (first %2) (second %2)) s {"kqly"   "jump"
+  (reduce #(str/replace % (first %2) (second %2)) s {"kqly"     "jump"
                                                      "ace"      "5k"
                                                      "juandeag" "deaglehs"}))
 
@@ -548,6 +553,9 @@
 ;    (mapcat #(:deaths %))
 ;    (map #(:weapon %))
 ;    (set)))
+
+(defn get-folders []
+  (sort (set (map #(-> (second %) (:path) (as-file) (.getParent)) demos))))
 
 (defn init-cache []
   (doseq [demo (db/get-all-demos)]
