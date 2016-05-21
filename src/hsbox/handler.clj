@@ -48,8 +48,8 @@
 (defn authorize-admin [handler]
   (fn [request]
     (if (empty? @openid-settings)
-     (handler request)
-     ((friend/wrap-authorize handler #{::admin}) request))))
+      (handler request)
+      ((friend/wrap-authorize handler #{::admin}) request))))
 
 (defroutes api-routes
            (context "/player/:steamid" [steamid]
@@ -125,32 +125,28 @@
            (context "/config" []
              (authorize-admin
                (defroutes config-routes
-                         (GET "/" []
-                           (response (db/get-config)))
-                         (POST "/" {config :body}
-                           (indexer/set-config config)
-                           (response "ok")))))
+                          (GET "/" []
+                            (response (db/get-config)))
+                          (POST "/" {config :body}
+                            (indexer/set-config config)
+                            (response "ok")))))
            (context "/vdm" []
              (only-local
-              (authorize-admin
-                (DELETE "/" []
-                  (launch/delete-generated-files)
-                  (response "ok")))))
-           (GET "/authorized" request (response {:authorized
-                                                 (if (empty? @openid-settings)
-                                                   true
-                                                   (friend/authorized? #{::admin} (friend/identity request)))
-                                                 :showLogin 
-                                                 (if (empty? @openid-settings)
-                                                  false
-                                                  (if (re-matches (java.util.regex.Pattern/compile (str "htt.*://" (:server-name request) ".*")) (:realm @openid-settings)) 
-                                                    true
-                                                    false))
-                                                 :demoDownloadEnabled
-                                                 (if (:demo_download_enabled (db/get-config))
-                                                   true
-                                                   false)
-                                                }))
+               (authorize-admin
+                 (DELETE "/" []
+                   (launch/delete-generated-files)
+                   (response "ok")))))
+           (GET "/authorized" request
+             (response {:authorized
+                        (if (empty? @openid-settings)
+                          true
+                          (friend/authorized? #{::admin} (friend/identity request)))
+                        :showLogin
+                        (if (empty? @openid-settings)
+                          false
+                          (re-matches (java.util.regex.Pattern/compile (str "htt.*://" (:server-name request) ".*")) (:realm @openid-settings)))
+                        :demoDownloadEnabled
+                        (:demo_download_enabled (db/get-config))}))
            (GET "/version" []
              (response {:current (version/get-version)
                         :latest  @version/latest-version}))
