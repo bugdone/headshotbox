@@ -23,3 +23,6 @@
 
 (defn file-name [path]
   (.getName (clojure.java.io/as-file path)))
+
+(defn get-canonical-path [path]
+  (.getCanonicalPath (as-file path)))

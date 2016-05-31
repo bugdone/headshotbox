@@ -3,8 +3,7 @@
             [clojure.set :refer [subset? intersection]]
             [hsbox.steamapi :as steamapi]
             [hsbox.util :refer [current-timestamp]]
-            [clojure.java.io :refer [as-file]]
-            [hsbox.db :as db :refer [demo-path get-steam-api-key latest-data-version get-config]]))
+            [hsbox.db :as db :refer [get-steam-api-key latest-data-version get-config]]))
 
 (taoensso.timbre/refer-timbre)
 
@@ -22,7 +21,7 @@
 (defn get-players [folder offset limit]
   (let [folder-filtered (fn [m] (if (nil? folder)
                                   m
-                                  (select-keys m (for [[k v] m :when (.startsWith (:path v) folder)] k))))
+                                  (select-keys m (for [[k v] m :when (= (:folder v) folder)] k))))
         players (->> player-demos
                      (reduce-kv #(conj % {:steamid %2
                                           :demos   (count (folder-filtered %3))
@@ -239,7 +238,7 @@
 
 (defn filter-demos [steamid {:keys [folder demo-type start-date end-date map-name teammates]} demos]
   (filter #(and
-            (if folder (.startsWith (:path %) folder) true)
+            (if folder (= (:folder %) folder) true)
             (if (contains? (-> latest-data-version keys set) demo-type) (= demo-type (:type %)) true)
             (if map-name (= (:map %) map-name) true)
             (if start-date (>= (:timestamp %) start-date) true)
@@ -371,8 +370,7 @@
        (map append-demo-stats)
        (map (append-ban-info steamid))
        (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills
-                     :1v1_attempted :1v1_won :weapons :tied :won :lost :player_slots))
-       (map #(assoc % :path (demo-path (:path %))))))
+                     :1v1_attempted :1v1_won :weapons :tied :won :lost :player_slots))))
 
 (defn kw-long-to-str [dict path]
   (assoc-in dict path (into {} (for [[k v] (get-in dict path)] [(str k) v]))))
@@ -394,7 +392,7 @@
                                (kw-long-to-str [:players])
                                (assoc :deaths (map convert-death-steamid (:deaths %))))
                           (:rounds demo))
-             :path (demo-path (:path demo))))))
+             :path (:path demo)))))
 
 (defn get-demo-stats [demoid]
   (let [demo (get demos demoid)]
@@ -408,7 +406,7 @@
            (group-by #(:team %))
            (assoc (select-keys demo [:score :winner :surrendered :detailed_score :timestamp :duration :map :type :demoid]) :teams))
       (merge {:rounds (map #(select-keys % [:tick]) (:rounds demo))
-              :path   (demo-path (:path demo))}))))
+              :path   (:path demo)}))))
 
 ; Search round
 
@@ -505,7 +503,7 @@
                                      :won (= (team-number steamid %) (:winner %))
                                      :side (get {2 "T" 3 "CT"} (team-number steamid %))
                                      :kills (map make-kill-obj (round-kills % steamid demo))
-                                     :path (demo-path (:path demo))))
+                                     :path (:path demo)))
          filtered-rounds)))
 
 (defn replace-aliases [s]
@@ -555,7 +553,7 @@
 ;    (set)))
 
 (defn get-folders []
-  (sort (set (map #(-> (second %) (:path) (as-file) (.getParent)) demos))))
+  (sort (set (map #(-> (second %) (:folder)) demos))))
 
 (defn init-cache []
   (doseq [demo (db/get-all-demos)]

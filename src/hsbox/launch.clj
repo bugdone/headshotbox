@@ -56,7 +56,7 @@
 
 (defn watch [local? demoid steamid round-number tick highlight]
   (let [demo (get stats/demos demoid)
-        demo-path (db/demo-path (:path demo))
+        demo-path (:path demo)
         vdm-path (str (subs demo-path 0 (- (count demo-path) 4)) ".vdm")
         play-path (if local? demo-path (str "replays/" (file-name demo-path)))]
     (if (nil? demo)

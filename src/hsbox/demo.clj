@@ -286,9 +286,9 @@
         enriched (doall
                    (-> (reduce enrich-with-round demo (add-round-numbers (:rounds demo)))
                        (update-winner)
-                       (dissoc :teams_switched? :player_names :last_score_changed)))]
+                       (dissoc :teams_switched? :player_names :last_score_changed :path)))]
     (assert (not (or (empty? (:rounds enriched)) (empty? (:players enriched))))
-            (str "Demo " (:path enriched) " has " (count (:rounds enriched)) " rounds and " (count (:players enriched)) " players"))
+            (str "Demo " (:path demo) " has " (count (:rounds enriched)) " rounds and " (count (:players enriched)) " players"))
     enriched))
 
 (defn get-demo-info [path]
@@ -313,7 +313,7 @@
                  0)
         rounds (get-rounds (:events demo-data) demo-type)
         demo (merge {:rounds      rounds
-                     :path path
+                     :path        path
                      :type        demo-type
                      :timestamp   (get scoreboard :matchtime (last-modified path))
                      :surrendered surrendered?

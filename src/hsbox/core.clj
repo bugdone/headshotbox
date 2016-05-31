@@ -66,7 +66,7 @@
         (db/keep-only (->> (db/get-demo-directory)
                            (clojure.java.io/as-file)
                            file-seq
-                           (map #(db/get-relative-path %))
+                           (map #(.getCanonicalPath %))
                            (filter #(.endsWith % ".dem")))))
       (stats/init-cache)
       (future (stats/update-players-steam-info))

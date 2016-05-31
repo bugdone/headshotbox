@@ -1,10 +1,10 @@
 (ns hsbox.indexer
   (:require [hsbox.demo :refer [get-demo-info]]
-            [hsbox.db :as db :refer [demo-path-in-db? get-relative-path]]
+            [hsbox.db :as db :refer [demo-path-in-db?]]
             [hsbox.stats :as stats]
             [clojure.java.io :refer [as-file]]
             [hsbox.mynotify :as notify :refer [ENTRY_CREATE ENTRY_MODIFY ENTRY_DELETE]]
-            [hsbox.util :refer [current-timestamp path-exists? last-modified is-dir? is-demo?]]
+            [hsbox.util :refer [current-timestamp path-exists? last-modified is-dir? is-demo? get-canonical-path]]
             [taoensso.timbre :as timbre])
   (:import (java.io File)))
 
@@ -21,9 +21,10 @@
     (stats/del-demo demoid)))
 
 (defn- handle-file-event [path kind]
-  (cond
-    (contains? (set [ENTRY_CREATE ENTRY_MODIFY]) kind) (swap! paths assoc path (current-timestamp))
-    (= kind ENTRY_DELETE) (del-demo path)))
+  (let [path (get-canonical-path path)]
+    (cond
+      (contains? (set [ENTRY_CREATE ENTRY_MODIFY]) kind) (swap! paths assoc path (current-timestamp))
+      (= kind ENTRY_DELETE) (del-demo path))))
 
 (declare handle-event)
 
@@ -39,7 +40,7 @@
     (is-dir? path) (handle-dir-event path kind)))
 
 (defn- for-all-subpaths [path f]
-  (->> (clojure.java.io/as-file path)
+  (->> (as-file path)
        file-seq
        (map #(f (.getCanonicalPath %)))
        dorun))
@@ -62,17 +63,16 @@
 
 (defn add-demo [abs-path]
   (try
-    (let [demo-path (get-relative-path abs-path)
-          mtime (last-modified abs-path)]
-      (when-not (demo-path-in-db? demo-path mtime)
+    (let [mtime (last-modified abs-path)]
+      (when-not (demo-path-in-db? abs-path mtime)
         (debug "Adding path" abs-path)
         (try
           (let [demo-info (get-demo-info abs-path)]
             (if (or (empty? (:rounds demo-info)) (empty? (:players demo-info)))
-              (throw (Exception. (str "Demo" demo-path "has" (count (:rounds demo-info)) "rounds and"
+              (throw (Exception. (str "Demo" abs-path "has" (count (:rounds demo-info)) "rounds and"
                                       (count (:players demo-info)) "players"))))
-            (let [demoid (db/add-demo demo-path mtime demo-info)]
-              (stats/add-demo (assoc demo-info :demoid demoid :path demo-path))))
+            (let [demoid (db/add-demo abs-path mtime demo-info)]
+              (stats/add-demo (assoc demo-info :demoid demoid :path abs-path))))
           (catch Throwable e
             (error "Cannot parse demo" abs-path)
             (error e)))))
@@ -92,7 +92,7 @@
   (let [old-demo-dir (db/get-demo-directory)
         demo-dir (:demo_directory config)]
     (db/set-config config)
-    (when (not= (as-file old-demo-dir) (as-file demo-dir))
+    (when (not= (get-canonical-path old-demo-dir) (get-canonical-path demo-dir))
       (db/wipe-demos)
       (stats/init-cache)
       (set-indexed-path demo-dir)

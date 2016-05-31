@@ -96,7 +96,9 @@
                                 (if (empty? (:demo_download_baseurl (db/get-config)))
                                   (response {:url (str "demo_download" "/" demoid)})
                                   (response {:url (str (:demo_download_baseurl (db/get-config)) "/"
-                                                       (get-in stats/demos [demoid :path]))})))
+                                                       (-> (get-in stats/demos [demoid :path])
+                                                           (clojure.java.io/as-file)
+                                                           (.getName)))})))
                               (not-found "demo_download is not enabled")))
                           (authorize-admin
                             (POST "/notes" {body :body}
@@ -172,7 +174,7 @@
              (if (:demo_download_enabled (db/get-config))
                (let [demoid (Long/parseLong demoid)]
                  (if (db/demoid-present? demoid)
-                   (let [abs-path (db/demo-path (get-in stats/demos [demoid :path]))]
+                   (let [abs-path (get-in stats/demos [demoid :path])]
                      (header (file-response abs-path)
                              "content-disposition" (str "attachment; filename="
                                                         (hsbox.util/file-name abs-path))))
