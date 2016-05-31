@@ -131,7 +131,6 @@ tr th{
     border-radius: 6px;
     color: #FFFAFA;
     padding: 22px;
-    height: 270px;
     border: 1px solid rgba(255, 255, 255, 0.13);
 }
 .player-stats{
@@ -140,7 +139,6 @@ tr th{
     float: center;
     background: rgba(46, 55, 62, 0.6);
     padding: 10px;
-    height: 230px;
     border: 1px solid rgba(0, 0, 0, 0.29);
 }
 .player-stats:first-of-type{
