@@ -77,7 +77,7 @@
     </table>
   </div>
 
-  <div ng-if="!notesVisible">
+  <div ng-if="!notesVisible && isAuthorized">
     <button type="button" class="btn btn-default btn-sm no-bg" ng-click="makeNotesVisible()">
       <i class="fa fa-plus"></i> Add Notes
     </button>
