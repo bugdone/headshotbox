@@ -144,7 +144,7 @@
     (:deaths round)))
 
 (defn build-clutch-round-fn [enemies exact-enemies? won?]
-  (fn [round steamid]
+  (fn [round steamid & [demo]]
     (let [deaths (deaths-until-round-end round)
           player-team (team-number steamid round)
           player-death (split-with #(not= (:victim %) steamid) deaths)
