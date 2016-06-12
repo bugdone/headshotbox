@@ -189,7 +189,7 @@
               (update-path (first same-name))))
           (do
             (debug "is relative" demo-path)
-            (update-path (.toPath (.File (as-file (get-demo-directory)) str-path)))))))))
+            (update-path (.toPath (File. (as-file (get-demo-directory)) str-path)))))))))
 
 (def migrations {1 [2 migrate-2]
                  2 [3 migrate-3]
