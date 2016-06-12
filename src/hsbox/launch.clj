@@ -18,10 +18,19 @@
         commands []
         append-maybe (fn [x pred xs] (if pred (conj x xs) x))]
     (-> commands
+        ; spec_player seems to be working more often than spec_player_by_accountid
         (append-maybe (:player_slots demo)
                       {:factory  "PlayCommands"
                        :tick     (or tick 0)
                        :commands (str "spec_player " (inc user-id))})
+        ; but spec_player_by_accountid works without player_slots so we'll keep both
+        (append-maybe true {:factory  "PlayCommands"
+                            :tick     (or tick 0)
+                            :commands (str "spec_player_by_accountid " steamid)})
+        ; spec_lock also, cause why not? (doesn't seem to work though)
+        (append-maybe true {:factory  "PlayCommands"
+                            :tick     (or tick 0)
+                            :commands (str "spec_lock_to_accountid " steamid)})
         (append-maybe (not (empty? cfg))
                       {:factory  "PlayCommands"
                        :tick     (or tick 0)
