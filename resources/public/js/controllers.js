@@ -753,6 +753,7 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
     $scope.config = {};
     $scope.updateSettings = function() {
         $http.post(serverUrl + '/config', $scope.config).success(function(data) {
+          $rootScope.getAuthorizationState();
         });
     };
 
