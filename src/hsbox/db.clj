@@ -101,7 +101,7 @@
   (let [to-path (fn [str-path] (.toAbsolutePath (.toPath (as-file str-path))))]
     (.relativize (to-path (get-demo-directory)) (to-path demo-str-path))))
 
-(defn- get-folder [path]
+(defn get-folder [path]
   (let [relative (.getParent (get-relative-path path))]
     (if (nil? relative)
       nil

@@ -72,7 +72,9 @@
               (throw (Exception. (str "Demo" abs-path "has" (count (:rounds demo-info)) "rounds and"
                                       (count (:players demo-info)) "players"))))
             (let [demoid (db/add-demo abs-path mtime demo-info)]
-              (stats/add-demo (assoc demo-info :demoid demoid :path abs-path))))
+              (stats/add-demo (assoc demo-info :demoid demoid
+                                               :path abs-path
+                                               :folder (hsbox.db/get-folder abs-path)))))
           (catch Throwable e
             (error "Cannot parse demo" abs-path)
             (error e)))))
