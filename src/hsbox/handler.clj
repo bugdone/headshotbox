@@ -37,8 +37,7 @@
                                       (set (map #(Long/parseLong %) (clojure.string/split teammates #","))))})
 
 (defn local-address? [address]
-  (re-matches #"127.0.0.\d{1,3}" address))
-
+  (re-matches #"(127(.\d{1,3}){3})|([0:]*:1)" address))
 (defn only-local [handler]
   (fn [request]
     (if (local-address? (:remote-addr request))
