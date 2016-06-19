@@ -19,165 +19,185 @@
         </div>
 
         <div ng-if="isAuthorized">
-          <div class="form-group">
-            <button class="btn btn-default" ng-click="invertIndexerState()">
-              {{indexerRunning == true ? 'Pause Demo Analyzer' : (indexerRunning == false ? 'Resume Demo Analyzer' : '')}}
-            </button>
-          </div>
-
           <form ng-submit="updateSettings()">
-            <div class="form-group input-group">
-              <span class="input-group-addon">Demo directory</span>
-              <input type="text"
-                     class="form-control"
-                     aria-describedby="demo-dir-help"
-                     ng-model="config.demo_directory">
-              <span class="input-group-addon" id="demo-dir-help">
-                <button type="button"
-                        class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
-                        ng-click="demoDirectoryCollapsed = !demoDirectoryCollapsed">
-                </button>
-              </span>
-            </div>
-            <div collapse="demoDirectoryCollapsed">
-              <div class="well well-lg text-left">
-                HeadshotBox indexes demos present in this directory.<p/>
-                If you download demos from the Watch tab in-game (or with certain other third party software),
-                for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
-                This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
-                If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
-                Otherwise, the date of the demo file is used.
-                <p/>
-                <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted.
-                If you change the demo directory path <b>all</b> notes will be deleted.
+            <tabset>
+              <tab index="0" heading="Demos">
+                <div class="form-group">
+                  <button class="btn btn-default" ng-click="invertIndexerState()">
+                    {{indexerRunning == true ? 'Pause Demo Analyzer' : (indexerRunning == false ? 'Resume Demo Analyzer' : '')}}
+                  </button>
+                </div>
+                <div class="form-group input-group">
+                  <span class="input-group-addon">Demo directory</span>
+                  <input type="text"
+                         class="form-control"
+                         aria-describedby="demo-dir-help"
+                         ng-model="config.demo_directory">
+                  <span class="input-group-addon" id="demo-dir-help">
+                    <button type="button"
+                            class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
+                            ng-click="demoDirectoryCollapsed = !demoDirectoryCollapsed">
+                    </button>
+                  </span>
+                </div>
+                <div collapse="demoDirectoryCollapsed">
+                  <div class="well well-lg text-left">
+                    HeadshotBox indexes demos present in this directory.<p/>
+                    If you download demos from the Watch tab in-game (or with certain other third party software),
+                    for each demo <em>demo.dem</em> a file <em>demo.dem.info</em> will be present in that directory.
+                    This contains the scoreboard information you can see in the Watch tab in-game by clicking Open Scoreboard on a demo.
+                    If the <em>.dem.info</em> file is present for a demo, HeadshotBox uses it to extract the timestamp of the demo.
+                    Otherwise, the date of the demo file is used.
+                    <p/>
+                    <b>Warning!</b> If you delete or rename a demo, the notes attached to that demo will be deleted.
+                    If you change the demo directory path <b>all</b> notes will be deleted.
+                  </div>
+                </div>
+              </tab>
+
+
+              <tab index="1" heading="Steam API">
+                <div class="form-group input-group">
+                  <span class="input-group-addon">Steam Web API Key</span>
+                  <input type="text"
+                         class="form-control"
+                         aria-describedby="steam-api-help"
+                         ng-model="config.steam_api_key">
+                  <span class="input-group-addon" id="steam-api-help">
+                    <button type="button"
+                            class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
+                            ng-click="steamApiCollapsed = !steamApiCollapsed">
+                    </button>
+                  </span>
+                </div>
+                <div collapse="steamApiCollapsed">
+                  <div class="well well-lg text-left">
+                    The Steam Web API key is used to fetch the latest name, avatar and VAC status for steam accounts.<br/>
+                    You can get you own key <a href="http://steamcommunity.com/dev/apikey" class="steam-api-link">here</a>.
+                  </div>
+                </div>
+              </tab>
+
+
+              <tab index="2" heading="UI Options">
+                <div class="form-group input-group">
+                  <span class="input-group-addon">Minimum number of demos needed to show up in "Player List"</span>
+                  <input type="number"
+                         min="1"
+                         class="form-control"
+                         ng-model="config.playerlist_min_demo_count">
+                </div>
+              </tab>
+
+
+              <tab index="3" heading="Demo Playback">
+                <div class="form-group input-group">
+                  <span class="input-group-addon"><input type="checkbox" ng-model="config.playdemo_kill_csgo"></span>
+                  <span class="form-control">Kill CSGO if running before playing a demo</span>
+                </div>
+
+                <div class="form-group input-group">
+                  <span class="input-group-addon"><input type="checkbox" ng-model="config.vdm_enabled"></span>
+                  <span class="form-control">Enable VDM scripting</span>
+                  <span class="input-group-addon" id="vdm-help">
+                    <button type="button"
+                            class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
+                            ng-click="vdmCollapsed = !vdmCollapsed">
+                    </button>
+                  </span>
+                </div>
+                <div collapse="vdmCollapsed">
+                  <div class="well well-lg text-left">
+                    When enabled, a <em>.vdm</em> file is written to disk in the same directory where the demo that needs to be played
+                    resides.
+                    When playing <em>demo_name.dem</em>, CSGO uses the file <em>demo_name.vdm</em> if present to execute a set of commands
+                    during demo playback.
+                    <p/>
+                    This is used by Headshot Box to:
+                    <ul>
+                      <li>select the player to spectate once the demo playback starts</li>
+                      <li>quit when the round ends (if this option is enabled)</li>
+                      <li>execute a cfg file when demo playback starts (if this option is enabled)</li>
+                    </ul>
+                    <p/>
+                    See <a href="https://developer.valvesoftware.com/wiki/Demo_Recording_Tools#Demo_editor">this</a> for more information
+                    about VDM files.
+                    <p/>
+                    <i class="fa fa-exclamation-triangle"></i> CSGO always executes the .vdm file if it exists.
+                    If you use other means than Headshot Box to launch a demo playback and you used the VDM scripting feature, delete the
+                    generated VDM files.
+                  </div>
+                </div>
+
+                <div class="form-group input-group">
+                  <span class="input-group-addon" ng-disabled="!config.vdm_enabled">cfg to execute</span>
+                  <input type="text"
+                         class="form-control"
+                         ng-model="config.vdm_cfg"
+                         ng-disabled="!config.vdm_enabled">
+                </div>
+
+                <div class="form-group input-group">
+                  <span class="input-group-addon"><input type="checkbox" ng-model="config.vdm_quit_after_playback"
+                                                         ng-disabled="!config.vdm_enabled"></span>
+                  <span class="form-control" ng-disabled="!config.vdm_enabled">Quit on round end</span>
+                </div>
+
+                <button class="btn btn-default" ng-click="vdm_delete_files()">Delete VDM files generated by Headshot Box</button>
+              </tab>
+
+              <tab index="3" heading="Server">
+                <h4>Demo Downloads</h4>
+                <div class="form-group input-group">
+                  <span class="input-group-addon"><input type="checkbox" ng-model="config.demo_download_enabled"></span>
+                  <span class="form-control">Enable</span>
+                </div>
+
+                <div class="form-group input-group">
+                  <span class="input-group-addon">Alternative download host </span>
+                  <input type="text"
+                         class="form-control"
+                         aria-describedby="alt-host-help"
+                         ng-model="config.demo_download_baseurl"
+                         ng-disabled="!config.demo_download_enabled">
+                  <span class="input-group-addon" id="alt-host-help">
+                    <button type="button"
+                            class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
+                            ng-click="demoloaderBaseurlCollapsed = !demoloaderBaseurlCollapsed">
+                    </button>
+                  </span>
+                </div>
+                <div collapse="demoloaderBaseurlCollapsed">
+                  <div class="well well-lg text-left">
+                    If set, download requests are redirected to an alternative host.<br/>
+                    Eg. If the alternative host is set to <em>http://cache.domain.tld/demos</em> and the demo path relative to the demo
+                    directory is <em>demo.dem</em>,
+                    the download link will point to <em>http://cache.domain.tld/demos/demo.dem</em><br/>
+                    <br/>
+                    When unset, download requests are handled directly by HeadshotBox.
+                  </div>
+                </div>
+
+              <div class="form-group input-group">
+                <span class="input-group-addon"><input type="checkbox" ng-model="config.demowebmode"></span>
+                <span class="form-control">Run in web mode</span>
+                  <span class="input-group-addon" id="demowebmode-help">
+                    <button type="button"
+                            class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
+                            ng-click="demowebmodeCollapsed = !demowebmodeCollapsed">
+                    </button>
+                  </span>
               </div>
-            </div>
-
-            <div class="form-group input-group">
-              <span class="input-group-addon">Steam Web API Key</span>
-              <input type="text"
-                     class="form-control"
-                     aria-describedby="steam-api-help"
-                     ng-model="config.steam_api_key">
-              <span class="input-group-addon" id="steam-api-help">
-                <button type="button"
-                        class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
-                        ng-click="steamApiCollapsed = !steamApiCollapsed">
-                </button>
-              </span>
-            </div>
-            <div collapse="steamApiCollapsed">
-              <div class="well well-lg text-left">
-                The Steam Web API key is used to fetch the latest name, avatar and VAC status for steam accounts.<br/>
-                You can get you own key <a href="http://steamcommunity.com/dev/apikey" class="steam-api-link">here</a>.
+              <div collapse="demowebmodeCollapsed">
+                <div class="well well-lg text-left">
+                  If you are running HeadshotBox on a public server enabling this setting will allow the <em>watch</em> links to
+                  work.<br/>
+                  This expects the user to <em>download</em> the demo and save it to the <em>csgo/replays</em> folder.<br/>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group input-group">
-              <span class="input-group-addon">Minimum number of demos needed to show up in "Player List"</span>
-              <input type="number"
-                     min="1"
-                     class="form-control"
-                     ng-model="config.playerlist_min_demo_count">
-            </div>
-
-            <h4>Demo Playback</h4>
-            <div class="form-group input-group">
-              <span class="input-group-addon"><input type="checkbox" ng-model="config.demowebmode"></span>
-              <span class="form-control">Run in web mode</span>
-              <span class="input-group-addon" id="demowebmode-help">
-                <button type="button"
-                        class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
-                        ng-click="demowebmodeCollapsed = !demowebmodeCollapsed">
-                </button>
-              </span>
-            </div>
-            <div collapse="demowebmodeCollapsed">
-              <div class="well well-lg text-left">
-                If you are running HeadshotBox on a public server enabling this setting will allow the <em>watch</em> links to work.<br />
-                This expects the user to <em>download</em> the demo and save it to the <em>csgo/replays</em> folder.<br />
-              </div>
-            </div>
-
-            <div class="form-group input-group">
-              <span class="input-group-addon"><input type="checkbox" ng-model="config.playdemo_kill_csgo"></span>
-              <span class="form-control">Kill CSGO if running before playing a demo</span>
-            </div>
-
-            <div class="form-group input-group">
-              <span class="input-group-addon"><input type="checkbox" ng-model="config.vdm_enabled"></span>
-              <span class="form-control">Enable VDM scripting</span>
-              <span class="input-group-addon" id="vdm-help">
-                <button type="button"
-                        class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
-                        ng-click="vdmCollapsed = !vdmCollapsed">
-                </button>
-              </span>
-            </div>
-            <div collapse="vdmCollapsed">
-              <div class="well well-lg text-left">
-                When enabled, a <em>.vdm</em> file is written to disk in the same directory where the demo that needs to be played resides.
-                When playing <em>demo_name.dem</em>, CSGO uses the file <em>demo_name.vdm</em> if present to execute a set of commands during demo playback.
-                <p/>
-                This is used by Headshot Box to:
-                <ul>
-                  <li>select the player to spectate once the demo playback starts</li>
-                  <li>quit when the round ends (if this option is enabled)</li>
-                  <li>execute a cfg file when demo playback starts (if this option is enabled)</li>
-                </ul>
-                <p/>
-                See <a href="https://developer.valvesoftware.com/wiki/Demo_Recording_Tools#Demo_editor">this</a> for more information about VDM files.
-                <p/>
-                <i class="fa fa-exclamation-triangle"></i> CSGO always executes the .vdm file if it exists.
-                If you use other means than Headshot Box to launch a demo playback and you used the VDM scripting feature, delete the generated VDM files.
-              </div>
-            </div>
-
-            <div class="form-group input-group">
-              <span class="input-group-addon" ng-disabled="!config.vdm_enabled">cfg to execute</span>
-              <input type="text"
-                     class="form-control"
-                     ng-model="config.vdm_cfg"
-                     ng-disabled="!config.vdm_enabled">
-            </div>
-
-            <div class="form-group input-group">
-              <span class="input-group-addon"><input type="checkbox" ng-model="config.vdm_quit_after_playback" ng-disabled="!config.vdm_enabled"></span>
-              <span class="form-control" ng-disabled="!config.vdm_enabled">Quit on round end</span>
-              </span>
-            </div>
-
-            <button class="btn btn-default" ng-click="vdm_delete_files()">Delete VDM files generated by Headshot Box</button>
-
-            <h4>Demo Downloads</h4>
-            <div class="form-group input-group">
-              <span class="input-group-addon"><input type="checkbox" ng-model="config.demo_download_enabled"></span>
-              <span class="form-control">Enable</span>
-            </div>
-
-            <div class="form-group input-group">
-              <span class="input-group-addon">Alternative download host </span>
-              <input type="text"
-                     class="form-control"
-                     aria-describedby="demo-dir-help"
-                     ng-model="config.demo_download_baseurl"
-                     ng-disabled="!config.demo_download_enabled">
-              <span class="input-group-addon" id="demo-dir-help">
-                <button type="button"
-                        class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
-                        ng-click="demoloaderBaseurlCollapsed = !demoloaderBaseurlCollapsed">
-                </button>
-              </span>
-            </div>
-            <div collapse="demoloaderBaseurlCollapsed">
-              <div class="well well-lg text-left">
-                If set, download requests are redirected to an alternative host.<br/>
-                Eg. If the alternative host is set to <em>http://cache.domain.tld/demos</em> and the demo path relative to the demo directory is <em>demo.dem</em>,
-                the download link will point to <em>http://cache.domain.tld/demos/demo.dem</em><br/>
-                <br/>
-                When unset, download requests are handled directly by HeadshotBox.
-              </div>
-            </div>
+              </tab>
+            </tabset>
 
             <div class="text-center">
               <input type="submit" value="Update" class="btn btn-default">
