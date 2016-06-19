@@ -3,12 +3,17 @@
             [clojure.set :refer [subset? intersection]]
             [hsbox.steamapi :as steamapi]
             [hsbox.util :refer [current-timestamp]]
-            [hsbox.db :as db :refer [get-steam-api-key latest-data-version get-config]]))
+            [hsbox.db :as db :refer [get-steam-api-key latest-data-version get-config]])
+  (:import (java.util.concurrent.locks ReentrantLock)
+           (java.util.concurrent TimeUnit)))
 
 (taoensso.timbre/refer-timbre)
 
 (def demos {})
 (def player-demos {})
+(def api-refresh-lock (ReentrantLock.))
+(def api-refresh-cond (.newCondition api-refresh-lock))
+(def api-refreshing? (atom false))
 
 (defn seconds-to-ticks [seconds tickrate] (int (* seconds (/ 1 tickrate))))
 
@@ -563,7 +568,23 @@
   (hsbox.db/init-db-if-absent)
   (init-cache))
 
+(defn invalidate-players-steam-info []
+  (db/invalidate-steamid-info)
+  (.lock api-refresh-lock)
+  (try
+    (.signal api-refresh-cond)
+    (finally
+      (.unlock api-refresh-lock))))
+
 (defn update-players-steam-info []
   (while true
-    (steamapi/get-steamids-info (keys player-demos))
-    (Thread/sleep (* 1000 3600))))
+    (.lock api-refresh-lock)
+    (try
+      (try
+        (reset! api-refreshing? true)
+        (steamapi/get-steamids-info (keys player-demos))
+        (finally
+          (reset! api-refreshing? false)))
+      (.await api-refresh-cond 1 TimeUnit/HOURS)
+      (finally
+        (.unlock api-refresh-lock)))))

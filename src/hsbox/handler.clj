@@ -104,17 +104,26 @@
                               (response (db/set-demo-notes demoid (:notes body))))))))
            (GET "/round/search" req
              (response (stats/search-rounds (get-in req [:params :search-string]) (parse-filters (get req :params)))))
-           (GET "/steamids/info" [steamids]
-             (response
-               (if (empty? steamids)
-                 {}
-                 (let [steamids-list (clojure.string/split steamids #",")
-                       steamids-info (if (clojure.string/blank? (db/get-steam-api-key))
-                                       (->>
-                                         (map #(Long/parseLong %) steamids-list)
-                                         (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {}))
-                                       (steamapi/get-steamids-info steamids-list))]
-                   (into {} (for [[k v] steamids-info] [k (assoc v :last_rank (stats/get-last-rank (:steamid v)))]))))))
+
+           (context "/steamids/info" []
+                    (defroutes steamids-info-routes
+                               (GET "/status" []
+                                 (response {:refreshing @stats/api-refreshing?}))
+                               (GET "/" [steamids]
+                                 (response
+                                   (if (empty? steamids)
+                                     {}
+                                     (let [steamids-list (clojure.string/split steamids #",")
+                                           steamids-info (if (clojure.string/blank? (db/get-steam-api-key))
+                                                           (->>
+                                                             (map #(Long/parseLong %) steamids-list)
+                                                             (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {}))
+                                                           (steamapi/get-steamids-info steamids-list))]
+                                       (into {} (for [[k v] steamids-info] [k (assoc v :last_rank (stats/get-last-rank (:steamid v)))]))))))
+                               (authorize-admin
+                                 (DELETE "/" []
+                                   (info "Invalidating players steam info")
+                                   (stats/invalidate-players-steam-info)))))
            (context "/indexer" []
              (authorize-admin
                (defroutes indexer-routes

@@ -740,11 +740,12 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
 });
 
 hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
-    $scope.steamApiCollapsed = true;
+    $scope.steamApiCollapsed = false;
     $scope.demoDirectoryCollapsed = true;
     $scope.vdmCollapsed = true;
     $scope.demowebmodeCollapsed = true;
     $scope.demoloaderBaseurlCollapsed = true;
+    $scope.steamApiRefreshing = false;
     $scope.getSettings = function() {
         $http.get(serverUrl + '/config').success(function(data) {
             $scope.config = data;
@@ -779,6 +780,22 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
     });
     $scope.vdm_delete_files = function() {
         $http.delete(serverUrl + '/vdm');
+    };
+    $scope.getSteamRefreshStatus = function() {
+        $http.get(serverUrl + '/steamids/info/status').success(function(data) {
+            $scope.steamApiRefreshing = data['refreshing'];
+            if ($scope.steamApiRefreshing) {
+                setTimeout(function(){
+                    $scope.getSteamRefreshStatus();
+                }, 2000);
+            }
+        });
+    };
+    $scope.invalidateSteamData = function() {
+        setTimeout(function(){
+            $scope.getSteamRefreshStatus();
+        }, 500);
+        $http.delete(serverUrl + '/steamids/info');
     };
 });
 
