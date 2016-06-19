@@ -28,9 +28,9 @@
                             :tick     (or tick 0)
                             :commands (str "spec_player_by_accountid " steamid)})
         ; spec_lock also, cause why not? (doesn't seem to work though)
-        (append-maybe true {:factory  "PlayCommands"
-                            :tick     (or tick 0)
-                            :commands (str "spec_lock_to_accountid " steamid)})
+        ;(append-maybe true {:factory  "PlayCommands"
+        ;                    :tick     (or tick 0)
+        ;                    :commands (str "spec_lock_to_accountid " steamid)})
         (append-maybe (not (empty? cfg))
                       {:factory  "PlayCommands"
                        :tick     (or tick 0)
@@ -101,8 +101,8 @@
                                                                          (stats/seconds-to-ticks 5 (:tickrate demo))))))))))
             (when (and (:playdemo_kill_csgo (db/get-config)))
               (if (= os-name "windows")
-               (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
-             (clojure.java.shell/sh "killall" "-9" "csgo_linux"))))
+                (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
+                (clojure.java.shell/sh "killall" "-9" "csgo_linux"))))
           {:url (str "steam://rungame/730/" steamid "/+playdemo \"" play-path
                      (when tick (str "@" tick)) "\" "
                      (when highlight steamid)
