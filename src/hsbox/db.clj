@@ -144,6 +144,8 @@
   (exec-sql-file t-con "sql/migrate_3_to_4.sql"))
 
 (defn migrate-5 [t-con]
+  ; cache config for demo dir
+  (get-config)
   ; Rename demoid column to path
   (jdbc/execute! t-con [(str "CREATE TABLE demos_new ("
                              "path TEXT(256) UNIQUE,"
