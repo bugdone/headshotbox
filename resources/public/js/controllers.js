@@ -189,7 +189,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
         if (text == null)
             return "";
         text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
-        return text.replace(/(?:(?:round|tick) ?)(\d+)/g, $scope.linkToTick);
+        return text.replace(/(?:(?:round|tick) ?)(\d+)/gi, $scope.linkToTick);
     };
     $scope.updateDemoNotesView = function() {
         if (typeof $scope.notesControls.demoNotesInput != undefined) {
