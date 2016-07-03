@@ -32,6 +32,17 @@
         (protobuf-load MatchInfo (read-file mm-info-path)))
       {})))
 
+(defn parse-json-info-file [demo-path]
+  (let [json-info-path (str demo-path ".json")
+        json-info-file (as-file json-info-path)]
+    (if (file-exists? json-info-file)
+      (do
+        (info "Processing" json-info-file)
+        (->
+          (slurp json-info-file)
+          (json/read-str :key-fn keyword)))
+      {})))
+
 (defn get-parser-cache []
   (get (System/getenv) "HEADSHOTBOX_PARSER_CACHE" PARSER-CACHE))
 
@@ -318,7 +329,12 @@
                      :timestamp   (get scoreboard :matchtime (last-modified path))
                      :surrendered surrendered?
                      :winner      winner}
-                    (select-keys demo-data [:map :player_names :tickrate :mm_rank_update :player_slots]))]
+                    (select-keys demo-data [:map :player_names :tickrate :mm_rank_update :player_slots]))
+        ; Parse dem.json info file if available (for demo timestamp and metrics)
+        json-info (try
+                    (parse-json-info-file path)
+                    (catch Throwable e {}))
+        demo (merge demo json-info)]
     (if (not (contains? latest-data-version demo-type))
       (throw (Exception. "Unknown demo type")))
     (enrich-demo demo)))
