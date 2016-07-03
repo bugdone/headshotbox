@@ -10,7 +10,8 @@
             [clojure.tools.cli :as cli]
             [taoensso.timbre :as timbre])
   (:import (java.io File))
-  (:import (java.net BindException))
+  (:import (java.net BindException URI)
+           (hsbox.java SysTrayIcon))
   (:gen-class))
 
 (timbre/set-config! [:appenders :spit :enabled?] true)
@@ -26,6 +27,7 @@
    [nil "--admin-steamid steamid64" "Changing settings and adding notes requires logging in with this steamid64"]
    [nil "--openid-realm url" "Realm url used by OpenID"]
    [nil "--demoinfo-dir directory" "Directory where demoinfogo is located (default is current dir)"]
+   [nil "--systray" "Add icon to systray if systray is supported on the current platform"]
    ["-h" "--help"]
    ])
 
@@ -51,7 +53,13 @@
         (db/set-portable))
       (when (not-empty demoinfo-dir)
         (set-demoinfo-dir demoinfo-dir))
-      (timbre/set-config! [:shared-appender-config :spit-filename] (File. db/app-config-dir "headshotbox.log"))
+      (let [log-file (File. db/app-config-dir "headshotbox.log")]
+        (timbre/set-config! [:shared-appender-config :spit-filename] log-file)
+        (when (:systray options)
+          (let [uri (if (:openid-realm options)
+                      (URI. (:openid-realm options))
+                      (URI. (str "http://localhost:" (:port options))))]
+            (SysTrayIcon. uri log-file))))
       (info "HeadshotBox" (version/get-version) (if portable? "portable" "")
             (if (not run-indexer?) "no indexer" ""))
       (future (version/update-latest-version-every-day))

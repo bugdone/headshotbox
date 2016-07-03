@@ -23,7 +23,7 @@
             [lein-git-deps "0.0.2-SNAPSHOT"]]
   :ring {:handler hsbox.handler/app}
 
-  :java-source-paths ["protosrc"]
+  :java-source-paths ["protosrc", "src/hsbox/java"]
   :javac-options ["-target" "1.6" "-source" "1.6"]
   :uberjar {:aot :all}
   :aot [hsbox.core]
