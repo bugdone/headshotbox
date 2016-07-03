@@ -11,6 +11,7 @@
                  [ring-cors "0.1.6"]
                  [ring/ring-json "0.3.1"]
                  [ring/ring-jetty-adapter "1.3.2"]
+                 [ring/ring-codec "1.0.1"]
                  [org.clojure/data.json "0.2.6"]
                  [com.taoensso/timbre "3.4.0"]
                  [org.clojure/tools.cli "0.3.2"]

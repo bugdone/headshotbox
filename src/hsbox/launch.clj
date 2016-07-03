@@ -3,7 +3,8 @@
   (:require [hsbox.util :refer [file-exists? file-name]])
   (:require [hsbox.db :as db])
   (:require [hsbox.version :refer [os-name]])
-  (:require [clojure.java.io :as io]))
+  (:require [clojure.java.io :as io])
+  (:require [ring.util.codec :refer [url-encode]]))
 
 (taoensso.timbre/refer-timbre)
 
@@ -103,8 +104,8 @@
               (if (= os-name "windows")
                 (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
                 (clojure.java.shell/sh "killall" "-9" "csgo_linux"))))
-          {:url (str "steam://rungame/730/" steamid "/+playdemo \"" play-path
-                     (when tick (str "@" tick)) "\" "
+          {:url (str "steam://rungame/730/" steamid "/+playdemo " (url-encode play-path)
+                     (when tick (str "@" tick)) " "
                      (when highlight steamid)
                      (when (= highlight "low") " lowlights"))})))))
 
