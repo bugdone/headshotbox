@@ -21,7 +21,12 @@
         <div ng-if="isAuthorized">
           <form ng-submit="updateSettings()">
             <tabset>
-              <tab index="0" heading="Demos">
+              <tab index="0">
+                <tab-heading>
+                  <i class="fa fa-database" aria-hidden="true"></i>
+                  Demos
+                </tab-heading>
+                <p/>
                 <div class="form-group">
                   <button class="btn btn-default" ng-click="invertIndexerState()">
                     {{indexerRunning == true ? 'Pause Demo Analyzer' : (indexerRunning == false ? 'Resume Demo Analyzer' : '')}}
@@ -56,7 +61,11 @@
               </tab>
 
 
-              <tab index="1" heading="Steam API" select="getSteamRefreshStatus()">
+              <tab index="1" select="getSteamRefreshStatus()">
+                <tab-heading>
+                  <i class="fa fa-steam" aria-hidden="true"></i>
+                  Steam API
+                </tab-heading>
                 <p/>
                 <div class="form-group input-group">
                   <span class="input-group-addon">Steam Web API Key</span>
@@ -92,7 +101,12 @@
               </tab>
 
 
-              <tab index="2" heading="UI Options">
+              <tab index="2">
+                <tab-heading>
+                  <i class="fa fa-sliders" aria-hidden="true"></i>
+                  UI Options
+                </tab-heading>
+                <p/>
                 <div class="form-group input-group">
                   <span class="input-group-addon">Minimum number of demos needed to show up in "Player List"</span>
                   <input type="number"
@@ -103,7 +117,12 @@
               </tab>
 
 
-              <tab index="3" heading="Demo Playback">
+              <tab index="3">
+                <tab-heading>
+                  <i class="fa fa-play-circle-o" aria-hidden="true"></i>
+                  Demo Playback
+                </tab-heading>
+                <p/>
                 <div class="form-group input-group">
                   <span class="input-group-addon"><input type="checkbox" ng-model="config.playdemo_kill_csgo"></span>
                   <span class="form-control">Kill CSGO if running before playing a demo</span>
@@ -160,7 +179,12 @@
               </tab>
 
 
-              <tab index="3" heading="Server">
+              <tab index="3">
+                <tab-heading>
+                  <i class="fa fa-server" aria-hidden="true"></i>
+                  Server
+                </tab-heading>
+                <p/>
                 <div class="form-group input-group">
                   <span class="input-group-addon"><input type="checkbox" ng-model="config.demowebmode"></span>
                   <span class="form-control">Run in web mode</span>
