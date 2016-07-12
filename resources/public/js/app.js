@@ -6,7 +6,12 @@ hsboxApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
         when('/player/:steamid', {
             templateUrl: 'templates/player.html',
-            controller: 'Player'
+            controller: 'Player',
+            resolve: {
+                dummy: function load(config) {
+                    return config.load();
+                }
+            }
         }).
         when('/demo/:demoid', {
             templateUrl: 'templates/demo.html',
@@ -61,4 +66,21 @@ hsboxApp.factory('downloadDemo', ['$http', function($http) {
             window.location = data.url;
         });
     }
+}]);
+
+hsboxApp.factory('config', ['$http', '$rootScope', function($http, $rootScope) {
+    var load = function load() {
+        return $http.get(serverUrl + '/config').success(function(data) {
+            $rootScope.config = data;
+        });
+    }
+    return {
+        load: load,
+        save: function save() {
+            $http.post(serverUrl + '/config', $rootScope.config).success(function(data) {
+                $rootScope.getAuthorizationState();
+                load();
+            });
+        }
+    };
 }]);

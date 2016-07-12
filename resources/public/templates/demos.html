@@ -51,7 +51,7 @@
       <td class="text-center nopadding" ng-class="{green: demo.kdd >= 0, red: demo.kdd < 0}">{{demo.kdd | signed}}</td>
       <td class="text-center nopadding">{{demo.hs_percent | number:2}}</td>
       <td class="text-right nopadding" ng-click="$event.stopPropagation()">
-        <button type="button" class="btn btn-success btn-xs" ng-click="downloadDemo(demo.demoid)" ng-if="demoDownloadEnabled">
+        <button type="button" class="btn btn-success btn-xs" ng-click="downloadDemo(demo.demoid)" ng-if="$root.config.demo_download_enabled">
           <i class="fa fa-download"></i>
         </button>
         <button type="button" class="btn btn-success btn-xs" ng-click="watchDemo(demo.demoid, steamid, nil, 0)">
@@ -72,3 +72,14 @@
     </tr>
   </tbody>
 </table>
+<div class="text-center" ng-if="$root.config.demos_per_page">
+  <pagination direction-links="false"
+              boundary-links="true"
+              boundary-link-numbers="true"
+              total-items="demoPages.demoCount"
+              ng-model="demoPages.currentPage"
+              items-per-page="$root.config.demos_per_page"
+              max-size="10"
+              rotate="true"
+              ng-change="getDemos()"></pagination>
+</div>

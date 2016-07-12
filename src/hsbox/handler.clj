@@ -59,15 +59,21 @@
                                         steamid
                                         (parse-filters (get req :params)))))
                           (GET "/demos" req
-                            (response (stats/get-demos-for-steamid
-                                        steamid
-                                        (parse-filters (get req :params)))))
+                            (let [params (get req :params)
+                                  limit (:limit params)]
+                              (response (stats/get-demos-for-steamid
+                                          steamid
+                                          (parse-filters params)
+                                          (Long/parseLong (:offset params))
+                                          (if (nil? limit) nil (Long/parseLong limit))))))
                           (GET "/teammates" []
                             (response (stats/get-teammates-for-steamid steamid)))
                           (GET "/banned" [only_opponents]
                             (response (stats/get-banned-players steamid only_opponents)))
                           (GET "/maps/statistics" req
                             (response (stats/get-maps-stats-for-steamid steamid (parse-filters (get req :params)))))
+                          (GET "/rank_data" []
+                            (response (stats/get-rank-data steamid)))
                           (GET "/maps" []
                             (response (stats/get-maps-for-steamid steamid))))))
 
@@ -154,9 +160,7 @@
                         :showLogin
                         (if (empty? @openid-settings)
                           false
-                          (re-matches (java.util.regex.Pattern/compile (str "htt.*://" (:server-name request) ".*")) (:realm @openid-settings)))
-                        :demoDownloadEnabled
-                        (:demo_download_enabled (db/get-config))}))
+                          (re-matches (java.util.regex.Pattern/compile (str "htt.*://" (:server-name request) ".*")) (:realm @openid-settings)))}))
            (GET "/version" []
              (response {:current (version/get-version)
                         :latest  @version/latest-version}))

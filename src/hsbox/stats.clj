@@ -45,13 +45,18 @@
 (defn sorted-demos-for-steamid [steamid]
   (sort #(compare (:timestamp %) (:timestamp %2)) (vals (get player-demos steamid))))
 
+(defn get-rank-data [steamid]
+  (->>
+    (sorted-demos-for-steamid steamid)
+    (map #(hash-map :timestamp (:timestamp %)
+                    :mm_rank_update (get-in % [:mm_rank_update steamid])))
+    (filter #(not (nil? (:mm_rank_update %))))))
+
 (defn get-last-rank [steamid]
   (->>
-    (reverse (sorted-demos-for-steamid steamid))
-    (map #(get-in % [:mm_rank_update steamid]))
-    (remove nil?)
-    (first)
-    (:rank_new)))
+    (get-rank-data steamid)
+    (last)
+    (#(get-in % [:mm_rank_update :rank_new]))))
 
 (defn get-player-latest-name [steamid]
   (get-player-name-in-demo steamid (first (sorted-demos-for-steamid steamid))))
@@ -368,14 +373,20 @@
                  (set (keys (:players demo)))
                  (set (map #(Long/parseLong (:steamid %)) banned))))))))
 
-(defn get-demos-for-steamid [steamid filters]
-  (->> (sorted-demos-for-steamid steamid)
-       (filter-demos steamid filters)
-       (map #(assoc % :steamid steamid))
-       (map append-demo-stats)
-       (map (append-ban-info steamid))
-       (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills
-                     :1v1_attempted :1v1_won :weapons :tied :won :lost :player_slots))))
+(defn get-demos-for-steamid [steamid filters offset & [limit]]
+  (let [limit (or limit (:demos_per_page (get-config) 50))
+        all-demos (->> (reverse (sorted-demos-for-steamid steamid))
+                       (filter-demos steamid filters))
+        filtered-demos (->> all-demos
+                            (drop offset)
+                            (#(if (zero? limit) % (take limit %)))
+                            (map #(assoc % :steamid steamid))
+                            (map append-demo-stats)
+                            (map (append-ban-info steamid))
+                            (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills
+                                          :1v1_attempted :1v1_won :weapons :tied :won :lost :player_slots)))]
+    {:demo_count (count all-demos)
+     :demos      filtered-demos}))
 
 (defn kw-long-to-str [dict path]
   (assoc-in dict path (into {} (for [[k v] (get-in dict path)] [(str k) v]))))

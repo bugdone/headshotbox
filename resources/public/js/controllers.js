@@ -129,7 +129,7 @@ function filtersChanged($scope, $http) {
         $scope.loadTab($scope.tabs[$scope.activeTab]);
 }
 
-hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $rootScope, watchDemo, downloadDemo, $compile) {
+hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $rootScope, watchDemo, downloadDemo, $compile, config) {
     $scope.watchDemo = watchDemo;
     $scope.downloadDemo = downloadDemo;
     $scope.playerMaps = [];
@@ -164,6 +164,8 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
     $scope.orderTeams = '-kills';
     $scope.chartSelected = 'mapsplayed';
     $scope.rankChartXAxis = 'matches';
+    $scope.demoPages = {'currentPage': 1, 'demoCount': 0};
+    $scope.rankData = null;
     $scope.getPlayersInfo = function(missingPlayers) {
         if (missingPlayers.length == 0)
             return;
@@ -340,7 +342,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
             $scope.setTabLoaded('banned');
         });
     };
-    var loadMaps = function() {
+    var loadChartData = function() {
         var params = getRequestFilters($scope);
         $http.get(serverUrl + '/player/' + steamid + '/maps/statistics', {'params': params}).success(function (data) {
             $scope.mapsPlayedConfig.series[0].data = [];
@@ -375,28 +377,39 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
                                                             played: data[key].ct_rounds,
                                                             won: data[key].ct_rounds_won});
             }
-            setTimeout(function(){
-                window.dispatchEvent(new Event('resize'));
-            }, 0);
-            $scope.setTabLoaded('charts');
+            $http.get(serverUrl + '/player/' + steamid + '/rank_data', {'params': params}).success(function (data) {
+                $scope.rankData = data;
+                $scope.rankData.forEach(function(d) {
+                    d.date = timestamp2date(d.timestamp);
+                });
+                if ($scope.rankConfig.series[0].data == null) {
+                    $scope.setRankChartXAxis($scope.rankChartXAxis);
+                }
+                setTimeout(function() {
+                    window.dispatchEvent(new Event('resize'));
+                }, 0);
+                $scope.setTabLoaded('charts');
+            });
         });
-    };
+    }
     var getDemos = function() {
         var params = getRequestFilters($scope);
-        $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': params}).success(function(data) {
-            $scope.demos = data;
+        params['offset'] = ($scope.demoPages.currentPage - 1) * $rootScope.config.demos_per_page;
+        params['limit'] = $rootScope.config.demos_per_page;
+        params['folder'] = $scope.folder;
+        $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': params}).success(function (data) {
+            $scope.demos = data.demos;
+            $scope.demoPages.demoCount = data.demo_count;
             $scope.demos.forEach(function (m) {
                 m.kdd = m.kills - m.deaths;
                 if (!m.timestamp)
                     m.timestamp = 0;
                 m.date = timestamp2date(m.timestamp);
             });
-            if ($scope.rankConfig.series[0].data == null) {
-                $scope.setRankChartXAxis($scope.rankChartXAxis);
-            }
             $scope.setTabLoaded('demos');
         });
     };
+    $scope.getDemos = getDemos;
 
     $scope.activeTab = 'demos';
     $scope.tabs = {
@@ -404,7 +417,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
         'weapon_stats': { heading: 'Weapon Stats', content: 'weapon_stats', icon: 'bullseye', status: 'loaded' },
         'banned': { heading: 'Banned Players', content: 'banned', icon: 'ban', status: null, load: loadBanned },
         'search_round': { heading: 'Search Round', content: 'search_round', icon: 'search', status: 'loaded' },
-        'charts': { heading: 'Charts', content: 'charts', icon: 'bar-chart', status: null, load: loadMaps }
+        'charts': { heading: 'Charts', content: 'charts', icon: 'bar-chart', status: null, load: loadChartData }
     };
     $scope.tabArray = [];
     for (var tab in $scope.tabs) {
@@ -420,9 +433,11 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
 
     $scope.setRankChartXAxis = function(what) {
         $scope.rankChartXAxis = what;
+        if ($scope.rankData == null)
+            return;
         var d = [];
         var i = 0;
-        $scope.demos.forEach(function (m) {
+        $scope.rankData.forEach(function (m) {
             i++;
             if (m.mm_rank_update != null && m.mm_rank_update.rank_new != 0) {
                 d.push({x: $scope.rankChartXAxis == 'timestamp' ? m.timestamp : i, y: m.mm_rank_update.rank_new, date: m.date, old: m.mm_rank_update.rank_old, wins: m.mm_rank_update.num_wins});
@@ -739,24 +754,14 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
     }
 });
 
-hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
+hsboxControllers.controller('Settings', function ($scope, $http, $rootScope, config) {
     $scope.steamApiCollapsed = false;
     $scope.demoDirectoryCollapsed = true;
     $scope.vdmCollapsed = true;
     $scope.demowebmodeCollapsed = true;
     $scope.demoloaderBaseurlCollapsed = true;
     $scope.steamApiRefreshing = false;
-    $scope.getSettings = function() {
-        $http.get(serverUrl + '/config').success(function(data) {
-            $scope.config = data;
-        });
-    };
-    $scope.config = {};
-    $scope.updateSettings = function() {
-        $http.post(serverUrl + '/config', $scope.config).success(function(data) {
-          $rootScope.getAuthorizationState();
-        });
-    };
+    $scope.updateSettings = config.save;
 
     $scope.invertIndexerState = function() {
         if (typeof $scope.indexerRunning === 'undefined')
@@ -774,7 +779,7 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope) {
 
     $rootScope.$watch('isAuthorized', function() {
         if ($rootScope.isAuthorized) {
-            $scope.getSettings();
+            config.load();
             $scope.getIndexerState();
         }
     });
@@ -815,10 +820,9 @@ function cmpVersions(a, b) {
     return segmentsA.length - segmentsB.length;
 }
 
-hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootScope) {
+hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootScope, config) {
     $rootScope.isAuthorized = false;
     $rootScope.showLogin = true;
-    $rootScope.demoDownloadEnabled = false;
     $scope.active = 'player_list';
     $scope.version = '';
     $scope.newVersionAvailable = false;
@@ -837,9 +841,9 @@ hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootS
         $http.get(serverUrl + '/authorized').success(function(data) {
             $rootScope.isAuthorized = data.authorized;
             $rootScope.showLogin = data.showLogin;
-            $rootScope.demoDownloadEnabled = data.demoDownloadEnabled;
         });
     };
 
     $rootScope.getAuthorizationState();
+    config.load();
 });
