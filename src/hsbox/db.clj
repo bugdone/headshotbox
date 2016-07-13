@@ -181,9 +181,13 @@
                     (file-seq)
                     (map #(.toPath %)))
             update-path (fn [path]
-                          (jdbc/execute! t-con ["UPDATE demos SET path = ? WHERE rowid = ?"
-                                                (.getCanonicalPath (.toFile path)) rowid])
-                          (debug "updating for rowid" rowid "path" (.getCanonicalPath (.toFile path))))]
+                          (try
+                            (jdbc/execute! t-con ["UPDATE demos SET path = ? WHERE rowid = ?"
+                                                  (.getCanonicalPath (.toFile path)) rowid])
+                            (debug "updating for rowid" rowid "path" (.getCanonicalPath (.toFile path)))
+                            (catch Throwable e
+                              (warn e)
+                              (jdbc/execute! t-con ["DELETE FROM demos WHERE rowid = ?" rowid]))))]
         (if (.isAbsolute demo-path)
           (let [same-name (filter #(= (.getFileName %) (.getFileName demo-path)) demos)]
             (debug "isAbsolute" demo-path "count" (count same-name))
