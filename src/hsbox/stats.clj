@@ -379,7 +379,7 @@
                        (filter-demos steamid filters))
         filtered-demos (->> all-demos
                             (drop offset)
-                            (#(if (zero? limit) % (take limit %)))
+                            (#(if (or (nil? limit) (zero? limit)) % (take limit %)))
                             (map #(assoc % :steamid steamid))
                             (map append-demo-stats)
                             (map (append-ban-info steamid))
