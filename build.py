@@ -1,4 +1,4 @@
-# environment paths demoinfogo_bin__linux and demoinfogo_bin_win
+# environment paths demoinfogo_bin_linux and demoinfogo_bin_win
 # should point to directories where the demoinfogo binaries are
 import os
 import os.path
