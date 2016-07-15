@@ -53,7 +53,7 @@
         (db/set-portable))
       (when (not-empty demoinfo-dir)
         (set-demoinfo-dir demoinfo-dir))
-      (let [log-file (File. db/app-config-dir "headshotbox.log")]
+      (let [log-file (.getCanonicalFile (File. db/app-config-dir "headshotbox.log"))]
         (timbre/set-config! [:shared-appender-config :spit-filename] log-file)
         (when (:systray options)
           (let [uri (if (:openid-realm options)
