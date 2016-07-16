@@ -19,8 +19,16 @@ for os_name in ['linux', 'win']:
     os.mkdir(dir_name)
     shutil.copytree(demoinfogo, path)
     shutil.copy('target/' + jar, path)
-    with open(path + '/headshotbox.' + ('bat' if os_name == 'win' else 'sh'), 'w') as f:
-        f.write('java -jar %s --port 4000' % jar)
+
+    def write_launcher(filename, content):
+        with open(path + '/' + filename, 'w') as f:
+            f.write(content % jar)
+
+    if os_name == 'win':
+        write_launcher('headshotbox.bat', 'start javaw -jar %s --port 4000 --systray')
+        write_launcher('headshotbox_console.bat', 'java -jar %s --port 4000')
+    else:
+        write_launcher('headshotbox.sh', 'java -jar %s --port 4000')
     if os_name == 'linux':
         os.system('chmod +x %s/headshotbox.sh' % path)
 
