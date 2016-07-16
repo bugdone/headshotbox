@@ -394,7 +394,10 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
     }
     var getDemos = function() {
         var params = getRequestFilters($scope);
-        params['offset'] = ($scope.demoPages.currentPage - 1) * $rootScope.config.demos_per_page;
+        if ($rootScope.config.demos_per_page)
+            params['offset'] = ($scope.demoPages.currentPage - 1) * $rootScope.config.demos_per_page;
+        else
+            params['offset'] = 0;
         params['limit'] = $rootScope.config.demos_per_page;
         params['folder'] = $scope.folder;
         $http.get(serverUrl + '/player/' + steamid + '/demos', {'params': params}).success(function (data) {
