@@ -50,6 +50,9 @@
       (handler request)
       ((friend/wrap-authorize handler #{::admin}) request))))
 
+(defn is-admin? [request]
+  (friend/authorized? #{::admin} (friend/identity request)))
+
 (defroutes api-routes
            (context "/player/:steamid" [steamid]
              (let [steamid (Long/parseLong steamid)]
@@ -139,13 +142,15 @@
                             (indexer/set-indexing-state (:running state))
                             (response "ok")))))
            (context "/config" []
+             (GET "/" request
+               (let [config (db/get-config)]
+                 (response (if (is-admin? request)
+                             config
+                             (select-keys config [:playerlist_min_demo_count :demos_per_page])))))
              (authorize-admin
-               (defroutes config-routes
-                          (GET "/" []
-                            (response (db/get-config)))
-                          (POST "/" {config :body}
-                            (indexer/set-config config)
-                            (response "ok")))))
+               (POST "/" {config :body}
+                 (indexer/set-config config)
+                 (response "ok"))))
            (context "/vdm" []
              (only-local
                (authorize-admin
@@ -156,7 +161,7 @@
              (response {:authorized
                         (if (empty? @openid-settings)
                           true
-                          (friend/authorized? #{::admin} (friend/identity request)))
+                          (is-admin? request))
                         :showLogin
                         (if (empty? @openid-settings)
                           false
