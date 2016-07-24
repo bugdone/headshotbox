@@ -67,7 +67,11 @@
                               (response (stats/get-demos-for-steamid
                                           steamid
                                           (parse-filters params)
-                                          (Long/parseLong (:offset params))
+                                          (try
+                                            (Long/parseLong (:offset params))
+                                            (catch Exception e
+                                              (error "Error parsing offset in GET /player/demos" (:offset params) (str e))
+                                              0))
                                           (if (nil? limit) nil (Long/parseLong limit))))))
                           (GET "/teammates" []
                             (response (stats/get-teammates-for-steamid steamid)))
