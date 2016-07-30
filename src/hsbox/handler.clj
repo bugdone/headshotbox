@@ -51,7 +51,7 @@
       ((friend/wrap-authorize handler #{::admin}) request))))
 
 (defn is-admin? [request]
-  (friend/authorized? #{::admin} (friend/identity request)))
+  (or (empty? @openid-settings) (friend/authorized? #{::admin} (friend/identity request))))
 
 (defroutes api-routes
            (context "/player/:steamid" [steamid]
