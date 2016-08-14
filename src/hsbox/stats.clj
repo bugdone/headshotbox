@@ -465,16 +465,32 @@
       (and (= (:bomb_defused round) steamid)
            (>= dead-cts dead-ts)))))
 
+(defn not-nade? [weapon]
+  (not (#{"hegrenade" "inferno" "flashbang" "smokegrenade" "decoy"} (weapon-name weapon))))
+
+(defn scoped-weapon [weapon]
+  (#{"awp" "ssg08" "scar20" "g3sg1"} (weapon-name weapon)))
+
+(defn through-smoke? [kill]
+  (and (:smoke kill) (not-nade? (:weapon kill))))
+
+(defn no-scope? [kill]
+  (and (scoped-weapon (:weapon kill)) (nil? (:scoped_since kill))))
+
+(defn air-kill? [kill]
+  (and (not-nade? (:weapon kill)) (:air_velocity kill) (>= (Math/abs (:air_velocity kill)) 1)))
+
+(defn quick-scope? [kill demo]
+  (and (scoped-weapon (:weapon kill))
+       (:scoped_since kill)
+       (< (* (:tickrate demo) (- (:tick kill) (:scoped_since kill))) 0.1)))
+
 (defn weapon-filter [regexp-demo]
   (let [multiplier (if (second regexp-demo) (Integer/parseInt (second regexp-demo)) 1)
         flags? (not (nil? (nth regexp-demo 3)))
         flags (nth regexp-demo 3)
-        penetrated (and flags? (.contains flags "bang"))
-        headshot (and flags? (.contains flags "hs"))
-        jump (and flags? (.contains flags "jump"))
-        smoke (and flags? (.contains flags "smoke"))
-        collateral (and flags? (.contains flags "collateral"))
-        weapon (nth regexp-demo 2)]
+        weapon (nth regexp-demo 2)
+        flag (fn [f] (and flags? (.contains flags f)))]
     (fn [round steamid demo]
       (let [same-weapon-and-tick (fn [kill]
                                    (filter #(and (= (:tick %) (:tick kill)) (= (:weapon %) (:weapon kill)) (= (:attacker %) (:attacker kill)))
@@ -482,13 +498,18 @@
             kills (filter #(and (= steamid (:attacker %))
                                 (not-tk % round demo)
                                 (or (= weapon (weapon-name (:weapon %))) (= weapon ""))
-                                (if penetrated (> (:penetrated %) 0) true)
-                                (if headshot (:headshot %) true)
-                                (if smoke (and (:smoke %) (not= (weapon-name (:weapon %)) "inferno")) true)
-                                (if collateral (> (count (same-weapon-and-tick %)) 1) true)
-                                (if jump (and (:jump %)
-                                              (<= 0.1 (* (:tickrate demo) (:jump %)) 0.5)
-                                              (not (#{"hegrenade" "inferno"} (weapon-name (:weapon %))))) true))
+                                (if (flag "bang") (> (:penetrated %) 0) true)
+                                (if (flag "hs") (:headshot %) true)
+                                (if (flag "smoke") (through-smoke? %) true)
+                                (if (flag "collateral") (> (count (same-weapon-and-tick %)) 1) true)
+                                (if (flag "jump")
+                                  (and (:jump %)
+                                       (<= 0.1 (* (:tickrate demo) (:jump %)) 0.5)
+                                       (not-nade? (:weapon %)))
+                                  true)
+                                (if (flag "air") (air-kill? %) true)
+                                (if (flag "noscope") (no-scope? %) true)
+                                (if (flag "quickscope") (quick-scope? % demo) true))
                           (:deaths round))]
         (>= (count kills) multiplier)))))
 
@@ -501,10 +522,15 @@
           [ninja-filter #"ninja"]
           [weapon-filter (re-pattern (str "^(?:(1|2|3|4|5)(?:x)?)?("
                                           (str (str/join "|" weapon-names) "|")
-                                          ")((?:bang|hs|jump|smoke|collateral)*)$"))]])))
+                                          ")((?:bang|hs|jump|smoke|collateral|air|noscope|quickscope)*)$"))]])))
 
 (defn round-kills [round steamid demo]
-  (reduce #(let [key {:weapon (weapon-name (:weapon %2)) :headshot (:headshot %2) :penetrated (pos? (:penetrated %2))}]
+  (reduce #(let [key {:weapon (weapon-name (:weapon %2))
+                      :headshot (:headshot %2)
+                      :penetrated (pos? (:penetrated %2))
+                      :smoke (through-smoke? %2)
+                      :quickscope (quick-scope? %2 demo)
+                      :noscope (no-scope? %2)}]
             (assoc % key (+ 1 (get % key 0))))
           {} (filter #(and (= (:attacker %) steamid) (not-tk % round demo)) (:deaths round))))
 
@@ -525,7 +551,8 @@
 (defn replace-aliases [s]
   (reduce #(str/replace % (first %2) (second %2)) s {"kqly"     "jump"
                                                      "ace"      "5k"
-                                                     "juandeag" "deaglehs"}))
+                                                     "juandeag" "deaglehs"
+                                                     "scout"    "ssg08"}))
 
 (defn re-filters [re filters]
   (filter #(re-matches re %) filters))
