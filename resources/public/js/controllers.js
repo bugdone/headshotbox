@@ -735,13 +735,15 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
         else
             $scope.orderRounds = field;
     }
+    $scope.all_players = false;
     $scope.orderRounds = '-timestamp';
     $scope.roundHelpIsCollapsed = true;
     steamid = $routeParams.steamid;
     $scope.search_string = "";
+    $scope.players = {};
     $scope.search = function() {
         var params = getRequestFilters($scope);
-        params["search-string"] = steamid + ' ' + $scope.search_string;
+        params["search-string"] = ($scope.all_players ? '' : steamid) + ' ' + $scope.search_string;
         $http.get(serverUrl + '/round/search', { params: params }).success(function(data) {
             $scope.rounds = data;
             $scope.rounds.forEach(function (r) {
@@ -752,6 +754,12 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
                     r.won_str = "Yes";
                 else
                     r.won_str = "No";
+            });
+
+            var steamIds = data.map(function(p) { return p.steamid; });
+            var url = getPlayerSummaries(steamIds);
+            $http.get(url).success(function (response) {
+                $scope.players = response;
             });
         });
     }

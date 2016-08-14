@@ -12,6 +12,11 @@
           <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
         </button>
       </div>
+      <br/>
+      <div class="col-md-12">
+        <input type="checkbox" ng-model="all_players">
+        All Players
+      </div>
     </div>
 
     <br/>
@@ -57,6 +62,7 @@
           <th class="text-left">Map</th>
           <th class="text-center">Side</th>
           <th class="text-center"><a ng-click="setOrder('round')">Round</a></th>
+          <th class="text-center" ng-if="all_players">Player</th>
           <th class="text-center">Kills</th>
           <th class="text-center">Won?</th>
           <th class="text-center">Watch</th>
@@ -69,6 +75,10 @@
           <td class="text-left">{{round.map}}</td>
           <td class="text-center" ng-class="{blue: round.side == 'CT', red: round.side == 'T'}">{{round.side}}</td>
           <td class="text-center">{{round.round}}</td>
+          <td class="text-left" ng-if="all_players">
+            <a href="http://steamcommunity.com/profiles/{{round.steamid}}" ng-if="players[round.steamid].avatar"><img ng-src="{{players[round.steamid].avatar}}" class="list-avatar"/></a>
+            <a href="#/player/{{round.steamid}}">{{players[round.steamid].personaname ? players[round.steamid].personaname : players[round.steamid].name}}</a>
+          </td>
           <td class="text-left">
             <div ng-repeat="kill in round.kills">
               {{kill.kills + "x"}}
