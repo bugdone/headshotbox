@@ -8,6 +8,7 @@
           <th>Player</th>
           <th class="text-center"><a ng-click="orderPlayers = '-(last_rank == null ? 0 : last_rank)'">MM Rank</a></th>
           <th class="text-center"><a ng-click="orderPlayers = '-demos'">Demos</a></th>
+          <th class="text-center"><a ng-click="orderPlayers = '-(last_timestamp == null ? 0 : last_timestamp)'">Last Played</a></th>
         </tr>
       </thead>
       <tr ng-repeat="player in players | orderBy:orderPlayers">
@@ -21,6 +22,7 @@
         <td class="text-center">
           {{player.demos}}
         </td>
+        <td class="text-center">{{player.last_date}}</td>
       </tr>
     </table>
     <div class="text-center">

@@ -678,6 +678,10 @@ hsboxControllers.controller('PlayerList', function ($scope, $http) {
             $scope.players = data.players;
             $scope.playerCount = data.player_count;
             $scope.orderPlayers = '-demos';
+            for (var i in $scope.players) {
+                player = $scope.players[i];
+                player.last_date = timestamp2date(player.last_timestamp, true);
+            }
             var steamIds = $scope.players.map(function(p) { return p.steamid; });
             var url = getPlayerSummaries(steamIds);
             $http.get(url).success(function (response) {

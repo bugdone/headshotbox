@@ -27,10 +27,13 @@
   (let [folder-filtered (fn [m] (if (nil? folder)
                                   m
                                   (select-keys m (for [[k v] m :when (= (:folder v) folder)] k))))
+        sort-by-date (fn [c] (sort #(compare (:timestamp %2) (:timestamp %)) c))
         players (->> player-demos
-                     (reduce-kv #(conj % {:steamid %2
-                                          :demos   (count (folder-filtered %3))
-                                          :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
+                     (reduce-kv #(let [filtered-demos (vals (folder-filtered %3))]
+                                  (conj % {:steamid   %2
+                                           :demos     (count filtered-demos)
+                                           :last_timestamp (-> (sort-by-date filtered-demos) (first) (:timestamp))
+                                           :name      (get-player-name-in-demo %2 (first filtered-demos))})) [])
                      (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
                      (sort #(compare (:demos %2) (:demos %))))]
     {:player_count (count players)
