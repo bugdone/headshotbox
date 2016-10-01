@@ -532,6 +532,7 @@
                       :headshot (:headshot %2)
                       :penetrated (pos? (:penetrated %2))
                       :smoke (through-smoke? %2)
+                      :air (air-kill? %2)
                       :quickscope (quick-scope? %2 demo)
                       :noscope (no-scope? %2)}]
             (assoc % key (+ 1 (get % key 0))))

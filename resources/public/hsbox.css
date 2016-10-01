@@ -218,3 +218,7 @@ a {
    padding-right: 0 !important;
    padding-left: 0 !important;
 }
+
+.tilted {
+    transform: rotate(15deg);
+}
