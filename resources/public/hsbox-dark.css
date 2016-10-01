@@ -136,7 +136,6 @@ tr th{
 .player-stats{
     width: 25%;
     display: block;
-    float: center;
     background: rgba(46, 55, 62, 0.6);
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.29);
