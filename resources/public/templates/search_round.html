@@ -12,11 +12,6 @@
           <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
         </button>
       </div>
-      <br/>
-      <div class="col-md-12">
-        <input type="checkbox" ng-model="all_players">
-        All Players
-      </div>
     </div>
 
     <br/>
@@ -65,7 +60,7 @@
           <th class="text-left">Map</th>
           <th class="text-center">Side</th>
           <th class="text-center"><a ng-click="setOrder('round')">Round</a></th>
-          <th class="text-center" ng-if="all_players">Player</th>
+          <th class="text-center" ng-if="!steamid">Player</th>
           <th class="text-center">Kills</th>
           <th class="text-center">Won?</th>
           <th class="text-center">Watch</th>
@@ -78,17 +73,17 @@
           <td class="text-left">{{round.map}}</td>
           <td class="text-center" ng-class="{blue: round.side == 'CT', red: round.side == 'T'}">{{round.side}}</td>
           <td class="text-center">{{round.round}}</td>
-          <td class="text-left" ng-if="all_players">
+          <td class="text-left" ng-if="!steamid">
             <a href="http://steamcommunity.com/profiles/{{round.steamid}}" ng-if="players[round.steamid].avatar"><img ng-src="{{players[round.steamid].avatar}}" class="list-avatar"/></a>
             <a href="#/player/{{round.steamid}}">{{players[round.steamid].personaname ? players[round.steamid].personaname : players[round.steamid].name}}</a>
           </td>
           <td class="text-left">
             <div ng-repeat="kill in round.kills">
               {{kill.kills + "x"}}
-              <img ng-src="img/weapons/icon-{{kill.weapon}}{{kill.noscope ? '_noscope' : ''}}_grey.png" height="20" ng-class="{tilted: kill.air}"/>
-              <img ng-if="kill.smoke" src="img/weapons/smoke_grey.png" height="20"/>
-              <img ng-if="kill.penetrated" src="img/weapons/icon-penetrate_grey.png" height="20"/>
-              <img ng-if="kill.headshot" src="img/weapons/icon-headshot_grey.png" height="20"/>
+              <img ng-src="img/weapons/icon-{{kill.weapon}}{{kill.noscope ? '_noscope' : ''}}_grey.png" height="20" ng-class="{tilted: kill.air}" title="{{kill_description(kill)}}"/>
+              <img ng-if="kill.smoke" src="img/weapons/smoke_grey.png" height="20" title="{{kill_description(kill)}}"/>
+              <img ng-if="kill.penetrated" src="img/weapons/icon-penetrate_grey.png" height="20" title="{{kill_description(kill)}}"/>
+              <img ng-if="kill.headshot" src="img/weapons/icon-headshot_grey.png" height="20" title="{{kill_description(kill)}}"/>
             </div>
           </td>
           <td class="text-center" ng-class="{green: round.won, red: !round.won}">{{round.won_str}}</td>

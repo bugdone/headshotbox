@@ -25,8 +25,8 @@ hsboxApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'templates/player_list.html',
             controller: 'PlayerList'
         }).
-        when('/round_search', {
-            templateUrl: 'templates/round_search.html',
+        when('/search_round', {
+            templateUrl: 'templates/search_round_top.html',
             controller: 'RoundSearch'
         }).
         when('/settings', {

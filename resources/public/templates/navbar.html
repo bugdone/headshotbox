@@ -10,6 +10,7 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li ng-class="{active: $scope.active == 'player_list'}"><a href="#/player_list" ng-click="$scope.active = 'player_list'"><i class="fa fa-users"></i> Player List<span class="sr-only">(current)</span></a></li>
+        <li ng-class="{active: $scope.active == 'search_round'}"><a href="#/search_round" ng-click="$scope.active = 'search_round'"><i class="fa fa-search"></i> Search Round</a></li>
         <li ng-class="{active: $scope.active == 'settings'}"><a href="#/settings" ng-click="$scope.active = 'settings'"><i class="fa fa-cogs"></i> Settings</a></li>
         <li ng-if="showLogin">
           <div ng-switch="isAuthorized" class="my-nav-button">

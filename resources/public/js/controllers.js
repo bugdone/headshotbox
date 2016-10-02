@@ -105,6 +105,8 @@ function bansTooltip(player, demoTimestamp) {
 }
 
 function getRequestFilters($scope) {
+    if ($scope.filterDemos == null)
+        return {};
     var params = JSON.parse(JSON.stringify($scope.filterDemos));
     var teammates = [];
     $scope.filterTeammates.forEach(function (t) {
@@ -739,7 +741,6 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
         else
             $scope.orderRounds = field;
     }
-    $scope.all_players = false;
     $scope.orderRounds = '-timestamp';
     $scope.roundHelpIsCollapsed = true;
     steamid = $routeParams.steamid;
@@ -747,7 +748,7 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
     $scope.players = {};
     $scope.search = function() {
         var params = getRequestFilters($scope);
-        params["search-string"] = ($scope.all_players ? '' : steamid) + ' ' + $scope.search_string;
+        params["search-string"] = (steamid ? steamid : '') + ' ' + $scope.search_string;
         $http.get(serverUrl + '/round/search', { params: params }).success(function(data) {
             $scope.rounds = data;
             $scope.rounds.forEach(function (r) {
@@ -767,6 +768,12 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
             });
         });
     }
+    $scope.kill_description = function(kill) {
+        return (kill.headshot ? "headshot" : "killed" ) + " with " + kill.weapon +
+            (kill.noscope ? " noscope" : "") + (kill.quickscope ? " quickscope" : "") +
+            (kill.air ? " while mid-air" : "") +
+            (kill.smoke ? " through smoke" : "") + (kill.penetrated ? " through wall" : "");
+    };
 });
 
 hsboxControllers.controller('Settings', function ($scope, $http, $rootScope, config) {
