@@ -64,7 +64,7 @@
           <th class="text-center">Kills</th>
           <th class="text-center">Won?</th>
           <th class="text-center">Watch</th>
-          <th class="text-center">Demo</th>
+          <th class="text-center" ng-if="steamid">Demo</th>
         </tr>
       </thead>
       <tbody ng-repeat="round in rounds | orderBy:orderRounds">
@@ -95,12 +95,12 @@
               <i class="fa fa-play-circle"></i>
             </button>
           </td>
-          <td ng-click="makeVisible(round.demoid, round.round)" class="clickable text-center">
+          <td ng-click="makeVisible(round.demoid, round.round)" class="clickable text-center" ng-if="steamid">
             <i class="pull-right glyphicon"
                ng-class="{'glyphicon-chevron-down': isVisible(round.demoid, round.round), 'glyphicon-chevron-right': !isVisible(round.demoid, round.round)}"/>
           </td>
         </tr>
-        <tr ng-if="isVisible(round.demoid, round.round)">
+        <tr ng-if="isVisible(round.demoid, round.round) && steamid">
           <td colspan="9">
             <div ng-include src="'templates/demo.html'"></div>
           </td>
