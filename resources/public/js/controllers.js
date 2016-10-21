@@ -244,6 +244,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
                             $scope.theDemo.teams[key].forEach(function (p) {
                                 p.kdd = p.kills - p.deaths;
                                 p.adr = p.damage / p.rounds_with_damage_info;
+                                p.arws = p.rws / p.rounds_with_damage_info;
                                 if (!$scope.steamAccounts[p.steamid])
                                     missingPlayers[missingPlayers.length] = p.steamid;
                             });
@@ -771,8 +772,8 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
     $scope.kill_description = function(kill) {
         return (kill.headshot ? "headshot" : "killed" ) + " with " + kill.weapon +
             (kill.noscope ? " noscope" : "") + (kill.quickscope ? " quickscope" : "") +
-            (kill.air ? " while mid-air" : "") +
-            (kill.smoke ? " through smoke" : "") + (kill.penetrated ? " through wall" : "");
+            (kill.smoke ? " through smoke" : "") + (kill.penetrated ? " through wall" : "") +
+            (kill.air ? " while mid-air" : "");
     };
 });
 
