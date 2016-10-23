@@ -131,6 +131,7 @@
                                            {:victim (:userid event)})]
                                (update-in round [:deaths] conj death))
               "bomb_defused" (assoc round :bomb_defused (:userid event))
+              "bomb_exploded" (assoc round :bomb_exploded (:userid event))
               ; disconnected players are interesting only when they have spawned and haven't died
               "player_disconnected" (if (and
                                           (get-in round [:players (:userid event)])

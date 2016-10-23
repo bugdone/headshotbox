@@ -168,6 +168,23 @@
           alive-enemies (- 5 (count (filter not-same-team (second last-teammate-death))))]
       (and ((if exact-enemies? = >=) alive-enemies enemies) (= 4 dead-teammates) (if won? (= (:winner round) player-team) true)))))
 
+(defn get-rws [steamid round]
+  (let [team (team-number steamid round)
+        is-t (= 2 team)]
+    (if (and (not-empty (:damage round)) (= team (:winner round)))
+      ; reason 1 for #SFUI_Notice_Target_Bombed
+      (let [bomb (or (and (:bomb_exploded round) (= 1 (:win_reason round))) (:bomb_defused round))
+            dmg-ratio (if bomb 70 100)
+            team-damage (reduce-kv #(+ % (if (= team (get-in round [:players %2])) %3 0))
+                                   0
+                                   (:damage round))]
+        (+ (if (and bomb (or (= steamid (:bomb_defused round))
+                             (= steamid (:bomb_exploded round))))
+             30
+             0)
+           (* dmg-ratio (/ (get-in round [:damage steamid] 0) team-damage))))
+      0)))
+
 (defn update-stats-with-round [stats round]
   (if ((get stats :round-filter #(or true % %2)) round (:steamid stats))
     (let [steamid (:steamid stats)
@@ -178,7 +195,9 @@
           first-death (first (:deaths round))
           first-dead (= steamid (:victim first-death))
           first-killer (= steamid (:attacker first-death))
-          is-t (= 2 (get-in round [:players steamid]))]
+          team (team-number steamid round)
+          is-t (= 2 team)
+          rws (get-rws steamid round)]
       (if (> multikills 5)
         (do
           (error "Error in demo" (:demoid stats) ":" steamid "had" multikills "kills in round" (:number round))
@@ -187,6 +206,7 @@
             (dissoc :kills-this-round :players)
             (update-in [:rounds_with_kills multikills] inc)
             (update-in [:damage] #(+ % (get-in round [:damage steamid] 0)))
+            (update-in [:rws] #(+ % rws))
             (inc-stat-maybe :rounds true)
             (inc-stat-maybe :rounds_with_damage_info (not-empty (:damage round)))
             (inc-stat-maybe :rounds_t is-t)
@@ -236,6 +256,7 @@
    :rounds_with_kills       {0 0 1 0 2 0 3 0 4 0 5 0}
    :damage                  0
    :rounds_with_damage_info 0
+   :rws                     0
    :weapons                 {}})
 
 (defn cleanup-stats [stats]
@@ -403,12 +424,22 @@
                                                (assoc % %2 (str %3))
                                                (assoc % %2 %3))
                                              {} death)
-                                  (assoc :weapon_name (weapon-name (:weapon death)))))]
+                                  (assoc :weapon_name (weapon-name (:weapon death)))))
+        convert-if-exists (fn [round key]
+                            (if (get round key)
+                              (assoc round key (str (get round key)))
+                              round))
+        compute-rws (fn [round]
+                      (apply hash-map (reduce #(concat % [(str %2) (get-rws %2 round)]) [] (keys (:players round)))))]
     (->
       demo
       (kw-long-to-str [:players])
       (assoc :rounds (map #(-> %
                                (kw-long-to-str [:players])
+                               (kw-long-to-str [:damage])
+                               (assoc :rws (compute-rws %))
+                               (convert-if-exists :bomb_exploded)
+                               (convert-if-exists :bomb_defused)
                                (assoc :deaths (map convert-death-steamid (:deaths %))))
                           (:rounds demo))
              :path (:path demo)))))

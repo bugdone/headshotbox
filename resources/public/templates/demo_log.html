@@ -4,6 +4,8 @@
       <tab-heading>
         <i class="fa fa-exchange" ng-if="round.teams_switched"></i>
         <span ng-class="{lightblue: round.winner == 3, red: round.winner == 2}">{{$index + 1}}</span>
+        <img ng-src="img/defuser.png" ng-if="round['bomb_defused']" height="20"/>
+        <img ng-src="img/c4.png" ng-if="round['bomb_exploded']" height="20"/>
         <i class="fa fa-warning" ng-if="round.deaths.length > 10"></i>
       </tab-heading>
 
@@ -49,11 +51,20 @@
                 <thead>
                   <tr>
                     <th class="text-center">CT</th>
+                    <th class="text-center">Damage</th>
+                    <th class="text-center" ng-if="round.winner == 3">RWS</th>
                   </tr>
                 </thead>
                 <tr ng-repeat="(player, team) in round.players" ng-if="team == 3">
                   <td>
                     <span ng-class="{lightblue: round.players[player] == 3, red: round.players[player] == 2}">{{playerName(demo.players[player])}}</span>
+                    <img ng-src="img/defuser.png" ng-if="round['bomb_defused'] == player" height="20"/>
+                  </td>
+                  <td>
+                    <span>{{round.damage[player]}}</span>
+                  </td>
+                  <td ng-if="round.winner == 3">
+                    <span>{{round.rws[player]}}</span>
                   </td>
                 </tr>
               </table>
@@ -63,12 +74,22 @@
                 <thead>
                   <tr>
                     <th class="text-center">T</th>
+                    <th class="text-center">Damage</th>
+                    <th class="text-center" ng-if="round.winner == 2">RWS</th>
                   </tr>
                 </thead>
                 <tr ng-repeat="(player, team) in round.players" ng-if="team == 2">
                   <td>
                     <span ng-class="{lightblue: round.players[player] == 3, red: round.players[player] == 2}">{{playerName(demo.players[player])}}</span>
+                    <img ng-src="img/c4.png" ng-if="round['bomb_exploded'] == player" height="20"/>
                   </td>
+                  <td>
+                    <span>{{round.damage[player]}}</span>
+                  </td>
+                  <td ng-if="round.winner == 2">
+                    <span>{{round.rws[player]}}</span>
+                  </td>
+                </tr>
                 </tr>
               </table>
             </div>

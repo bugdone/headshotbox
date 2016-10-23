@@ -18,6 +18,7 @@
           <th class="text-right"><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
           <th class="text-right"><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
           <th class="text-right"><a ng-click="orderTeams = '-adr'"><abbr title="Average Damage Per Round (takes into account only games after the 30.06.2015 patch)">ADR</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-arws'"><abbr title="average Round Win Shares">RWS</abbr></a></th>
           <th class="text-right"><a ng-click="orderTeams = '-rating'"><abbr title="HLTV Rating">Rating</abbr></a></th>
         </tr>
       </thead>
@@ -39,6 +40,7 @@
         <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
         <td>{{player.hs_percent | number:2}}</td>
         <td>{{player.adr | number:2}}</td>
+        <td>{{player.arws | number:2}}</td>
         <td>{{player.rating | number:2}}</td>
       </tr>
       <thead>
@@ -51,6 +53,7 @@
           <th class="text-right"><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
           <th class="text-right"><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
           <th class="text-right"><a ng-click="orderTeams = '-adr'"><abbr title="Average Damage Per Round (takes into account only games after the 30.06.2015 patch)">ADR</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-arws'"><abbr title="average Round Win Shares">RWS</abbr></a></th>
           <th class="text-right"><a ng-click="orderTeams = '-rating'"><abbr title="HLTV Rating">Rating</abbr></a></th>
         </tr>
       </thead>
@@ -72,6 +75,7 @@
         <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
         <td>{{player.hs_percent | number:2}}</td>
         <td>{{player.adr | number:2}}</td>
+        <td>{{player.arws | number:2}}</td>
         <td>{{player.rating | number:2}}</td>
       </tr>
     </table>
