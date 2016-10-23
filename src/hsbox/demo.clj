@@ -111,11 +111,17 @@
                                        :winner (:winner event)
                                        :win_reason (:reason event))
               "player_hurt" (let [health (get-in round [:health (:userid event)] 100)
-                                  damage (min (:dmg_health event) health)]
+                                  damage (min (:dmg_health event) health)
+                                  team (fn [steamid]
+                                         (get-in round [:players steamid]))
+                                  update-dmg (fn [round]
+                                               (if (and (not= 0 (:attacker event)) (not= (team (:userid event)) (team (:attacker event))))
+                                                 (update-in round [:damage (:attacker event)]
+                                                            #(if (nil? %) %2 (+ % %2)) damage)
+                                                 round))]
                               (-> round
                                   (assoc-in [:health (:userid event)] (:health event))
-                                  (update-in [:damage (:attacker event)]
-                                             #(if (nil? %) %2 (+ % %2)) damage)))
+                                  (update-dmg)))
               "player_spawn" (if (or (= 0 (:teamnum event)) (= 0 (:userid event)))
                                round
                                (assoc-in round [:players (:userid event)] (:teamnum event)))
