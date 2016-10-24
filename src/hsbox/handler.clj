@@ -211,6 +211,11 @@
            (error e)
            (throw e)))))
 
+(defn wrap-cache-control [f]
+  (fn [request]
+    (let [response (f request)]
+      (update-in response [:headers] merge {"Pragma" "no-cache" "Cache-Control" "no-cache, must-revalidate"}))))
+
 (defn credential-fn [stuff]
   (if (= (:identity stuff) (str "http://steamcommunity.com/openid/id/" (:steamid @openid-settings)))
     (assoc stuff :roles #{::admin})
@@ -236,4 +241,5 @@
         app-routes
         (create-secured-app))
       wrap-exception
+      wrap-cache-control
       handler/site))
