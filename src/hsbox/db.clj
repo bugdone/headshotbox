@@ -9,10 +9,10 @@
   (:import (java.io File)))
 
 (timbre/refer-timbre)
-(def latest-data-version {"valve"  4
-                          "esea"   5
-                          "faceit" 4
-                          "cevo"   4})
+(def latest-data-version {"valve"  6
+                          "esea"   6
+                          "faceit" 6
+                          "cevo"   6})
 
 (def schema-version 6)
 ;(set! *warn-on-reflection* true)
