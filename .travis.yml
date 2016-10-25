@@ -5,7 +5,7 @@ addons:
    packages:
    - unzip
 
-script: build-travis.sh
+script: ./build-travis.sh
 
 jdk:
   - oraclejdk8
