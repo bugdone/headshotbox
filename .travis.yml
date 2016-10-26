@@ -1,20 +1,19 @@
 language: clojure
 
 addons:
- apt:
-   packages:
-   - unzip
+  apt:
+    packages:
+    - unzip
 
 script: ./build-travis.sh
 
-jdk:
-  - oraclejdk8
+jdk: oraclejdk8
 
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: RyT/b63P3iLv5RiXRFvCldD79yC/prPC//YAUjfArQ7CBsaOPpQvhDgHz5k98uNGOPwfQnEgFhy4zj1vwVjOOBcRGJbkxqsPT09Yht2eE7YLk+bK3itXa+54PTgejqweoLAJqhyi38dOdjhPUBFR51d2cdCE/SzxI4Dfbc61bhBO7tGnfiUWy/gbVze14PsGotljWMgwd8K/zstg80VZRlFjl018d0XbP1Fm/kocsvQCC82SKXg6Ox77VdytNw9iVW69NX6iSe5RyWGi5Eyc3aOKo1ZlMPcs6/MvqqA5kKMxqkKgoZCFABROOKFx5NaX1iWMAIcGNUEJa8YZWf1lx6w4HF32HuPYV4MJ70A2ueiBjdW7hFKWHvA0ukp2nbPi5BxfO9psk70xBnsqPq6F3b8Cmrg8ofSazxB+lE0PfYr2BGtm2e05Dd6LgwqKRO290/WgklxX6Nr6GnplaGJUxWnhXxrhlIQg+PVgU3ohesE2Y8ro1ABhPQpbP202DHLY9ofS972kXV0VFf19alADp+hKouapHoSMbINOCe0ON9O55AODM95VGYWvsWtTVkWPcQV7AYwTtGkqI2ISmwrJ9LvS9UZsHwM1X7rqJuTBv4gZvkzkSa6NpZzlGAJLToMiLX+2PRYV8KlYvduXKifliUpPPU4fAP2TPj054wYlaig=
+    secure: KvbaTixUtmzum820dnCxGgeaWq+Jan8bBJyOFrOLk31+gpmWEnQ4yflFhxGT/NUWSgHe1S6pBhyncG4lBAlXo0krhwPuVmhRJt3JFR1V3pdU3eBgexeS+yHSeQslaYG30pSC9Vmk31nUi3iPwV6C5ZYlZIpcKr0aTF3TnCvjYhtUM4MfEwBfQS3ER3/MDaXp6AVApiTJMmXX5eCNPm5p8VQi4lNln8NQKU2NCRR/ll3/2dEgD6P/X8J0vDVqxkjy/R252ZI2WLDSxLXCZjrvNFTTRoS3Dt8vgXc9qaPi8iY7xHN4AEhZfjqSSspuJZV0LW8cV4j61zV1q+fs7+0A/LPVJeDf90qq4BKXk1sEHo3a/WqJI85LIoKywsAjvRwALll0P58NLMSgE8rNY9aw8lu25EfEA3GcHX01SPqYeLn33GO8B9mPNHqfb4L2zQ2JBIeNAfmG2mQkI91zpKYf/l4SVj4VlWrBVW52fGEVCFms87SG+/Cs1qZoOAb8rPXKWSzRmCFT9cj/P6nwSJCosbf6UKOJLaKNWrJs1VBko01tF0yk66P/jqCjgtG5cCHFI6RzWqQUePOSvZM3jZYKK+jbQFCvESMUAUqF0IWzM+ok/Hd/mNNTgF3ywbuwCLFAok4H3lptLcpAHZlrwpYoC9xsZqQ6Pn3hayxwXKF/74c=
   file_glob: true
   file: "headshotbox-*.zip"
   draft: true
