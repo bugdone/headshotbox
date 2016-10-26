@@ -3,12 +3,17 @@
             [clojure.set :refer [subset? intersection]]
             [hsbox.steamapi :as steamapi]
             [hsbox.util :refer [current-timestamp]]
-            [hsbox.db :as db :refer [demo-path get-steam-api-key latest-data-version]]))
+            [hsbox.db :as db :refer [get-steam-api-key latest-data-version get-config]])
+  (:import (java.util.concurrent.locks ReentrantLock)
+           (java.util.concurrent TimeUnit)))
 
 (taoensso.timbre/refer-timbre)
 
 (def demos {})
 (def player-demos {})
+(def api-refresh-lock (ReentrantLock.))
+(def api-refresh-cond (.newCondition api-refresh-lock))
+(def api-refreshing? (atom false))
 
 (defn seconds-to-ticks [seconds tickrate] (int (* seconds (/ 1 tickrate))))
 
@@ -18,14 +23,24 @@
 (defn get-player-name-in-demo [steamid demo]
   (get-in demo [:players steamid :name]))
 
-(defn get-players []
-  (->> player-demos
-       (reduce-kv #(conj % {:steamid %2
-                            :demos   (count %3)
-                            :name    (get-player-name-in-demo %2 (second (first %3)))}) [])
-       (filter #(> (:demos %) 1))
-       (sort #(compare (:demos %2) (:demos %)))
-       (map #(assoc % :steamid (str (:steamid %))))))
+(defn get-players [folder offset limit]
+  (let [folder-filtered (fn [m] (if (nil? folder)
+                                  m
+                                  (select-keys m (for [[k v] m :when (= (:folder v) folder)] k))))
+        sort-by-date (fn [c] (sort #(compare (:timestamp %2) (:timestamp %)) c))
+        players (->> player-demos
+                     (reduce-kv #(let [filtered-demos (vals (folder-filtered %3))]
+                                  (conj % {:steamid   %2
+                                           :demos     (count filtered-demos)
+                                           :last_timestamp (-> (sort-by-date filtered-demos) (first) (:timestamp))
+                                           :name      (get-player-name-in-demo %2 (first filtered-demos))})) [])
+                     (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
+                     (sort #(compare (:demos %2) (:demos %))))]
+    {:player_count (count players)
+     :players      (->> players
+                        (drop offset)
+                        (take limit)
+                        (map #(assoc % :steamid (str (:steamid %)))))}))
 
 (defn get-maps-for-steamid [steamid]
   (set (map #(:map %) (vals (get player-demos steamid)))))
@@ -33,13 +48,18 @@
 (defn sorted-demos-for-steamid [steamid]
   (sort #(compare (:timestamp %) (:timestamp %2)) (vals (get player-demos steamid))))
 
+(defn get-rank-data [steamid]
+  (->>
+    (sorted-demos-for-steamid steamid)
+    (map #(hash-map :timestamp (:timestamp %)
+                    :mm_rank_update (get-in % [:mm_rank_update steamid])))
+    (filter #(not (nil? (:mm_rank_update %))))))
+
 (defn get-last-rank [steamid]
   (->>
-    (reverse (sorted-demos-for-steamid steamid))
-    (map #(get-in % [:mm_rank_update steamid]))
-    (remove nil?)
-    (first)
-    (:rank_new)))
+    (get-rank-data steamid)
+    (last)
+    (#(get-in % [:mm_rank_update :rank_new]))))
 
 (defn get-player-latest-name [steamid]
   (get-player-name-in-demo steamid (first (sorted-demos-for-steamid steamid))))
@@ -53,7 +73,7 @@
 
 (defn get-teammates-for-steamid [steamid]
   (letfn [(update-teammates [teammates demo]
-                            (reduce #(assoc % %2 (inc (get % %2 0))) teammates (get-teammates demo steamid)))]
+            (reduce #(assoc % %2 (inc (get % %2 0))) teammates (get-teammates demo steamid)))]
     (->>
       (reduce #(update-teammates % %2) {} (vals (get player-demos steamid)))
       (map #(hash-map :steamid (str (key %)) :demos (val %) :name (get-player-latest-name (key %))))
@@ -61,13 +81,10 @@
       (sort #(compare (:demos %2) (:demos %))))))
 
 (defn add-demo [demo]
-  (if (not (or (empty? (:rounds demo)) (empty? (:players demo))))
-    (do
-      ; TODO use atom
-      (def hsbox.stats/demos (assoc demos (:demoid demo) demo))
-      (doseq [steamid (keys (:players demo))]
-        (def hsbox.stats/player-demos (assoc-in player-demos [steamid (:demoid demo)] demo))))
-    (warn "Demo" (:demoid demo) "has" (count (:rounds demo)) "rounds and" (count (:players demo)) "players")))
+  ; TODO use atom
+  (def hsbox.stats/demos (assoc demos (:demoid demo) demo))
+  (doseq [steamid (keys (:players demo))]
+    (def hsbox.stats/player-demos (assoc-in player-demos [steamid (:demoid demo)] demo))))
 
 (defn del-demo [demoid]
   (let [demo (get demos demoid)]
@@ -139,7 +156,7 @@
     (:deaths round)))
 
 (defn build-clutch-round-fn [enemies exact-enemies? won?]
-  (fn [round steamid demo]
+  (fn [round steamid & [demo]]
     (let [deaths (deaths-until-round-end round)
           player-team (team-number steamid round)
           player-death (split-with #(not= (:victim %) steamid) deaths)
@@ -151,6 +168,23 @@
           alive-enemies (- 5 (count (filter not-same-team (second last-teammate-death))))]
       (and ((if exact-enemies? = >=) alive-enemies enemies) (= 4 dead-teammates) (if won? (= (:winner round) player-team) true)))))
 
+(defn get-rws [steamid round]
+  (let [team (team-number steamid round)
+        is-t (= 2 team)]
+    (if (and (not-empty (:damage round)) (= team (:winner round)))
+      ; reason 1 for #SFUI_Notice_Target_Bombed
+      (let [bomb (or (and (:bomb_exploded round) (= 1 (:win_reason round))) (:bomb_defused round))
+            dmg-ratio (if bomb 70 100)
+            team-damage (reduce-kv #(+ % (if (= team (get-in round [:players %2])) %3 0))
+                                   0
+                                   (:damage round))]
+        (+ (if (and bomb (or (= steamid (:bomb_defused round))
+                             (= steamid (:bomb_exploded round))))
+             30
+             0)
+           (* dmg-ratio (/ (get-in round [:damage steamid] 0) team-damage))))
+      0)))
+
 (defn update-stats-with-round [stats round]
   (if ((get stats :round-filter #(or true % %2)) round (:steamid stats))
     (let [steamid (:steamid stats)
@@ -158,12 +192,12 @@
                                 (assoc stats :kills-this-round 0 :players (:players round))
                                 (:deaths round))
           multikills (:kills-this-round updated-stats)
-          ; Super lame hax horrible code the wurst (somewhat better now)
-          demo {:demoid (:demoid stats)}
           first-death (first (:deaths round))
           first-dead (= steamid (:victim first-death))
           first-killer (= steamid (:attacker first-death))
-          is-t (= 2 (get-in round [:players steamid]))]
+          team (team-number steamid round)
+          is-t (= 2 team)
+          rws (get-rws steamid round)]
       (if (> multikills 5)
         (do
           (error "Error in demo" (:demoid stats) ":" steamid "had" multikills "kills in round" (:number round))
@@ -172,6 +206,7 @@
             (dissoc :kills-this-round :players)
             (update-in [:rounds_with_kills multikills] inc)
             (update-in [:damage] #(+ % (get-in round [:damage steamid] 0)))
+            (update-in [:rws] #(+ % rws))
             (inc-stat-maybe :rounds true)
             (inc-stat-maybe :rounds_with_damage_info (not-empty (:damage round)))
             (inc-stat-maybe :rounds_t is-t)
@@ -179,8 +214,8 @@
             (inc-stat-maybe :entry_kills (and is-t first-killer))
             (inc-stat-maybe :open_kills_attempted (or first-dead first-killer))
             (inc-stat-maybe :open_kills first-killer)
-            (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round steamid demo))
-            (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round steamid demo)))))
+            (inc-stat-maybe :1v1_attempted ((build-clutch-round-fn 1 true false) round steamid))
+            (inc-stat-maybe :1v1_won ((build-clutch-round-fn 1 true true) round steamid)))))
     stats))
 
 (defn demo-outcome [demo steamid]
@@ -221,6 +256,7 @@
    :rounds_with_kills       {0 0 1 0 2 0 3 0 4 0 5 0}
    :damage                  0
    :rounds_with_damage_info 0
+   :rws                     0
    :weapons                 {}})
 
 (defn cleanup-stats [stats]
@@ -234,8 +270,9 @@
   (-> (update-stats-with-demo (initial-stats steamid) demo)
       (cleanup-stats)))
 
-(defn filter-demos [steamid {:keys [demo-type start-date end-date map-name teammates]} demos]
+(defn filter-demos [steamid {:keys [folder demo-type start-date end-date map-name teammates]} demos]
   (filter #(and
+            (if folder (= (:folder %) folder) true)
             (if (contains? (-> latest-data-version keys set) demo-type) (= demo-type (:type %)) true)
             (if map-name (= (:map %) map-name) true)
             (if start-date (>= (:timestamp %) start-date) true)
@@ -360,15 +397,20 @@
                  (set (keys (:players demo)))
                  (set (map #(Long/parseLong (:steamid %)) banned))))))))
 
-(defn get-demos-for-steamid [steamid filters]
-  (->> (sorted-demos-for-steamid steamid)
-       (filter-demos steamid filters)
-       (map #(assoc % :steamid steamid))
-       (map append-demo-stats)
-       (map (append-ban-info steamid))
-       (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills
-                     :1v1_attempted :1v1_won :weapons :tied :won :lost))
-       (map #(assoc % :path (demo-path (:demoid %))))))
+(defn get-demos-for-steamid [steamid filters offset & [limit]]
+  (let [limit (or limit (:demos_per_page (get-config) 50))
+        all-demos (->> (reverse (sorted-demos-for-steamid steamid))
+                       (filter-demos steamid filters))
+        filtered-demos (->> all-demos
+                            (drop offset)
+                            (#(if (or (nil? limit) (zero? limit)) % (take limit %)))
+                            (map #(assoc % :steamid steamid))
+                            (map append-demo-stats)
+                            (map (append-ban-info steamid))
+                            (map #(dissoc % :players :rounds :steamid :detailed_score :tickrate :rounds_with_kills
+                                          :1v1_attempted :1v1_won :weapons :tied :won :lost :player_slots)))]
+    {:demo_count (count all-demos)
+     :demos      filtered-demos}))
 
 (defn kw-long-to-str [dict path]
   (assoc-in dict path (into {} (for [[k v] (get-in dict path)] [(str k) v]))))
@@ -382,15 +424,25 @@
                                                (assoc % %2 (str %3))
                                                (assoc % %2 %3))
                                              {} death)
-                                  (assoc :weapon_name (weapon-name (:weapon death)))))]
+                                  (assoc :weapon_name (weapon-name (:weapon death)))))
+        convert-if-exists (fn [round key]
+                            (if (get round key)
+                              (assoc round key (str (get round key)))
+                              round))
+        compute-rws (fn [round]
+                      (apply hash-map (reduce #(concat % [(str %2) (get-rws %2 round)]) [] (keys (:players round)))))]
     (->
       demo
       (kw-long-to-str [:players])
       (assoc :rounds (map #(-> %
                                (kw-long-to-str [:players])
+                               (kw-long-to-str [:damage])
+                               (assoc :rws (compute-rws %))
+                               (convert-if-exists :bomb_exploded)
+                               (convert-if-exists :bomb_defused)
                                (assoc :deaths (map convert-death-steamid (:deaths %))))
                           (:rounds demo))
-             :path (demo-path demoid)))))
+             :path (:path demo)))))
 
 (defn get-demo-stats [demoid]
   (let [demo (get demos demoid)]
@@ -404,7 +456,7 @@
            (group-by #(:team %))
            (assoc (select-keys demo [:score :winner :surrendered :detailed_score :timestamp :duration :map :type :demoid]) :teams))
       (merge {:rounds (map #(select-keys % [:tick]) (:rounds demo))
-              :path   (demo-path demoid)}))))
+              :path   (:path demo)}))))
 
 ; Search round
 
@@ -447,16 +499,32 @@
       (and (= (:bomb_defused round) steamid)
            (>= dead-cts dead-ts)))))
 
+(defn not-nade? [weapon]
+  (not (#{"hegrenade" "inferno" "flashbang" "smokegrenade" "decoy"} (weapon-name weapon))))
+
+(defn scoped-weapon [weapon]
+  (#{"awp" "ssg08" "scar20" "g3sg1"} (weapon-name weapon)))
+
+(defn through-smoke? [kill]
+  (and (:smoke kill) (not-nade? (:weapon kill))))
+
+(defn no-scope? [kill]
+  (and (scoped-weapon (:weapon kill)) (nil? (:scoped_since kill))))
+
+(defn air-kill? [kill]
+  (and (not-nade? (:weapon kill)) (:air_velocity kill) (>= (Math/abs (:air_velocity kill)) 1)))
+
+(defn quick-scope? [kill demo]
+  (and (scoped-weapon (:weapon kill))
+       (:scoped_since kill)
+       (< (* (:tickrate demo) (- (:tick kill) (:scoped_since kill))) 0.1)))
+
 (defn weapon-filter [regexp-demo]
   (let [multiplier (if (second regexp-demo) (Integer/parseInt (second regexp-demo)) 1)
         flags? (not (nil? (nth regexp-demo 3)))
         flags (nth regexp-demo 3)
-        penetrated (and flags? (.contains flags "bang"))
-        headshot (and flags? (.contains flags "hs"))
-        jump (and flags? (.contains flags "jump"))
-        smoke (and flags? (.contains flags "smoke"))
-        collateral (and flags? (.contains flags "collateral"))
-        weapon (nth regexp-demo 2)]
+        weapon (nth regexp-demo 2)
+        flag (fn [f] (and flags? (.contains flags f)))]
     (fn [round steamid demo]
       (let [same-weapon-and-tick (fn [kill]
                                    (filter #(and (= (:tick %) (:tick kill)) (= (:weapon %) (:weapon kill)) (= (:attacker %) (:attacker kill)))
@@ -464,13 +532,18 @@
             kills (filter #(and (= steamid (:attacker %))
                                 (not-tk % round demo)
                                 (or (= weapon (weapon-name (:weapon %))) (= weapon ""))
-                                (if penetrated (> (:penetrated %) 0) true)
-                                (if headshot (:headshot %) true)
-                                (if smoke (and (:smoke %) (not= (weapon-name (:weapon %)) "inferno")) true)
-                                (if collateral (> (count (same-weapon-and-tick %)) 1) true)
-                                (if jump (and (:jump %)
-                                              (<= 0.1 (* (:tickrate demo) (:jump %)) 0.5)
-                                              (not (#{"hegrenade" "inferno"} (weapon-name (:weapon %))))) true))
+                                (if (flag "bang") (> (:penetrated %) 0) true)
+                                (if (flag "hs") (:headshot %) true)
+                                (if (flag "smoke") (through-smoke? %) true)
+                                (if (flag "collateral") (> (count (same-weapon-and-tick %)) 1) true)
+                                (if (flag "jump")
+                                  (and (:jump %)
+                                       (<= 0.1 (* (:tickrate demo) (:jump %)) 0.5)
+                                       (not-nade? (:weapon %)))
+                                  true)
+                                (if (flag "air") (air-kill? %) true)
+                                (if (flag "noscope") (no-scope? %) true)
+                                (if (flag "quickscope") (quick-scope? % demo) true))
                           (:deaths round))]
         (>= (count kills) multiplier)))))
 
@@ -483,10 +556,16 @@
           [ninja-filter #"ninja"]
           [weapon-filter (re-pattern (str "^(?:(1|2|3|4|5)(?:x)?)?("
                                           (str (str/join "|" weapon-names) "|")
-                                          ")((?:bang|hs|jump|smoke|collateral)*)$"))]])))
+                                          ")((?:bang|hs|jump|smoke|collateral|air|noscope|quickscope)*)$"))]])))
 
 (defn round-kills [round steamid demo]
-  (reduce #(let [key {:weapon (weapon-name (:weapon %2)) :headshot (:headshot %2) :penetrated (pos? (:penetrated %2))}]
+  (reduce #(let [key {:weapon (weapon-name (:weapon %2))
+                      :headshot (:headshot %2)
+                      :penetrated (pos? (:penetrated %2))
+                      :smoke (through-smoke? %2)
+                      :air (air-kill? %2)
+                      :quickscope (quick-scope? %2 demo)
+                      :noscope (no-scope? %2)}]
             (assoc % key (+ 1 (get % key 0))))
           {} (filter #(and (= (:attacker %) steamid) (not-tk % round demo)) (:deaths round))))
 
@@ -501,13 +580,14 @@
                                      :won (= (team-number steamid %) (:winner %))
                                      :side (get {2 "T" 3 "CT"} (team-number steamid %))
                                      :kills (map make-kill-obj (round-kills % steamid demo))
-                                     :path (demo-path (:demoid demo))))
+                                     :path (:path demo)))
          filtered-rounds)))
 
 (defn replace-aliases [s]
-  (reduce #(str/replace % (first %2) (second %2)) s {"kqly"   "jump"
+  (reduce #(str/replace % (first %2) (second %2)) s {"kqly"     "jump"
                                                      "ace"      "5k"
-                                                     "juandeag" "deaglehs"}))
+                                                     "juandeag" "deaglehs"
+                                                     "scout"    "ssg08"}))
 
 (defn re-filters [re filters]
   (filter #(re-matches re %) filters))
@@ -550,6 +630,9 @@
 ;    (map #(:weapon %))
 ;    (set)))
 
+(defn get-folders []
+  (sort (set (map #(-> (second %) (:folder)) demos))))
+
 (defn init-cache []
   (doseq [demo (db/get-all-demos)]
     (add-demo demo)))
@@ -558,7 +641,23 @@
   (hsbox.db/init-db-if-absent)
   (init-cache))
 
+(defn invalidate-players-steam-info []
+  (db/invalidate-steamid-info)
+  (.lock api-refresh-lock)
+  (try
+    (.signal api-refresh-cond)
+    (finally
+      (.unlock api-refresh-lock))))
+
 (defn update-players-steam-info []
   (while true
-    (steamapi/get-steamids-info (keys player-demos))
-    (Thread/sleep (* 1000 3600))))
+    (.lock api-refresh-lock)
+    (try
+      (try
+        (reset! api-refreshing? true)
+        (steamapi/get-steamids-info (keys player-demos))
+        (finally
+          (reset! api-refreshing? false)))
+      (.await api-refresh-cond 1 TimeUnit/HOURS)
+      (finally
+        (.unlock api-refresh-lock)))))

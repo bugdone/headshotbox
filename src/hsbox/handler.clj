@@ -12,7 +12,7 @@
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.json :refer [wrap-json-body
                                           wrap-json-response]]
-            [ring.util.response :refer [response redirect not-found]]
+            [ring.util.response :refer [response redirect not-found file-response header]]
             [cemerick.friend :as friend]
             [cemerick.friend.openid :as openid]
             [taoensso.timbre :as timbre])
@@ -26,9 +26,10 @@
   (when (and (not-empty openid-realm) (not-empty admin-steamid))
     (swap! openid-settings #(assoc % :realm openid-realm :steamid admin-steamid))))
 
-(defn parse-filters [{:keys [startDate endDate demoType mapName teammates rounds]}]
+(defn parse-filters [{:keys [startDate endDate demoType mapName teammates rounds folder]}]
   {:start-date (if (nil? startDate) nil (Long/parseLong startDate))
    :end-date   (if (nil? endDate) nil (Long/parseLong endDate))
+   :folder     folder
    :demo-type  demoType
    :map-name   mapName
    :rounds     (if (nil? rounds) nil (clojure.string/lower-case rounds))
@@ -36,8 +37,7 @@
                                       (set (map #(Long/parseLong %) (clojure.string/split teammates #","))))})
 
 (defn local-address? [address]
-  (re-matches #"127.0.0.\d{1,3}" address))
-
+  (re-matches #"(127(.\d{1,3}){3})|([0:]*:1)" address))
 (defn only-local [handler]
   (fn [request]
     (if (local-address? (:remote-addr request))
@@ -47,8 +47,11 @@
 (defn authorize-admin [handler]
   (fn [request]
     (if (empty? @openid-settings)
-     (handler request)
-     ((friend/wrap-authorize handler #{::admin}) request))))
+      (handler request)
+      ((friend/wrap-authorize handler #{::admin}) request))))
+
+(defn is-admin? [request]
+  (or (empty? @openid-settings) (friend/authorized? #{::admin} (friend/identity request))))
 
 (defroutes api-routes
            (context "/player/:steamid" [steamid]
@@ -59,50 +62,81 @@
                                         steamid
                                         (parse-filters (get req :params)))))
                           (GET "/demos" req
-                            (response (stats/get-demos-for-steamid
-                                        steamid
-                                        (parse-filters (get req :params)))))
+                            (let [params (get req :params)
+                                  limit (:limit params)]
+                              (response (stats/get-demos-for-steamid
+                                          steamid
+                                          (parse-filters params)
+                                          (try
+                                            (Long/parseLong (:offset params))
+                                            (catch Exception e
+                                              (error "Error parsing offset in GET /player/demos" (:offset params) (str e))
+                                              0))
+                                          (if (nil? limit) nil (Long/parseLong limit))))))
                           (GET "/teammates" []
                             (response (stats/get-teammates-for-steamid steamid)))
                           (GET "/banned" [only_opponents]
                             (response (stats/get-banned-players steamid only_opponents)))
                           (GET "/maps/statistics" req
                             (response (stats/get-maps-stats-for-steamid steamid (parse-filters (get req :params)))))
+                          (GET "/rank_data" []
+                            (response (stats/get-rank-data steamid)))
                           (GET "/maps" []
                             (response (stats/get-maps-for-steamid steamid))))))
 
            (context "/demo/:demoid" [demoid]
-             (defroutes demo-routes
-                        (GET "/stats" []
-                          (response (stats/get-demo-stats demoid)))
-                        (GET "/details" []
-                          (response (stats/get-demo-details demoid)))
-                        (GET "/notes" []
-                          (response {:notes (db/get-demo-notes demoid)}))
-                        (context "/watch" []
-                         (only-local
-                          (authorize-admin
-                            (POST "/" {{steamid :steamid round :round tick :tick highlight :highlight} :body}
-                              (let [info (launch/watch demoid (Long/parseLong steamid) round tick highlight)]
+             (let [demoid (Long/parseLong demoid)]
+               (defroutes demo-routes
+                          (GET "/stats" []
+                            (response (stats/get-demo-stats demoid)))
+                          (GET "/details" []
+                            (response (stats/get-demo-details demoid)))
+                          (GET "/notes" []
+                            (response {:notes (db/get-demo-notes demoid)}))
+                          (POST "/watch" {{steamid :steamid round :round tick :tick highlight :highlight} :body remote-addr :remote-addr}
+                            (if (or (local-address? remote-addr)
+                                    ; When running on a remote server users get "replays/..." links
+                                    (:demowebmode (db/get-config)))
+                              (let [info (launch/watch (local-address? remote-addr) demoid (Long/parseLong steamid) round tick highlight)]
                                 (if info
                                   (response info)
-                                  (not-found "")))))))
-                        (authorize-admin
-                          (POST "/notes" {body :body}
-                            (response (db/set-demo-notes demoid (:notes body)))))))
+                                  (not-found "")))
+                              (not-found "need to be localhost or have WEBmode enabled")))
+                          (GET "/download" []
+                            (if (:demo_download_enabled (db/get-config))
+                              (if (db/demoid-present? demoid)
+                                (if (empty? (:demo_download_baseurl (db/get-config)))
+                                  (response {:url (str "demo_download" "/" demoid)})
+                                  (response {:url (str (:demo_download_baseurl (db/get-config)) "/"
+                                                       (-> (get-in stats/demos [demoid :path])
+                                                           (clojure.java.io/as-file)
+                                                           (.getName)))})))
+                              (not-found "demo_download is not enabled")))
+                          (authorize-admin
+                            (POST "/notes" {body :body}
+                              (response (db/set-demo-notes demoid (:notes body))))))))
            (GET "/round/search" req
              (response (stats/search-rounds (get-in req [:params :search-string]) (parse-filters (get req :params)))))
-           (GET "/steamids/info" [steamids]
-             (response
-               (if (empty? steamids)
-                 {}
-                 (let [steamids-list (clojure.string/split steamids #",")
-                       steamids-info (if (clojure.string/blank? (db/get-steam-api-key))
-                                       (->>
-                                         (map #(Long/parseLong %) steamids-list)
-                                         (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {}))
-                                       (steamapi/get-steamids-info steamids-list))]
-                   (into {} (for [[k v] steamids-info] [k (assoc v :last_rank (stats/get-last-rank (:steamid v)))]))))))
+
+           (context "/steamids/info" []
+                    (defroutes steamids-info-routes
+                               (GET "/status" []
+                                 (response {:refreshing @stats/api-refreshing?}))
+                               (GET "/" [steamids]
+                                 (response
+                                   (if (empty? steamids)
+                                     {}
+                                     (let [steamids-list (clojure.string/split steamids #",")
+                                           steamids-info (if (clojure.string/blank? (db/get-steam-api-key))
+                                                           (->>
+                                                             (map #(Long/parseLong %) steamids-list)
+                                                             (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {}))
+                                                           (steamapi/get-steamids-info steamids-list))]
+                                       (into {} (for [[k v] steamids-info] [k (assoc v :last_rank (stats/get-last-rank (:steamid v)))]))))))
+                               (authorize-admin
+                                 (DELETE "/" []
+                                   (info "Invalidating players steam info")
+                                   (stats/invalidate-players-steam-info)))))
            (context "/indexer" []
              (authorize-admin
                (defroutes indexer-routes
@@ -112,35 +146,37 @@
                             (indexer/set-indexing-state (:running state))
                             (response "ok")))))
            (context "/config" []
+             (GET "/" request
+               (let [config (db/get-config)]
+                 (response (if (is-admin? request)
+                             config
+                             (select-keys config [:playerlist_min_demo_count :demos_per_page])))))
              (authorize-admin
-               (defroutes config-routes
-                         (GET "/" []
-                           (response (db/get-config)))
-                         (POST "/" {config :body}
-                           (indexer/set-config config)
-                           (response "ok")))))
+               (POST "/" {config :body}
+                 (indexer/set-config config)
+                 (response "ok"))))
            (context "/vdm" []
              (only-local
-              (authorize-admin
-                (DELETE "/" []
-                  (launch/delete-generated-files)
-                  (response "ok")))))
-           (GET "/authorized" request (response {:authorized
-                                                 (if (empty? @openid-settings)
-                                                   true
-                                                   (friend/authorized? #{::admin} (friend/identity request)))
-                                                 :showLogin 
-                                                 (if (empty? @openid-settings)
-                                                  false
-                                                  (if (re-matches (java.util.regex.Pattern/compile (str "htt.*://" (:server-name request) ".*")) (:realm @openid-settings)) 
-                                                    true
-                                                    false))
-                                                }))
+               (authorize-admin
+                 (DELETE "/" []
+                   (launch/delete-generated-files)
+                   (response "ok")))))
+           (GET "/authorized" request
+             (response {:authorized
+                        (if (empty? @openid-settings)
+                          true
+                          (is-admin? request))
+                        :showLogin
+                        (if (empty? @openid-settings)
+                          false
+                          (re-matches (java.util.regex.Pattern/compile (str "htt.*://" (:server-name request) ".*")) (:realm @openid-settings)))}))
            (GET "/version" []
              (response {:current (version/get-version)
                         :latest  @version/latest-version}))
-           (GET "/players" []
-             (response (stats/get-players))))
+           (GET "/folders" []
+             (response (stats/get-folders)))
+           (GET "/players" [folder offset limit]
+             (response (stats/get-players folder (Long/parseLong offset) (Long/parseLong limit)))))
 
 (defn api-handlers [routes]
   (-> routes
@@ -155,6 +191,16 @@
            (GET "/openid/logout" req
              (friend/logout* (redirect (str (:context req) "/"))))
            (context "/api" [] (api-handlers api-routes))
+           (GET "/demo_download/:demoid" [demoid]
+             (if (:demo_download_enabled (db/get-config))
+               (let [demoid (Long/parseLong demoid)]
+                 (if (db/demoid-present? demoid)
+                   (let [abs-path (get-in stats/demos [demoid :path])]
+                     (header (file-response abs-path)
+                             "content-disposition" (str "attachment; filename="
+                                                        (hsbox.util/file-name abs-path))))
+                   (not-found "demo not found")))
+               (not-found "demo_download is not enabled")))
            (wrap-not-modified (route/resources "/"))
            (route/not-found "Not Found"))
 
@@ -164,6 +210,11 @@
          (catch Throwable e
            (error e)
            (throw e)))))
+
+(defn wrap-cache-control [f]
+  (fn [request]
+    (let [response (f request)]
+      (update-in response [:headers] merge {"Pragma" "no-cache" "Cache-Control" "no-cache, must-revalidate"}))))
 
 (defn credential-fn [stuff]
   (if (= (:identity stuff) (str "http://steamcommunity.com/openid/id/" (:steamid @openid-settings)))
@@ -190,4 +241,5 @@
         app-routes
         (create-secured-app))
       wrap-exception
+      wrap-cache-control
       handler/site))

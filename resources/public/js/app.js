@@ -6,7 +6,12 @@ hsboxApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
         when('/player/:steamid', {
             templateUrl: 'templates/player.html',
-            controller: 'Player'
+            controller: 'Player',
+            resolve: {
+                dummy: function load(config) {
+                    return config.load();
+                }
+            }
         }).
         when('/demo/:demoid', {
             templateUrl: 'templates/demo.html',
@@ -20,8 +25,8 @@ hsboxApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'templates/player_list.html',
             controller: 'PlayerList'
         }).
-        when('/round_search', {
-            templateUrl: 'templates/round_search.html',
+        when('/search_round', {
+            templateUrl: 'templates/search_round_top.html',
             controller: 'RoundSearch'
         }).
         when('/settings', {
@@ -53,4 +58,29 @@ hsboxApp.factory('watchDemo', ['$http', function($http) {
             window.location = data.url;
         });
     }
+}]);
+
+hsboxApp.factory('downloadDemo', ['$http', function($http) {
+    return function(demoid) {
+        $http.get(serverUrl + '/demo/' + demoid + '/download').success(function(data) {
+            window.location = data.url;
+        });
+    }
+}]);
+
+hsboxApp.factory('config', ['$http', '$rootScope', function($http, $rootScope) {
+    var load = function load() {
+        return $http.get(serverUrl + '/config').success(function(data) {
+            $rootScope.config = data;
+        });
+    }
+    return {
+        load: load,
+        save: function save() {
+            $http.post(serverUrl + '/config', $rootScope.config).success(function(data) {
+                $rootScope.getAuthorizationState();
+                load();
+            });
+        }
+    };
 }]);

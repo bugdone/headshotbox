@@ -3,13 +3,15 @@
             [hsbox.db :as db]
             [hsbox.version :as version]
             [hsbox.indexer :as indexer]
+            [hsbox.demo :refer [set-demoinfo-dir]]
             [hsbox.stats :as stats]
             [ring.adapter.jetty]
             [clojure.string :as string]
             [clojure.tools.cli :as cli]
             [taoensso.timbre :as timbre])
   (:import (java.io File))
-  (:import (java.net BindException))
+  (:import (java.net BindException URI)
+           (hsbox.java SysTrayIcon))
   (:gen-class))
 
 (timbre/set-config! [:appenders :spit :enabled?] true)
@@ -24,6 +26,8 @@
    [nil "--no-indexer" "Does not parse new demos from the demo directory"]
    [nil "--admin-steamid steamid64" "Changing settings and adding notes requires logging in with this steamid64"]
    [nil "--openid-realm url" "Realm url used by OpenID"]
+   [nil "--demoinfo-dir directory" "Directory where demoinfogo is located (default is current dir)"]
+   [nil "--systray" "Add icon to systray if systray is supported on the current platform"]
    ["-h" "--help"]
    ])
 
@@ -40,13 +44,22 @@
   (try
     (let [{:keys [options arguments errors summary]} (cli/parse-opts args cli-options)
           portable? (:portable options)
-          run-indexer? (not (:no-indexer options))]
+          run-indexer? (not (:no-indexer options))
+          demoinfo-dir (:demoinfo-dir options)]
       (cond (:help options) (exit 0 summary)
             errors (exit 1 (str summary (error-msg errors))))
 
       (when portable?
         (db/set-portable))
-      (timbre/set-config! [:shared-appender-config :spit-filename] (File. db/app-config-dir "headshotbox.log"))
+      (when (not-empty demoinfo-dir)
+        (set-demoinfo-dir demoinfo-dir))
+      (let [log-file (.getCanonicalFile (File. db/app-config-dir "headshotbox.log"))]
+        (timbre/set-config! [:shared-appender-config :spit-filename] log-file)
+        (when (:systray options)
+          (let [uri (if (:openid-realm options)
+                      (URI. (:openid-realm options))
+                      (URI. (str "http://localhost:" (:port options))))]
+            (SysTrayIcon. uri log-file))))
       (info "HeadshotBox" (version/get-version) (if portable? "portable" "")
             (if (not run-indexer?) "no indexer" ""))
       (future (version/update-latest-version-every-day))
@@ -61,7 +74,8 @@
         (db/keep-only (->> (db/get-demo-directory)
                            (clojure.java.io/as-file)
                            file-seq
-                           (map #(.getName %)))))
+                           (map #(.getCanonicalPath %))
+                           (filter #(.endsWith % ".dem")))))
       (stats/init-cache)
       (future (stats/update-players-steam-info))
       (when run-indexer?

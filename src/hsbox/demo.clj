@@ -14,6 +14,7 @@
 (import Cstrike15Gcmessages$CDataGCCStrike15_v2_MatchInfo)
 (def MatchInfo (protodef Cstrike15Gcmessages$CDataGCCStrike15_v2_MatchInfo))
 (def PARSER-CACHE nil)
+(def demoinfo-dir-path (System/getProperty "user.dir"))
 
 (defn read-file [file-path]
   (with-open [reader (input-stream file-path)]
@@ -31,18 +32,29 @@
         (protobuf-load MatchInfo (read-file mm-info-path)))
       {})))
 
-(defn get-demo-id [path]
-  (.getName (clojure.java.io/file path)))
+(defn parse-json-info-file [demo-path]
+  (let [json-info-path (str demo-path ".json")
+        json-info-file (as-file json-info-path)]
+    (if (file-exists? json-info-file)
+      (do
+        (info "Processing" json-info-file)
+        (->
+          (slurp json-info-file)
+          (json/read-str :key-fn keyword)))
+      {})))
 
 (defn get-parser-cache []
   (get (System/getenv) "HEADSHOTBOX_PARSER_CACHE" PARSER-CACHE))
+
+(defn set-demoinfo-dir [dir]
+  (def demoinfo-dir-path dir))
 
 (defn parse-demo [path]
   (let [json-cache (get-parser-cache)
         json-path (str json-cache "/" (.getName (as-file path)) ".json")
         do-parse (fn []
-                   (let [proc (clojure.java.shell/sh (str (System/getProperty "user.dir") "/demoinfogo") path "-hsbox")]
-                     (assert (zero? (:exit proc)))
+                   (let [proc (clojure.java.shell/sh (str demoinfo-dir-path "/demoinfogo") path "-hsbox")]
+                     (assert (zero? (:exit proc)) (:err proc))
                      (:out proc)))]
     (if (nil? json-cache)
       (do-parse)
@@ -99,19 +111,27 @@
                                        :winner (:winner event)
                                        :win_reason (:reason event))
               "player_hurt" (let [health (get-in round [:health (:userid event)] 100)
-                                  damage (min (:dmg_health event) health)]
+                                  damage (min (:dmg_health event) health)
+                                  team (fn [steamid]
+                                         (get-in round [:players steamid]))
+                                  update-dmg (fn [round]
+                                               (if (and (not= 0 (:attacker event)) (not= (team (:userid event)) (team (:attacker event))))
+                                                 (update-in round [:damage (:attacker event)]
+                                                            #(if (nil? %) %2 (+ % %2)) damage)
+                                                 round))]
                               (-> round
                                   (assoc-in [:health (:userid event)] (:health event))
-                                  (update-in [:damage (:attacker event)]
-                                             #(if (nil? %) %2 (+ % %2)) damage)))
+                                  (update-dmg)))
               "player_spawn" (if (or (= 0 (:teamnum event)) (= 0 (:userid event)))
                                round
                                (assoc-in round [:players (:userid event)] (:teamnum event)))
               "player_death" (let [death (conj
-                                           (select-keys event '(:assister :attacker :headshot :penetrated :tick :weapon :jump :smoke :attacker_pos :victim_pos))
+                                           (select-keys event '(:assister :attacker :headshot :penetrated :tick :weapon
+                                                                 :jump :smoke :attacker_pos :victim_pos :scoped_since :air_velocity))
                                            {:victim (:userid event)})]
                                (update-in round [:deaths] conj death))
               "bomb_defused" (assoc round :bomb_defused (:userid event))
+              "bomb_exploded" (assoc round :bomb_exploded (:userid event))
               ; disconnected players are interesting only when they have spawned and haven't died
               "player_disconnected" (if (and
                                           (get-in round [:players (:userid event)])
@@ -285,9 +305,9 @@
         enriched (doall
                    (-> (reduce enrich-with-round demo (add-round-numbers (:rounds demo)))
                        (update-winner)
-                       (dissoc :teams_switched? :player_names :last_score_changed)))]
+                       (dissoc :teams_switched? :player_names :last_score_changed :path)))]
     (assert (not (or (empty? (:rounds enriched)) (empty? (:players enriched))))
-            (str "Demo " (:path enriched) " has " (count (:rounds enriched)) " rounds and " (count (:players enriched)) " players"))
+            (str "Demo " (:path demo) " has " (count (:rounds enriched)) " rounds and " (count (:players enriched)) " players"))
     enriched))
 
 (defn get-demo-info [path]
@@ -312,12 +332,17 @@
                  0)
         rounds (get-rounds (:events demo-data) demo-type)
         demo (merge {:rounds      rounds
-                     :path path
+                     :path        path
                      :type        demo-type
                      :timestamp   (get scoreboard :matchtime (last-modified path))
                      :surrendered surrendered?
                      :winner      winner}
-                    (select-keys demo-data [:map :player_names :tickrate :mm_rank_update :player_slots]))]
+                    (select-keys demo-data [:map :player_names :tickrate :mm_rank_update :player_slots]))
+        ; Parse dem.json info file if available (for demo timestamp and metrics)
+        json-info (try
+                    (parse-json-info-file path)
+                    (catch Throwable e {}))
+        demo (merge demo json-info)]
     (if (not (contains? latest-data-version demo-type))
       (throw (Exception. "Unknown demo type")))
     (enrich-demo demo)))

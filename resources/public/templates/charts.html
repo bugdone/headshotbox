@@ -6,8 +6,10 @@
   <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'rank'">MM Rank</label>
 </div>
 <div ng-if="chartSelected=='rank'">
-  <button type="button" class="btn btn-default no-bg" ng-click="setRankChartXAxis('timestamp')" ng-disabled="rankChartXAxis=='timestamp'">Time</button>
-  <button type="button" class="btn btn-default no-bg"  ng-click="setRankChartXAxis('matches')" ng-disabled="rankChartXAxis=='matches'">Matches</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default no-bg" ng-click="setRankChartXAxis('timestamp')" ng-disabled="rankChartXAxis=='timestamp'">Time</button>
+    <button type="button" class="btn btn-default no-bg" ng-click="setRankChartXAxis('matches')" ng-disabled="rankChartXAxis=='matches'">Matches</button>
+  </div>
   <highchart id="rank" config="rankConfig"></highchart>
 </div>
 <highchart id="mapsPlayed" config="mapsPlayedConfig" ng-if="chartSelected=='mapsplayed'"></highchart>

@@ -121,7 +121,7 @@ a {
 .notes {
     display: inline-block;
     text-align: left;
-    height: 12em !important;
+    height: 6em !important;
     padding: 5px;
 }
 
@@ -140,7 +140,6 @@ a {
 .file-path{
     text-align: center;
     width: 890px;
-    float: center;
     padding: 7px;
     border-radius: 4px;
 }
@@ -217,4 +216,8 @@ a {
 .nopadding {
    padding-right: 0 !important;
    padding-left: 0 !important;
+}
+
+.tilted {
+    transform: rotate(15deg);
 }

@@ -1,5 +1,5 @@
 (defproject
-  hsbox "0.11.0"
+  hsbox "0.16.0"
   :description "Headshot Box"
   :url "http://headshotbox.github.io"
   :license {:name "Eclipse Public License"
@@ -11,6 +11,7 @@
                  [ring-cors "0.1.6"]
                  [ring/ring-json "0.3.1"]
                  [ring/ring-jetty-adapter "1.3.2"]
+                 [ring/ring-codec "1.0.1"]
                  [org.clojure/data.json "0.2.6"]
                  [com.taoensso/timbre "3.4.0"]
                  [org.clojure/tools.cli "0.3.2"]
@@ -22,7 +23,7 @@
             [lein-git-deps "0.0.2-SNAPSHOT"]]
   :ring {:handler hsbox.handler/app}
 
-  :java-source-paths ["protosrc"]
+  :java-source-paths ["protosrc", "src/hsbox/java"]
   :javac-options ["-target" "1.6" "-source" "1.6"]
   :uberjar {:aot :all}
   :aot [hsbox.core]

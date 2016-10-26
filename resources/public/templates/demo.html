@@ -7,89 +7,105 @@
     </span>)
   </h2>
   <div class="row">
-    <div class="col-md-8">
-      <table class="table" ng-if="theDemo">
-        <thead>
-          <tr>
-            <th>Team A</th>
-            <th ng-if="theDemo.type == 'valve'">Rank</th>
-            <th><a ng-click="orderTeams = '-kills'">K</a></th>
-            <th>A</th>
-            <th>D</th>
-            <th><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
-            <th><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
-            <th><a ng-click="orderTeams = '-rating'"><abbr title="HLTV Rating">Rating</abbr></a></th>
-          </tr>
-        </thead>
-        <tr ng-repeat="player in theDemo['teams']['2'] | orderBy:orderTeams">
-          <td class="text-left">
-            <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
-              <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
-            </a>
-            <img class="demo-avatar" src="img/vac.png" ng-if="bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)" width="24"
-                 title="{{bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)}}"/>
-            <a href="#/player/{{player.steamid}}">{{player.name}}</a>
-          </td>
-          <td ng-if="theDemo.type == 'valve'">
-            <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins" width="50"/>
-          </td>
-          <td>{{player.kills}}</td>
-          <td>{{player.assists}}</td>
-          <td>{{player.deaths}}</td>
-          <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
-          <td>{{player.hs_percent | number:2}}</td>
-          <td>{{player.rating | number:2}}</td>
+    <table class="table" ng-if="theDemo">
+      <thead>
+        <tr>
+          <th class="text-left">Team A</th>
+          <th class="text-center" ng-if="theDemo.type == 'valve'">Rank</th>
+          <th class="text-right"><a ng-click="orderTeams = '-kills'">K</a></th>
+          <th class="text-right">A</th>
+          <th class="text-right">D</th>
+          <th class="text-right"><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-adr'"><abbr title="Average Damage Per Round (takes into account only games after the 30.06.2015 patch)">ADR</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-arws'"><abbr title="average Round Win Shares">RWS</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-rating'"><abbr title="HLTV Rating">Rating</abbr></a></th>
         </tr>
-        <thead>
-          <tr>
-            <th>Team B</th>
-            <th ng-if="theDemo.type == 'valve'">Rank</th>
-            <th><a ng-click="orderTeams = '-kills'">K</a></th>
-            <th>A</th>
-            <th>D</th>
-            <th><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
-            <th><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
-            <th><a ng-click="orderTeams = '-rating'"><abbr title="HLTV Rating">Rating</abbr></a></th>
-          </tr>
-        </thead>
-        <tr ng-repeat="player in theDemo['teams']['3'] | orderBy:orderTeams">
-          <td class="text-left">
-            <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
-              <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
-            </a>
-            <img class="demo-avatar" src="img/vac.png" ng-if="bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)" width="24"
-                 title="{{bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)}}"/>
-            <a href="#/player/{{player.steamid}}">{{player.name}}</a>
-          </td>
-          <td ng-if="theDemo.type == 'valve'">
-            <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins" width="50"/>
-          </td>
-          <td>{{player.kills}}</td>
-          <td>{{player.assists}}</td>
-          <td>{{player.deaths}}</td>
-          <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
-          <td>{{player.hs_percent | number:2}}</td>
-          <td>{{player.rating | number:2}}</td>
+      </thead>
+      <tr ng-repeat="player in theDemo['teams']['2'] | orderBy:orderTeams" class="text-right">
+        <td class="text-left">
+          <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
+            <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
+          </a>
+          <img class="demo-avatar" src="img/vac.png" ng-if="bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)" width="24"
+               title="{{bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)}}"/>
+          <a href="#/player/{{player.steamid}}">{{player.name}}</a>
+        </td>
+        <td class="text-center" ng-if="theDemo.type == 'valve'">
+          <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins" width="50"/>
+        </td>
+        <td>{{player.kills}}</td>
+        <td>{{player.assists}}</td>
+        <td>{{player.deaths}}</td>
+        <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
+        <td>{{player.hs_percent | number:2}}</td>
+        <td>{{player.adr | number:2}}</td>
+        <td>{{player.arws | number:2}}</td>
+        <td>{{player.rating | number:2}}</td>
+      </tr>
+      <thead>
+        <tr>
+          <th class="text-left">Team B</th>
+          <th class="text-center" ng-if="theDemo.type == 'valve'">Rank</th>
+          <th class="text-right"><a ng-click="orderTeams = '-kills'">K</a></th>
+          <th class="text-right">A</th>
+          <th class="text-right">D</th>
+          <th class="text-right"><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-adr'"><abbr title="Average Damage Per Round (takes into account only games after the 30.06.2015 patch)">ADR</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-arws'"><abbr title="average Round Win Shares">RWS</abbr></a></th>
+          <th class="text-right"><a ng-click="orderTeams = '-rating'"><abbr title="HLTV Rating">Rating</abbr></a></th>
         </tr>
-      </table>
-    </div>
+      </thead>
+      <tr ng-repeat="player in theDemo['teams']['3'] | orderBy:orderTeams" class="text-right">
+        <td class="text-left">
+          <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
+            <img ng-src="{{steamAccounts[player.steamid]['avatar'] ? steamAccounts[player.steamid]['avatar'] : 'img/avatar.jpg'}}" width="24"/>
+          </a>
+          <img class="demo-avatar" src="img/vac.png" ng-if="bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)" width="24"
+               title="{{bansTooltip(steamAccounts[player.steamid], theDemo.timestamp)}}"/>
+          <a href="#/player/{{player.steamid}}">{{player.name}}</a>
+        </td>
+        <td class="text-center" ng-if="theDemo.type == 'valve'">
+          <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins" width="50"/>
+        </td>
+        <td>{{player.kills}}</td>
+        <td>{{player.assists}}</td>
+        <td>{{player.deaths}}</td>
+        <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
+        <td>{{player.hs_percent | number:2}}</td>
+        <td>{{player.adr | number:2}}</td>
+        <td>{{player.arws | number:2}}</td>
+        <td>{{player.rating | number:2}}</td>
+      </tr>
+    </table>
+  </div>
 
-    <div class="col-md-4">
-      <div id="notes-container">
-        <h2 class="text-center"><small>Demo Notes</small></h2>
+  <div ng-if="!notesVisible && isAuthorized">
+    <button type="button" class="btn btn-default btn-sm no-bg" ng-click="makeNotesVisible()">
+      <i class="fa fa-plus"></i> Add Notes
+    </button>
+  </div>
 
-        <div class="well well-sm" id="notes-view">
+  <div ng-if="notesVisible">
+    <h2 class="text-center"><small>Demo Notes</small></h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="well well-sm" id="notes-view" ng-if="notesControls.demoNotesInput">
         </div>
-
-        <form ng-submit="updateDemoNotes2()" ng-if="isAuthorized">
-          <textarea class="form-control notes" ng-model="notesControls.demoNotesInput"></textarea>
-          <button type="button" class="btn btn-default btn-xs help-button"
-                  popover="Strings like 'round 3' and 'tick 1234' will be displayed as links to that particular round / tick."
-                  popover-trigger="mouseenter">
-            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-          </button>
-          <input type="submit" value="Update" class="btn btn-default"></input>
-        </form>
+      </div>
+      <div class="col-md-6">
+        <div id="notes-container">
+          <form ng-submit="updateDemoNotes2()" ng-if="isAuthorized">
+            <textarea class="form-control notes" ng-model="notesControls.demoNotesInput"></textarea>
+            <button type="button" class="btn btn-default btn-xs help-button"
+                    popover="Strings like 'round 3' and 'tick 1234' will be displayed as links to that particular round / tick."
+                    popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+            <input type="submit" value="Update" class="btn btn-default"></input>
+          </form>
+        </div>
       </div>
     </div>
   </div>
