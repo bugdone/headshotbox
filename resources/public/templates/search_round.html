@@ -49,10 +49,14 @@
   <div class="row" ng-if="rounds">
     <h5 class="text-center">{{ rounds.length == 100 ? "100+ rounds found" : rounds.length + " rounds found" }}</h5>
   </div>
-  <div class="row" ng-if="rounds.length == 0">
+  <div class="row" ng-if="rounds.length == 0 && !searchInProgress">
     <h5 class="text-center">No rounds found</h5>
   </div>
   <div>
+    <div ng-if="searchInProgress" class="text-center">
+      <i class="fa fa-spinner fa-pulse"></i> Searching...
+    </div>
+
     <table class="table table-hover" ng-if="rounds">
       <thead>
         <tr>

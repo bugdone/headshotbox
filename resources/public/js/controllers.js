@@ -736,6 +736,7 @@ hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams, wa
 hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams, watchDemo, downloadDemo) {
     $scope.watchDemo = watchDemo;
     $scope.downloadDemo = downloadDemo;
+    $scope.searchInProgress = false;
     $scope.setOrder = function(field) {
         if ($scope.orderRounds == field)
             $scope.orderRounds = '-' + field;
@@ -750,7 +751,10 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
     $scope.search = function() {
         var params = getRequestFilters($scope);
         params["search-string"] = (steamid ? steamid : '') + ' ' + $scope.search_string;
+        $scope.searchInProgress = true;
+        $scope.rounds = [];
         $http.get(serverUrl + '/round/search', { params: params }).success(function(data) {
+            $scope.searchInProgress = false;
             $scope.rounds = data;
             $scope.rounds.forEach(function (r) {
                 if (!r.timestamp)
@@ -767,6 +771,8 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
             $http.get(url).success(function (response) {
                 $scope.players = response;
             });
+        }).error(function(data) {
+            $scope.searchInProgress = false;
         });
     }
     $scope.kill_description = function(kill) {
