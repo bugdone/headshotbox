@@ -10,16 +10,13 @@ script: ./build-travis.sh
 jdk:
   - oraclejdk8
 
-before_deploy:
-  - export RELEASE_FILES=$(ls headshotbox-*.zip)
-
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
     secure: RyT/b63P3iLv5RiXRFvCldD79yC/prPC//YAUjfArQ7CBsaOPpQvhDgHz5k98uNGOPwfQnEgFhy4zj1vwVjOOBcRGJbkxqsPT09Yht2eE7YLk+bK3itXa+54PTgejqweoLAJqhyi38dOdjhPUBFR51d2cdCE/SzxI4Dfbc61bhBO7tGnfiUWy/gbVze14PsGotljWMgwd8K/zstg80VZRlFjl018d0XbP1Fm/kocsvQCC82SKXg6Ox77VdytNw9iVW69NX6iSe5RyWGi5Eyc3aOKo1ZlMPcs6/MvqqA5kKMxqkKgoZCFABROOKFx5NaX1iWMAIcGNUEJa8YZWf1lx6w4HF32HuPYV4MJ70A2ueiBjdW7hFKWHvA0ukp2nbPi5BxfO9psk70xBnsqPq6F3b8Cmrg8ofSazxB+lE0PfYr2BGtm2e05Dd6LgwqKRO290/WgklxX6Nr6GnplaGJUxWnhXxrhlIQg+PVgU3ohesE2Y8ro1ABhPQpbP202DHLY9ofS972kXV0VFf19alADp+hKouapHoSMbINOCe0ON9O55AODM95VGYWvsWtTVkWPcQV7AYwTtGkqI2ISmwrJ9LvS9UZsHwM1X7rqJuTBv4gZvkzkSa6NpZzlGAJLToMiLX+2PRYV8KlYvduXKifliUpPPU4fAP2TPj054wYlaig=
   file_glob: true
-  file: "${RELEASE_FILES}"
+  file: "headshotbox-*.zip"
   draft: true
   on:
     repo: bugdone/headshotbox
