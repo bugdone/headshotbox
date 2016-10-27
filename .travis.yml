@@ -8,6 +8,8 @@ addons:
     - npm
 
 before_script:
+  - npm -v
+  - npm install npm@latest -g
   - sudo npm install -g bower
   - bower install
 
