@@ -1,9 +1,15 @@
 language: clojure
 
+sudo: true
 addons:
   apt:
     packages:
     - unzip
+    - npm
+
+before_script:
+  - sudo npm install -g bower
+  - bower install
 
 script: ./build-travis.sh
 
