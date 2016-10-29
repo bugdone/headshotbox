@@ -22,12 +22,10 @@
                  [org.flatland/protobuf "0.8.1"]]
   :git-dependencies [["https://github.com/nicknovitski/watt.git"]]
   :plugins [[lein-ring "0.9.3"]
-            ;[lein-protobuf "0.4.1"]
             [lein-git-deps "0.0.2-SNAPSHOT"]]
   :ring {:handler hsbox.handler/app}
 
   :java-source-paths ["protosrc", "src/hsbox/java"]
-  :javac-options ["-target" "1.6" "-source" "1.6"]
   :uberjar {:aot :all}
   :aot [hsbox.core]
   :main hsbox.core
