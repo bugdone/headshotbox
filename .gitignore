@@ -9,4 +9,6 @@ pom.xml.asc
 /.nrepl-port
 /.idea
 /resources/public/bower_components
-node_modules
+/demoinfogo
+/headshotbox.log
+/headshotbox.sqlite
