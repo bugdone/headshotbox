@@ -15,6 +15,7 @@
                  [ring/ring-json "0.4.0"]
                  [ring/ring-jetty-adapter "1.5.0"]
                  [ring/ring-codec "1.0.1"]
+                 [metosin/ring-http-response "0.8.0"]
                  [org.clojure/data.json "0.2.6"]
                  [com.taoensso/timbre "4.7.4"]
                  [org.clojure/tools.cli "0.3.5"]

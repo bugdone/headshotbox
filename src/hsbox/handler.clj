@@ -12,6 +12,8 @@
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.json :refer [wrap-json-body
                                           wrap-json-response]]
+            [ring.middleware.http-response :refer [wrap-http-response]]
+            [ring.util.http-response :refer [bad-request!]]
             [ring.util.response :refer [response redirect not-found file-response header]]
             [cemerick.friend :as friend]
             [cemerick.friend.openid :as openid]
@@ -35,6 +37,17 @@
    :rounds     (if (nil? rounds) nil (clojure.string/lower-case rounds))
    :teammates  (if (empty? teammates) #{}
                                       (set (map #(Long/parseLong %) (clojure.string/split teammates #","))))})
+
+(defn parse-long
+  ([s default]
+   (if (nil? s)
+     default
+     (parse-long s)))
+  ([s]
+   (try
+     (Long/parseLong s)
+     (catch NumberFormatException e
+       (bad-request! (str "Invalid number: " (.getMessage e)))))))
 
 (defn local-address? [address]
   (re-matches #"(127(.\d{1,3}){3})|([0:]*:1)" address))
@@ -176,7 +189,7 @@
            (GET "/folders" []
              (response (stats/get-folders)))
            (GET "/players" [folder offset limit]
-             (response (stats/get-players folder (Long/parseLong offset) (Long/parseLong limit)))))
+             (response (stats/get-players folder (parse-long offset 0) (parse-long limit 5000)))))
 
 (defn api-handlers [routes]
   (-> routes
@@ -240,6 +253,7 @@
   (-> (if (empty? @openid-settings)
         app-routes
         (create-secured-app))
+      wrap-http-response
       wrap-exception
       wrap-cache-control
       handler/site))
