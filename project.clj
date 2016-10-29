@@ -4,18 +4,21 @@
   :url "http://headshotbox.github.io"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/java.jdbc "0.3.6"]
-                 [org.xerial/sqlite-jdbc "3.8.6"]
-                 [compojure "1.3.2"]
-                 [ring-cors "0.1.6"]
-                 [ring/ring-json "0.3.1"]
-                 [ring/ring-jetty-adapter "1.3.2"]
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [com.taoensso/encore "2.85.0"]
+                 [clj-http "3.1.0"]
+                 [cheshire "5.6.3"]
+                 [org.clojure/java.jdbc "0.6.1"]
+                 [org.xerial/sqlite-jdbc "3.14.2.1"]
+                 [compojure "1.5.1"]
+                 [ring-cors "0.1.8"]
+                 [ring/ring-json "0.4.0"]
+                 [ring/ring-jetty-adapter "1.5.0"]
                  [ring/ring-codec "1.0.1"]
                  [org.clojure/data.json "0.2.6"]
-                 [com.taoensso/timbre "3.4.0"]
-                 [org.clojure/tools.cli "0.3.2"]
-                 [com.cemerick/friend "0.2.1"]
+                 [com.taoensso/timbre "4.7.4"]
+                 [org.clojure/tools.cli "0.3.5"]
+                 [com.cemerick/friend "0.2.3"]
                  [org.flatland/protobuf "0.8.1"]]
   :git-dependencies [["https://github.com/nicknovitski/watt.git"]]
   :plugins [[lein-ring "0.9.3"]
@@ -33,4 +36,4 @@
              {:dependencies
               [[javax.servlet/servlet-api "2.5"]
                [ring-mock "0.1.5"]
-               [criterium "0.4.3"]]}})
+               [criterium "0.4.4"]]}})
