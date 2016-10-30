@@ -9,7 +9,7 @@
 ; Time it's ok to have stale data for a steamid
 (def steamids-stale-days 1)
 
-(defn get-steamids-info-from-api [steamids]
+(defn- get-steamids-info-from-api [steamids]
   (let [log-fail (fn [reply] (if (not= 200 (:status reply))
                                (warn "Steam API call failed" (str reply))))]
     (if (empty? steamids)
@@ -31,14 +31,13 @@
           (db/update-steamids))))))
 
 (defn get-steamids-info [steamids]
+  (assert (every? #(= Long %)
+                  (map #(type %) steamids)))
   (if (not (str/blank? (get-steam-api-key)))
-    (let [steamids (if (= (-> steamids first type) String)
-                     (map #(Long/parseLong %) steamids)
-                     steamids)
-          have (->>
-                 (db/get-steamid-info steamids)
-                 (filter #(> (:timestamp %) (- (current-timestamp) (* 24 3600 steamids-stale-days))))
-                 (reduce #(assoc % (:steamid %2) %2) {}))
+    (let [have (->>
+                (db/get-steamid-info steamids)
+                (filter #(> (:timestamp %) (- (current-timestamp) (* 24 3600 steamids-stale-days))))
+                (reduce #(assoc % (:steamid %2) %2) {}))
           to-get (clojure.set/difference (set steamids) (set (keys have)))
           from-api (apply merge (map get-steamids-info-from-api (partition 100 100 [] to-get)))]
       (if (not (empty? to-get))

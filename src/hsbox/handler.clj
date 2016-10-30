@@ -139,12 +139,11 @@
                                  (response
                                    (if (empty? steamids)
                                      {}
-                                     (let [steamids-list (clojure.string/split steamids #",")
+                                     (let [steamids-strings (clojure.string/split steamids #",")
+                                           steamids-longs (map #(Long/parseLong %) steamids-strings)
                                            steamids-info (if (clojure.string/blank? (db/get-steam-api-key))
-                                                           (->>
-                                                             (map #(Long/parseLong %) steamids-list)
-                                                             (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {}))
-                                                           (steamapi/get-steamids-info steamids-list))]
+                                                           (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {} steamids-longs)
+                                                           (steamapi/get-steamids-info steamids-longs))]
                                        (into {} (for [[k v] steamids-info] [k (assoc v :last_rank (stats/get-last-rank (:steamid v)))]))))))
                                (authorize-admin
                                  (DELETE "/" []
