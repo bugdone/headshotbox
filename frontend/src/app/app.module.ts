@@ -3,18 +3,23 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { ApiService } from './api.service';
 import { AppComponent } from './app.component';
+import { PlayerListComponent } from './player-list/player-list.component';
+import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlayerListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    DropdownModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
