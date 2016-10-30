@@ -692,7 +692,6 @@ hsboxControllers.controller('PlayerList', function ($scope, $http) {
                     player = $scope.players[i];
                     if (response[player.steamid]) {
                         player.avatar = response[player.steamid].avatar;
-                        player.last_rank = response[player.steamid].last_rank;
                         player.personaname = response[player.steamid].personaname;
                     }
                 }

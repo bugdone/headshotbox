@@ -23,28 +23,6 @@
 (defn get-player-name-in-demo [steamid demo]
   (get-in demo [:players steamid :name]))
 
-(defn get-players [folder offset limit]
-  (let [folder-filtered (fn [m] (if (nil? folder)
-                                  m
-                                  (select-keys m (for [[k v] m :when (= (:folder v) folder)] k))))
-        sort-by-date (fn [c] (sort #(compare (:timestamp %2) (:timestamp %)) c))
-        players (->> player-demos
-                     (reduce-kv #(let [filtered-demos (vals (folder-filtered %3))]
-                                  (conj % {:steamid   %2
-                                           :demos     (count filtered-demos)
-                                           :last_timestamp (-> (sort-by-date filtered-demos) (first) (:timestamp))
-                                           :name      (get-player-name-in-demo %2 (first filtered-demos))})) [])
-                     (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
-                     (sort #(compare (:demos %2) (:demos %))))]
-    {:player_count (count players)
-     :players      (->> players
-                        (drop offset)
-                        (take limit)
-                        (map #(assoc % :steamid (str (:steamid %)))))}))
-
-(defn get-maps-for-steamid [steamid]
-  (set (map #(:map %) (vals (get player-demos steamid)))))
-
 (defn sorted-demos-for-steamid [steamid]
   (sort #(compare (:timestamp %) (:timestamp %2)) (vals (get player-demos steamid))))
 
@@ -60,6 +38,30 @@
     (get-rank-data steamid)
     (last)
     (#(get-in % [:mm_rank_update :rank_new]))))
+
+(defn get-players [folder offset limit]
+  (let [folder-filtered (fn [m] (if (nil? folder)
+                                  m
+                                  (select-keys m (for [[k v] m :when (= (:folder v) folder)] k))))
+        sort-by-date (fn [c] (sort #(compare (:timestamp %2) (:timestamp %)) c))
+        players (->> player-demos
+
+                     (reduce-kv #(let [filtered-demos (vals (folder-filtered %3))]
+                                  (conj % {:steamid   %2
+                                           :demos     (count filtered-demos)
+                                           :last_timestamp (-> (sort-by-date filtered-demos) (first) (:timestamp))
+                                           :last_rank (get-last-rank %2)
+                                           :name      (get-player-name-in-demo %2 (first filtered-demos))})) [])
+                     (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
+                     (sort #(compare (:demos %2) (:demos %))))]
+    {:player_count (count players)
+     :players      (->> players
+                        (drop offset)
+                        (take limit)
+                        (map #(assoc % :steamid (str (:steamid %)))))}))
+
+(defn get-maps-for-steamid [steamid]
+  (set (map #(:map %) (vals (get player-demos steamid)))))
 
 (defn get-player-latest-name [steamid]
   (get-player-name-in-demo steamid (first (sorted-demos-for-steamid steamid))))

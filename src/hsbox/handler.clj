@@ -140,11 +140,10 @@
                                    (if (empty? steamids)
                                      {}
                                      (let [steamids-strings (clojure.string/split steamids #",")
-                                           steamids-longs (map #(Long/parseLong %) steamids-strings)
-                                           steamids-info (if (clojure.string/blank? (db/get-steam-api-key))
-                                                           (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {} steamids-longs)
-                                                           (steamapi/get-steamids-info steamids-longs))]
-                                       (into {} (for [[k v] steamids-info] [k (assoc v :last_rank (stats/get-last-rank (:steamid v)))]))))))
+                                           steamids-longs (map #(Long/parseLong %) steamids-strings)]
+                                       (if (clojure.string/blank? (db/get-steam-api-key))
+                                         (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {} steamids-longs)
+                                         (steamapi/get-steamids-info steamids-longs))))))
                                (authorize-admin
                                  (DELETE "/" []
                                    (info "Invalidating players steam info")
