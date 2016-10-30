@@ -30,17 +30,25 @@
                   {})
           (db/update-steamids))))))
 
+(defn get-steamids-info-cached
+  "Returns a map with the cached steamid info from the database (any steamids
+  without cached data will be missing from the returned map)
+
+  steamids must be a seq of Long"
+  [steamids]
+  (->>
+   (db/get-steamid-info steamids)
+   (filter #(> (:timestamp %) (- (current-timestamp) (* 24 3600 steamids-stale-days))))
+   (reduce #(assoc % (:steamid %2) %2) {})))
+
 (defn get-steamids-info [steamids]
   (assert (every? #(= Long %)
                   (map #(type %) steamids)))
   (if (not (str/blank? (get-steam-api-key)))
-    (let [have (->>
-                (db/get-steamid-info steamids)
-                (filter #(> (:timestamp %) (- (current-timestamp) (* 24 3600 steamids-stale-days))))
-                (reduce #(assoc % (:steamid %2) %2) {}))
-          to-get (clojure.set/difference (set steamids) (set (keys have)))
+    (let [cached (get-steamids-info-cached steamids)
+          to-get (clojure.set/difference (set steamids) (set (keys cached)))
           from-api (apply merge (map get-steamids-info-from-api (partition 100 100 [] to-get)))]
       (if (not (empty? to-get))
         (debug "Getting fresh data from the API for" (count to-get) "steamids"))
-      (merge have from-api))
-    (reduce #(assoc % %2 {}) {} steamids)))
+      (merge cached from-api))
+    {}))
