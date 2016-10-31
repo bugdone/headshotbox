@@ -68,7 +68,7 @@
 
 (defroutes api-routes
            (context "/player/:steamid" [steamid]
-             (let [steamid (Long/parseLong steamid)]
+             (let [steamid (parse-long steamid)]
                (defroutes player-routes
                           (GET "/stats" req
                             (response (stats/get-stats-for-steamid
@@ -98,7 +98,7 @@
                             (response (stats/get-maps-for-steamid steamid))))))
 
            (context "/demo/:demoid" [demoid]
-             (let [demoid (Long/parseLong demoid)]
+             (let [demoid (parse-long demoid)]
                (defroutes demo-routes
                           (GET "/stats" []
                             (response (stats/get-demo-stats demoid)))
