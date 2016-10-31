@@ -7,11 +7,13 @@ import { ApiService } from './api.service';
 import { AppComponent } from './app.component';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { TimestampPipe } from './timestamp.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    TimestampPipe
   ],
   imports: [
     BrowserModule,
