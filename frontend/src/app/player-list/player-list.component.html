@@ -27,6 +27,12 @@
         <td class="text-center">{{player.last_timestamp | timestamp:'date'}}</td>
       </tr>
     </table>
+    <div class="text-center">
+      <pagination [directionLinks]="false" [boundaryLinks]="true" [maxSize]="10"
+                  [totalItems]="playerCount" [itemsPerPage]="playersPerPage"
+                  [(ngModel)]="currentPage" (pageChanged)="displayPage($event.page)">
+      </pagination>
+    </div>
   </div>
 </div>
 <div class="col-md-3">
@@ -35,7 +41,9 @@
       Folder: {{folder ? folder : "ALL"}} <span class="caret"></span>
     </button>
     <ul dropdownMenu role="menu">
-      <li role="menuitem" *ngFor="let folder of folders"><a class="dropdown-item" (click)="setFolder(folder)">{{folder ? folder : "ALL"}}</a></li>
+      <li role="menuitem" *ngFor="let folder of folders">
+        <a class="dropdown-item" (click)="setFolder(folder)">{{folder ? folder : "ALL"}}</a>
+      </li>
     </ul>
   </div>
 </div>

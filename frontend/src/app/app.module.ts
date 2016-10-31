@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { ApiService } from './api.service';
 import { AppComponent } from './app.component';
 import { PlayerListComponent } from './player-list/player-list.component';
-import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { DropdownModule, PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { TimestampPipe } from './timestamp.pipe';
 
 @NgModule({
@@ -19,7 +19,8 @@ import { TimestampPipe } from './timestamp.pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
-    DropdownModule
+    DropdownModule,
+    PaginationModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

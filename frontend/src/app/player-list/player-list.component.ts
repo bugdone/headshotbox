@@ -12,23 +12,24 @@ export class PlayerListComponent implements OnInit {
 
   players: Player[];
   playerCount: number = 0;
-  currentPage: number = 1;
   playersPerPage: number = 20;
+  currentPage: number = 1;
 
   constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.refresh();
+    this.api.getFolders().then(data => this.folders = data);
+    this.displayPage(1);
   }
 
   /** Refresh player list after folder or page changed */
-  refresh(): void {
-    this.api.getPlayers(this.folder, (this.currentPage - 1) * this.playersPerPage, this.playersPerPage)
+  displayPage(page: number): void {
+    this.currentPage = page;
+    this.api.getPlayers(this.folder, (page - 1) * this.playersPerPage, this.playersPerPage)
       .then(data => {
         this.players = data.players;
         this.playerCount = data.player_count;
         // TODO: sorting in the backend?
-        // TODO: pagination
         let missing_steam_info = this.players.filter(p => !p.steam_info).map(p => p.steamid);
         if (missing_steam_info.length) {
           return this.api.getSteamInfo(missing_steam_info);
@@ -42,7 +43,6 @@ export class PlayerListComponent implements OnInit {
           }
         }
       });
-    this.api.getFolders().then(data => this.folders = data);
   }
 
   sortBy(column: string): void {
@@ -51,6 +51,6 @@ export class PlayerListComponent implements OnInit {
 
   setFolder(folder): void {
     this.folder = folder;
-    this.refresh();
+    this.displayPage(1);
   }
 }
