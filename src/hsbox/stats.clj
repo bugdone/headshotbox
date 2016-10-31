@@ -56,12 +56,14 @@
                                            :last_rank (get-last-rank %2)
                                            :name      (get-player-name-in-demo %2 (first filtered-demos))})) [])
                      (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
-                     (sort #(compare (:demos %2) (:demos %)))
+                     (sort #(compare (:demos %2) (:demos %))))
+        player_count (count players)
+        players (->> players
                      (drop offset)
                      (take limit))
         steam-info (steamapi/get-steamids-info-cached (map :steamid players))
         players (map #(assoc % :steam_info (get steam-info (:steamid %))) players)]
-    {:player_count (count players)
+    {:player_count player_count
      :players      (map #(assoc % :steamid (str (:steamid %))) players)}))
 
 (defn get-maps-for-steamid [steamid]
