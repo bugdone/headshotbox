@@ -6,9 +6,9 @@
       <thead>
         <tr>
           <th>Player</th>
-          <th class="text-center"><a (click)="orderPlayers = '-(last_rank == null ? 0 : last_rank)'">MM Rank</a></th>
-          <th class="text-center"><a (click)="orderPlayers = '-demos'">Demos</a></th>
-          <th class="text-center"><a (click)="orderPlayers = '-(last_timestamp == null ? 0 : last_timestamp)'">Last Played</a></th>
+          <th class="text-center"><a (click)="sortBy('last_rank')">MM Rank</a></th>
+          <th class="text-center"><a (click)="sortBy('demos')">Demos</a></th>
+          <th class="text-center"><a (click)="sortBy('last_timestamp')">Last Played</a></th>
         </tr>
       </thead>
       <tr *ngFor="let player of players">
@@ -35,7 +35,7 @@
       Folder: {{folder ? folder : "ALL"}} <span class="caret"></span>
     </button>
     <ul dropdownMenu role="menu">
-      <li role="menuitem" *ngFor="let folder of folders"><a class="dropdown-item" (click)="setFolder(folder)" href="#">{{folder ? folder : "ALL"}}</a></li>
+      <li role="menuitem" *ngFor="let folder of folders"><a class="dropdown-item" (click)="setFolder(folder)">{{folder ? folder : "ALL"}}</a></li>
     </ul>
   </div>
 </div>

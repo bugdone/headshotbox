@@ -11,7 +11,6 @@ export class PlayerListComponent implements OnInit {
   folders: string[] = [];
 
   players: Player[];
-  playersOrder: string; // TODO somehting else
   playerCount: number = 0;
   currentPage: number = 1;
   playersPerPage: number = 20;
@@ -28,11 +27,6 @@ export class PlayerListComponent implements OnInit {
       .then(data => {
         this.players = data.players;
         this.playerCount = data.player_count;
-        // TODO:
-        // for (let player of this.players) {
-        //   player.last_date = timestamp2date(player.last_timestamp, true);
-        // }
-        // this.playersOrder = '-demos';
         // TODO: sorting in the backend?
         // TODO: pagination
         let missing_steam_info = this.players.filter(p => !p.steam_info).map(p => p.steamid);
@@ -51,7 +45,11 @@ export class PlayerListComponent implements OnInit {
     this.api.getFolders().then(data => this.folders = data);
   }
 
-  setFolder(folder) {
+  sortBy(column: string): void {
+    this.players.sort((a: Player, b: Player) => b[column] - a[column]);
+  }
+
+  setFolder(folder): void {
     this.folder = folder;
     this.refresh();
   }

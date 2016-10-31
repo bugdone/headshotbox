@@ -2,3 +2,6 @@ h1 {
     margin: 20px;
     text-align: center;
 }
+a {
+    cursor: pointer;
+}
