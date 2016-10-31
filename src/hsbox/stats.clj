@@ -190,7 +190,7 @@
                              (= steamid (:bomb_exploded round))))
              30
              0)
-           (* dmg-ratio (/ (get-in round [:damage steamid] 0) team-damage))))
+           (* dmg-ratio (/ (float (get-in round [:damage steamid] 0)) team-damage))))
       0)))
 
 (defn update-stats-with-round [stats round]
