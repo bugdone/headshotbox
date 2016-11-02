@@ -20,10 +20,9 @@
                  [com.taoensso/timbre "4.7.4"]
                  [org.clojure/tools.cli "0.3.5"]
                  [com.cemerick/friend "0.2.3"]
+                 [watt "0.1.0-SNAPSHOT"]
                  [org.flatland/protobuf "0.8.1"]]
-  :git-dependencies [["https://github.com/nicknovitski/watt.git"]]
-  :plugins [[lein-ring "0.9.3"]
-            [lein-git-deps "0.0.2-SNAPSHOT"]]
+  :plugins [[lein-ring "0.9.3"]]
   :ring {:handler hsbox.handler/app}
 
   :java-source-paths ["protosrc", "src/hsbox/java"]

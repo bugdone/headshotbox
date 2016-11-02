@@ -6,7 +6,7 @@ import shutil
 
 
 os.system('lein clean')
-os.system('lein uberjar')
+os.system('LEIN_SNAPSHOTS_IN_RELEASE=1 lein uberjar')
 jar = [f for f in os.listdir('./target') if f.endswith('-standalone.jar')][0]
 version = jar.split('-')[1]
 
