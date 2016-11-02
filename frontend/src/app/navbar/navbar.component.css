@@ -1,0 +1,21 @@
+.navbar-default {
+  border-radius: 0px;
+}
+.navbar-nav > li > a {
+  transition: all 0.3s ease;
+}
+.my-nav-button, .navbar-brand {
+  padding: 10px;
+}
+.navbar-brand img {
+  display: inline;
+}
+.github-link {
+  font-size: 24px;
+  padding: 12px;
+}
+
+.navbar-default .navbar-nav a.active {
+    color: #555;
+    background-color: #e7e7e7;
+}

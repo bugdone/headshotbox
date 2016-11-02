@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default container-fluid">
+  <div class="navbar-header">
+    <a class="navbar-brand" routerLink="/" title="{{version}}">
+      <img alt="Brand" src="img/hsbox.png" width="32"> HeadshotBox
+    </a>
+  </div>
+
+  <ul class="nav navbar-nav">
+    <li><a routerLink="/player_list" routerLinkActive="active"><i class="fa fa-users"></i> Player List</a></li>
+    <li><a routerLink="/search_round" routerLinkActive="active"><i class="fa fa-search"></i> Search Round</a></li>
+    <li><a routerLink="/settings" routerLinkActive="active"><i class="fa fa-cogs"></i> Settings</a></li>
+    <li *ngIf="showLogin">
+      <div [ngSwitch]="isAuthorized" class="my-nav-button">
+        <a *ngSwitchCase="'hsbox.handler/admin'" href="/openid/logout" class="btn btn-sm btn-default">Log out</a>
+
+        <form *ngSwitchDefault action="/openid" method="POST">
+          <input name="identifier" value="http://steamcommunity.com/openid" type="hidden">
+          <button class="btn btn-sm btn-default" value="steam" type="submit"><i class="fa fa-steam"></i> Login with Steam</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+
+  <ul class="nav navbar-nav navbar-right">
+    <li *ngIf="newVersionAvailable">
+      <h5><span class="label label-default">New version available!</span></h5>
+    </li>
+    <li>
+      <a class="github-link" href="https://github.com/bugdone/headshotbox/releases">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+  </ul>
+</nav>

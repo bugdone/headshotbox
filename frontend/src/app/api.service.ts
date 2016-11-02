@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { Http, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -44,24 +44,32 @@ export class ApiService {
     if (folder !== null) {
       params.set('folder', folder);
     }
-    return this.http.get(this.serverUrl + '/players', {search: params}).toPromise()
-      .then(r => r.json() as Players)
-      .catch(this.handleError);
+    return this.getPromise('/players', {search: params});
   }
 
   getSteamInfo(steamids: string[]): Promise<SteamInfoMap> {
     let params = new URLSearchParams();
     params.set('steamids', steamids.join(','));
-    return this.http.get(this.serverUrl + '/steamids/info', {search: params}).toPromise()
-      .then(r => r.json() as SteamInfoMap)
-      .catch(this.handleError);
+    return this.getPromise('/steamids/info', {search: params});
   }
 
   getFolders(): Promise<string[]> {
-    return this.http.get(this.serverUrl + '/folders').toPromise().then(r => r.json());
+    return this.getPromise('/folders');
   }
 
-  handleError(error: any): Promise<any> {
+  getVersion(): Promise<{current: string, latest: string}> {
+    return this.getPromise('/version');
+  }
+
+  getAuthorization(): Promise<{authorized: boolean, showLogin: boolean}> {
+    return this.getPromise('/authorized');
+  }
+
+  private getPromise(path: string, options?: RequestOptionsArgs): Promise<any> {
+    return this.http.get(this.serverUrl + path, options).toPromise().then(r => r.json()).catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
     return Promise.reject(error.message || error);
   }
 }
