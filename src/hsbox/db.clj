@@ -43,7 +43,7 @@
 
 (defn exec-sql-file [t-con file]
   (let [queries (str/split (slurp (resource file)) #";\r?\n")]
-    (apply jdbc/db-do-commands t-con queries)))
+    (jdbc/db-do-commands t-con queries)))
 
 (defn init-db []
   (with-db-transaction t-con

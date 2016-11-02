@@ -8,13 +8,13 @@
             [ring.adapter.jetty]
             [clojure.string :as string]
             [clojure.tools.cli :as cli]
-            [taoensso.timbre :as timbre])
+            [taoensso.timbre :as timbre]
+            [taoensso.timbre.appenders.core :as appenders])
   (:import (java.io File))
   (:import (java.net BindException URI)
            (hsbox.java SysTrayIcon))
   (:gen-class))
 
-(timbre/set-config! {:appenders {:spit {:enabled? true}}})
 (timbre/refer-timbre)
 
 (def cli-options
@@ -54,7 +54,8 @@
       (when (not-empty demoinfo-dir)
         (set-demoinfo-dir demoinfo-dir))
       (let [log-file (.getCanonicalFile (File. db/app-config-dir "headshotbox.log"))]
-        (timbre/set-config! {:shared-appender-config {:spit-filename log-file}})
+        (timbre/merge-config!
+          {:appenders {:spit (appenders/spit-appender {:fname log-file})}})
         (when (:systray options)
           (let [uri (if (:openid-realm options)
                       (URI. (:openid-realm options))
