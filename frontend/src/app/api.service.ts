@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, RequestOptionsArgs } from '@angular/http';
+import { environment } from '../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -34,7 +35,6 @@ export interface SteamInfoMap {
 
 @Injectable()
 export class ApiService {
-  serverUrl: string = 'http://localhost:4000/api';
   constructor(private http: Http) { }
 
   getPlayers(folder: string, offset: number, limit: number): Promise<Players> {
@@ -66,7 +66,7 @@ export class ApiService {
   }
 
   private getPromise(path: string, options?: RequestOptionsArgs): Promise<any> {
-    return this.http.get(this.serverUrl + path, options).toPromise().then(r => r.json()).catch(this.handleError);
+    return this.http.get(environment.apiUrl + path, options).toPromise().then(r => r.json()).catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
