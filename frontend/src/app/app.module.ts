@@ -11,13 +11,15 @@ import { TimestampPipe } from './timestamp.pipe';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PlayerListComponent } from './player-list/player-list.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimestampPipe,
     PlayerListComponent,
-    NavbarComponent
+    NavbarComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

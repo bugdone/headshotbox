@@ -29,7 +29,6 @@ export class PlayerListComponent implements OnInit {
       .then(data => {
         this.players = data.players;
         this.playerCount = data.player_count;
-        // TODO: sorting in the backend?
         let missing_steam_info = this.players.filter(p => !p.steam_info).map(p => p.steamid);
         if (missing_steam_info.length) {
           return this.api.getSteamInfo(missing_steam_info);
@@ -46,11 +45,7 @@ export class PlayerListComponent implements OnInit {
   }
 
   sortBy(column: string): void {
+    // TODO: sorting in the backend?
     this.players.sort((a: Player, b: Player) => b[column] - a[column]);
-  }
-
-  setFolder(folder): void {
-    this.folder = folder;
-    this.displayPage(1);
   }
 }

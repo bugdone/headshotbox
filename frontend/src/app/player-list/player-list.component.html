@@ -36,14 +36,7 @@
   </div>
 </div>
 <div class="col-md-3">
-  <div class="btn-group" dropdown>
-    <button dropdownToggle type="button" class="btn btn-default">
-      Folder: {{folder ? folder : "ALL"}} <span class="caret"></span>
-    </button>
-    <ul dropdownMenu role="menu">
-      <li role="menuitem" *ngFor="let folder of folders">
-        <a class="dropdown-item" (click)="setFolder(folder)">{{folder ? folder : "ALL"}}</a>
-      </li>
-    </ul>
-  </div>
+  <app-dropdown label="Folder: " nullDisplay="ALL" [items]="folders"
+                [(value)]="folder" (valueChange)="displayPage(1)">
+  </app-dropdown>
 </div>
