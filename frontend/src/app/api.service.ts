@@ -33,8 +33,17 @@ export interface SteamInfoMap {
   [steamid: string]: SteamInfo;
 }
 
+function urlSearchParams(obj: any): URLSearchParams {
+  let params = new URLSearchParams();
+  for (let k of Object.keys(obj)) {
+    params.set(k, String(obj[k]));
+  }
+  return params;
+}
+
 @Injectable()
 export class ApiService {
+  private folders: string[] = null;
   constructor(private http: Http) { }
 
   getPlayers(folder: string, offset: number, limit: number): Promise<Players> {
@@ -54,7 +63,12 @@ export class ApiService {
   }
 
   getFolders(): Promise<string[]> {
-    return this.getPromise('/folders');
+    // Cache folders
+    if (this.folders) {
+      return new Promise(resolve => resolve(this.folders));
+    } else {
+      return this.getPromise('/folders').then(data => this.folders = data);
+    }
   }
 
   getVersion(): Promise<{current: string, latest: string}> {
