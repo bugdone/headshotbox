@@ -642,6 +642,8 @@
   (sort (set (map #(-> (second %) (:folder)) demos))))
 
 (defn init-cache []
+  (def hsbox.stats/demos {})
+  (def hsbox.stats/player-demos {})
   (doseq [demo (db/get-all-demos)]
     (add-demo demo)))
 
