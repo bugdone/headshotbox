@@ -74,18 +74,12 @@
                             (response (stats/get-stats-for-steamid
                                         steamid
                                         (parse-filters (get req :params)))))
-                          (GET "/demos" req
-                            (let [params (get req :params)
-                                  limit (:limit params)]
-                              (response (stats/get-demos-for-steamid
-                                          steamid
-                                          (parse-filters params)
-                                          (try
-                                            (Long/parseLong (:offset params))
-                                            (catch Exception e
-                                              (error "Error parsing offset in GET /player/demos" (:offset params) (str e))
-                                              0))
-                                          (if (nil? limit) nil (Long/parseLong limit))))))
+                          (GET "/demos" {:keys [params]}
+                            (response (stats/get-demos-for-steamid
+                                        steamid
+                                        (parse-filters params)
+                                        (parse-long (:offset params) 0)
+                                        (parse-long (:limit params) 0))))
                           (GET "/teammates" []
                             (response (stats/get-teammates-for-steamid steamid)))
                           (GET "/banned" [only_opponents]
