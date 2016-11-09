@@ -1,10 +1,10 @@
 <div class="btn-group" dropdown>
   <button dropdownToggle type="button" class="btn btn-default">
-    {{label}}{{value ? value : nullDisplay}} <span class="caret"></span>
+    {{currentLabel}} <span class="caret"></span>
   </button>
   <ul dropdownMenu role="menu">
     <li role="menuitem" *ngFor="let item of items">
-      <a class="dropdown-item" (click)="setValue(item)">{{item ? item : nullDisplay}}</a>
+      <a (click)="setValue(item)">{{item ? item : nullDisplay}}</a>
     </li>
   </ul>
 </div>

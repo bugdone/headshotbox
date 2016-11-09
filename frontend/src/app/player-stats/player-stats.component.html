@@ -1,0 +1,103 @@
+<div>
+  <div class="name">
+    <a href="http://steamcommunity.com/profiles/{{steamid}}">
+      <img class="avatar" src="{{steam_info?.avatarfull ? steam_info?.avatarfull : 'img/avatar.jpg'}}" height="64" width="64"/>
+    </a>
+    {{steam_info?.personaname}}
+  </div>
+
+  <div id="stats-tables" class="center-block">
+    <table class="table player-stats">
+      <tr>
+        <th>Win %</th>
+        <td>{{stats.won / (stats.won + stats.lost) * 100 | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th>Won</th>
+        <td>{{stats.won}}</td>
+      </tr>
+      <tr>
+        <th>Tied</th>
+        <td>{{stats.tied}}</td>
+      </tr>
+      <tr>
+        <th>Lost</th>
+        <td>{{stats.lost}}</td>
+      </tr>
+      <tr>
+        <th>Total</th>
+        <td>{{stats.won + stats.tied + stats.lost | numeric:0}}</td>
+      </tr>
+    </table>
+    <table class="table player-stats">
+      <tr>
+        <th><abbr title="Kill/Death Ratio">KDR</abbr></th>
+        <td [style.color]="stats.kills >= stats.deaths ? 'green' : 'red'">{{stats.kills / stats.deaths | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th><abbr title="Headshot Percent">HS %</abbr></th>
+        <td>{{stats.hs_percent | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th>Rating <a href="http://www.hltv.org/?pageid=242" title="HLTV Rating" style="color:inherit">(?)</a></th>
+        <td>{{stats.rating  | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th>RWS <a href="https://play.esea.net/index.php?s=support&d=faq&id=212" title="average Round Win Shares" style="color:inherit">(?)</a></th>
+        <td>{{stats.rws / stats.rounds_with_damage_info | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th><abbr title="1v1 rounds won / attempted ({{stats['1v1_won']}}/{{stats['1v1_attempted']}})">Clutch %</abbr>
+          <abbr title="Only 2v1 rounds that end up in 1v1 are considered (same as hltv.org)">(?)</abbr>
+        </th>
+        <td>{{stats['1v1_won'] / stats['1v1_attempted'] * 100 | numeric:2}}</td>
+      </tr>
+    </table>
+    <table class="table player-stats">
+      <tr>
+        <th><abbr title="Kills Per Round">KPR</abbr></th>
+        <td>{{stats.kills / stats.rounds | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th><abbr title="Assists Per Round">APR</abbr></th>
+        <td>{{stats.assists / stats.rounds | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th><abbr title="Deaths Per Round">DPR</abbr></th>
+        <td>{{stats.deaths / stats.rounds | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th><abbr title="Entry Kills Per Round">EKPR</abbr></th>
+        <td>{{stats.entry_kills / stats.rounds_t | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th><abbr title="Average Damage Per Round (takes into account only games after the 30.06.2015 patch)">ADR</abbr></th>
+        <td>{{stats.damage / stats.rounds_with_damage_info | numeric:2}}</td>
+      </tr>
+    </table>
+    <table class="table player-stats">
+      <tr>
+        <th><abbr title="Rounds with 3 kills">3K</abbr></th>
+        <td>{{stats.rounds_with_kills[3]}}</td>
+      </tr>
+      <tr>
+        <th><abbr title="Rounds with 4 kills">4K</abbr></th>
+        <td>{{stats.rounds_with_kills[4]}}</td>
+      </tr>
+      <tr>
+        <th><abbr title="Rounds with 5 kills">5K</abbr></th>
+        <td>{{stats.rounds_with_kills[5]}}</td>
+      </tr>
+    </table>
+    <table class="table player-stats">
+      <tr>
+        <th><abbr title="First Duel as T Win % ({{stats.entry_kills}}/{{stats.entry_kills_attempted}})">Entry Kill Win %</abbr></th>
+        <td>{{100 * stats.entry_kills / stats.entry_kills_attempted | numeric:2}}</td>
+      </tr>
+      <tr>
+        <th><abbr title="First Duel as T or CT Win % ({{stats.open_kills}}/{{stats.open_kills_attempted}})">First Duel Win %</abbr></th>
+        <td>{{100 * stats.open_kills / stats.open_kills_attempted | numeric:2}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

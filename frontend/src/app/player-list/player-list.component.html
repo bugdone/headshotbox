@@ -16,7 +16,7 @@
           <a href="http://steamcommunity.com/profiles/{{player.steamid}}">
             <img src="{{player.steam_info ? player.steam_info.avatar : 'img/avatar.jpg'}}" class="list-avatar" width="32" height="32"/>
           </a>
-          <a href="#/player/{{player.steamid}}">{{player.steam_info ? player.steam_info.personaname : player.name}}</a>
+          <a [routerLink]="['/player/', player.steamid]">{{player.steam_info ? player.steam_info.personaname : player.name}}</a>
         </td>
         <td class="text-center">
           <img src="img/ranks/{{player.last_rank ? player.last_rank : 'unknown'}}.png" height="20" width="50"/>

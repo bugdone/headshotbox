@@ -33,10 +33,19 @@ export interface SteamInfoMap {
   [steamid: string]: SteamInfo;
 }
 
+export class DemoFilters {
+  folder: string;
+  demoType: string;
+  mapName: string;
+  rounds: string;
+}
+
 function urlSearchParams(obj: any): URLSearchParams {
   let params = new URLSearchParams();
   for (let k of Object.keys(obj)) {
-    params.set(k, String(obj[k]));
+    if (obj[k]) {
+      params.set(k, String(obj[k]));
+    }
   }
   return params;
 }
@@ -77,6 +86,16 @@ export class ApiService {
 
   getAuthorization(): Promise<{authorized: boolean, showLogin: boolean}> {
     return this.getPromise('/authorized');
+  }
+
+  getPlayerStats(steamid: string, demoFilters: DemoFilters) {
+    // TODO Type this by renaming 1v1_* ?
+    return this.getPromise('/player/' + steamid + '/stats',
+                           {search: urlSearchParams(demoFilters)});
+  }
+
+  getPlayerMaps(steamid: string): Promise<string[]> {
+    return this.getPromise('/player/' + steamid + '/maps');
   }
 
   private getPromise(path: string, options?: RequestOptionsArgs): Promise<any> {

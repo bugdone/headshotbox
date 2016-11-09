@@ -1,0 +1,35 @@
+.avatar {
+  margin: 20px;
+  text-align: center;
+  border-radius: 25%;
+}
+.name {
+  font-size: 200%;
+  text-align: center;
+}
+
+#stats-tables, #tabs {
+  text-align: center;
+}
+#stats-tables .table, #weapon-stats {
+  width: auto;
+  display: inline-block;
+  text-align: right;
+  vertical-align: top;
+}
+
+.player-stats p{
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
+  color: #333;
+}
+.player-stats td {
+  min-width: 5em;
+}
+.player-stats span{
+  border-radius: 4px;
+  padding: 5px;
+  border: 1px solid rgba(94, 87, 87, 1);
+}
