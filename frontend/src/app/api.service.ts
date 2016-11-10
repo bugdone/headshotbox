@@ -38,6 +38,15 @@ export class DemoFilters {
   demoType: string;
   mapName: string;
   rounds: string;
+  startDate: number;
+  endDate: number;
+  teammates: string[];
+}
+
+export class Teammate {
+  demos: number;
+  name: string;
+  steamid: string;
 }
 
 function urlSearchParams(obj: any): URLSearchParams {
@@ -53,6 +62,8 @@ function urlSearchParams(obj: any): URLSearchParams {
 @Injectable()
 export class ApiService {
   private folders: string[] = null;
+  private steam_info: SteamInfoMap = {};
+
   constructor(private http: Http) { }
 
   getPlayers(folder: string, offset: number, limit: number): Promise<Players> {
@@ -62,13 +73,33 @@ export class ApiService {
     if (folder !== null) {
       params.set('folder', folder);
     }
+    // TODO cache steam_info
     return this.getPromise('/players', {search: params});
   }
 
   getSteamInfo(steamids: string[]): Promise<SteamInfoMap> {
     let params = new URLSearchParams();
     params.set('steamids', steamids.join(','));
-    return this.getPromise('/steamids/info', {search: params});
+    return this.getPromise('/steamids/info', {search: params}).then(data => {
+      for (let steamid of Object.keys(data)) {
+        this.steam_info[steamid] = data[steamid];
+      }
+      return data;
+    });
+  }
+
+  fillSteamInfo(players: any[]): Promise<any> {
+    let missing = players.filter(p => !p.steam_info && !this.steam_info[p.steamid]).map(p => p.steamid);
+    let p = missing.length ? this.getSteamInfo(missing) : Promise.resolve([]);
+    return p.then(_ => this.cachedSteamInfo(players));
+  }
+
+  private cachedSteamInfo(players: any[]) {
+    for (let player of players) {
+      if (this.steam_info[player.steamid]) {
+        player.steam_info = this.steam_info[player.steamid];
+      }
+    }
   }
 
   getFolders(): Promise<string[]> {
@@ -96,6 +127,10 @@ export class ApiService {
 
   getPlayerMaps(steamid: string): Promise<string[]> {
     return this.getPromise('/player/' + steamid + '/maps');
+  }
+
+  getPlayerTeammates(steamid: string): Promise<Teammate[]> {
+    return this.getPromise('/player/' + steamid + '/teammates');
   }
 
   private getPromise(path: string, options?: RequestOptionsArgs): Promise<any> {

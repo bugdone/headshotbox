@@ -12,6 +12,8 @@ export class DemoFiltersComponent implements OnInit {
   @Output() filtersChange = new EventEmitter<DemoFilters>();
 
   current = new DemoFilters();
+  startDate: Date;
+  endDate: Date;
   folders: string[];
   playerMaps: string[];
 
@@ -24,6 +26,16 @@ export class DemoFiltersComponent implements OnInit {
 
   setDemoType(demoType) {
     this.current.demoType = demoType;
+    this.emit();
+  }
+
+  setStartDate() {
+    this.current.startDate = this.startDate.getTime() / 1000;
+    this.emit();
+  }
+
+  setEndDate() {
+    this.current.endDate = this.endDate.getTime() / 1000;
     this.emit();
   }
 

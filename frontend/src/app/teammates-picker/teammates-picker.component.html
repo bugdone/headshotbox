@@ -1,0 +1,26 @@
+<div dropdown>
+  <button dropdownToggle type="button" class="btn btn-default add-teammate" [disabled]="value?.length == 4">
+    <i class="fa fa-plus"></i> Teammate
+  </button>
+  <ul dropdownMenu class="text-left teammates-list" role="menu">
+    <li *ngFor="let teammate of playerTeammates" (click)="add(teammate)">
+      <a>
+        <img src="{{teammate.steam_info?.avatar ? teammate.steam_info.avatar : 'img/avatar.jpg'}}" width="24"/>
+        {{teammate.steam_info?.personaname ? teammate.steam_info?.personaname : teammate.name}} ({{teammate.demos}} demos)
+      </a>
+    </li>
+  </ul>
+</div>
+<ul class="list-group teammates-box">
+  <li *ngFor="let teammate of selected" class="row list-group-item teammate">
+    <div class="col-sm-10 text-left">
+      <img src="{{teammate.steam_info?.avatar ? teammate.steam_info.avatar : 'img/avatar.jpg'}}" width="24"/>
+      {{teammate.steam_info?.personaname ? teammate.steam_info?.personaname : teammate.name}} ({{teammate.demos}} demos)
+    </div>
+    <div class="col-sm-2 text-right">
+      <a class="remove-teammate" (click)="remove(teammate)">
+        <i class="fa fa-minus"></i>
+      </a>
+    </div>
+  </li>
+</ul>

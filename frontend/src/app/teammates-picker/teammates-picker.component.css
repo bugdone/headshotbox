@@ -1,0 +1,16 @@
+.teammates-box {
+  box-shadow: none;
+}
+
+.teammate {
+  background: inherit;
+  border: none;
+}
+
+.remove-teammate i {
+  color: red;
+}
+
+.add-teammate i {
+  color: green;
+}

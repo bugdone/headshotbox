@@ -1,0 +1,8 @@
+<div dropdown autoClose="outsideClick" [(isOpen)]="isOpen" class="form-group input-group">
+  <span class="input-group-addon">{{label}}</span>
+  <datepicker dropdownMenu [(ngModel)]="value" (ngModelChange)="setValue()" [minDate]="minDate" [showWeeks]="true"></datepicker>
+  <input type="text" disabled class="form-control" [value]="value?.getTime() / 1000 | timestamp:'date'"/>
+  <span class="input-group-btn">
+    <button dropdownToggle type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+  </span>
+</div>

@@ -17,10 +17,7 @@ export class PlayerStatsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     // TODO last_rank?
-    // TODO use cached player?
-    this.api.getSteamInfo([this.steamid]).then(steam_info => {
-      this.steam_info = steam_info[this.steamid];
-    });
+    this.api.fillSteamInfo([this]);
   }
 
   ngOnChanges() {

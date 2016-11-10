@@ -17,6 +17,8 @@ import { NumericPipe } from './numeric.pipe';
 import { DemoFiltersComponent } from './demo-filters/demo-filters.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { PlayerStatsComponent } from './player-stats/player-stats.component';
+import { DatepickerComponent } from './datepicker/datepicker.component';
+import { TeammatesPickerComponent } from './teammates-picker/teammates-picker.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { PlayerStatsComponent } from './player-stats/player-stats.component';
     NumericPipe,
     DemoFiltersComponent,
     DropdownComponent,
-    PlayerStatsComponent
+    PlayerStatsComponent,
+    DatepickerComponent,
+    TeammatesPickerComponent
   ],
   imports: [
     BrowserModule,
