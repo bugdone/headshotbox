@@ -1,5 +1,7 @@
 #!/bin/bash
 set -e
+set -x
+
 mkdir win
 mkdir linux
 python get-demoinfogo.py

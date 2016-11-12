@@ -26,6 +26,7 @@
   :ring {:handler hsbox.handler/app}
 
   :java-source-paths ["protosrc", "src/hsbox/java"]
+  :javac-options ["-target" "1.7" "-source" "1.7"]
   :uberjar {:aot :all}
   :aot [hsbox.core]
   :main hsbox.core
