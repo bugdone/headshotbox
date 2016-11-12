@@ -27,3 +27,10 @@ deploy:
   on:
     repo: bugdone/headshotbox
     tags: true
+
+notifications:
+  email:
+    recipients:
+      - bugdone@gmail.com
+    on_success: never
+    on_failure: always
