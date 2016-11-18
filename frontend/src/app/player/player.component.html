@@ -5,3 +5,31 @@
                     (filtersChange)="filtersChanged($event)">
   </app-demo-filters>
 </div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-12 col-lg-8">
+    <tabset>
+      <tab>
+        <template tabHeading><i class="fa fa-history"></i> Demos</template>
+      </tab>
+    </tabset>
+    <!-- <div id="tabs" class="center-block"> -->
+    <!--   <tabset> -->
+    <!--     <tab ng-repeat="tab in tabArray" select="loadTab(tab)" style="display:inline-block;float:none;"> -->
+    <!--       <tab-heading> -->
+    <!--         <i class="fa fa-{{tab.icon}}"></i> -->
+    <!--         {{tab.heading}} -->
+    <!--       </tab-heading> -->
+    <!--       <div ng-hide="tab.status != 'loaded'"> -->
+    <!--         <ng-include src="'templates/' + tab.content + '.html'"></ng-include> -->
+    <!--       </div> -->
+    <!--       <div ng-hide="tab.status != 'loading'"> -->
+    <!--         <div ng-include src="'templates/loading.html'"></div> -->
+    <!--       </div> -->
+    <!--     </tab> -->
+    <!--   </tabset> -->
+    <!-- </div> -->
+  </div>
+  <div class="col-md-2"></div>
+</div>

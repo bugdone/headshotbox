@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 
-import { DropdownModule, PaginationModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { DropdownModule, PaginationModule, DatepickerModule, TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { ApiService } from './api.service';
 import { TimestampPipe } from './timestamp.pipe';
@@ -41,6 +41,7 @@ import { TeammatesPickerComponent } from './teammates-picker/teammates-picker.co
     DropdownModule,
     PaginationModule,
     DatepickerModule,
+    TabsModule,
     RouterModule.forRoot([
       { path: 'player/:steamid', component: PlayerComponent },
       { path: 'player_list', component: PlayerListComponent },
