@@ -24,6 +24,9 @@
     :validate [#(< 0 % 0x10000) "Must be a number between 1 and 65535"]]
    [nil "--portable" "Uses current directory for .sqlite and .log files"]
    [nil "--no-indexer" "Does not parse new demos from the demo directory"]
+   [nil "--steamapi-cache days" "Days to cache steam info"
+    :default 1
+    :parse-fn #(Integer/parseInt %)]
    [nil "--admin-steamid steamid64" "Changing settings and adding notes requires logging in with this steamid64"]
    [nil "--openid-realm url" "Realm url used by OpenID"]
    [nil "--demoinfo-dir directory" "Directory where demoinfogo is located (default is current dir)"]
@@ -78,6 +81,7 @@
                            (map #(.getCanonicalPath %))
                            (filter #(.endsWith % ".dem")))))
       (stats/init-cache)
+      (hsbox.steamapi/init-steam-stale-days (get options :steamapi-cache 1))
       (future (stats/update-players-steam-info))
       (when run-indexer?
         (indexer/add-demo-directory (db/get-demo-directory))

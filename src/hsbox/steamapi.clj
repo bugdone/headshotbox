@@ -9,6 +9,9 @@
 ; Time it's ok to have stale data for a steamid
 (def steamids-stale-days 1)
 
+(defn init-steam-stale-days [days]
+  (def hsbox.steamapi/steamids-stale-days days))
+
 (defn- get-steamids-info-from-api [steamids]
   (let [log-fail (fn [reply] (if (not= 200 (:status reply))
                                (warn "Steam API call failed" (str reply))))]
@@ -37,9 +40,9 @@
   steamids must be a seq of Long"
   [steamids]
   (->>
-   (db/get-steamid-info steamids)
-   (filter #(> (:timestamp %) (- (current-timestamp) (* 24 3600 steamids-stale-days))))
-   (reduce #(assoc % (:steamid %2) %2) {})))
+    (db/get-steamid-info steamids)
+    (filter #(> (:timestamp %) (- (current-timestamp) (* 24 3600 steamids-stale-days))))
+    (reduce #(assoc % (:steamid %2) %2) {})))
 
 (defn get-steamids-info [steamids]
   (assert (every? #(= Long %)
