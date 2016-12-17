@@ -190,7 +190,10 @@
                              (= steamid (:bomb_exploded round))))
              30
              0)
-           (* dmg-ratio (/ (float (get-in round [:damage steamid] 0)) team-damage))))
+           (if (not= team-damage 0)
+             (* dmg-ratio (/ (float (get-in round [:damage steamid] 0)) team-damage))
+             ; if team won without doing any damage, assign each player an equal damage share
+             (* dmg-ratio 0.2))))
       0)))
 
 (defn update-stats-with-round [stats round]
