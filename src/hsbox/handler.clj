@@ -126,22 +126,22 @@
              (response (stats/search-rounds (get-in req [:params :search-string]) (parse-filters (get req :params)))))
 
            (context "/steamids/info" []
-                    (defroutes steamids-info-routes
-                               (GET "/status" []
-                                 (response {:refreshing @stats/api-refreshing?}))
-                               (GET "/" [steamids]
-                                 (response
-                                   (if (empty? steamids)
-                                     {}
-                                     (let [steamids-strings (clojure.string/split steamids #",")
-                                           steamids-longs (map #(Long/parseLong %) steamids-strings)]
-                                       (if (clojure.string/blank? (db/get-steam-api-key))
-                                         (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {} steamids-longs)
-                                         (steamapi/get-steamids-info steamids-longs))))))
-                               (authorize-admin
-                                 (DELETE "/" []
-                                   (info "Invalidating players steam info")
-                                   (stats/invalidate-players-steam-info)))))
+             (defroutes steamids-info-routes
+                        (GET "/status" []
+                          (response {:refreshing @stats/api-refreshing?}))
+                        (GET "/" [steamids]
+                          (response
+                            (if (empty? steamids)
+                              {}
+                              (let [steamids-strings (clojure.string/split steamids #",")
+                                    steamids-longs (map #(Long/parseLong %) steamids-strings)]
+                                (if (clojure.string/blank? (db/get-steam-api-key))
+                                  (reduce #(assoc % %2 {:name (stats/get-player-latest-name %2)}) {} steamids-longs)
+                                  (steamapi/get-steamids-info steamids-longs))))))
+                        (authorize-admin
+                          (DELETE "/" []
+                            (info "Invalidating players steam info")
+                            (stats/invalidate-players-steam-info)))))
            (context "/indexer" []
              (authorize-admin
                (defroutes indexer-routes

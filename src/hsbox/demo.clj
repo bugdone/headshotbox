@@ -171,34 +171,34 @@
      split-at-last-round-start (fn [events]
                                  (split-with #(not= (:type %) "round_start") (reverse events)))]
     (vec
-     (->> demo-events
-          (split-by-game-restart)
-          ; mapcat?
-          (map round-split-func)
-          (apply concat)
-          ; Remove chunks with no legit start_round event
-          (filter (fn [events]
-                    (not (empty? (filter #(and (= (:type %) "round_start") (<= 105 (:timelimit %) (round-timelimit demo-type))) events)))))
-          ; Remove score_changed events that happen in max 2 seconds after round_start
-          (map (fn [events]
-                 (let [[after-start before-start] (split-at-last-round-start events)
-                       start-tick (:tick (first before-start))]
-                   (reverse (concat
-                              (filter #(or (not= (:type %) "score_changed")
-                                           (and (= (:type %) "score_changed") (< (+ 256 start-tick) (:tick %))))
-                                      after-start)
-                              before-start)))))
-          ; Filter chunks with no round_end or score_changed
-          (filter (fn [events]
-                    (let [[after-start _] (split-at-last-round-start events)]
-                      (true?
-                        (or
-                          ; Draw rounds can only happen in warmup
-                          (not (empty? (filter #(and (= (:type %) "round_end") (not= 1 (:winner %))) after-start)))
-                          (not (empty? (filter #(= (:type %) "score_changed") after-start))))))))
-          ((get filter-possible-rounds demo-type identity))
-          (map process-round-events)
-          (map #(dissoc % :health))))))
+      (->> demo-events
+           (split-by-game-restart)
+           ; mapcat?
+           (map round-split-func)
+           (apply concat)
+           ; Remove chunks with no legit start_round event
+           (filter (fn [events]
+                     (not (empty? (filter #(and (= (:type %) "round_start") (<= 105 (:timelimit %) (round-timelimit demo-type))) events)))))
+           ; Remove score_changed events that happen in max 2 seconds after round_start
+           (map (fn [events]
+                  (let [[after-start before-start] (split-at-last-round-start events)
+                        start-tick (:tick (first before-start))]
+                    (reverse (concat
+                               (filter #(or (not= (:type %) "score_changed")
+                                            (and (= (:type %) "score_changed") (< (+ 256 start-tick) (:tick %))))
+                                       after-start)
+                               before-start)))))
+           ; Filter chunks with no round_end or score_changed
+           (filter (fn [events]
+                     (let [[after-start _] (split-at-last-round-start events)]
+                       (true?
+                         (or
+                           ; Draw rounds can only happen in warmup
+                           (not (empty? (filter #(and (= (:type %) "round_end") (not= 1 (:winner %))) after-start)))
+                           (not (empty? (filter #(= (:type %) "score_changed") after-start))))))))
+           ((get filter-possible-rounds demo-type identity))
+           (map process-round-events)
+           (map #(dissoc % :health))))))
 
 (defn real-team [demo team]
   (if (:teams_switched? demo)

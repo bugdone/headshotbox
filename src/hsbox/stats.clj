@@ -50,11 +50,11 @@
         sort-by-date (fn [c] (sort #(compare (:timestamp %2) (:timestamp %)) c))
         players (->> player-demos
                      (reduce-kv #(let [filtered-demos (vals (folder-filtered %3))]
-                                  (conj % {:steamid   %2
-                                           :demos     (count filtered-demos)
+                                  (conj % {:steamid        %2
+                                           :demos          (count filtered-demos)
                                            :last_timestamp (-> (sort-by-date filtered-demos) (first) (:timestamp))
-                                           :last_rank (get-last-rank %2)
-                                           :name      (get-player-name-in-demo %2 (first filtered-demos))})) [])
+                                           :last_rank      (get-last-rank %2)
+                                           :name           (get-player-name-in-demo %2 (first filtered-demos))})) [])
                      (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
                      (sort #(compare (:demos %2) (:demos %))))
         player_count (count players)
@@ -570,13 +570,13 @@
                                           ")((?:bang|hs|jump|smoke|collateral|air|noscope|quickscope)*)$"))]])))
 
 (defn round-kills [round steamid demo]
-  (reduce #(let [key {:weapon (weapon-name (:weapon %2))
-                      :headshot (:headshot %2)
+  (reduce #(let [key {:weapon     (weapon-name (:weapon %2))
+                      :headshot   (:headshot %2)
                       :penetrated (pos? (:penetrated %2))
-                      :smoke (through-smoke? %2)
-                      :air (air-kill? %2)
+                      :smoke      (through-smoke? %2)
+                      :air        (air-kill? %2)
                       :quickscope (quick-scope? %2 demo)
-                      :noscope (no-scope? %2)}]
+                      :noscope    (no-scope? %2)}]
             (assoc % key (+ 1 (get % key 0))))
           {} (filter #(and (= (:attacker %) steamid) (not-tk % round demo)) (:deaths round))))
 
