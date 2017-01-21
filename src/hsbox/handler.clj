@@ -155,7 +155,7 @@
                (let [config (db/get-config)]
                  (response (if (is-admin? request)
                              config
-                             (select-keys config [:playerlist_min_demo_count :demos_per_page])))))
+                             (select-keys config [:playerlist_min_demo_count :demos_per_page :demo_download_enabled])))))
              (authorize-admin
                (POST "/" {config :body}
                  (indexer/set-config config)
