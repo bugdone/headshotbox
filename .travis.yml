@@ -4,6 +4,7 @@ addons:
   apt:
     packages:
     - unzip
+    - python-requests
 
 before_script:
   - npm -v
