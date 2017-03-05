@@ -640,7 +640,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
                        headerFormat: '',
                        useHTML: true}
         },
-        series: [{name: 'Rank', data: null}]
+        series: [{name: 'Rank', data: null, turboThreshold: 0}]
     };
 
     filtersChanged($scope, $http);
