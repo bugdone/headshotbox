@@ -117,7 +117,7 @@ function getRequestFilters($scope) {
     return params;
 }
 
-function filtersChanged($scope, $http) {
+function filtersChanged($scope, $http, refreshStatsOnly) {
     var params = getRequestFilters($scope);
     $http.get(serverUrl + '/player/' + steamid + '/stats', {'params': params}).success(function(data) {
         $scope.stats = data;
@@ -126,9 +126,11 @@ function filtersChanged($scope, $http) {
             p.hs_percent = (p.hs / p.kills) * 100;
         });
     });
-    $scope.tabs.demos.status = $scope.tabs.charts.status = null;
-    if (!$scope.tabs[$scope.activeTab].status)
-        $scope.loadTab($scope.tabs[$scope.activeTab]);
+    if (!refreshStatsOnly) {
+        $scope.tabs.demos.status = $scope.tabs.charts.status = null;
+        if (!$scope.tabs[$scope.activeTab].status)
+            $scope.loadTab($scope.tabs[$scope.activeTab]);
+    }
 }
 
 hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $rootScope, watchDemo, downloadDemo, $compile, config) {
@@ -283,7 +285,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
 
     $scope.setRounds = function(roundType) {
         $scope.filterDemos.rounds = roundType;
-        filtersChanged($scope, $http);
+        filtersChanged($scope, $http, true);
     };
 
     $scope.datepickerStatus = [false, false];
