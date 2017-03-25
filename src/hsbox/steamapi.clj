@@ -44,11 +44,13 @@
     (filter #(> (:timestamp %) (- (current-timestamp) (* 24 3600 steamids-stale-days))))
     (reduce #(assoc % (:steamid %2) %2) {})))
 
-(defn get-steamids-info [steamids]
+(defn get-steamids-info [steamids & {:keys [refresh-all?] :or {refresh-all? false}}]
   (assert (every? #(= Long %)
                   (map #(type %) steamids)))
   (if (not (str/blank? (get-steam-api-key)))
-    (let [cached (get-steamids-info-cached steamids)
+    (let [cached (if refresh-all?
+                   []
+                   (get-steamids-info-cached steamids))
           to-get (clojure.set/difference (set steamids) (set (keys cached)))
           from-api (apply merge (map get-steamids-info-from-api (partition 100 100 [] to-get)))]
       (if (not (empty? to-get))

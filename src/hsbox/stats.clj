@@ -14,6 +14,7 @@
 (def api-refresh-lock (ReentrantLock.))
 (def api-refresh-cond (.newCondition api-refresh-lock))
 (def api-refreshing? (atom false))
+(def refresh-all-players? (atom false))
 
 (defn seconds-to-ticks [seconds tickrate] (int (* seconds (/ 1 tickrate))))
 
@@ -654,10 +655,10 @@
   (hsbox.db/init-db-if-absent)
   (init-cache))
 
-(defn invalidate-players-steam-info []
-  (db/invalidate-steamid-info)
+(defn refresh-players-steam-info []
   (.lock api-refresh-lock)
   (try
+    (reset! refresh-all-players? true)
     (.signal api-refresh-cond)
     (finally
       (.unlock api-refresh-lock))))
@@ -668,8 +669,9 @@
     (try
       (try
         (reset! api-refreshing? true)
-        (steamapi/get-steamids-info (keys player-demos))
+        (steamapi/get-steamids-info (keys player-demos) :refresh-all? @refresh-all-players?)
         (finally
+          (reset! refresh-all-players? false)
           (reset! api-refreshing? false)))
       (.await api-refresh-cond 1 TimeUnit/HOURS)
       (finally

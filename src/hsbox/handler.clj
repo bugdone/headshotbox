@@ -128,7 +128,8 @@
            (context "/steamids/info" []
              (defroutes steamids-info-routes
                         (GET "/status" []
-                          (response {:refreshing @stats/api-refreshing?}))
+                          (response {:refreshing @stats/api-refreshing?
+                                     :oldest     (db/get-oldest-steam-data-timestamp)}))
                         (GET "/" [steamids]
                           (response
                             (if (empty? steamids)
@@ -140,8 +141,8 @@
                                   (steamapi/get-steamids-info steamids-longs))))))
                         (authorize-admin
                           (DELETE "/" []
-                            (info "Invalidating players steam info")
-                            (stats/invalidate-players-steam-info)))))
+                            (info "Refresh players steam info")
+                            (stats/refresh-players-steam-info)))))
            (context "/indexer" []
              (authorize-admin
                (defroutes indexer-routes

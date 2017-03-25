@@ -291,9 +291,9 @@
     (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))
     (map #(assoc (:data %) :steamid (:steamid %) :timestamp (:timestamp %)))))
 
-(defn invalidate-steamid-info []
-  (with-db-transaction t-con
-                       (jdbc/execute! t-con ["UPDATE steamids SET timestamp = 0"])))
+(defn get-oldest-steam-data-timestamp []
+  (let [oldest (:oldest (first (query-db [(str "SELECT MIN(timestamp) as oldest FROM steamids")])))]
+    (if (nil? oldest) 0 oldest)))
 
 (defn update-steamids [steamids-info]
   (with-db-transaction t-con

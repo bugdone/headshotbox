@@ -89,14 +89,23 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-default" ng-click="invalidateSteamData()" ng-disabled="steamApiRefreshing">
-                    <span ng-if="steamApiRefreshing">
-                      <i class="fa fa-refresh fa-pulse"></i> Fetching data from Steam Web API
-                    </span>
-                    <span ng-if="!steamApiRefreshing">
-                      Refresh players' Steam data
-                    </span>
-                  </button>
+                  <div class="row">
+
+                    <div class="col-md-4">
+                      Steam data last updated {{steamApiDataAge}}
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-default" ng-click="invalidateSteamData()" ng-disabled="steamApiRefreshing">
+                        <span ng-if="steamApiRefreshing">
+                          <i class="fa fa-refresh fa-pulse"></i> Fetching data from Steam Web API
+                        </span>
+                        <span ng-if="!steamApiRefreshing">
+                          Refresh players' Steam data
+                        </span>
+                      </button>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
                 </div>
               </tab>
 

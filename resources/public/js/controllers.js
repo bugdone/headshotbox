@@ -180,6 +180,11 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
         });
     };
 
+    $scope.steamApiDataAge = howLongAgo(0);
+    $http.get(serverUrl + '/steamids/info/status').success(function(data) {
+        $scope.steamApiDataAge = howLongAgo(data['oldest']);
+    });
+
     $scope.makeNotesVisible = function() {
         $scope.notesVisible = true;
     };
@@ -789,7 +794,6 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope, con
     $scope.vdmCollapsed = true;
     $scope.demowebmodeCollapsed = true;
     $scope.demoloaderBaseurlCollapsed = true;
-    $scope.steamApiRefreshing = false;
     $scope.updateSettings = config.save;
 
     $scope.invertIndexerState = function() {
@@ -815,9 +819,13 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope, con
     $scope.vdm_delete_files = function() {
         $http.delete(serverUrl + '/vdm');
     };
+
+    $scope.steamApiDataAge = howLongAgo(0);
+    $scope.steamApiRefreshing = false;
     $scope.getSteamRefreshStatus = function() {
         $http.get(serverUrl + '/steamids/info/status').success(function(data) {
             $scope.steamApiRefreshing = data['refreshing'];
+            $scope.steamApiDataAge = howLongAgo(data['oldest']);
             if ($scope.steamApiRefreshing) {
                 setTimeout(function(){
                     $scope.getSteamRefreshStatus();
@@ -825,6 +833,7 @@ hsboxControllers.controller('Settings', function ($scope, $http, $rootScope, con
             }
         });
     };
+
     $scope.invalidateSteamData = function() {
         setTimeout(function(){
             $scope.getSteamRefreshStatus();
@@ -848,6 +857,24 @@ function cmpVersions(a, b) {
     }
     return segmentsA.length - segmentsB.length;
 }
+
+function howLongAgo (timestamp) {
+    if (!timestamp)
+        return 'never';
+    function suffix (number) { return ((number > 1) ? 's' : '') + ' ago'; }
+    var temp = (Date.now() - timestamp * 1000) / 1000;
+    var years = Math.floor(temp / 31536000);
+    if (years) return years + ' year' + suffix(years);
+    var days = Math.floor((temp %= 31536000) / 86400);
+    if (days) return days + ' day' + suffix(days);
+    var hours = Math.floor((temp %= 86400) / 3600);
+    if (hours) return hours + ' hour' + suffix(hours);
+    var minutes = Math.floor((temp %= 3600) / 60);
+    if (minutes) return minutes + ' minute' + suffix(minutes);
+    var seconds = Math.floor(temp % 60);
+    if (seconds) return seconds + ' second' + suffix(seconds);
+    return 'less then a second ago';
+};
 
 hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootScope, config) {
     $rootScope.isAuthorized = false;
