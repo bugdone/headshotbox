@@ -906,4 +906,21 @@ hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootS
 
     $rootScope.getAuthorizationState();
     config.load();
+
+    $scope.indexerState = {};
+    $scope.getIndexerState = function() {
+        if ($rootScope.isAuthorized) {
+            $http.get(serverUrl + '/indexer').success(function(data) {
+                $scope.indexerState = data;
+                setTimeout(function(){
+                    $scope.getIndexerState();
+                }, 2000);
+            });
+        } else {
+            setTimeout(function(){
+                $scope.getIndexerState();
+            }, 2000);
+        }
+    };
+    $scope.getIndexerState();
 });

@@ -149,7 +149,9 @@
              (authorize-admin
                (defroutes indexer-routes
                           (GET "/" []
-                            (response {:running (indexer/is-running?)}))
+                            (response {:running (indexer/is-running?)
+                                       :parsing (indexer/is-parsing?)
+                                       :demos_left (indexer/demos-left)}))
                           (POST "/" {state :body}
                             (indexer/set-indexing-state (:running state))
                             (response "ok")))))

@@ -15,6 +15,7 @@
 (def paths (atom {}))
 (def current-indexed-path (atom nil))
 (def indexing-running? (atom true))
+(def parsing? (atom false))
 
 (defn del-demo [path]
   (let [demoid (db/del-demo path)]
@@ -60,6 +61,12 @@
 
 (defn is-running? []
   @indexing-running?)
+
+(defn is-parsing? []
+  (and @parsing? @indexing-running?))
+
+(defn demos-left []
+  (count @paths))
 
 (defn add-demo [abs-path]
   (try
@@ -107,7 +114,9 @@
     (doseq [path (map key (filter #(< (+ (val %) grace-period) (current-timestamp)) @paths))]
       (while (not @indexing-running?)
         (Thread/sleep 1000))
+      (reset! parsing? true)
       (swap! paths #(dissoc % path))
       (when (is-demo? path)
         (add-demo path)))
+    (reset! parsing? false)
     (Thread/sleep 5000)))

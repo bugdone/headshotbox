@@ -25,6 +25,12 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li ng-if="isAuthorized && (indexerState.parsing || indexerState.demos_left)">
+          <a class="disabled">
+            <i class="fa fa-gear fa-lg faa-spin animated faa-slow" ng-if="indexerState.parsing"></i>
+            {{indexerState.demos_left ? indexerState.demos_left + ' demos left to analyze' : ' almost done' }}
+          </a>
+        </li>
         <li ng-if="newVersionAvailable">
           <h5><span class="label label-default">New version available!</span></h5>
         </li>
