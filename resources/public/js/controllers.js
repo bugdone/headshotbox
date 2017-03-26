@@ -127,7 +127,7 @@ function filtersChanged($scope, $http, refreshStatsOnly) {
         });
     });
     if (!refreshStatsOnly) {
-        $scope.tabs.demos.status = $scope.tabs.charts.status = null;
+        $scope.tabs.demos.status = $scope.tabs.charts.status = $scope.tabs.banned.status = null;
         if (!$scope.tabs[$scope.activeTab].status)
             $scope.loadTab($scope.tabs[$scope.activeTab]);
     }
@@ -141,14 +141,17 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
     $scope.folders = [];
     $scope.banned = []
     $scope.filteredBanned = [];
-    $scope.opponentsOnly = true;
+    $scope.opponentsOnly = false;
     $scope.filterBanned = function() {
-        $scope.opponentsOnly = !$scope.opponentsOnly;
         $scope.filteredBanned = $scope.banned.filter(function (p) {
             if ($scope.opponentsOnly)
                 return p.opponent;
             return true;
         });
+    };
+    $scope.flipBanned = function() {
+        $scope.opponentsOnly = !$scope.opponentsOnly;
+        $scope.filterBanned();
     };
     $scope.filterDemos = {'startDate': null, 'endDate': null};
     $scope.filterTeammates = [];
@@ -341,14 +344,15 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
 
     // Tabs
     var loadBanned = function() {
-        $http.get(serverUrl + '/player/' + steamid + '/banned').success(function (data) {
+        var params = getRequestFilters($scope);
+        $http.get(serverUrl + '/player/' + steamid + '/banned', {'params': params}).success(function (data) {
             $scope.banned = data;
             $scope.banned.forEach(function (b) {
                 b.last_played = timestamp2date(b.timestamp);
                 b.ban_timestamp = getBanTimestamp(b);
                 b.days_banned_after_last_played = bannedSinceDemo(b.ban_timestamp, b.timestamp);
             });
-            $scope.filterBanned($scope.opponentsOnly);
+            $scope.filterBanned();
             $scope.setTabLoaded('banned');
         });
     };

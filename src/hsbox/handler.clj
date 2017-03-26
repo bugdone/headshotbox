@@ -82,8 +82,10 @@
                                         (parse-long (:limit params) 0))))
                           (GET "/teammates" []
                             (response (stats/get-teammates-for-steamid steamid)))
-                          (GET "/banned" [only_opponents]
-                            (response (stats/get-banned-players steamid only_opponents)))
+                          (GET "/banned" req
+                            (response (stats/get-banned-players steamid
+                                                                (:only_opponents (get req :params))
+                                                                (parse-filters (get req :params)))))
                           (GET "/maps/statistics" req
                             (response (stats/get-maps-stats-for-steamid steamid (parse-filters (get req :params)))))
                           (GET "/rank_data" []

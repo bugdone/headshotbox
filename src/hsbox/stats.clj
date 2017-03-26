@@ -364,8 +364,10 @@
     (-> (add-score demo)
         (merge stats))))
 
-(defn get-banned-players [steamid only-opponents?]
-  (let [demos (vals (get player-demos steamid))
+(defn get-banned-players [steamid only-opponents? filters]
+  (let [demos (->>
+                (vals (get player-demos steamid))
+                (filter-demos steamid filters))
         get-team (fn [demo steamid] (get-in demo [:players steamid :team]))
         get-players-data (fn [demo]
                            (map
@@ -400,7 +402,7 @@
              (str (key %)))))))
 
 (defn append-ban-info [steamid]
-  (let [banned (get-banned-players steamid false)]
+  (let [banned (get-banned-players steamid false {})]
     (fn [demo]
       (assoc
         demo
