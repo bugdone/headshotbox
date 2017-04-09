@@ -184,7 +184,7 @@ a {
 }
 
 .teammates-box {
-    box-shadow: none;
+    box-shadow: none !important;
 }
 
 .teammate {

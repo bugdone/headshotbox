@@ -352,7 +352,7 @@ a {
 }
 
 .teammates-box {
-    box-shadow: none;
+    box-shadow: none !important;
 }
 
 .remove-teammate {

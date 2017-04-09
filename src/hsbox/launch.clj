@@ -13,12 +13,66 @@
 (defn generated-by-hsbox [vdm-path]
   (.startsWith (slurp vdm-path) HEADSHOTBOX-WATERMARK))
 
+(defn- append-maybe [x pred xs]
+  (if pred
+    (conj x xs)
+    x))
+
+(defn- generate-highlight-enemy-pov [demo kill]
+  (let [sec-to-tick (fn [sec] (stats/seconds-to-ticks sec (:tickrate demo)))
+        kill-context (sec-to-tick 5)
+        after-kill-context (sec-to-tick 2)]
+    (-> []
+        (append-maybe
+          (or (= (:tick-before kill) 0)
+              (> (- (:tick kill) (:tick-before kill)) (+ kill-context after-kill-context)))
+          {:factory    "SkipAhead"
+           :tick       (if (= 0 (:tick-before kill))
+                         0
+                         (+ (:tick-before kill) after-kill-context))
+           :skiptotick (- (:tick kill) kill-context)
+           })
+        (append-maybe true
+                      {:factory  "PlayCommands"
+                       :tick     (max (- (:tick kill) kill-context) (:tick-before kill))
+                       :commands (str "spec_player_by_accountid " (:victim kill))})
+        (append-maybe
+          (> (- (:tick-after kill) (:tick kill)) (sec-to-tick 1))
+          {:factory   "ScreenFadeStart"
+           :tick      (:tick kill)
+           :duration  "1.000"
+           :holdtime  "1.000"
+           :FFADE_IN  "1"
+           :FFADE_OUT "1"
+           :r         "0"
+           :g         "0"
+           :b         "0"
+           :a         "255"
+           }))))
+
+(defn- vdm-highlights [demo steamid]
+  (let [killed-by-steamid (fn [kill] (= steamid (:attacker kill)))
+        kills (mapcat #(filter killed-by-steamid (:deaths %)) (:rounds demo))
+        tick-before (conj (map #(:tick %) kills) 0)
+        tick-after (conj (vec (map #(:tick %) (rest kills))) (+ (:tick (last kills)) 9999))
+        augmented-kills (map #(assoc %3 :tick-before % :tick-after %2) tick-before tick-after kills)
+        cfg (:vdm_cfg (db/get-config))]
+    (-> []
+        (append-maybe (not (empty? cfg))
+                      {:factory  "PlayCommands"
+                       :tick     0
+                       :commands (str "exec " cfg)})
+        (into (mapcat #(generate-highlight-enemy-pov demo %) augmented-kills))
+        (append-maybe true {:factory  "PlayCommands"
+                            :tick     (+ (:tick (last augmented-kills)) (stats/seconds-to-ticks 1 (:tickrate demo)))
+                            :commands (if (:vdm_quit_after_playback (db/get-config))
+                                        "quit"
+                                        "disconnect")}))))
+
 (defn vdm-watch [demo steamid tick & [tick-end]]
   (let [user-id (get (:player_slots demo) steamid 0)
-        cfg (:vdm_cfg (db/get-config))
-        commands []
-        append-maybe (fn [x pred xs] (if pred (conj x xs) x))]
-    (-> commands
+        cfg (:vdm_cfg (db/get-config))]
+    (-> []
         ; spec_player seems to be working more often than spec_player_by_accountid
         (append-maybe (:player_slots demo)
                       {:factory  "PlayCommands"
@@ -42,14 +96,15 @@
                        :commands "quit"}))))
 
 (defn generate-command [number command]
-  (let [line (fn [key value] (str "\t\t" key " \"" value "\"\n"))]
+  (let [line (fn [key value] (str "\t\t" key " \"" value "\"\n"))
+        content (apply str (map #(line (name (first %)) (second %))
+                                (-> command
+                                    (assoc :starttick (:tick command)
+                                           :name ".")
+                                    (dissoc :tick))))]
     (str "\t\"" number "\"\n"
          "\t{\n"
-         (line "factory" (:factory command))
-         (line "name" ".")
-         (line "starttick" (:tick command))
-         (when (= (:factory command) "PlayCommands")
-           (line "commands" (:commands command)))
+         content
          "\t}\n")))
 
 (defn generate-vdm [commands]
@@ -97,16 +152,19 @@
                   (delete-vdm vdm-path))
                 (do
                   (debug "Writing vdm file" vdm-path)
-                  (spit vdm-path (generate-vdm (vdm-watch demo steamid tick
-                                                          (when round (+ (:tick_end round)
-                                                                         (stats/seconds-to-ticks 5 (:tickrate demo))))))))))
+                  (spit vdm-path (generate-vdm
+                                   (if (= "high_enemy" highlight)
+                                     (vdm-highlights demo steamid)
+                                     (vdm-watch demo steamid tick
+                                                (when round (+ (:tick_end round)
+                                                               (stats/seconds-to-ticks 5 (:tickrate demo)))))))))))
             (when (and (:playdemo_kill_csgo (db/get-config)))
               (if (= os-name "windows")
                 (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
                 (clojure.java.shell/sh "killall" "-9" "csgo_linux"))))
           {:url (str "steam://rungame/730/" steamid "/+playdemo " (url-encode play-path)
                      (when tick (str "@" tick)) " "
-                     (when highlight steamid)
+                     (when (#{"high" "low"} highlight) steamid)
                      (when (= highlight "low") " lowlights"))})))))
 
 (defn delete-generated-files []
