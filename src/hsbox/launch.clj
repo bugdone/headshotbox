@@ -138,15 +138,11 @@
           (when local?
             (when
               (and (not (:vdm_enabled (db/get-config)))
-                   (file-exists? vdm-path)
-                   (generated-by-hsbox vdm-path))
+                   (file-exists? vdm-path))
               (delete-vdm vdm-path))
             (when (and
                     (:vdm_enabled (db/get-config))
-                    (file-exists? demo-path)
-                    ; Don't rewrite the .vdm if not created by headshot box
-                    (or (not (file-exists? vdm-path))
-                        (generated-by-hsbox vdm-path)))
+                    (file-exists? demo-path))
               (if (and (#{"high" "low"} highlight))
                 (when (file-exists? vdm-path)
                   (delete-vdm vdm-path))
