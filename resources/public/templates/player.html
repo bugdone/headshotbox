@@ -181,7 +181,7 @@
         <button type="button" class="btn btn-default dropdown-toggle no-bg" ng-disabled="filterTeammates.length == 4">
           <i class="fa fa-plus green"></i> Teammate
         </button>
-        <ul class="dropdown-menu text-left teammates-list" role="menu">
+        <ul class="dropdown-menu text-left teammates-box" role="menu">
           <li ng-repeat="teammate in playerTeammates" ng-click="addTeammate(teammate)">
             <a>
               <img ng-src="{{steamAccounts[teammate.steamid]['avatar'] ? steamAccounts[teammate.steamid].avatar : 'img/avatar.jpg'}}" width="24"/>
