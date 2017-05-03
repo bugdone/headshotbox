@@ -18,10 +18,25 @@
     (conj x xs)
     x))
 
+(defn- sec-to-tick [demo sec]
+  (stats/seconds-to-ticks sec (:tickrate demo)))
+
+(defn- fade-to-black [tick]
+  {:factory   "ScreenFadeStart"
+   :tick      tick
+   :duration  "1.000"
+   :holdtime  "1.000"
+   :FFADE_IN  "1"
+   :FFADE_OUT "1"
+   :r         "0"
+   :g         "0"
+   :b         "0"
+   :a         "255"
+   })
+
 (defn- generate-highlight-enemy-pov [demo kill]
-  (let [sec-to-tick (fn [sec] (stats/seconds-to-ticks sec (:tickrate demo)))
-        kill-context (sec-to-tick 5)
-        after-kill-context (sec-to-tick 2)]
+  (let [kill-context (sec-to-tick demo 5)
+        after-kill-context (sec-to-tick demo 2)]
     (-> []
         (append-maybe
           (or (= (:tick-before kill) 0)
@@ -37,18 +52,8 @@
                        :tick     (max (- (:tick kill) kill-context) (:tick-before kill))
                        :commands (str "spec_player_by_accountid " (:victim kill))})
         (append-maybe
-          (> (- (:tick-after kill) (:tick kill)) (sec-to-tick 1))
-          {:factory   "ScreenFadeStart"
-           :tick      (:tick kill)
-           :duration  "1.000"
-           :holdtime  "1.000"
-           :FFADE_IN  "1"
-           :FFADE_OUT "1"
-           :r         "0"
-           :g         "0"
-           :b         "0"
-           :a         "255"
-           }))))
+          (> (- (:tick-after kill) (:tick kill)) (sec-to-tick demo 1))
+          (fade-to-black (:tick kill))))))
 
 (defn- vdm-highlights [demo steamid]
   (let [killed-by-steamid (fn [kill] (= steamid (:attacker kill)))
@@ -68,6 +73,43 @@
                             :commands (if (:vdm_quit_after_playback (db/get-config))
                                         "quit"
                                         "disconnect")}))))
+
+(defn- generate-pov [demo round steamid]
+  (let [death (first (filter #(= (:victim %) steamid) (:deaths round)))
+        tick-jump (if death
+                    (+ (:tick death) (sec-to-tick demo 3))
+                    (+ (:tick_end round) (sec-to-tick demo 5)))]
+    (if (nil? (:next-round-tick round))
+      [{:factory  "PlayCommands"
+        :tick     tick-jump
+        :commands (if (:vdm_quit_after_playback (db/get-config))
+                    "quit"
+                    "disconnect")}]
+      [(fade-to-black (- tick-jump (sec-to-tick demo 1)))
+       {:factory    "SkipAhead"
+        :tick       tick-jump
+        :skiptotick (+ (:next-round-tick round) (sec-to-tick demo 15))
+        }])))
+
+(defn vdm-pov [demo steamid]
+  (let [cfg (:vdm_cfg (db/get-config))
+        rounds (filter #(get (:players %) steamid) (:rounds demo))
+        tick-after (conj (vec (map #(:tick %) (rest rounds))) nil)
+        augmented-rounds (map #(assoc %2 :next-round-tick %) tick-after rounds)]
+    (-> []
+        (append-maybe (not (empty? cfg))
+                      {:factory  "PlayCommands"
+                       :tick     0
+                       :commands (str "exec " cfg)})
+        (append-maybe true {:factory  "PlayCommands"
+                            :tick     0
+                            :commands (str "spec_player_by_accountid " steamid)})
+        (append-maybe true
+                      {:factory    "SkipAhead"
+                       :tick       0
+                       :skiptotick (+ (:tick (first augmented-rounds)) (sec-to-tick demo 15))
+                       })
+        (into (mapcat #(generate-pov demo % steamid) augmented-rounds)))))
 
 (defn vdm-watch [demo steamid tick & [tick-end]]
   (let [user-id (get (:player_slots demo) steamid 0)
@@ -149,8 +191,9 @@
                 (do
                   (debug "Writing vdm file" vdm-path)
                   (spit vdm-path (generate-vdm
-                                   (if (= "high_enemy" highlight)
-                                     (vdm-highlights demo steamid)
+                                   (case highlight
+                                     "high_enemy" (vdm-highlights demo steamid)
+                                     "pov" (vdm-pov demo steamid)
                                      (vdm-watch demo steamid tick
                                                 (when round (+ (:tick_end round)
                                                                (stats/seconds-to-ticks 5 (:tickrate demo)))))))))))
