@@ -215,7 +215,6 @@
         ; Check if teams switched
         (assoc demo :teams_switched? (not= team initial-team))
         ; Add new player
-
         (assoc-in demo [:players player] {:name (get-in demo [:player_names player])
                                           :team (real-team demo team)}))
       demo)))
@@ -232,13 +231,16 @@
         ; Hack needed when round_end event is missing
         ; Compare the score_changed event against the one from last round
         guess-winner (fn []
-                       (do
-                         (assert (not (nil? (:last_score_changed demo)))
-                                 (str "Round 1 is missing the round_end event in demo " (:path demo)))
-                         (real-team demo
-                                    (if (< (first (:last_score_changed demo)) (first score-changed))
-                                      2
-                                      3))))
+                       (real-team demo
+                         (if (nil? (:last_score_changed demo))
+                           (do
+                             (assert (and (= 1 (apply + score-changed)) (#{0 1} (first score-changed)) (#{0 1} (second score-changed))))
+                             (if (= 1 (first score-changed))
+                               2
+                               3))
+                           (if (< (first (:last_score_changed demo)) (first score-changed))
+                             2
+                             3))))
         round-winner (if (not round-end-missing)
                        (:winner round)
                        (guess-winner))]
