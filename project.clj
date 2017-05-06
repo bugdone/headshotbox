@@ -1,5 +1,5 @@
 (defproject
-  hsbox "0.16.4"
+  hsbox "0.17.0"
   :description "Headshot Box"
   :url "http://headshotbox.github.io"
   :license {:name "Eclipse Public License"
