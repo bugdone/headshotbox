@@ -75,11 +75,7 @@
       (when run-indexer?
         (indexer/set-indexed-path (db/get-demo-directory))
         (indexer/set-indexing-state true)
-        (db/keep-only (->> (db/get-demo-directory)
-                           (clojure.java.io/as-file)
-                           file-seq
-                           (map #(.getCanonicalPath %))
-                           (filter #(.endsWith % ".dem")))))
+        (stats/delete-old-demos))
       (stats/init-cache)
       (hsbox.steamapi/init-steam-stale-days (get options :steamapi-cache 1))
       (future (stats/update-players-steam-info))

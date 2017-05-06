@@ -58,6 +58,29 @@
                     If you change the demo directory path <b>all</b> notes will be deleted.
                   </div>
                 </div>
+
+                <div class="form-group input-group">
+                  <span class="input-group-addon">Interval to check for network mapped drive changes (minutes)</span>
+                  <input type="number"
+                         min="0"
+                         class="form-control"
+                         ng-model="$root.config.directory_scan_interval">
+                  <span class="input-group-addon">
+                    <button type="button"
+                            class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
+                            ng-click="directoryScanIntervalCollapsed = !directoryScanIntervalCollapsed">
+                    </button>
+                  </span>
+                </div>
+                <div collapse="directoryScanIntervalCollapsed">
+                  <div class="well well-lg text-left">
+                    Set to 0 to disable. If the demo directory is not on a network mapped drive this must be disabled (otherwise it creates unnecessary disk activity).
+                    <p/>
+                    If the demo directory is on a network mapped drive, the indexer may not detect directory changes.
+                    In this case, set this value to the interval in minutes HeadshotBox should check for new demos.
+                  </div>
+                </div>
+
               </tab>
 
 

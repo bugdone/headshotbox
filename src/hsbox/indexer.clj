@@ -6,7 +6,8 @@
             [hsbox.mynotify :as notify :refer [ENTRY_CREATE ENTRY_MODIFY ENTRY_DELETE]]
             [hsbox.util :refer [current-timestamp path-exists? last-modified is-dir? is-demo? get-canonical-path]]
             [taoensso.timbre :as timbre])
-  (:import (java.io File)))
+  (:import (java.util.concurrent.locks ReentrantLock)
+           (java.util.concurrent TimeUnit)))
 
 (timbre/refer-timbre)
 
@@ -97,19 +98,46 @@
 ;    (wipe-db)
 ;    (update-db)))
 
+(def directory-scan-lock (ReentrantLock.))
+(def directory-scan-cond (.newCondition directory-scan-lock))
+(def directory-scan-interval (atom 0))
+
 (defn set-config [config]
   (let [old-demo-dir (db/get-demo-directory)
         demo-dir (:demo_directory config)]
     (db/set-config config)
+    (reset! directory-scan-interval (get config :directory_scan_interval 0))
+    (try
+      (.lock directory-scan-lock)
+      (.signal directory-scan-cond)
+      (finally
+        (.unlock directory-scan-lock)))
     (when (not= (get-canonical-path old-demo-dir) (get-canonical-path demo-dir))
       (db/wipe-demos)
       (stats/init-cache)
       (set-indexed-path demo-dir)
       (add-demo-directory demo-dir))))
 
+(defn scan-demo-directory []
+  (def hsbox.indexer/directory-scan-interval (atom (get (db/get-config) :directory_scan_interval 0)))
+  (while true
+    (try
+      (.lock directory-scan-lock)
+      (if (zero? @directory-scan-interval)
+        (.await directory-scan-cond)
+        (.await directory-scan-cond @directory-scan-interval TimeUnit/MINUTES))
+      (when (and (not (zero? @directory-scan-interval)) (is-running?))
+        (stats/delete-old-demos)
+        ; This should delete the old demos from the cache as well
+        ; But I'm too lazy
+        (add-demo-directory @current-indexed-path))
+      (finally
+        (.unlock directory-scan-lock)))))
+
 (defn run []
   (debug "Indexer started")
   (future (notify/watch))
+  (future (scan-demo-directory))
   (while true
     (doseq [path (map key (filter #(< (+ (val %) grace-period) (current-timestamp)) @paths))]
       (while (not @indexing-running?)

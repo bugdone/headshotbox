@@ -795,6 +795,7 @@ hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams
 hsboxControllers.controller('Settings', function ($scope, $http, $rootScope, config) {
     $scope.steamApiCollapsed = false;
     $scope.demoDirectoryCollapsed = true;
+    $scope.directoryScanIntervalCollapsed = false;
     $scope.vdmCollapsed = true;
     $scope.demowebmodeCollapsed = true;
     $scope.demoloaderBaseurlCollapsed = true;

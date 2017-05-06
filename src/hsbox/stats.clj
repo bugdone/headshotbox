@@ -678,3 +678,12 @@
       (.await api-refresh-cond 1 TimeUnit/HOURS)
       (finally
         (.unlock api-refresh-lock)))))
+
+(defn delete-old-demos
+  "Delete demos that are not below the demo directory"
+  []
+  (db/keep-only (->> (db/get-demo-directory)
+                     (clojure.java.io/as-file)
+                     file-seq
+                     (map #(.getCanonicalPath %))
+                     (filter #(.endsWith % ".dem")))))
