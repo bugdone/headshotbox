@@ -6,6 +6,11 @@ addons:
     - unzip
     - python-requests
 
+sudo: required
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install nodejs
+    
 before_script:
   - npm -v
   - npm install npm@latest -g
