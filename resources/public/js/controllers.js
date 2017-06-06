@@ -62,7 +62,12 @@ function timestamp2date(timestamp, only_date) {
     }
     if (d.getFullYear() != (new Date()).getFullYear())
         format.year = 'numeric';
-    return d.toLocaleString('en-US', format);
+    
+    var language = navigator.languages && navigator.languages[0] ||
+               navigator.language ||
+               navigator.userLanguage;
+        
+    return d.toLocaleString(language, format);
 };
 
 function date2timestamp(date) {
