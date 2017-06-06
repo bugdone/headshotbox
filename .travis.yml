@@ -6,12 +6,8 @@ addons:
     - unzip
     - python-requests
 
-sudo: required
-before_install:
-    - sudo apt-get update
-    - sudo apt-get install nodejs
-    
 before_script:
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install 7
   - npm -v
   - npm install npm@latest -g
   - npm install -g bower
