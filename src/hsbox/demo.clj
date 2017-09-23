@@ -69,6 +69,7 @@
     (cond
       (.contains (:servername demo) "Valve") "valve"
       (.contains (:servername demo) "CEVO") "cevo"
+      (.contains (:servername demo) "GamersClub") "gamersclub"
       (has_gotv_bot "ESEA") "esea"
       (has_gotv_bot "FACEIT GOTV") "faceit")))
 
