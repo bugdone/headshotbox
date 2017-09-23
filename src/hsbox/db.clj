@@ -12,7 +12,8 @@
 (def latest-data-version {"valve"  6
                           "esea"   6
                           "faceit" 6
-                          "cevo"   6})
+                          "cevo"   6
+                          "gamersclub"     6})
 
 (def schema-version 6)
 ;(set! *warn-on-reflection* true)
