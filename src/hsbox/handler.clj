@@ -86,6 +86,8 @@
                             (response (stats/get-banned-players steamid
                                                                 (:only_opponents (get req :params))
                                                                 (parse-filters (get req :params)))))
+                          (GET "/banned/statistics" req
+                            (response (stats/get-banned-statistics steamid (parse-filters (get req :params)))))
                           (GET "/maps/statistics" req
                             (response (stats/get-maps-stats-for-steamid steamid (parse-filters (get req :params)))))
                           (GET "/rank_data" []

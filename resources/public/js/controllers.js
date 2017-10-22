@@ -48,6 +48,12 @@ function demoOutcome(demoStats) {
     return outcome + '! ';
 }
 
+function get_language() {
+    return navigator.languages && navigator.languages[0] ||
+        navigator.language ||
+        navigator.userLanguage;
+}
+
 function timestamp2date(timestamp, only_date) {
     if (!timestamp)
         return '';
@@ -62,12 +68,16 @@ function timestamp2date(timestamp, only_date) {
     }
     if (d.getFullYear() != (new Date()).getFullYear())
         format.year = 'numeric';
-    
-    var language = navigator.languages && navigator.languages[0] ||
-               navigator.language ||
-               navigator.userLanguage;
-        
-    return d.toLocaleString(language, format);
+
+    return d.toLocaleString(get_language(), format);
+};
+
+function timestamp2month(timestamp) {
+    if (!timestamp)
+        return '';
+    d = new Date(timestamp * 1000);
+    format = {month: 'long', year: 'numeric'};
+    return d.toLocaleString(get_language(), format);
 };
 
 function date2timestamp(date) {
@@ -178,6 +188,7 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
     $scope.rankChartXAxis = 'matches';
     $scope.demoPages = {'currentPage': 1, 'demoCount': 0};
     $scope.rankData = null;
+    $scope.bannedData = null;
     $scope.getPlayersInfo = function(missingPlayers) {
         if (missingPlayers.length == 0)
             return;
@@ -410,7 +421,26 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
                 $scope.setTabLoaded('charts');
             });
         });
-    }
+        $http.get(serverUrl + '/player/' + steamid + '/banned/statistics', {'params': params}).success(function (data) {
+            var d = [], d2 = [];
+            data.forEach(function (m) {
+                d.push({x: m.timestamp,
+                        y: Math.round(m.games_banned / m.games * 100),
+                        games_banned: m.games_banned,
+                        date: timestamp2month(m.timestamp),
+                        team: 'any',
+                        games: m.games});
+                d2.push({x: m.timestamp,
+                         y: Math.round(m.games_banned_opponents / m.games * 100),
+                         date: timestamp2month(m.timestamp),
+                         team: 'opposing',
+                         games_banned: m.games_banned_opponents,
+                         games: m.games});
+            });
+            $scope.bannedConfig.series[0].data = d;
+            $scope.bannedConfig.series[1].data = d2;
+        });
+    };
     var getDemos = function() {
         var params = getRequestFilters($scope);
         if ($rootScope.config.demos_per_page)
@@ -613,6 +643,9 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
              + (this.old != this.y ? (this.old == 0 ? '' : rankImg(this.old)) + '<i class="fa fa-long-arrow-right"></i>': '')
              + rankImg(this.y) + '<br/>' + this.wins + ' competitive wins';
     };
+    var bannedTooltipFormatter = function() {
+        return this.y + '% games (' + this.games_banned + '/' + this.games + ') with banned players in ' + this.team + ' team in ' + this.date;
+    };
     $scope.rankConfig = {
         options: {
             credits: { enabled: false },
@@ -657,6 +690,70 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
                        useHTML: true}
         },
         series: [{name: 'Rank', data: null, turboThreshold: 0}]
+    };
+    $scope.bannedConfig = {
+        options: {
+            credits: { enabled: false },
+            chart: {
+                type: 'area',
+                backgroundColor: 'transparent',
+                animation: false
+            },
+            title: {
+                text: null
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 0
+                    },
+                    lineWidth: 2,
+                    threshold: null
+                },
+                column: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    }
+                },
+                series: {
+                    pointWidth: 1,
+                    animation: false
+                },
+            },
+            xAxis: {
+                labels: {
+                    formatter: function() { return timestamp2month(this.value); }
+                }
+            },
+            yAxis: {
+                title: {text: null},
+                allowDecimals: false,
+                floor: 0,
+                ceiling: 100,
+                labels: {
+                    formatter: function() { return this.value + '%'; }
+                }
+            },
+            tooltip: {
+                pointFormatter: bannedTooltipFormatter,
+                headerFormat: '',
+                useHTML: true}
+        },
+        series: [{name: '% Games with banned players in any team', data: null, turboThreshold: 0, color: 'pink'},
+                 {name: '% Games with banned players in opposing team', data: null, turboThreshold: 0, color: 'red'}]
     };
 
     filtersChanged($scope, $http);

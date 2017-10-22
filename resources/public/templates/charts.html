@@ -4,6 +4,7 @@
   <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'mapswin'">Map Win %</label>
   <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'roundswin'">Round Win %</label>
   <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'rank'">MM Rank</label>
+  <label class="btn btn-default no-bg" ng-model="chartSelected" btn-radio="'banned'">Banned Players</label>
 </div>
 <div ng-if="chartSelected=='rank'">
   <div class="btn-group">
@@ -15,3 +16,4 @@
 <highchart id="mapsPlayed" config="mapsPlayedConfig" ng-if="chartSelected=='mapsplayed'"></highchart>
 <highchart id="mapsWin" config="mapsWinConfig" ng-if="chartSelected=='mapswin'"></highchart>
 <highchart id="roundsWin" config="roundsWinConfig" ng-if="chartSelected=='roundswin'"></highchart>
+<highchart id="banned" config="bannedConfig" ng-if="chartSelected=='banned'"></highchart>

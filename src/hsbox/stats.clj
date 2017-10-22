@@ -401,6 +401,29 @@
              :steamid
              (str (key %)))))))
 
+(defn get-banned-statistics [steamid filters]
+  (let [demos (->>
+                (vals (get player-demos steamid))
+                (filter-demos steamid filters))
+        banned-info (get-banned-players steamid false filters)
+        banned-players (set (map #(Long/parseLong (:steamid %)) banned-info))
+        banned-opponents (set (map #(Long/parseLong (:steamid %)) (filter #(:opponent %) banned-info)))]
+    (->> demos
+         (reduce #(let [date (new java.util.Date (* 1000 (:timestamp %2)))
+                        key (/ (.getTimeInMillis (doto (java.util.Calendar/getInstance)
+                                                   (.clear)
+                                                   (.set java.util.Calendar/MONTH, (.getMonth date))
+                                                   (.set java.util.Calendar/YEAR (+ 1900 (.getYear date))))) 1000)
+                        in-set (fn [s] (if (empty? (intersection s (set (keys (:players %2)))))
+                                         0
+                                         1))]
+                    (assoc % key (merge-with + (get % key {:games 0 :games_banned 0 :won 0 :lost 0})
+                                             {:games                  1
+                                              :games_banned           (in-set banned-players)
+                                              :games_banned_opponents (in-set banned-opponents)}))) {})
+         (map #(assoc (val %) :timestamp (key %)))
+         (sort #(- (:timestamp %) (:timestamp %2))))))
+
 (defn append-ban-info [steamid]
   (let [banned (get-banned-players steamid false {})]
     (fn [demo]
