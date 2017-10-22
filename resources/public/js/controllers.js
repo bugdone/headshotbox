@@ -704,18 +704,6 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
             },
             plotOptions: {
                 area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
                     marker: {
                         radius: 0
                     },
@@ -752,8 +740,8 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
                 headerFormat: '',
                 useHTML: true}
         },
-        series: [{name: '% Games with banned players in any team', data: null, turboThreshold: 0, color: 'pink'},
-                 {name: '% Games with banned players in opposing team', data: null, turboThreshold: 0, color: 'red'}]
+        series: [{name: '% Games with banned players in any team', data: null, turboThreshold: 0, color: 'LightSkyBlue'},
+                 {name: '% Games with banned players in opposing team', data: null, turboThreshold: 0, color: '#3baff7'}]
     };
 
     filtersChanged($scope, $http);
