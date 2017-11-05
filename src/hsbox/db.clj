@@ -93,6 +93,7 @@
             (->> rounds
                  (map (partial kw-steamids-to-long [:players]))
                  (map (partial kw-steamids-to-long [:disconnected]))
+                 (map (partial kw-steamids-to-long [:userid]))
                  (map (partial kw-steamids-to-long [:damage]))))]
     (->> rows
          (map #(assoc % :data (json/read-str (:data %) :key-fn keyword)))

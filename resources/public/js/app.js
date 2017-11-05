@@ -59,6 +59,13 @@ hsboxApp.factory('watchDemo', ['$http', function($http) {
     }
 }]);
 
+hsboxApp.factory('recordMovie', ['$http', function($http) {
+    return function(demoid, steamid, round) {
+        var params = {steamid: steamid, round: round, demoid: demoid};
+        $http.post(serverUrl + '/movie', params).success(function(data) {});
+    }
+}]);
+
 hsboxApp.factory('downloadDemo', ['$http', function($http) {
     return function(demoid) {
         $http.get(serverUrl + '/demo/' + demoid + '/download').success(function(data) {

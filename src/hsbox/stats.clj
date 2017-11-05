@@ -287,13 +287,13 @@
 
 (defn filter-demos [steamid {:keys [folder demo-type start-date end-date map-name teammates]} demos]
   (filter #(and
-            (if folder (= (:folder %) folder) true)
-            (if (contains? (-> latest-data-version keys set) demo-type) (= demo-type (:type %)) true)
-            (if map-name (= (:map %) map-name) true)
-            (if start-date (>= (:timestamp %) start-date) true)
-            (if end-date (<= (:timestamp %) end-date) true)
-            (if (empty? teammates) true (subset? teammates (get-teammates % steamid)))
-            )
+             (if folder (= (:folder %) folder) true)
+             (if (contains? (-> latest-data-version keys set) demo-type) (= demo-type (:type %)) true)
+             (if map-name (= (:map %) map-name) true)
+             (if start-date (>= (:timestamp %) start-date) true)
+             (if end-date (<= (:timestamp %) end-date) true)
+             (if (empty? teammates) true (subset? teammates (get-teammates % steamid)))
+             )
           demos))
 
 (defn update-map-stats-with-demo [stats demo]
@@ -504,15 +504,14 @@
   (let [regexp-demos (remove nil? (map #(re-find regexp %) filters))]
     (map #(build-filter %) regexp-demos)))
 
-(defn not-tk [death round demo]
-  (let [players (:players demo)]
-    (not= (:team (get players (:victim death)))
-          (:team (get players (:attacker death))))))
+(defn not-tk [death round]
+  (not= (get (:players round) (:victim death))
+        (get (:players round) (:attacker death))))
 
 (defn kill-filter [regexp-demo]
   (fn [round steamid demo]
     (let [kills-no (Integer/parseInt (second regexp-demo))
-          kills (filter #(and (not-tk % round demo) (= (:attacker %) steamid)) (:deaths round))
+          kills (filter #(and (not-tk % round) (= (:attacker %) steamid)) (:deaths round))
           seconds (if (nth regexp-demo 2) (Integer/parseInt (nth regexp-demo 2)) 9999999)]
       (and (<= kills-no
                (count kills))
@@ -554,10 +553,15 @@
 (defn air-kill? [kill]
   (and (not-nade? (:weapon kill)) (:air_velocity kill) (>= (Math/abs (:air_velocity kill)) 1)))
 
-(defn quick-scope? [kill demo]
+(defn quick-scope? [kill tickrate]
   (and (scoped-weapon (:weapon kill))
        (:scoped_since kill)
-       (< (* (:tickrate demo) (- (:tick kill) (:scoped_since kill))) 0.1)))
+       (< (* tickrate (- (:tick kill) (:scoped_since kill))) 0.1)))
+
+(defn jump-kill? [kill tickrate]
+  (and (:jump kill)
+       (<= 0.1 (* tickrate (:jump kill)) 0.5)
+       (not-nade? (:weapon kill))))
 
 (defn weapon-filter [regexp-demo]
   (let [multiplier (if (second regexp-demo) (Integer/parseInt (second regexp-demo)) 1)
@@ -570,20 +574,16 @@
                                    (filter #(and (= (:tick %) (:tick kill)) (= (:weapon %) (:weapon kill)) (= (:attacker %) (:attacker kill)))
                                            (:deaths round)))
             kills (filter #(and (= steamid (:attacker %))
-                                (not-tk % round demo)
+                                (not-tk % round)
                                 (or (= weapon (weapon-name (:weapon %))) (= weapon ""))
                                 (if (flag "bang") (> (:penetrated %) 0) true)
                                 (if (flag "hs") (:headshot %) true)
                                 (if (flag "smoke") (through-smoke? %) true)
                                 (if (flag "collateral") (> (count (same-weapon-and-tick %)) 1) true)
-                                (if (flag "jump")
-                                  (and (:jump %)
-                                       (<= 0.1 (* (:tickrate demo) (:jump %)) 0.5)
-                                       (not-nade? (:weapon %)))
-                                  true)
+                                (if (flag "jump") (jump-kill? % (:tickrate demo)) true)
                                 (if (flag "air") (air-kill? %) true)
                                 (if (flag "noscope") (no-scope? %) true)
-                                (if (flag "quickscope") (quick-scope? % demo) true))
+                                (if (flag "quickscope") (quick-scope? % (:tickrate demo)) true))
                           (:deaths round))]
         (>= (count kills) multiplier)))))
 
@@ -604,10 +604,10 @@
                       :penetrated (pos? (:penetrated %2))
                       :smoke      (through-smoke? %2)
                       :air        (air-kill? %2)
-                      :quickscope (quick-scope? %2 demo)
+                      :quickscope (quick-scope? %2 (:tickrate demo))
                       :noscope    (no-scope? %2)}]
             (assoc % key (+ 1 (get % key 0))))
-          {} (filter #(and (= (:attacker %) steamid) (not-tk % round demo)) (:deaths round))))
+          {} (filter #(and (= (:attacker %) steamid) (not-tk % round)) (:deaths round))))
 
 (defn filter-rounds [demo steamid filters]
   (let [rounds (add-round-numbers (:rounds demo))
@@ -716,3 +716,49 @@
                      file-seq
                      (map #(.getCanonicalPath %))
                      (filter #(.endsWith % ".dem")))))
+
+(defn- kills-by [round steamid]
+  (filter #(and (= (:attacker %) steamid) (not-tk % round)) (:deaths round)))
+
+(defn- compute-round-score [round steamid tickrate]
+  (let [kills (kills-by round steamid)
+        add-maybe (fn [v test delta]
+                    (if test
+                      (+ v delta)
+                      v))
+        kill-pairs (map vector kills (rest kills))]
+    (+
+      (reduce #(+ % (-> 100
+                        (add-maybe (through-smoke? %2) 100)
+                        (add-maybe (or (air-kill? %2) (jump-kill? %2 tickrate)) 100)
+                        (add-maybe (or (no-scope? %2) (quick-scope? %2 tickrate)) 100)
+                        (add-maybe (:penetrated %2) (* 100 (:penetrated %2)))
+                        (add-maybe (and (= "deagle" (:weapon %2)) (:hs %2)) 50)
+                        ))
+              0
+             kills)
+      ; TODO devise o math function for this
+      (reduce #(+ % (let [a (:tick (first %2))
+                          b (:tick (second %2))]
+                      (cond
+                        (= a b) 300
+                        (<= (* tickrate (- b a)) 1) 200
+                        (<= (* tickrate (- b a)) 3) 100
+                        :else 0))) 0 kill-pairs)
+      )))
+
+(defn get-big-plays [steamid limit filters]
+  (let [demos (->> (vals (get player-demos steamid))
+                   (filter-demos steamid filters))
+        min-big-play-score 300
+        get-demo-big-plays (fn [demo]
+                             (->> (:rounds demo)
+                                  (add-round-numbers)
+                                  (map #(hash-map :demoid (:demoid demo)
+                                                  :round-number (:number %)
+                                                  :score (compute-round-score % steamid (:tickrate demo))))
+                                  (filter #(>= (:score %) min-big-play-score))))
+        plays (mapcat get-demo-big-plays demos)]
+    (->> plays
+         (sort #(compare (:score %2) (:score %)))
+         (take limit))))

@@ -127,7 +127,9 @@
                                   (update-dmg)))
               "player_spawn" (if (or (= 0 (:teamnum event)) (= 0 (:userid event)))
                                round
-                               (assoc-in round [:players (:userid event)] (:teamnum event)))
+                               (-> round
+                                   (assoc-in [:players (:userid event)] (:teamnum event))
+                                   (assoc-in [:userid (:userid event)] (:true_userid event))))
               "player_death" (let [death (conj
                                            (select-keys event '(:assister :attacker :headshot :penetrated :tick :weapon :assistedflash
                                                                  :jump :smoke :attacker_pos :victim_pos :scoped_since :air_velocity))

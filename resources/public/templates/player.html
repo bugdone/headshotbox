@@ -7,6 +7,9 @@
       </a>
       {{player.personaname ? player.personaname : player.name}}
       <img ng-if="player.last_rank" ng-src="img/ranks/{{player.last_rank}}.png" width="100"/>
+      <button type="button" class="btn btn-success btn-xs" ng-click="makeMovie(player.steamid)">
+          <i class="fa fa-video-camera"></i>
+      </button>
     </div>
 
     <div id="stats-tables" class="center-block">

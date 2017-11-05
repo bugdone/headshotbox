@@ -766,6 +766,11 @@ hsboxControllers.controller('Player', function ($scope, $http, $routeParams, $ro
     $http.get(serverUrl + '/folders').success(function(data) {
         $scope.folders = data;
     });
+    $scope.makeMovie = function () {
+        $http.post(serverUrl + '/player/' + steamid + '/make-movie', {'plays': 5}, {'params': getRequestFilters($scope)}).success(function(data) {
+        });
+
+    };
 });
 
 hsboxControllers.controller('PlayerList', function ($scope, $http) {
@@ -833,7 +838,8 @@ hsboxControllers.controller('DemoLog', function ($scope, $http, $routeParams, wa
     });
 });
 
-hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams, watchDemo, downloadDemo) {
+hsboxControllers.controller('RoundSearch', function ($scope, $http, $routeParams, watchDemo, downloadDemo, recordMovie) {
+    $scope.recordMovie = recordMovie;
     $scope.watchDemo = watchDemo;
     $scope.downloadDemo = downloadDemo;
     $scope.searchInProgress = false;
@@ -1014,5 +1020,5 @@ hsboxControllers.controller('Navbar', function ($scope, $http, $interval, $rootS
             }, 2000);
         }
     };
-    $scope.getIndexerState();
+    // $scope.getIndexerState();
 });
