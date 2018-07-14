@@ -71,7 +71,7 @@
       (.contains (:servername demo) "CEVO") "cevo"
       (.contains (:servername demo) "GamersClub") "gamersclub"
       (has_gotv_bot "ESEA") "esea"
-      (has_gotv_bot "FACEIT GOTV") "faceit")))
+      (or (has_gotv_bot "FACEIT GOTV") (.contains (:servername demo) "FACEIT.com")) "faceit")))
 
 (defn split-by-game-restart [demo-events]
   (->> demo-events
