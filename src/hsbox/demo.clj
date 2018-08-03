@@ -70,6 +70,7 @@
       (.contains (:servername demo) "Valve") "valve"
       (.contains (:servername demo) "CEVO") "cevo"
       (.contains (:servername demo) "GamersClub") "gamersclub"
+      (.contains (:servername demo) "PCMR") "faceit"
       (has_gotv_bot "ESEA") "esea"
       (or (has_gotv_bot "FACEIT GOTV") (.contains (:servername demo) "FACEIT.com")) "faceit")))
 
