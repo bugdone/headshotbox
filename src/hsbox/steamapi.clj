@@ -24,14 +24,19 @@
         (log-fail summaries)
         ; Sleep 2s after two steam api calls
         (Thread/sleep 2000)
-        (->>
-          (concat (-> bans :body :players) (-> summaries :body :response :players))
-          (reduce #(let [steamid (Long/parseLong (get %2 :steamid (get %2 :SteamId)))]
-                    (assoc % steamid (select-keys
-                                       (merge (get % steamid) %2)
-                                       [:avatar :avatarfull :personaname :NumberOfVACBans :DaysSinceLastBan :NumberOfGameBans])))
-                  {})
-          (db/update-steamids))))))
+        (let [info (concat (-> bans :body :players) (-> summaries :body :response :players))]
+          ; bans empty response: {:players []}
+          ; summaries empty response: {:players [{}]}
+          (if (or (empty? info) (and (= (count info) 1) (empty? (first info))))
+            {}
+            (->>
+              (concat (-> bans :body :players) (-> summaries :body :response :players))
+              (reduce #(let [steamid (Long/parseLong (get %2 :steamid (get %2 :SteamId)))]
+                         (assoc % steamid (select-keys
+                                            (merge (get % steamid) %2)
+                                            [:avatar :avatarfull :personaname :NumberOfVACBans :DaysSinceLastBan :NumberOfGameBans])))
+                      {})
+              (db/update-steamids))))))))
 
 (defn get-steamids-info-cached
   "Returns a map with the cached steamid info from the database (any steamids
