@@ -31,6 +31,7 @@ var weapon_prettify = {
     taser: "Zeus x27",
     tec9: "Tec-9",
     ump45: "UMP-45",
+    mp5sd: "MP5-SD",
     usp: "USP-S"
 }
 
