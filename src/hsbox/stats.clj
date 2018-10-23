@@ -624,6 +624,7 @@
   (reduce #(str/replace % (first %2) (second %2)) s {"kqly"     "jump"
                                                      "ace"      "5k"
                                                      "juandeag" "deaglehs"
+                                                     "collat"   "collateral"
                                                      "scout"    "ssg08"}))
 
 (defn re-filters [re filters]
