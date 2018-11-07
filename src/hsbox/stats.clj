@@ -625,6 +625,9 @@
                                                      "ace"      "5k"
                                                      "juandeag" "deaglehs"
                                                      "collat"   "collateral"
+                                                     "ump"      "ump45"
+                                                     "cz"       "cz75a"
+                                                     "mp5"      "mp5sd"
                                                      "scout"    "ssg08"}))
 
 (defn re-filters [re filters]
