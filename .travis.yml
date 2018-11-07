@@ -15,7 +15,7 @@ before_script:
 
 script: ./build-travis.sh
 
-jdk: oraclejdk7
+jdk: oraclejdk9
 
 deploy:
   provider: releases
