@@ -26,10 +26,13 @@
         (Thread/sleep 2000)
         (->>
           (concat (-> bans :body :players) (-> summaries :body :response :players))
-          (reduce #(let [steamid (Long/parseLong (get %2 :steamid (get %2 :SteamId)))]
-                    (assoc % steamid (select-keys
-                                       (merge (get % steamid) %2)
-                                       [:avatar :avatarfull :personaname :NumberOfVACBans :DaysSinceLastBan :NumberOfGameBans])))
+          (reduce #(let [steamid-str (get %2 :steamid (get %2 :SteamId))]
+                     (if (nil? steamid-str)
+                       %
+                       (let [steamid (Long/parseLong steamid-str)]
+                         (assoc % steamid (select-keys
+                                            (merge (get % steamid) %2)
+                                            [:avatar :avatarfull :personaname :NumberOfVACBans :DaysSinceLastBan :NumberOfGameBans])))))
                   {})
           (db/update-steamids))))))
 
