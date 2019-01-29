@@ -13,6 +13,7 @@
                           "esea"   6
                           "faceit" 6
                           "cevo"   6
+                          "esportal"   6
                           "gamersclub"     6})
 
 (def schema-version 6)
