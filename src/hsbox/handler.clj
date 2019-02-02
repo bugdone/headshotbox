@@ -229,9 +229,11 @@
       (update-in response [:headers] merge {"Pragma" "no-cache" "Cache-Control" "no-cache, must-revalidate"}))))
 
 (defn credential-fn [stuff]
-  (if (= (:identity stuff) (str "http://steamcommunity.com/openid/id/" (:steamid @openid-settings)))
-    (assoc stuff :roles #{::admin})
-    nil))
+  (let [steam-openid (str "steamcommunity.com/openid/id/" (:steamid @openid-settings))]
+    (if (or (= (:identity stuff) (str "https://" steam-openid))
+            (= (:identity stuff) (str "http://" steam-openid)))
+     (assoc stuff :roles #{::admin})
+     nil)))
 
 (defn create-secured-app []
   (let [max-nonce-age 60000
