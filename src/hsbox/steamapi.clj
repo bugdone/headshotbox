@@ -3,6 +3,7 @@
             [hsbox.util :refer [current-timestamp]]
             [watt.user :refer [player-bans player-summaries]]
             [clojure.string :as str]
+            [clojure.set :as set]
             [taoensso.timbre :as timbre]))
 
 (timbre/refer-timbre)
@@ -19,7 +20,10 @@
       {}
       (let [call-args (list :steamids (str/join "," steamids) :key (get-steam-api-key))
             bans (apply player-bans call-args)
-            summaries (apply player-summaries call-args)]
+            summaries (apply player-summaries call-args)
+            add-deleted-steamids (fn [updates]
+                                   (let [deleted (set/difference (set steamids) (set (keys updates)))]
+                                     (into updates (map #(vector % {}) deleted))))]
         (log-fail bans)
         (log-fail summaries)
         ; Sleep 2s after two steam api calls
@@ -34,6 +38,7 @@
                                             (merge (get % steamid) %2)
                                             [:avatar :avatarfull :personaname :NumberOfVACBans :DaysSinceLastBan :NumberOfGameBans])))))
                   {})
+          (add-deleted-steamids)
           (db/update-steamids))))))
 
 (defn get-steamids-info-cached

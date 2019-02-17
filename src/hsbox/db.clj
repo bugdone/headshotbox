@@ -294,7 +294,7 @@
     (map #(assoc (:data %) :steamid (:steamid %) :timestamp (:timestamp %)))))
 
 (defn get-oldest-steam-data-timestamp []
-  (let [oldest (:oldest (first (query-db [(str "SELECT MIN(timestamp) as oldest FROM steamids")])))]
+  (let [oldest (:oldest (first (query-db [(str "SELECT MIN(timestamp) as oldest FROM steamids WHERE timestamp > 0")])))]
     (if (nil? oldest) 0 oldest)))
 
 (defn update-steamids [steamids-info]
@@ -303,7 +303,9 @@
                          (jdbc/execute! t-con [(str "DELETE FROM steamids WHERE steamid IN (" (str/join ", " (keys steamids-info)) ")")])
                          (doseq [steamid-info steamids-info]
                            (jdbc/execute! t-con ["INSERT INTO steamids (steamid, timestamp, data) VALUES (?, ?, ?)"
-                                                 (first steamid-info) (current-timestamp) (json/write-str (second steamid-info))]))))
+                                                 (first steamid-info)
+                                                 (if (empty? steamid-info) 0 (current-timestamp))
+                                                 (json/write-str (second steamid-info))]))))
   steamids-info)
 
 (defn get-demo-notes [demoid]
