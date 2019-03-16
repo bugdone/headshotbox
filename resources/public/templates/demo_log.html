@@ -116,7 +116,7 @@
                   +
                   <img ng-src="img/weapons/icon-flashbang_grey.png" ng-if="death.assistedflash" height="20"/>
                   {{playerName(demo.players[death.assister])}}</span>
-                <img ng-src="img/weapons/icon-{{death.weapon_name}}_grey.png" ng-if="death.weapon_name" height="20"/>
+                <img ng-src="img/weapons/icon-{{death.weapon_name.startsWith('world') ? 'suicide' : death.weapon_name}}_grey.png" ng-if="death.weapon_name" height="20"/>
                 <div ng-if="!death.weapon_name">{{death.weapon}}</div>
                 <img ng-if="death.penetrated" src="img/weapons/icon-penetrate_grey.png" height="20"/>
                 <img ng-if="death.headshot" src="img/weapons/icon-headshot_grey.png" height="20"/>
