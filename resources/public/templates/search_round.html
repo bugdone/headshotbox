@@ -84,7 +84,7 @@
           <td class="text-left">
             <div ng-repeat="kill in round.kills">
               {{kill.kills + "x"}}
-              <img ng-src="img/weapons/icon-{{kill.weapon}}{{kill.noscope ? '_noscope' : ''}}_grey.png" height="20" ng-class="{tilted: kill.air}" title="{{kill_description(kill)}}"/>
+              <img ng-src="img/weapons/icon-{{kill.weapon}}{{kill.noscope ? '_noscope' : ''}}{{['smokegrenade', 'molotov_projectile', 'flashbang'].indexOf(kill.weapon) > -1 ? '_impact' : ''}}_grey.png" height="20" ng-class="{tilted: kill.air}" title="{{kill_description(kill)}}"/>
               <img ng-if="kill.smoke" src="img/weapons/smoke_grey.png" height="20" title="{{kill_description(kill)}}"/>
               <img ng-if="kill.penetrated" src="img/weapons/icon-penetrate_grey.png" height="20" title="{{kill_description(kill)}}"/>
               <img ng-if="kill.headshot" src="img/weapons/icon-headshot_grey.png" height="20" title="{{kill_description(kill)}}"/>
