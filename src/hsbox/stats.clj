@@ -137,11 +137,12 @@
       (assoc-in stats stat (inc (get-in stats stat 0))))
     stats))
 
-(defn update-stats-with-death [stats {:keys [attacker victim assister weapon headshot]}]
+(defn update-stats-with-death [stats {:keys [attacker victim assister weapon headshot assistedflash]}]
   (let [steamid (:steamid stats)
         weapon (weapon-name weapon)
         enemies? (not= (get (:players stats) steamid) (get (:players stats) victim))
         killed? (and (= steamid attacker) enemies?)
+        assist? (and (= steamid assister) enemies?)
         init-hs-if-needed (fn [stats weapon]
                             (if (and killed? (nil? (get-in stats [:weapons weapon :hs])))
                               (assoc-in stats [:weapons weapon :hs] 0)
@@ -150,7 +151,8 @@
         (inc-stat-maybe :kills killed?)
         (inc-stat-maybe :kills-this-round killed?)
         (inc-stat-maybe :deaths (= steamid victim))
-        (inc-stat-maybe :assists (and (= steamid assister) enemies?))
+        (inc-stat-maybe :assists assist?)
+        (inc-stat-maybe :assists_flash (and assist? assistedflash))
         (inc-stat-maybe [:weapons weapon :kills] killed?)
         (init-hs-if-needed weapon)
         (inc-stat-maybe :hs (and headshot killed?))
@@ -253,6 +255,7 @@
    :kills                   0
    :deaths                  0
    :assists                 0
+   :assists_flash           0
    :rounds                  0
    :rounds_t                0
    :won                     0

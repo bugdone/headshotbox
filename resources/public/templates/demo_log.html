@@ -112,7 +112,10 @@
               <td>{{death.tick}}</td>
               <td>
                 <span ng-class="{lightblue: round.players[death.attacker] == 3, red: round.players[death.attacker] == 2}">{{playerName(demo.players[death.attacker])}}</span>
-                <span ng-if="death.assister != '0'" ng-class="{blue: round.players[death.assister] == 3, red: round.players[death.assister] == 2}"> + {{playerName(demo.players[death.assister])}}</span>
+                <span ng-if="death.assister != '0'" ng-class="{blue: round.players[death.assister] == 3, red: round.players[death.assister] == 2}">
+                  +
+                  <img ng-src="img/weapons/icon-flashbang_grey.png" ng-if="death.assistedflash" height="20"/>
+                  {{playerName(demo.players[death.assister])}}</span>
                 <img ng-src="img/weapons/icon-{{death.weapon_name}}_grey.png" ng-if="death.weapon_name" height="20"/>
                 <div ng-if="!death.weapon_name">{{death.weapon}}</div>
                 <img ng-if="death.penetrated" src="img/weapons/icon-penetrate_grey.png" height="20"/>

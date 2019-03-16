@@ -13,7 +13,7 @@
           <th class="text-left">Team A</th>
           <th class="text-center" ng-if="theDemo.type == 'valve'">Rank</th>
           <th class="text-right"><a ng-click="orderTeams = '-kills'">K</a></th>
-          <th class="text-right">A</th>
+          <th class="text-right"><abbr title="Assists (Flashbang assists)">A (FA)</abbr></th>
           <th class="text-right">D</th>
           <th class="text-right"><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
           <th class="text-right"><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
@@ -35,7 +35,7 @@
           <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins" width="50"/>
         </td>
         <td>{{player.kills}}</td>
-        <td>{{player.assists}}</td>
+        <td>{{player.assists}}{{player.assists_flash > 0 ? ' (' + player.assists_flash + ')': ''}}</td>
         <td>{{player.deaths}}</td>
         <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
         <td>{{player.hs_percent | number:2}}</td>
@@ -48,7 +48,7 @@
           <th class="text-left">Team B</th>
           <th class="text-center" ng-if="theDemo.type == 'valve'">Rank</th>
           <th class="text-right"><a ng-click="orderTeams = '-kills'">K</a></th>
-          <th class="text-right">A</th>
+          <th class="text-right"><abbr title="Assists (Flashbang assists)">A (FA)</abbr></th>
           <th class="text-right">D</th>
           <th class="text-right"><a ng-click="orderTeams = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
           <th class="text-right"><a ng-click="orderTeams = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
@@ -70,7 +70,7 @@
           <img ng-if="player.mm_rank_update.rank_old" ng-src="img/ranks/{{player.mm_rank_update.rank_old}}.png" title="{{player.mm_rank_update.num_wins}} wins" width="50"/>
         </td>
         <td>{{player.kills}}</td>
-        <td>{{player.assists}}</td>
+        <td>{{player.assists}}{{player.assists_flash > 0 ? ' (' + player.assists_flash + ')': ''}}</td>
         <td>{{player.deaths}}</td>
         <td class="text-right" ng-class="{green: player.kdd >= 0, red: player.kdd < 0}">{{player.kdd | signed}}</td>
         <td>{{player.hs_percent | number:2}}</td>

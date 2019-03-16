@@ -7,7 +7,7 @@
       <th class="text-left">Map</th>
       <th class="text-center">Score</th>
       <th class="text-center"><a ng-click="orderDemos = '-kills'">K</a></th>
-      <th class="text-center">A</th>
+      <th class="text-center"><abbr title="Assists (Flashbang assists)">A (FA)</abbr></th>
       <th class="text-center">D</th>
       <th class="text-center"><a ng-click="orderDemos = '-kdd'"><abbr title="Kill-Death Difference">KDD</abbr></a></th>
       <th class="text-center"><a ng-click="orderDemos = '-hs_percent'"><abbr title="Headshot Percent">HS %</abbr></a></th>
@@ -46,7 +46,7 @@
         </span>
       </td>
       <td class="text-center nopadding">{{demo.kills}}</td>
-      <td class="text-center nopadding">{{demo.assists}}</td>
+      <td class="text-center nopadding">{{demo.assists}}{{demo.assists_flash > 0 ? ' (' + demo.assists_flash + ')': ''}}</td>
       <td class="text-center nopadding">{{demo.deaths}}</td>
       <td class="text-center nopadding" ng-class="{green: demo.kdd >= 0, red: demo.kdd < 0}">{{demo.kdd | signed}}</td>
       <td class="text-center nopadding">{{demo.hs_percent | number:2}}</td>
