@@ -308,6 +308,10 @@
                                                  (json/write-str (second steamid-info))]))))
   steamids-info)
 
+(defn delete-old-steamids []
+  (with-db-transaction t-con
+                       (jdbc/execute! t-con ["DELETE FROM steamids WHERE timestamp > 0 AND timestamp < ?" (- (current-timestamp) (* 3600 (+ 24 6)))])))
+
 (defn get-demo-notes [demoid]
   (:notes (first (query-db ["SELECT notes FROM demos WHERE rowid=?" demoid]))))
 

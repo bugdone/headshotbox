@@ -701,7 +701,7 @@
     (try
       (try
         (reset! api-refreshing? true)
-        (steamapi/get-steamids-info (keys player-demos) :refresh-all? @refresh-all-players?)
+        (steamapi/get-steamids-info (keys player-demos) :refresh-all? @refresh-all-players? :delete-old? true)
         (finally
           (reset! refresh-all-players? false)
           (reset! api-refreshing? false)))
