@@ -4,7 +4,7 @@
             [clojure.java.shell :refer [sh]]
             [clojure.string :refer [split-lines split trim]]
             [clojure.data.json :as json]
-            [hsbox.db :refer [kw-steamids-to-long latest-data-version get-demo-infix]],
+            [hsbox.db :refer [kw-steamids-to-long latest-data-version get-demo-affix]],
             [hsbox.util :refer [file-exists? last-modified file-name]]
             [hsbox.stats :refer [add-round-numbers]]
             [flatland.protobuf.core :refer [protodef protobuf-load]]
@@ -71,7 +71,7 @@
         (.contains (:servername demo) "CEVO") "cevo"
         (.contains (:servername demo) "GamersClub") "gamersclub"
         (.contains (:servername demo) "FACEIT.com") "faceit"
-        (.contains (file-name path) (get-demo-infix)) "custom"
+        (.contains (file-name path) (get-demo-affix)) "custom"
         (has_gotv_bot "ESEA") "esea"
         (or (has_gotv_bot "Esportal.com - GOTV") (.contains (:servername demo) "Esportal.com")) "esportal")))
 

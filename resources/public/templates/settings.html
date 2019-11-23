@@ -60,24 +60,24 @@
                 </div>
 
                 <div class="form-group input-group">
-                  <span class="input-group-addon">Custom Demo Infix</span>
+                  <span class="input-group-addon">Custom Demo Affix</span>
                   <input type="text"
                          class="form-control"
-                         aria-describedby="demo-infix-help"
-                         ng-model="$root.config.demo_infix">
-                  <span class="input-group-addon" id="demo-infix-help">
+                         aria-describedby="demo-afix-help"
+                         ng-model="$root.config.demo_affix">
+                  <span class="input-group-addon" id="demo-affix-help">
                     <button type="button"
                             class="btn btn-default btn-xs glyphicon glyphicon-question-sign"
-                            ng-click="demoInfixCollapsed = !demoInfixCollapsed">
+                            ng-click="demoAffixCollapsed = !demoAffixCollapsed">
                     </button>
                   </span>
                 </div>
-                <div collapse="demoInfixCollapsed">
+                <div collapse="demoAffixCollapsed">
                   <div class="well well-lg text-left">
-                    Index demos with a custom infix in the filename. This is useful for demos from private servers and other unsupported services.<p/>
+                    Index demos with a custom affix in the filename. This is useful for demos from private servers and other unsupported services.<p/>
                     <p/>
                     <b>Example:</b><br> 
-                    Custom infix: <b>pug</b><br>
+                    Custom affix: <b>pug</b><br>
                     Demos parsed:<br>                    
                     <code><b>pug</b>_2019-11-17_2037_de_aztec.dem<br></code>
                     <code>2019-11-17_2037_<b>pug</b>_de_aztec.dem<br></code>
