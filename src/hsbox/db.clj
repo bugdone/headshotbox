@@ -77,8 +77,6 @@
 (defn get-demo-directory [] (:demo_directory (get-config)))
 (defn get-demo-infix [] (:demo_infix (get-config)))
 
-(defn printinfix [] (println "INFIX is" (get-demo-infix) "DEMO DIR IS: "(get-demo-directory) ))
-
 (defn half-parsed-demo? [{:keys [score rounds players]}]
   (let [score1 (first (:score score))
         score2 (second (:score score))]
