@@ -14,7 +14,9 @@
                           "faceit" 6
                           "cevo"   6
                           "esportal"   6
-                          "gamersclub"     6})
+                          "gamersclub"     6
+                          "custom" 6 
+                          })
 
 (def schema-version 6)
 ;(set! *warn-on-reflection* true)
@@ -73,6 +75,9 @@
   @config)
 
 (defn get-demo-directory [] (:demo_directory (get-config)))
+(defn get-demo-infix [] (:demo_infix (get-config)))
+
+(defn printinfix [] (println "INFIX is" (get-demo-infix) "DEMO DIR IS: "(get-demo-directory) ))
 
 (defn half-parsed-demo? [{:keys [score rounds players]}]
   (let [score1 (first (:score score))
