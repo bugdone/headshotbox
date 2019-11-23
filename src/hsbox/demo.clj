@@ -4,8 +4,8 @@
             [clojure.java.shell :refer [sh]]
             [clojure.string :refer [split-lines split trim]]
             [clojure.data.json :as json]
-            [hsbox.db :refer [kw-steamids-to-long latest-data-version]],
-            [hsbox.util :refer [file-exists? last-modified]]
+            [hsbox.db :refer [kw-steamids-to-long latest-data-version get-demo-infix]],
+            [hsbox.util :refer [file-exists? last-modified file-name]]
             [hsbox.stats :refer [add-round-numbers]]
             [flatland.protobuf.core :refer [protodef protobuf-load]]
             [taoensso.timbre :as timbre]))
@@ -63,16 +63,17 @@
         (when (not (.exists (as-file json-path)))
           (spit json-path (do-parse)))
         (slurp json-path)))))
-
-(defn get-demo-type [demo]
+        
+(defn get-demo-type [demo path]
   (letfn [(has_gotv_bot [name] (some #(.contains % name) (:gotv_bots demo)))]
-    (cond
-      (.contains (:servername demo) "Valve") "valve"
-      (.contains (:servername demo) "CEVO") "cevo"
-      (.contains (:servername demo) "GamersClub") "gamersclub"
-      (.contains (:servername demo) "FACEIT.com") "faceit"
-      (has_gotv_bot "ESEA") "esea"
-      (or (has_gotv_bot "Esportal.com - GOTV") (.contains (:servername demo) "Esportal.com")) "esportal")))
+      (cond
+        (.contains (:servername demo) "Valve") "valve"
+        (.contains (:servername demo) "CEVO") "cevo"
+        (.contains (:servername demo) "GamersClub") "gamersclub"
+        (.contains (:servername demo) "FACEIT.com") "faceit"
+        (.contains (file-name path) (get-demo-infix)) "custom"
+        (has_gotv_bot "ESEA") "esea"
+        (or (has_gotv_bot "Esportal.com - GOTV") (.contains (:servername demo) "Esportal.com")) "esportal")))
 
 (defn split-by-game-restart [demo-events]
   (->> demo-events
@@ -321,7 +322,7 @@
                     (kw-steamids-to-long [:player_names])
                     (kw-steamids-to-long [:player_slots])
                     (kw-steamids-to-long [:mm_rank_update]))
-        demo-type (get-demo-type demo-data)
+        demo-type (get-demo-type demo-data path)
         ; Parse MM dem.info file if available (for demo timestamp)
         scoreboard (try
                      (parse-mm-info-file path)
