@@ -63,7 +63,7 @@
         (when (not (.exists (as-file json-path)))
           (spit json-path (do-parse)))
         (slurp json-path)))))
-        
+
 (defn get-demo-type [demo path]
   (letfn [(has_gotv_bot [name] (some #(.contains % name) (:gotv_bots demo)))]
       (cond
