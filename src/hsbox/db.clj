@@ -75,7 +75,7 @@
   @config)
 
 (defn get-demo-directory [] (:demo_directory (get-config)))
-(defn get-demo-infix [] (:demo_infix (get-config)))
+(defn get-demo-affix [] (:demo_affix (get-config)))
 
 (defn half-parsed-demo? [{:keys [score rounds players]}]
   (let [score1 (first (:score score))
