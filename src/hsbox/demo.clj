@@ -71,9 +71,9 @@
         (.contains (:servername demo) "CEVO") "cevo"
         (.contains (:servername demo) "GamersClub") "gamersclub"
         (.contains (:servername demo) "FACEIT.com") "faceit"
-        (.contains (file-name path) (get-demo-affix)) "custom"
         (has_gotv_bot "ESEA") "esea"
-        (or (has_gotv_bot "Esportal.com - GOTV") (.contains (:servername demo) "Esportal.com")) "esportal")))
+        (or (has_gotv_bot "Esportal.com - GOTV") (.contains (:servername demo) "Esportal.com")) "esportal"
+        (.contains (file-name path) (get-demo-affix)) "custom")))
 
 (defn split-by-game-restart [demo-events]
   (->> demo-events
