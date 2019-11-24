@@ -17,6 +17,13 @@ script: ./build-travis.sh
 
 jdk: oraclejdk9
 
+matrix:
+  include:
+    - jdk: openjdk9
+      before_install:
+        - rm "${JAVA_HOME}/lib/security/cacerts"
+        - ln -s /etc/ssl/certs/java/cacerts "${JAVA_HOME}/lib/security/cacerts"
+
 deploy:
   provider: releases
   skip_cleanup: true
