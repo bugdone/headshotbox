@@ -627,8 +627,7 @@
   (reduce #(str/replace % (first %2) (second %2)) s {"kqly"     "jump"
                                                      "ace"      "5k"
                                                      "juandeag" "deaglehs"
-                                                     "collat"   "collateral"
-                                                     "ump"      "ump45"
+                                                     (re-pattern "(?<!j)ump")      "ump45"
                                                      "cz"       "cz75a"
                                                      "mp5"      "mp5sd"
                                                      "scout"    "ssg08"}))
