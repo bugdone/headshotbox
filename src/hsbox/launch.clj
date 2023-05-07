@@ -200,11 +200,10 @@
             (when (and (:playdemo_kill_csgo (db/get-config)))
               (if (= os-name "windows")
                 (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
-                (clojure.java.shell/sh "killall" "-9" "csgo_linux"))))
-          {:url (str "steam://rungame/730/" steamid "/+playdemo " (url-encode play-path)
-                     (when tick (str "@" tick)) " "
-                     (when (#{"high" "low"} highlight) steamid)
-                     (when (= highlight "low") " lowlights"))})))))
+                (clojure.java.shell/sh "killall" "-9" "csgo_linux")))
+            (clojure.java.shell/sh (System/getenv "STEAM_PATH") "-applaunch" "730" "+playdemo" (str play-path (when tick (str "@" tick)) " "
+                                                                                                  (when (#{"high" "low"} highlight) steamid)
+                                                                                                  (when (= highlight "low") " lowlights")))))))))
 
 (defn delete-generated-files []
   (let [path (db/get-demo-directory)]

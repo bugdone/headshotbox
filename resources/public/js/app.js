@@ -55,7 +55,6 @@ hsboxApp.factory('watchDemo', ['$http', function($http) {
         if (highlight)
             params['highlight'] = highlight;
         $http.post(serverUrl + '/demo/' + demoid + '/watch', params).success(function(data) {
-            window.location = data.url;
         });
     }
 }]);
