@@ -122,6 +122,8 @@
         _ (println "in vdm-round-highlights " (get demo :demoid))
         kills (filter #(= (:attacker %) steamid) (:deaths round))
         _ (assert (not (empty? kills)))
+        context-before-first-kill (sec-to-tick demo 5)
+        context-after-last-kill (sec-to-tick demo 3)
         context-before-kill (sec-to-tick demo 3)
         close-kills (sec-to-tick demo 3)
         context-after-kill (sec-to-tick demo 1)
@@ -147,12 +149,13 @@
                                                      (start-movie-command (- b context-before-kill))))
                               (assoc :clip-ids (conj (:clip-ids %) (clip-prefix (count (:clip-ids %))))))
                           %))
-                     {:commands [(start-movie-command (- (:tick (first kills)) context-before-kill))
-                                 (stop-movie-command (+ (:tick (last kills)) context-after-kill))]
+                     {:commands [(start-movie-command (- (:tick (first kills)) context-before-first-kill))
+                                 (stop-movie-command (+ (:tick (last kills)) context-after-last-kill))]
                       :clip-ids [(clip-prefix 0)]}
                      kill-pairs)
         user-id (get-in round [:userid steamid])
-        x (debug "Round" round steamid user-id)
+        _ (println clips-info)
+        _ (debug "Round" round steamid user-id)
         entity-id (inc (get-in demo [:player_slots steamid]))]
     {:tick     start-tick
      :vdm      (-> [(start-command "exec movie")
@@ -162,7 +165,7 @@
                     (start-command "spec_show_xray 0")
                     (start-command (str "mirv_streams record name " (escape-path raw-data-folder)))
                     {:factory  "PlayCommands"
-                     :tick     (+ (:tick (last kills)) context-after-kill 50)
+                     :tick     (+ (:tick (last kills)) context-after-last-kill 50)
                      :commands "quit"}]
                    ; TODO more context for nades
                    ; TODO slowmo for jumpshot
