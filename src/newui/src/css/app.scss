@@ -21,6 +21,9 @@ body,
 a {
   text-decoration: none;
 }
+#q-app a {
+  color: $primary;
+}
 
 :root {
   --background-color: #f3f3f3;

@@ -2,6 +2,7 @@ import { RouteRecordRaw } from 'vue-router';
 
 export const ROUTES = {
   playersList: 'players-list',
+  playerDetails: 'player-details',
   roundsSearch: 'rounds-search',
   settings: 'settings',
 };
@@ -14,8 +15,18 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: () => import('pages/IndexPage.vue') },
       {
         path: 'players',
-        component: () => import('pages/Player/List.vue'),
-        name: ROUTES.playersList,
+        children: [
+          {
+            path: '',
+            component: () => import('pages/Player/List.vue'),
+            name: ROUTES.playersList,
+          },
+          {
+            path: ':id',
+            component: () => import('pages/Player/Details.vue'),
+            name: ROUTES.playerDetails,
+          },
+        ],
       },
       {
         path: 'rounds-search',
