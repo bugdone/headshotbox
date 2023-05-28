@@ -15,8 +15,8 @@
                           "cevo"   6
                           "esportal"   6
                           "gamersclub"     6
-                          "custom" 6 
-                          })
+                          "custom" 6})
+
 
 (def schema-version 6)
 ;(set! *warn-on-reflection* true)

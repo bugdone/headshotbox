@@ -31,8 +31,8 @@
    :r         "0"
    :g         "0"
    :b         "0"
-   :a         "255"
-   })
+   :a         "255"})
+
 
 (defn- generate-highlight-enemy-pov [demo kill]
   (let [kill-context (sec-to-tick demo 5)
@@ -45,8 +45,8 @@
            :tick       (if (= 0 (:tick-before kill))
                          0
                          (+ (:tick-before kill) after-kill-context))
-           :skiptotick (- (:tick kill) kill-context)
-           })
+           :skiptotick (- (:tick kill) kill-context)})
+
         (append-maybe true
                       {:factory  "PlayCommands"
                        :tick     (max (- (:tick kill) kill-context) (:tick-before kill))
@@ -90,8 +90,8 @@
       [(fade-to-black (- tick-jump (sec-to-tick demo 1)))
        {:factory    "SkipAhead"
         :tick       tick-jump
-        :skiptotick (+ (:next-round-tick round) (sec-to-tick demo 15))
-        }])))
+        :skiptotick (+ (:next-round-tick round) (sec-to-tick demo 15))}])))
+
 
 (defn vdm-pov [demo steamid]
   (let [cfg (:vdm_cfg (db/get-config))
@@ -110,24 +110,25 @@
                (append-maybe true
                              {:factory    "SkipAhead"
                               :tick       0
-                              :skiptotick (+ (:tick (first augmented-rounds)) (sec-to-tick demo 15))
-                              })
+                              :skiptotick (+ (:tick (first augmented-rounds)) (sec-to-tick demo 15))})
+
                (into (mapcat #(generate-pov demo % steamid) augmented-rounds)))}))
 
 (def raw-data-folder "e:\\tmp\\movie\\tmp")
 (defn escape-path [path] (str "\"" path "\""))
 
-(defn vdm-round-highlights [demo steamid round-number]
+(defn vdm-round-highlights [demo steamid round-number kill-filter]
   (let [round (nth (:rounds demo) (dec round-number))
         _ (println "in vdm-round-highlights " (get demo :demoid))
-        kills (filter #(= (:attacker %) steamid) (:deaths round))
+        kills (filter #(= (:attacker %) steamid) (filter kill-filter (:deaths round)))
         _ (assert (not (empty? kills)))
         context-before-first-kill (sec-to-tick demo 5)
         context-after-last-kill (sec-to-tick demo 3)
         context-before-kill (sec-to-tick demo 3)
         close-kills (sec-to-tick demo 3)
         context-after-kill (sec-to-tick demo 1)
-        start-tick (:tick round)
+        ; TODO (:tick round) for movie
+        start-tick (- (:tick (first kills)) context-before-first-kill)
         kill-pairs (map vector kills (rest kills))
         clip-prefix (fn [number] (str (get demo :demoid) "_" steamid "_" round-number "_" number))
         start-command (fn [& args] {:factory  "PlayCommands"
@@ -157,32 +158,32 @@
         _ (println clips-info)
         _ (debug "Round" round steamid user-id)
         entity-id (inc (get-in demo [:player_slots steamid]))]
-    {:tick     start-tick
-     :vdm      (-> [(start-command "exec movie")
-                    (start-command "spec_player " entity-id)
-                    (start-command "mirv_deathmsg block !" user-id " *")
-                    (start-command "mirv_deathmsg highLightId " user-id)
-                    (start-command "spec_show_xray 0")
-                    (start-command (str "mirv_streams record name " (escape-path raw-data-folder)))
-                    {:factory  "PlayCommands"
-                     :tick     (+ (:tick (last kills)) context-after-last-kill 50)
-                     :commands "quit"}]
-                   ; TODO more context for nades
-                   ; TODO slowmo for jumpshot
-                   (into (filter identity
-                                 (apply concat
-                                        (map
-                                          ; TODO don't set it on if collateral and penetrated?
-                                          #(if (or (>= (:penetrated %) 1) (:smoke %))
-                                             [{:factory  "PlayCommands"
-                                               :tick     (- (:tick %) (sec-to-tick demo 1))
-                                               :commands "spec_show_xray 1"}
-                                              {:factory  "PlayCommands"
-                                               :tick     (+ (:tick %) (sec-to-tick demo 0.3))
-                                               :commands "spec_show_xray 0"}])
-                                          kills))))
-                   (into (:commands clips-info)))
-     :clip-ids (:clip-ids clips-info)}))
+        {:tick     start-tick
+         :vdm      (-> [(start-command "exec movie")
+                        (start-command "spec_player " entity-id)
+                        (start-command "mirv_deathmsg block !" user-id " *")
+                        (start-command "mirv_deathmsg highLightId " user-id)
+                        (start-command "spec_show_xray 0")
+                        (start-command (str "mirv_streams record name " (escape-path raw-data-folder)))
+                        {:factory  "PlayCommands"
+                         :tick     (+ (:tick (last kills)) context-after-last-kill 50)
+                         :commands "quit"}]
+                       ; TODO more context for nades
+                       ; TODO slowmo for jumpshot
+                       (into (filter identity
+                                     (apply concat
+                                            (map
+                                              ; TODO don't set it on if collateral and penetrated?
+                                              #(if (or (>= (:penetrated %) 1) (:smoke %))
+                                                 [{:factory  "PlayCommands"
+                                                   :tick     (- (:tick %) (sec-to-tick demo 1))
+                                                   :commands "spec_show_xray 1"}
+                                                  {:factory  "PlayCommands"
+                                                   :tick     (+ (:tick %) (sec-to-tick demo 0.3))
+                                                   :commands "spec_show_xray 0"}])
+                                              kills))))
+                       (into (:commands clips-info)))
+         :clip-ids (:clip-ids clips-info)}))
 
 (defn vdm-watch [demo steamid tick tick-end]
   (let [user-id (get (:player_slots demo) steamid 0)
@@ -237,7 +238,7 @@
 
 (defn write-vdm-file
   "Write VDM file if needed and return start tick"
-  [demo steamid tick round-number highlight]
+  [demo steamid tick round-number highlight & {:keys [kill-filter] :or {kill-filter (fn [_] true)}}]
   (let [demo-path (:path demo)
         _ (println "in write-vdm-file" (get demo :demoid))
         vdm-path (str (subs demo-path 0 (- (count demo-path) 4)) ".vdm")
@@ -257,7 +258,7 @@
           (let [vdm-info (case highlight
                            "high_enemy" (vdm-highlights demo steamid)
                            "pov" (vdm-pov demo steamid)
-                           "round" (vdm-round-highlights demo steamid round-number)
+                           "round" (vdm-round-highlights demo steamid round-number kill-filter)
                            (vdm-watch demo steamid tick
                                       (when round-number (+ (:tick_end (nth (:rounds demo) (dec round-number)))
                                                             (stats/seconds-to-ticks 5 (:tickrate demo))))))]
@@ -295,14 +296,15 @@
                 (when (file-exists? vdm-path)
                   (delete-vdm vdm-path))
                 (do
-                  (debug "Writing vdm file" vdm-path)
-                  (spit vdm-path (generate-vdm
-                                   (case highlight
-                                     "high_enemy" (vdm-highlights demo steamid)
-                                     "pov" (vdm-pov demo steamid)
-                                     (vdm-watch demo steamid tick
-                                                (when round (+ (:tick_end round)
-                                                               (stats/seconds-to-ticks 5 (:tickrate demo)))))))))))
+                  (debug "Writing vdm file" vdm-path))))
+                  ;(spit vdm-path (generate-vdm
+                  ;                 (case highlight
+                  ;                   "high_enemy" (vdm-highlights demo steamid)
+                  ;                   "pov" (vdm-pov demo steamid)
+                  ;                   (vdm-watch demo steamid tick
+                  ;                              (when round (+ (:tick_end round)
+                  ;                                             (stats/seconds-to-ticks 5 (:tickrate demo))))))))
+
             (when (and (:playdemo_kill_csgo (db/get-config)))
               (if (= os-name "windows")
                 (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")

@@ -17,7 +17,7 @@
     (run! delete-directory-recursive (.listFiles file)))
   (io/delete-file file))
 
-(defn record-round [demoid steamid round-number async?]
+(defn record-round [demoid steamid round-number async? & {:keys [kill-filter] :or {kill-filter (fn [_] true)}}]
   (println "record-round" demoid steamid round-number)
   (try
     (kill-csgo-process)
@@ -26,7 +26,7 @@
           _ (assert (:demoid demo))
           path (clojure.string/replace (:path demo) "\\" "/")
           demo (assoc demo :path path)
-          vdm-info (write-vdm-file demo steamid 0 round-number "round")
+          vdm-info (write-vdm-file demo steamid 0 round-number "round" :kill-filter kill-filter)
           process-clip (fn [index clip-name]
                          (let [directory (str raw-data-folder "\\" (format "take%04d" index))
                                output-path (str output-folder clip-name ".mp4")
@@ -47,7 +47,8 @@
                                  _ (println args)]
                              (spit ffmpeg-video-list (str/join "\r\n" (map #(str "file " (clojure.string/replace % "\\" "/")) clips-paths)))
                              (apply clojure.java.shell/sh args)
-                             (io/delete-file (io/file ffmpeg-video-list))))
+                             (io/delete-file (io/file ffmpeg-video-list))
+                             (doall (map #(io/delete-file (io/file %)) clips-paths))))
           record-fn (fn []
                       (future
                         (clojure.java.shell/sh (str hlae-path "HLAE.exe") "-csgoLauncher" "-noGui" "-autoStart"

@@ -17,6 +17,7 @@
 (def refresh-all-players? (atom false))
 
 (defn seconds-to-ticks [seconds tickrate] (int (* seconds (/ 1 tickrate))))
+(defn ticks-to-seconds [ticks tickrate] (* ticks tickrate))
 
 (defn enumerate [s]
   (map vector (range) s))
@@ -292,8 +293,8 @@
              (if map-name (= (:map %) map-name) true)
              (if start-date (>= (:timestamp %) start-date) true)
              (if end-date (<= (:timestamp %) end-date) true)
-             (if (empty? teammates) true (subset? teammates (get-teammates % steamid)))
-             )
+             (if (empty? teammates) true (subset? teammates (get-teammates % steamid))))
+
           demos))
 
 (defn update-map-stats-with-demo [stats demo]
@@ -339,6 +340,7 @@
 (defn get-round-filter [filters]
   (let [filter (:rounds filters)]
     (cond
+      ; FIXME fails for short matches
       (= filter "pistol") (fn [round _] (#{1 16} (:number round)))
       (= filter "t") #(= 2 (get-in % [:players %2]))
       (= filter "ct") #(= 3 (get-in % [:players %2]))
@@ -367,11 +369,15 @@
     (-> (add-score demo)
         (merge stats))))
 
+(defn get-team [demo steamid] (get-in demo [:players steamid :team]))
+
+(defn different-team [death demo]
+  (not= (get-team demo (:attacker death)) (get-team demo (:victim death))))
+
 (defn get-banned-players [steamid only-opponents? filters]
   (let [demos (->>
                 (vals (get player-demos steamid))
                 (filter-demos steamid filters))
-        get-team (fn [demo steamid] (get-in demo [:players steamid :team]))
         get-players-data (fn [demo]
                            (map
                              #(vector % (:timestamp demo) (not= (get-team demo steamid) (get-team demo %)))
@@ -541,20 +547,29 @@
 (defn not-nade? [weapon]
   (not (#{"hegrenade" "inferno" "flashbang" "smokegrenade" "decoy"} (weapon-name weapon))))
 
-(defn scoped-weapon [weapon]
+(defn scoped-weapon? [weapon]
   (#{"awp" "ssg08" "scar20" "g3sg1"} (weapon-name weapon)))
+
+(defn pistol? [weapon]
+  (#{"elite" "fiveseven" "hkp2000" "tec9" "cz75a" "glock" "usp" "p250" "deagle" "revolver"} (weapon-name weapon)))
+
+(defn firearm? [weapon]
+  (#{"mag7" "mp9" "elite" "g3sg1" "negev" "fiveseven" "hkp2000" "m4a1" "galil" "xm1014"
+     "ssg08" "nova" "ak47" "m4a4" "tec9" "famas" "ump45"
+     "mp7"  "cz75a" "glock" "sg556" "mac10" "sawedoff" "p90" "usp" "p250" "scar20" "mp5sd"
+     "deagle" "awp" "aug" "m249" "bizon" "revolver"} (weapon-name weapon)))
 
 (defn through-smoke? [kill]
   (and (:smoke kill) (not-nade? (:weapon kill))))
 
 (defn no-scope? [kill]
-  (and (scoped-weapon (:weapon kill)) (nil? (:scoped_since kill))))
+  (and (scoped-weapon? (:weapon kill)) (nil? (:scoped_since kill))))
 
 (defn air-kill? [kill]
   (and (not-nade? (:weapon kill)) (:air_velocity kill) (>= (Math/abs (:air_velocity kill)) 1)))
 
 (defn quick-scope? [kill tickrate]
-  (and (scoped-weapon (:weapon kill))
+  (and (scoped-weapon? (:weapon kill))
        (:scoped_since kill)
        (< (* tickrate (- (:tick kill) (:scoped_since kill))) 0.1)))
 
@@ -720,6 +735,73 @@
 (defn- kills-by [round steamid]
   (filter #(and (= (:attacker %) steamid) (not-tk % round)) (:deaths round)))
 
+; BIG PLAYS
+(defn zip [& colls]
+  (partition (count colls) (apply interleave colls)))
+
+(defn distance [p1 p2 diff-fn]
+  (let [dist (fn [tuple] (Math/abs (Math/pow (diff-fn (first tuple) (second tuple)) 2)))]
+    (Math/sqrt (reduce + (map dist (zip p1 p2))))))
+
+(defn distance-euclidean [p1 p2]
+  (distance p1 p2 -))
+
+(defn kill-distance [death]
+  (distance-euclidean (:attacker_pos death) (:victim_pos death)))
+
+(defn scale-interval [low high inverted?]
+  (fn [distance]
+    (let [normalized (min (max low distance) high)
+          percent (* 100 (/ (- normalized low) (- high low)))]
+      (if inverted? (- 100 percent) percent))))
+
+(defn distance-score [death tickrate]
+  (let [distance (kill-distance death)
+        pistol-bonus (scale-interval 1000 3000 false)
+        scoped-bonus (scale-interval 0 400 true)]
+    (cond
+      (pistol? (:weapon death))
+      (pistol-bonus distance)
+      (and (scoped-weapon? (:weapon death)) (not (no-scope? death)) (not (quick-scope? death tickrate)))
+      (int (* 0.2 (scoped-bonus distance)))
+      :else 0)))
+
+(defn flick-score [death tickrate]
+  (if (or (< (count (:mouse_moves death)) 2) (not (firearm? (:weapon death))))
+    0
+    (let [min-flick-angle 30
+          dominant-direction-weight 0.75
+          angle-diff (fn [a b] (let [diff (Math/abs (- a b))]
+                                 (if (<= a b)
+                                   (if (> diff 180) (- diff 360) diff)
+                                   (if (> diff 180) (- 360 diff) (- diff)))))
+          last-mouse-move-tick (:tick (last (:mouse_moves death)))
+          score (fn [field] (reduce
+                              (fn [state move]
+                                (let [diff (angle-diff (:last-value state) (get move field))
+                                      new-plus (+ (:plus state) (max 0 diff))
+                                      new-minus (+ (:minus state) (min 0 diff))
+                                      arc (max new-plus (- new-minus))
+                                      ticks (- last-mouse-move-tick (:tick move))
+                                      speed-score (if (or (< arc min-flick-angle)
+                                                          (= last-mouse-move-tick (:tick move))
+                                                          (<= (seconds-to-ticks 0.2 tickrate) ticks)
+                                                          (< (/ (max new-plus (- new-minus)) (+ new-plus (- new-minus))) dominant-direction-weight))
+                                                    0
+                                                    (/ arc ticks))
+                                      seconds (ticks-to-seconds ticks tickrate)]
+                                  {:plus       new-plus
+                                   :minus      new-minus
+                                   :best-score (max (:best-score state)
+                                                    (* (/ ((scale-interval 0 120 false) arc) 100) ((scale-interval 0 10 false) speed-score))
+                                                    (* (/ ((scale-interval 0.2 2 true) seconds) 100) ((scale-interval 0 180 false) arc)))
+                                   :last-value (get move field)}))
+                              {:plus 0 :minus 0 :best-score 0 :last-value (get (last (:mouse_moves death)) field)}
+                              (reverse (:mouse_moves death))))
+          score-yaw (:best-score (score :yaw))
+          score-pitch (:best-score (score :pitch))]
+      (max score-yaw score-pitch))))
+
 (defn- compute-round-score [round steamid tickrate]
   (let [kills (kills-by round steamid)
         add-maybe (fn [v test delta]
@@ -729,12 +811,14 @@
         kill-pairs (map vector kills (rest kills))]
     (+
       (reduce #(+ % (-> 100
+                        (+ (distance-score %2 tickrate))
+                        (+ (flick-score %2 tickrate))
                         (add-maybe (through-smoke? %2) 100)
                         (add-maybe (or (air-kill? %2) (jump-kill? %2 tickrate)) 100)
                         (add-maybe (or (no-scope? %2) (quick-scope? %2 tickrate)) 100)
                         (add-maybe (:penetrated %2) (* 100 (:penetrated %2)))
-                        (add-maybe (and (= "deagle" (:weapon %2)) (:hs %2)) 50)
-                        ))
+                        (add-maybe (and (= "deagle" (:weapon %2)) (:hs %2)) 50)))
+
               0
              kills)
       ; TODO devise o math function for this
@@ -744,8 +828,8 @@
                         (= a b) 300
                         (<= (* tickrate (- b a)) 1) 200
                         (<= (* tickrate (- b a)) 3) 100
-                        :else 0))) 0 kill-pairs)
-      )))
+                        :else 0))) 0 kill-pairs))))
+
 
 (defn get-big-plays [steamid limit filters]
   (let [demos (->> (vals (get player-demos steamid))
