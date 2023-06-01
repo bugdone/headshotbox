@@ -93,7 +93,7 @@ onMounted(async () => {
             />
             <router-link
               class="text-base self-center"
-              :to="{ name: ROUTES.playerDetails, params: { id: props.row.steamInfo.steamid } }"
+              :to="{ name: ROUTES.playerDetails, params: { id: props.row.steamid } }"
             >
               {{ props.row.steamInfo ? props.row.steamInfo.personaname : 'Anonymous' }}
             </router-link>

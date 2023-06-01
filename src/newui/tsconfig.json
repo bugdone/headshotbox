@@ -35,4 +35,13 @@
       ]
     }
   },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src-pwa/*.d.ts",
+    "src-bex/*.d.ts",
+    "src-ssr/*.d.ts"
+  ]
 }

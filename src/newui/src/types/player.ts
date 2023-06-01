@@ -24,3 +24,44 @@ export type PlayerApiResponse = {
   playerCount: number;
   players: PlayerResponse[];
 };
+
+export type PlayerStats = {
+  '1v1Attempted': number;
+  '1v1Won': number;
+  assists: number;
+  assistsFlash: number;
+  damage: number;
+  deaths: number;
+  entryKills: number;
+  entryKillsAttempted: number;
+  hs: number;
+  hsPercent: number;
+  kills: number;
+  lost: number;
+  openKills: number;
+  openKillsAttempted: number;
+  rating: number;
+  rounds: number;
+  roundsT: number;
+  roundsWithDamageInfo: number;
+  roundsWithKills: {
+    0: number;
+    1: number;
+    2: number;
+    3: number;
+    4: number;
+    5: number;
+  };
+  rws: number;
+  tied: number;
+  weapons: {
+    hs: number;
+    kills: number;
+    name: string;
+  }[];
+  won: number;
+};
+
+export type PlayerInfoResponse = {
+  [k: string]: SteamInfoResponse;
+};
