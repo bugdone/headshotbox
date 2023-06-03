@@ -106,13 +106,11 @@ onMounted(async () => {
             label: 'DPR',
             value: Format.number(stats.deaths / stats.rounds),
             tooltip: 'Deaths per round',
-            needsColor: true,
           },
           {
             label: 'APR',
             value: Format.number(stats.assists / stats.rounds),
             tooltip: 'Assists per round',
-            needsColor: true,
           },
         ]"
       />
