@@ -87,8 +87,8 @@ onMounted(async () => {
             <q-img
               :src="props.row.steamInfo.avatarfull"
               fit="cover"
-              width="40px"
-              height="40px"
+              width="60px"
+              height="60px"
               class="mx-2 rounded-md"
             />
             <router-link
@@ -106,8 +106,8 @@ onMounted(async () => {
           <q-img
             fit="cover"
             class="mx-2 my-1 rounded-lg"
-            width="50%"
-            height="80%"
+            width="100px"
+            height="40px"
             :src="`images/ranks/${props.row.lastRank}.png`"
           >
             <q-tooltip class="bg-sky-500/95 text-sm shadow-4 text-black" anchor="top middle" self="bottom middle">
