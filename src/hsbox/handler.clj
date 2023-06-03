@@ -187,8 +187,8 @@
                         :latest  @version/latest-version}))
            (GET "/folders" []
              (response (stats/get-folders)))
-           (GET "/players" [folder offset limit]
-             (response (stats/get-players folder (parse-long offset 0) (parse-long limit 5000)))))
+           (GET "/players" [folder offset limit orderBy]
+             (response (stats/get-players folder (parse-long offset 0) (parse-long limit 5000) (if (nil? orderBy) "demos" orderBy)))))
 
 (defn api-handlers [routes]
   (-> routes

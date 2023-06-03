@@ -6,18 +6,19 @@
       <thead>
         <tr>
           <th>Player</th>
-          <th class="text-center"><a ng-click="orderPlayers = '-(last_rank == null ? 0 : last_rank)'">MM Rank</a></th>
-          <th class="text-center"><a ng-click="orderPlayers = '-demos'">Demos</a></th>
-          <th class="text-center"><a ng-click="orderPlayers = '-(last_timestamp == null ? 0 : last_timestamp)'">Last Played</a></th>
+          <th class="text-center"><a ng-click="orderPlayers = setOrderBy('last_rank')">MM Rank</a></th>
+          <th class="text-center"><a ng-click="orderPlayers = setOrderBy('demos')">Demos</a></th>
+          <th class="text-center"><a ng-click="orderPlayers = setOrderBy('last_timestamp')">Last Played</a></th>
         </tr>
       </thead>
-      <tr ng-repeat="player in players | orderBy:orderPlayers">
+      <tr ng-repeat="player in players">
         <td>
-          <a href="http://steamcommunity.com/profiles/{{player.steamid}}" ng-if="player.avatar"><img ng-src="{{player.avatar}}" class="list-avatar"/></a>
+          <a href="http://steamcommunity.com/profiles/{{player.steamid}}" ng-if="player.avatar"><img
+              ng-src="{{player.avatar}}" class="list-avatar" /></a>
           <a href="#/player/{{player.steamid}}">{{player.personaname ? player.personaname : player.name}}</a>
         </td>
         <td class="text-center">
-          <img ng-if="player.last_rank" ng-src="img/ranks/{{player.last_rank}}.png" width="50"/>
+          <img ng-if="player.last_rank" ng-src="img/ranks/{{player.last_rank}}.png" width="50" />
         </td>
         <td class="text-center">
           {{player.demos}}
@@ -26,15 +27,9 @@
       </tr>
     </table>
     <div class="text-center">
-      <pagination direction-links="false"
-                  boundary-links="true"
-                  boundary-link-numbers="true"
-                  total-items="playerCount"
-                  ng-model="currentPage"
-                  items-per-page="playersPerPage"
-                  max-size="10"
-                  rotate="true"
-                  ng-change="pageChanged()"></pagination>
+      <pagination direction-links="false" boundary-links="true" boundary-link-numbers="true" total-items="playerCount"
+        ng-model="currentPage" items-per-page="playersPerPage" max-size="10" rotate="true" ng-change="pageChanged()">
+      </pagination>
     </div>
   </div>
 </div>

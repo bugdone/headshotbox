@@ -1,11 +1,11 @@
 (ns hsbox.stats
-  (:require [clojure.string :as str]
-            [clojure.set :refer [subset? intersection]]
+  (:require [clojure.set :refer [intersection subset?]]
+            [clojure.string :as str]
+            [hsbox.db :as db :refer [get-config latest-data-version]]
             [hsbox.steamapi :as steamapi]
-            [hsbox.util :refer [current-timestamp]]
-            [hsbox.db :as db :refer [get-steam-api-key latest-data-version get-config]])
-  (:import (java.util.concurrent.locks ReentrantLock)
-           (java.util.concurrent TimeUnit)))
+            [hsbox.util :refer [current-timestamp]])
+  (:import (java.util.concurrent TimeUnit)
+           (java.util.concurrent.locks ReentrantLock)))
 
 (taoensso.timbre/refer-timbre)
 
@@ -44,11 +44,15 @@
   "Returns a list of players filtered by the parameters.
 
   Each player will have steamid info attached if it's present in the database"
-  [folder offset limit]
+  [folder offset limit order-by]
   (let [folder-filtered (fn [m] (if (nil? folder)
                                   m
                                   (select-keys m (for [[k v] m :when (= (:folder v) folder)] k))))
         sort-by-date (fn [c] (sort #(compare (:timestamp %2) (:timestamp %)) c))
+        order-field (case order-by
+                      "last_rank" :last_rank
+                      "last_timestamp" :last_timestamp
+                      "demos" :demos)
         players (->> player-demos
                      (reduce-kv #(let [filtered-demos (vals (folder-filtered %3))]
                                   (conj % {:steamid        %2
@@ -57,7 +61,7 @@
                                            :last_rank      (get-last-rank %2)
                                            :name           (get-player-name-in-demo %2 (first filtered-demos))})) [])
                      (filter #(>= (:demos %) (:playerlist_min_demo_count (get-config) 2)))
-                     (sort #(compare (:demos %2) (:demos %))))
+                     (sort #(compare (get %2 order-field) (get % order-field))))
         player_count (count players)
         players (->> players
                      (drop offset)
@@ -292,8 +296,8 @@
             (if map-name (= (:map %) map-name) true)
             (if start-date (>= (:timestamp %) start-date) true)
             (if end-date (<= (:timestamp %) end-date) true)
-            (if (empty? teammates) true (subset? teammates (get-teammates % steamid)))
-            )
+            (if (empty? teammates) true (subset? teammates (get-teammates % steamid))))
+
           demos))
 
 (defn update-map-stats-with-demo [stats demo]
