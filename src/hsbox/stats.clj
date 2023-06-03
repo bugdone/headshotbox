@@ -352,7 +352,8 @@
                  (->
                    (initial-stats steamid)
                    (assoc :round-filter (get-round-filter filters)))))
-    (cleanup-stats)))
+    (cleanup-stats)
+    (assoc :last_rank (get-last-rank steamid))))
 
 (defn add-score [demo]
   (let [reverse? (= 3 (team-number (:steamid demo) (first (:rounds demo))))]
