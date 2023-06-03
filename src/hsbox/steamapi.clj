@@ -50,7 +50,7 @@
   (->>
     (db/get-steamid-info steamids)
     (filter #(> (:timestamp %) (- (current-timestamp) (* 24 3600 steamids-stale-days))))
-    (reduce #(assoc % (:steamid %2) %2) {})))
+    (reduce #(assoc % (:steamid %2) (dissoc %2 :steamid :timestamp)) {})))
 
 (defn get-steamids-info [steamids & {:keys [refresh-all? delete-old?] :or {refresh-all? false delete-old? false}}]
   (assert (every? #(= Long %)
