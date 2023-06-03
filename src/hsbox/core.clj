@@ -31,8 +31,8 @@
    [nil "--openid-realm url" "Realm url used by OpenID"]
    [nil "--demoinfo-dir directory" "Directory where demoinfogo is located (default is current dir)"]
    [nil "--systray" "Add icon to systray if systray is supported on the current platform"]
-   ["-h" "--help"]
-   ])
+   ["-h" "--help"]])
+
 
 (defn error-msg [errors]
   (str "The following errors occurred while parsing your command:\n\n"

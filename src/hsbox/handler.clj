@@ -199,7 +199,7 @@
                  :access-control-allow-headers "Content-Type")))
 
 (defroutes app-routes
-           (GET "/" [] (redirect "index.html"))
+           (GET "/" [] (redirect "oldui/index.html"))
            (GET "/openid/logout" req
              (friend/logout* (redirect (str (:context req) "/"))))
            (context "/api" [] (api-handlers api-routes))

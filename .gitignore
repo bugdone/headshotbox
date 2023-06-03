@@ -8,7 +8,8 @@ pom.xml.asc
 /.lein-*
 /.nrepl-port
 /.idea
-/resources/public/bower_components
 /demoinfogo
 /headshotbox.log
 /headshotbox.sqlite
+resources/public/oldui/bower_components
+hsbox.iml
