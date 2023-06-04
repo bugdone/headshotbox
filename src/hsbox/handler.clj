@@ -28,12 +28,12 @@
   (when (and (not-empty openid-realm) (not-empty admin-steamid))
     (swap! openid-settings #(assoc % :realm openid-realm :steamid admin-steamid))))
 
-(defn parse-filters [{:keys [startDate endDate demoType mapName teammates rounds folder]}]
-  {:start-date (if (nil? startDate) nil (Long/parseLong startDate))
-   :end-date   (if (nil? endDate) nil (Long/parseLong endDate))
+(defn parse-filters [{:keys [start_date end_date demo_type map_name teammates rounds folder]}]
+  {:start-date (if (nil? start_date) nil (Long/parseLong start_date))
+   :end-date   (if (nil? end_date) nil (Long/parseLong end_date))
    :folder     folder
-   :demo-type  demoType
-   :map-name   mapName
+   :demo-type  demo_type
+   :map-name   map_name
    :rounds     (if (nil? rounds) nil (clojure.string/lower-case rounds))
    :teammates  (if (empty? teammates) #{}
                                       (set (map #(Long/parseLong %) (clojure.string/split teammates #","))))})

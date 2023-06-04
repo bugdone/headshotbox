@@ -118,9 +118,25 @@ function bansTooltip(player, demoTimestamp) {
   return "";
 }
 
+function camelToSnake(obj) {
+  if (typeof obj !== 'object' || obj === null) {
+    return obj; // Return the value if it's not an object
+  }
+
+  const snakeObj = {};
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const snakeKey = key.replace(/[A-Z]/g, match => '_' + match.toLowerCase());
+      snakeObj[snakeKey] = camelToSnake(obj[key]);
+    }
+  }
+
+  return snakeObj;
+}
+
 function getRequestFilters($scope) {
   if ($scope.filterDemos == null) return {};
-  var params = JSON.parse(JSON.stringify($scope.filterDemos));
+  var params = camelToSnake($scope.filterDemos);
   var teammates = [];
   $scope.filterTeammates.forEach(function (t) {
     teammates.push(t.steamid);
