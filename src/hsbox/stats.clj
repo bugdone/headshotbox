@@ -562,6 +562,9 @@
 (defn through-smoke? [kill]
   (and (:smoke kill) (not-nade? (:weapon kill))))
 
+(defn rekt? [kill]
+  (and (:rekt kill) (firearm? (:weapon kill)) (not (scoped-weapon? (:weapon kill)))))
+
 (defn no-scope? [kill]
   (and (scoped-weapon? (:weapon kill)) (nil? (:scoped_since kill))))
 
@@ -769,7 +772,7 @@
 (defn flick-score [death tickrate]
   (if (or (< (count (:mouse_moves death)) 2) (not (firearm? (:weapon death))))
     0
-    (let [min-flick-angle 30
+    (let [min-flick-angle 45
           dominant-direction-weight 0.75
           angle-diff (fn [a b] (let [diff (Math/abs (- a b))]
                                  (if (<= a b)
@@ -814,6 +817,7 @@
                         (+ (distance-score %2 tickrate))
                         (+ (flick-score %2 tickrate))
                         (add-maybe (through-smoke? %2) 100)
+                        (add-maybe (rekt? %2) 50)
                         (add-maybe (or (air-kill? %2) (jump-kill? %2 tickrate)) 100)
                         (add-maybe (or (no-scope? %2) (quick-scope? %2 tickrate)) 100)
                         (add-maybe (:penetrated %2) (* 100 (:penetrated %2)))
@@ -826,8 +830,8 @@
                           b (:tick (second %2))]
                       (cond
                         (= a b) 300
-                        (<= (* tickrate (- b a)) 1) 200
-                        (<= (* tickrate (- b a)) 3) 100
+                        (<= (* tickrate (- b a)) 1) 100
+                        (<= (* tickrate (- b a)) 3) 50
                         :else 0))) 0 kill-pairs))))
 
 

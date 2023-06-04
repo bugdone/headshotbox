@@ -10,7 +10,7 @@
 
 (def resolution [1920 1080])
 (def hlae-path "D:\\usr\\hlae\\")
-(def output-folder "e:\\tmp\\movie\\")
+(def output-folder "f:\\tmp\\movie\\")
 
 (defn delete-directory-recursive [^java.io.File file]
   (when (.isDirectory file)
