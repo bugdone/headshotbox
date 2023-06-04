@@ -38,6 +38,7 @@ export type PlayerStats = {
   hsPercent: number;
   kills: number;
   lost: number;
+  lastRank: number;
   openKills: number;
   openKillsAttempted: number;
   rating: number;

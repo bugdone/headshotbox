@@ -10,6 +10,7 @@ import { Format } from 'src/utils/formatters';
 import Loader from 'src/utils/loader';
 
 import StatsCard from 'components/Player/StatsCard.vue';
+import { RANKS } from '../../constants/ranks';
 
 /* ====================== Data ====================== */
 
@@ -55,6 +56,17 @@ onMounted(async () => {
         <a :href="`https://steamcommunity.com/profiles/${steamId}`" target="_blank" class="text-2xl">
           {{ playerInfo[steamId]['personaname'] }}
         </a>
+        <q-img
+          fit="cover"
+          class="mx-2 my-2 rounded-lg"
+          width="100px"
+          height="40px"
+          :src="`images/ranks/${stats.lastRank}.png`"
+        >
+          <q-tooltip class="bg-sky-500/95 text-sm shadow-4 text-black" anchor="top middle" self="bottom middle">
+            {{ RANKS[stats.lastRank] }}
+          </q-tooltip>
+        </q-img>
       </div>
 
       <StatsCard

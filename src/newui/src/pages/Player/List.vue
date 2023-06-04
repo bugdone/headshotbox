@@ -74,8 +74,7 @@ watch(
   selectedFolder,
   debounce(() => {
     tableRef.value.requestServerInteraction();
-  }, 300),
-  { deep: true }
+  }, 100)
 );
 </script>
 
