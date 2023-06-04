@@ -2,12 +2,13 @@
 import debounce from 'lodash/debounce';
 import snakeCase from 'lodash/snakeCase';
 import { date } from 'quasar';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 import { RANKS } from 'src/constants/ranks';
 import type { DataTableHeader, DataTablePagination, DataTableRequestDetails } from '@/types/dataTable';
 import type { PlayerResponse } from '@/types/player';
 
+import { ConfigApi } from 'src/api/config';
 import { PlayerApi } from 'src/api/player';
 import { ROUTES } from 'src/router/routes';
 
@@ -29,6 +30,8 @@ const pagination = ref({
   rowsNumber: 0,
 } as DataTablePagination);
 const isLoading = ref(false);
+const selectedFolder = ref('All');
+let folders = [] as string[];
 
 /* ====================== Methods ====================== */
 
@@ -36,7 +39,7 @@ const getData = debounce(async (tableProps: DataTableRequestDetails) => {
   isLoading.value = true;
   pagination.value.page = tableProps.pagination?.page || pagination.value.page;
   pagination.value.rowsPerPage = tableProps.pagination?.rowsPerPage || pagination.value.rowsPerPage;
-  pagination.value.sortBy = tableProps.pagination?.sortBy || pagination.value.sortBy;
+  pagination.value.sortBy = tableProps.pagination?.sortBy || 'last_timestamp';
   pagination.value.descending = tableProps.pagination?.descending || pagination.value.descending;
 
   if (pagination.value.page && pagination.value.rowsPerPage) {
@@ -48,6 +51,7 @@ const getData = debounce(async (tableProps: DataTableRequestDetails) => {
       ...(pagination.value.sortBy && pagination.value.sortBy.length > 0
         ? { orderBy: snakeCase(pagination.value.sortBy) }
         : {}),
+      ...(selectedFolder.value !== 'All' ? { folder: selectedFolder.value } : {}),
     });
 
     players.value = data.players;
@@ -61,7 +65,18 @@ const getData = debounce(async (tableProps: DataTableRequestDetails) => {
 
 onMounted(async () => {
   tableRef.value.requestServerInteraction();
+
+  folders = await ConfigApi.folders();
+  folders.unshift('All');
 });
+
+watch(
+  selectedFolder,
+  debounce(() => {
+    tableRef.value.requestServerInteraction();
+  }, 300),
+  { deep: true }
+);
 </script>
 
 <template>
@@ -82,8 +97,11 @@ onMounted(async () => {
       binary-state-sort
     >
       <template #top>
-        <div class="my-2" v-show="pagination.rowsNumber > 0">
-          <span>{{ pagination.rowsNumber }} Results</span>
+        <div class="flex items-center justify-between w-full" v-show="pagination.rowsNumber > 0">
+          <div>{{ pagination.rowsNumber }} Results</div>
+          <div style="min-width: 100px">
+            <q-select v-model="selectedFolder" :options="folders" label="Folders" dense />
+          </div>
         </div>
       </template>
 
