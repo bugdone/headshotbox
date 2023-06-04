@@ -24,15 +24,12 @@
       "assets/*": [
         "src/assets/*"
       ],
-      "api/*": [
-        "src/api/*"
-      ],
       "boot/*": [
         "src/boot/*"
       ],
       "stores/*": [
         "src/stores/*"
-      ]
+      ],
     }
   },
   "include": [

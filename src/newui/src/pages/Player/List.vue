@@ -1,14 +1,15 @@
 <script setup lang="ts">
+import debounce from 'lodash/debounce';
+import snakeCase from 'lodash/snakeCase';
 import { date } from 'quasar';
 import { onMounted, ref } from 'vue';
 
-import { ROUTES } from 'src/router/routes';
 import { RANKS } from 'src/constants/ranks';
 import type { DataTableHeader, DataTablePagination, DataTableRequestDetails } from '@/types/dataTable';
 import type { PlayerResponse } from '@/types/player';
 
 import { PlayerApi } from 'src/api/player';
-import debounce from 'lodash/debounce';
+import { ROUTES } from 'src/router/routes';
 
 /* ====================== Data ====================== */
 
@@ -16,7 +17,7 @@ const tableRef = ref();
 const players = ref([] as PlayerResponse[]);
 const columns = [
   { label: 'Name', name: 'steamInfo', field: 'steamInfo', align: 'left', style: 'width: 35%' },
-  { label: 'Rank', name: 'lastRank', field: 'lastRank', align: 'center' },
+  { label: 'MM Rank', name: 'lastRank', field: 'lastRank', align: 'center', sortable: true },
   { label: 'Demos', name: 'demos', field: 'demos', align: 'center', sortable: true },
   { label: 'Last Played', name: 'lastTimestamp', field: 'lastTimestamp', align: 'center', sortable: true },
 ] as DataTableHeader[];
@@ -40,8 +41,13 @@ const getData = debounce(async (tableProps: DataTableRequestDetails) => {
 
   if (pagination.value.page && pagination.value.rowsPerPage) {
     const data = await PlayerApi.get({
-      limit: pagination.value.rowsPerPage,
-      offset: (pagination.value.page - 1) * pagination.value.rowsPerPage,
+      ...{
+        limit: pagination.value.rowsPerPage,
+        offset: (pagination.value.page - 1) * pagination.value.rowsPerPage,
+      },
+      ...(pagination.value.sortBy && pagination.value.sortBy.length > 0
+        ? { orderBy: snakeCase(pagination.value.sortBy) }
+        : {}),
     });
 
     players.value = data.players;
