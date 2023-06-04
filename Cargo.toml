@@ -3,4 +3,5 @@
 members = [
     "csgo-demo-parser",
     "csdemoparser",
+    "parsetest",
 ]
