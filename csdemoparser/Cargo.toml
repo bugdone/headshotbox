@@ -1,0 +1,20 @@
+[package]
+name = "csdemoparser"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0"
+bitstream-io = "1.0"
+byteorder = "1.4"
+csgo-demo-parser = { path = "../csgo-demo-parser" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+
+[dev-dependencies]
+assert-json-diff = "2.0.2"
+protobuf = { version = "3.2.0", features = ["with-bytes"] }

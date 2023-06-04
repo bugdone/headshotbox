@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "csgo-demo-parser",
+    "csdemoparser",
+]

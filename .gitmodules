@@ -1,0 +1,3 @@
+[submodule "csdemoparser/csgo-demo-parser"]
+	path = csgo-demo-parser
+	url = https://github.com/abenea/csgo-demo-parser.git
