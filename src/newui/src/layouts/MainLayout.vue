@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { useQuasar } from 'quasar';
+import { computed, provide, ref } from 'vue';
 
 import { ROUTES } from 'src/router/routes';
 
@@ -28,27 +29,40 @@ const essentialLinks: EssentialLinkProps[] = [
   },
   {
     title: 'View Source',
-    caption: 'Contribute or get the latest release',
     icon: 'mdi-github',
     link: 'https://github.com/bugdone/headshotbox',
   },
 ];
-const leftDrawerOpen = ref(false);
+const $q = useQuasar();
 
 const version = computed(() => import.meta.env.VITE_VERSION);
 
+const userMiniState = computed(() => {
+  if ($q.localStorage.has('menuMiniState')) {
+    return $q.localStorage.getItem('menuMiniState');
+  }
+
+  return false;
+});
+const miniState = ref(userMiniState.value as boolean);
+
 /* ====================== Functions ====================== */
 
-function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-}
+const saveMiniState = () => {
+  miniState.value = !miniState.value;
+  $q.localStorage.set('menuMiniState', miniState.value);
+};
+
+/* ====================== Hooks ====================== */
+
+provide('drawerMiniState', miniState);
 </script>
 
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr lff">
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="saveMiniState" />
 
         <q-toolbar-title> HeadshotBox </q-toolbar-title>
 
@@ -56,12 +70,8 @@ function toggleLeftDrawer() {
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
-        <q-item-label header>
-          <q-img src="images/hsbox.png" fit="contain" :ratio="16 / 9" />
-        </q-item-label>
-
+    <q-drawer show-if-above bordered :mini="miniState">
+      <q-list class="mt-4">
         <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
