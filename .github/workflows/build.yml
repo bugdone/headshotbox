@@ -36,7 +36,7 @@ jobs:
     - name: Install Leiningen
       uses: DeLaGuardo/setup-clojure@11.0
       with:
-        lein: '2.10'
+        lein: '2.10.0'
     - name: Build jar
       run: LEIN_SNAPSHOTS_IN_RELEASE=1 lein uberjar
     # Package
