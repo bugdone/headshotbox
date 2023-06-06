@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  push:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+    - uses: Swatinem/rust-cache@v1
+    - name: Build csdemoparser
+      run: cargo build -p csdemoparser --release --verbose
+    - name: Test csdemoparser
+      run: cargo test -p csdemoparser --release --verbose
+    - uses: actions/upload-artifact@v3
+      with:
+        name: headshotbox
+        path: target/release/csdemoparser
