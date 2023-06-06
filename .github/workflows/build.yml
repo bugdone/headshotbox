@@ -14,12 +14,35 @@ jobs:
     - uses: actions/checkout@v3
       with:
         submodules: true
-    - uses: Swatinem/rust-cache@v1
+    # Rust
+    - uses: Swatinem/rust-cache@v2
+      with:
+        workspaces: '. -> build'
     - name: Build csdemoparser
-      run: cargo build -p csdemoparser --release --verbose
+      run: cargo build -p csdemoparser --release --target-dir=build
     - name: Test csdemoparser
-      run: cargo test -p csdemoparser --release --verbose
+      run: cargo test -p csdemoparser --release --target-dir=build
+    # oldui
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - run: npm install -g bower
+    - run: bower install
+    # Clojure
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+    - name: Install Leiningen
+      uses: DeLaGuardo/setup-clojure@11.0
+      with:
+        lein: '2.10'
+    - name: Build jar
+      run: LEIN_SNAPSHOTS_IN_RELEASE=1 lein uberjar
+    # Package
+    - name: Zip
+      run: zip -j headshotbox.zip target/hsbox-*-standalone.jar build/release/csdemoparser
     - uses: actions/upload-artifact@v3
       with:
-        name: headshotbox
-        path: target/release/csdemoparser
+        name: headshotbox.zip
+        path: headshotbox.zip
