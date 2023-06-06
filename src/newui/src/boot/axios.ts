@@ -14,10 +14,7 @@ declare module '@vue/runtime-core' {
 // good idea to move this instance creation inside the
 // "export default () => {}" function below (which runs individually
 // for each client)
-const api = applyCaseMiddleware(axios.create({ baseURL: `${import.meta.env.VITE_API_URL}` }), {
-  // TODO: remove this after parameter is converted to snake case
-  preservedKeys: ['orderBy'],
-});
+const api = applyCaseMiddleware(axios.create({ baseURL: `${import.meta.env.VITE_API_URL}` }));
 
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api

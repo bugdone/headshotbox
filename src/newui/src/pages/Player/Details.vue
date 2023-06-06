@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+import { RANKS } from 'src/constants/ranks';
 import type { PlayerInfoResponse, PlayerStats } from '@/types/player';
 
 import { PlayerApi } from 'src/api/player';
@@ -10,7 +11,7 @@ import { Format } from 'src/utils/formatters';
 import Loader from 'src/utils/loader';
 
 import StatsCard from 'components/Player/StatsCard.vue';
-import { RANKS } from '../../constants/ranks';
+import Help from 'components/Player/Help.vue';
 
 /* ====================== Data ====================== */
 
@@ -125,7 +126,11 @@ onMounted(async () => {
             tooltip: 'Assists per round',
           },
         ]"
-      />
+      >
+        <template #Rating>
+          <Help />
+        </template>
+      </StatsCard>
 
       <StatsCard
         :header="{

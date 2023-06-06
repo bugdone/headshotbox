@@ -62,6 +62,7 @@ const getSkillColor = (value: number) => {
                   </q-tooltip>
                 </q-icon>
               </template>
+              <slot :name="stat.label"></slot>
             </div>
           </q-item-section>
           <q-item-section side class="font-mono">
