@@ -3,6 +3,15 @@
 * `npm i`
 * `npm run dev`
 
+# Building newui
+
+```bash
+cd src/newui
+nvm use
+npm run build
+cp -R dist/spa/* ../../resources/public/newui
+```
+
 # Development Setup
 
 * `bower install`
