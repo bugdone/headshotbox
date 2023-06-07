@@ -16,12 +16,10 @@ jobs:
         submodules: true
     # Rust
     - uses: Swatinem/rust-cache@v2
-      with:
-        workspaces: '. -> build'
     - name: Build csdemoparser
-      run: cargo build -p csdemoparser --release --target-dir=build
+      run: cargo build -p csdemoparser --release
     - name: Test csdemoparser
-      run: cargo test -p csdemoparser --release --target-dir=build
+      run: cargo test -p csdemoparser --release
     # oldui
     - uses: actions/setup-node@v3
       with:
@@ -41,8 +39,8 @@ jobs:
       run: LEIN_SNAPSHOTS_IN_RELEASE=1 lein uberjar
     # Package
     - name: Zip
-      run: zip -j headshotbox.zip target/hsbox-*-standalone.jar build/release/csdemoparser
+      run: zip -j headshotbox.zip target-lein/hsbox-*-standalone.jar target/release/csdemoparser
     - uses: actions/upload-artifact@v3
       with:
-        name: headshotbox.zip
+        name: headshotbox
         path: headshotbox.zip

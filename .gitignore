@@ -1,5 +1,5 @@
 /target
-/classes
+/target-lein
 /checkouts
 pom.xml
 pom.xml.asc
