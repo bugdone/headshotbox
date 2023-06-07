@@ -24,8 +24,17 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: 'src/newui/package-lock.json'
     - run: npm install -g bower
     - run: bower install
+    # newui
+    - name: newui
+      run: |
+        cd src/newui
+        npm install
+        npm run build
+        cp -R dist/spa/* ../../resources/public/
     # Clojure
     - uses: actions/setup-java@v3
       with:

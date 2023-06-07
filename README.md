@@ -13,7 +13,7 @@ npm run dev
 cd src/newui
 nvm use
 npm run build
-cp -R dist/spa/* ../../resources/public/newui
+cp -R dist/spa/* ../../resources/public/
 ```
 
 # Development Setup

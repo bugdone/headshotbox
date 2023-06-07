@@ -1,2 +1,5 @@
-newui/*
-!newui/.gitkeep
+assets
+icons
+images
+favicon.ico
+index.html
