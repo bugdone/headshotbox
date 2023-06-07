@@ -79,7 +79,7 @@ watch(
 </script>
 
 <template>
-  <q-page class="p-6">
+  <q-page class="px-6 py-1">
     <q-table
       ref="tableRef"
       :rows="players"
@@ -94,9 +94,12 @@ watch(
       :loading="isLoading"
       color="primary"
       binary-state-sort
+      dense
+      flat
+      separator="horizontal"
     >
       <template #top>
-        <div class="flex items-center justify-between w-full" v-show="pagination.rowsNumber > 0">
+        <div class="flex items-baseline justify-between w-full mb-2" v-show="pagination.rowsNumber > 0">
           <div>{{ pagination.rowsNumber }} Results</div>
           <div style="min-width: 100px">
             <q-select v-model="selectedFolder" :options="folders" label="Folders" dense />
@@ -104,21 +107,29 @@ watch(
         </div>
       </template>
 
+      <template #header-cell="props">
+        <q-th :props="props">
+          <span class="text-base font-bold">{{ props.col.label }}</span>
+        </q-th>
+      </template>
+
       <template #body-cell-steamInfo="props">
         <q-td :props="props">
           <div class="row no-wrap">
             <q-img
-              :src="props.row.steamInfo.avatarfull"
+              v-if="props.row.steamInfo"
+              :src="props.row.steamInfo.avatarfull || ''"
               fit="cover"
-              width="60px"
-              height="60px"
-              class="mx-2 rounded-md"
+              width="40px"
+              height="40px"
+              class="mr-2 rounded-md"
             />
+            <q-icon v-else name="mdi-account" size="60px" color="primary" />
             <router-link
               class="text-base self-center"
               :to="{ name: ROUTES.playerDetails, params: { id: props.row.steamid } }"
             >
-              {{ props.row.steamInfo ? props.row.steamInfo.personaname : 'Anonymous' }}
+              {{ props.row.steamInfo ? props.row.steamInfo.personaname : props.row.name }}
             </router-link>
           </div>
         </q-td>
@@ -128,9 +139,9 @@ watch(
         <q-td :props="props">
           <q-img
             fit="cover"
-            class="mx-2 my-1 rounded-lg"
-            width="100px"
-            height="40px"
+            class="my-1 rounded-lg"
+            width="90px"
+            height="38px"
             :src="`images/ranks/${props.row.lastRank}.png`"
           >
             <q-tooltip class="bg-sky-500/95 text-sm shadow-4 text-black" anchor="top middle" self="bottom middle">
