@@ -1,9 +1,13 @@
 # Development setup newui
-* `nvm use`
-* `npm i`
-* `npm run dev`
 
-# Building newui
+```bash
+cd src/newui
+nvm use
+npm i
+npm run dev
+```
+
+# Build newui
 
 ```bash
 cd src/newui
