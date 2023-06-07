@@ -49,11 +49,23 @@
 (defn set-demoinfo-dir [dir]
   (def demoinfo-dir-path dir))
 
+(defn find-demoparser []
+  (let [csdemoparser (str demoinfo-dir-path "/csdemoparser")
+        csdemoparser-dev (str demoinfo-dir-path "/target/release/csdemoparser")
+        demoinfogo (str demoinfo-dir-path "/demoinfogo")]
+    (cond
+      (file-exists? csdemoparser) [csdemoparser]
+      (file-exists? csdemoparser-dev) [csdemoparser-dev]
+      (file-exists? demoinfogo) [demoinfogo "-hsbox"]
+      :else (throw (Exception. (str "No demo parser found in '" demoinfo-dir-path "'"))))))
+
+(def demoparser (memoize find-demoparser))
+
 (defn parse-demo [path]
   (let [json-cache (get-parser-cache)
         json-path (str json-cache "/" (.getName (as-file path)) ".json")
         do-parse (fn []
-                   (let [proc (clojure.java.shell/sh (str demoinfo-dir-path "/demoinfogo") path "-hsbox")]
+                   (let [proc (apply clojure.java.shell/sh (conj (demoparser) path))]
                      (assert (zero? (:exit proc)) (:err proc))
                      (:out proc)))]
     (if (nil? json-cache)
