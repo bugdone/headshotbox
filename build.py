@@ -7,7 +7,7 @@ import shutil
 
 os.system('lein clean')
 os.system('LEIN_SNAPSHOTS_IN_RELEASE=1 lein uberjar')
-jar = [f for f in os.listdir('./target') if f.endswith('-standalone.jar')][0]
+jar = [f for f in os.listdir('./target-lein') if f.endswith('-standalone.jar')][0]
 version = jar.split('-')[1]
 
 for os_name in ['linux', 'win']:
@@ -18,7 +18,7 @@ for os_name in ['linux', 'win']:
         shutil.rmtree(dir_name)
     os.mkdir(dir_name)
     shutil.copytree(demoinfogo, path)
-    shutil.copy('target/' + jar, path)
+    shutil.copy('target-lein/' + jar, path)
 
     def write_launcher(filename, content):
         with open(path + '/' + filename, 'w') as f:

@@ -44,6 +44,12 @@ jobs:
       uses: DeLaGuardo/setup-clojure@11.0
       with:
         lein: '2.10.0'
+    - name: Cache Clojure dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: cljdeps-${{ hashFiles('project.clj') }}
+        restore-keys: cljdeps-
     - name: Build jar
       run: LEIN_SNAPSHOTS_IN_RELEASE=1 lein uberjar
     # Package
