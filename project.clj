@@ -27,6 +27,7 @@
 
   :java-source-paths ["protosrc", "src/hsbox/java"]
   :javac-options ["-target" "1.7" "-source" "1.7"]
+  :jar-exclusions [#"^newui/"]
   :uberjar {:aot :all}
   :target-path "target-lein"
   :aot [hsbox.core]

@@ -9,7 +9,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
       with:
@@ -52,9 +52,13 @@ jobs:
         restore-keys: cljdeps-
     - name: Build jar
       run: LEIN_SNAPSHOTS_IN_RELEASE=1 lein uberjar
+    - run: |
+        mv target-lein/hsbox-*-standalone.jar target-lein/hsbox-standalone.jar
+        echo 'java -jar hsbox-standalone.jar --port 4000' > target-lein/headshotbox.sh
+        chmod a+x target-lein/headshotbox.sh
     # Package
     - name: Zip
-      run: zip -j headshotbox.zip target-lein/hsbox-*-standalone.jar target/release/csdemoparser
+      run: zip -j headshotbox.zip target-lein/hsbox-standalone.jar target-lein/headshotbox.sh target/release/csdemoparser
     - uses: actions/upload-artifact@v3
       with:
         name: headshotbox
