@@ -3,6 +3,7 @@
   (:require [hsbox.util :refer [file-exists? file-name]])
   (:require [hsbox.db :as db])
   (:require [hsbox.version :refer [os-name]])
+  (:require [hsbox.env :as env])
   (:require [clojure.java.io :as io])
   (:require [clojure.string :as str]))
 
@@ -114,7 +115,6 @@
 
                (into (mapcat #(generate-pov demo % steamid) augmented-rounds)))}))
 
-(def raw-data-folder "e:\\tmp\\movie\\tmp")
 (defn escape-path [path] (str "\"" path "\""))
 
 (defn vdm-round-highlights [demo steamid round-number kill-filter]
@@ -125,8 +125,8 @@
         context-before-first-kill (sec-to-tick demo 5)
         context-after-last-kill (sec-to-tick demo 3)
         context-before-kill (sec-to-tick demo 3)
-        close-kills (sec-to-tick demo 3)
         context-after-kill (sec-to-tick demo 1)
+        close-kills (sec-to-tick demo 3)
         ; TODO (:tick round) for movie
         start-tick (- (:tick (first kills)) context-before-first-kill)
         kill-pairs (map vector kills (rest kills))
@@ -158,32 +158,32 @@
         _ (println clips-info)
         _ (debug "Round" round steamid user-id)
         entity-id (inc (get-in demo [:player_slots steamid]))]
-        {:tick     start-tick
-         :vdm      (-> [(start-command "exec movie")
-                        (start-command "spec_player " entity-id)
-                        (start-command "mirv_deathmsg block !" user-id " *")
-                        (start-command "mirv_deathmsg highLightId " user-id)
-                        (start-command "spec_show_xray 0")
-                        (start-command (str "mirv_streams record name " (escape-path raw-data-folder)))
-                        {:factory  "PlayCommands"
-                         :tick     (+ (:tick (last kills)) context-after-last-kill 50)
-                         :commands "quit"}]
-                       ; TODO more context for nades
-                       ; TODO slowmo for jumpshot
-                       (into (filter identity
-                                     (apply concat
-                                            (map
-                                              ; TODO don't set it on if collateral and penetrated?
-                                              #(if (or (>= (:penetrated %) 1) (:smoke %))
-                                                 [{:factory  "PlayCommands"
-                                                   :tick     (- (:tick %) (sec-to-tick demo 1))
-                                                   :commands "spec_show_xray 1"}
-                                                  {:factory  "PlayCommands"
-                                                   :tick     (+ (:tick %) (sec-to-tick demo 0.3))
-                                                   :commands "spec_show_xray 0"}])
-                                              kills))))
-                       (into (:commands clips-info)))
-         :clip-ids (:clip-ids clips-info)}))
+    {:tick     start-tick
+     :vdm      (-> [(start-command "exec movie")
+                    (start-command "spec_player " entity-id)
+                    (start-command "mirv_deathmsg block !" user-id " *")
+                    (start-command "mirv_deathmsg highLightId " user-id)
+                    (start-command "spec_show_xray 0")
+                    (start-command (str "mirv_streams record name " (escape-path env/raw-data-folder)))
+                    {:factory  "PlayCommands"
+                     :tick     (+ (:tick (last kills)) context-after-last-kill 50)
+                     :commands "quit"}]
+                   ; TODO more context for nades
+                   ; TODO slowmo for jumpshot
+                   (into (filter identity
+                                 (apply concat
+                                        (map
+                                          ; TODO don't set it on if collateral and penetrated?
+                                          #(if (or (>= (:penetrated %) 1) (:smoke %))
+                                             [{:factory  "PlayCommands"
+                                               :tick     (- (:tick %) (sec-to-tick demo 1))
+                                               :commands "spec_show_xray 1"}
+                                              {:factory  "PlayCommands"
+                                               :tick     (+ (:tick %) (sec-to-tick demo 0.3))
+                                               :commands "spec_show_xray 0"}])
+                                          kills))))
+                   (into (:commands clips-info)))
+     :clip-ids (:clip-ids clips-info)}))
 
 (defn vdm-watch [demo steamid tick tick-end]
   (let [user-id (get (:player_slots demo) steamid 0)
@@ -195,7 +195,7 @@
                              {:factory  "PlayCommands"
                               :tick     (or tick 0)
                               :commands (str "spec_player " (inc user-id))})
-               ; but spec_player_by_accountid works without player_slots so we'll keep both
+               ; but spec_player_by_accountid works without player_slots, so we'll keep both
                (append-maybe true {:factory  "PlayCommands"
                                    :tick     (or tick 0)
                                    :commands (str "spec_player_by_accountid " steamid)})
@@ -235,6 +235,11 @@
 (defn delete-vdm [vdm-path]
   (debug "Deleting vdm file" vdm-path)
   (io/delete-file vdm-path true))
+
+(defn kill-csgo-process []
+  (if (= os-name "windows")
+    (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
+    (clojure.java.shell/sh "killall" "-9" "csgo_linux")))
 
 (defn write-vdm-file
   "Write VDM file if needed and return start tick"
@@ -297,21 +302,19 @@
                   (delete-vdm vdm-path))
                 (do
                   (debug "Writing vdm file" vdm-path))))
-                  ;(spit vdm-path (generate-vdm
-                  ;                 (case highlight
-                  ;                   "high_enemy" (vdm-highlights demo steamid)
-                  ;                   "pov" (vdm-pov demo steamid)
-                  ;                   (vdm-watch demo steamid tick
-                  ;                              (when round (+ (:tick_end round)
-                  ;                                             (stats/seconds-to-ticks 5 (:tickrate demo))))))))
+            ;(spit vdm-path (generate-vdm
+            ;                 (case highlight
+            ;                   "high_enemy" (vdm-highlights demo steamid)
+            ;                   "pov" (vdm-pov demo steamid)
+            ;                   (vdm-watch demo steamid tick
+            ;                              (when round (+ (:tick_end round)
+            ;                                             (stats/seconds-to-ticks 5 (:tickrate demo))))))))
 
             (when (and (:playdemo_kill_csgo (db/get-config)))
-              (if (= os-name "windows")
-                (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
-                (clojure.java.shell/sh "killall" "-9" "csgo_linux")))
-            (clojure.java.shell/sh (System/getenv "STEAM_PATH") "-applaunch" "730" "+playdemo" (str play-path (when tick (str "@" tick)) " "
-                                                                                                    (when (#{"high" "low"} highlight) steamid)
-                                                                                                    (when (= highlight "low") " lowlights")))))))))
+              (kill-csgo-process))
+            (clojure.java.shell/sh env/steam-path "-applaunch" "730" "+playdemo" (str play-path (when tick (str "@" tick)) " "
+                                                                                      (when (#{"high" "low"} highlight) steamid)
+                                                                                      (when (= highlight "low") " lowlights")))))))))
 
 (defn delete-generated-files []
   (let [path (db/get-demo-directory)]
@@ -320,8 +323,3 @@
          (map #(when (and (.endsWith (.getName %) ".vdm") (generated-by-hsbox %))
                  (delete-vdm (.getAbsolutePath %))))
          dorun)))
-
-(defn kill-csgo-process []
-  (if (= os-name "windows")
-    (clojure.java.shell/sh "taskkill" "/im" "csgo.exe" "/F")
-    (clojure.java.shell/sh "killall" "-9" "csgo_linux")))

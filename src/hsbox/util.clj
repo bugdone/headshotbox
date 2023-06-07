@@ -24,5 +24,8 @@
 (defn file-name [path]
   (.getName (clojure.java.io/as-file path)))
 
+(defn make-path [& args]
+  (.getPath (apply clojure.java.io/file args)))
+
 (defn get-canonical-path [path]
   (.getCanonicalPath (as-file path)))
