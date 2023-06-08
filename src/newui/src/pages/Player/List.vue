@@ -2,15 +2,16 @@
 import debounce from 'lodash/debounce';
 import snakeCase from 'lodash/snakeCase';
 import { date, useQuasar } from 'quasar';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
 
 import { RANKS } from 'src/constants/ranks';
 import type { DataTableHeader, DataTablePagination, DataTableRequestDetails } from '@/types/dataTable';
 import type { PlayerResponse } from '@/types/player';
 
-import { ConfigApi } from 'src/api/config';
 import { PlayerApi } from 'src/api/player';
 import { ROUTES } from 'src/router/routes';
+
+import FolderFilter from 'src/components/filters/FolderFilter.vue';
 
 /* ====================== Data ====================== */
 
@@ -31,7 +32,6 @@ const pagination = ref({
 } as DataTablePagination);
 const isLoading = ref(false);
 const selectedFolder = ref('All');
-let folders = [] as string[];
 const $q = useQuasar();
 
 if ($q.localStorage.has('playersListSortBy')) {
@@ -70,21 +70,16 @@ const getData = debounce(async (tableProps: DataTableRequestDetails) => {
   isLoading.value = false;
 }, 50);
 
+const filterChanged = (folder: string) => {
+  selectedFolder.value = folder;
+  tableRef.value.requestServerInteraction();
+};
+
 /* ====================== Hooks ====================== */
 
 onMounted(async () => {
   tableRef.value.requestServerInteraction();
-
-  folders = await ConfigApi.folders();
-  folders.unshift('All');
 });
-
-watch(
-  selectedFolder,
-  debounce(() => {
-    tableRef.value.requestServerInteraction();
-  }, 100)
-);
 </script>
 
 <template>
@@ -111,7 +106,7 @@ watch(
         <div class="flex items-baseline justify-between w-full mb-2" v-show="pagination.rowsNumber > 0">
           <div>{{ pagination.rowsNumber }} Results</div>
           <div style="min-width: 100px">
-            <q-select v-model="selectedFolder" :options="folders" label="Folders" dense />
+            <FolderFilter @changed="filterChanged" />
           </div>
         </div>
       </template>
