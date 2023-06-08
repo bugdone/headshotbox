@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import debounce from 'lodash/debounce';
 import snakeCase from 'lodash/snakeCase';
-import { date } from 'quasar';
+import { date, useQuasar } from 'quasar';
 import { onMounted, ref, watch } from 'vue';
 
 import { RANKS } from 'src/constants/ranks';
@@ -26,12 +26,17 @@ const pagination = ref({
   page: 1,
   rowsPerPage: 20,
   sortBy: '',
-  descending: false,
+  descending: true,
   rowsNumber: 0,
 } as DataTablePagination);
 const isLoading = ref(false);
 const selectedFolder = ref('All');
 let folders = [] as string[];
+const $q = useQuasar();
+
+if ($q.localStorage.has('playersListSortBy')) {
+  pagination.value.sortBy = $q.localStorage.getItem('playersListSortBy') as string;
+}
 
 /* ====================== Methods ====================== */
 
@@ -41,6 +46,10 @@ const getData = debounce(async (tableProps: DataTableRequestDetails) => {
   pagination.value.rowsPerPage = tableProps.pagination?.rowsPerPage || pagination.value.rowsPerPage;
   pagination.value.sortBy = tableProps.pagination?.sortBy || 'last_timestamp';
   pagination.value.descending = tableProps.pagination?.descending || pagination.value.descending;
+
+  if (tableProps.pagination?.sortBy && tableProps.pagination?.sortBy.length > 0) {
+    $q.localStorage.set('playersListSortBy', tableProps.pagination?.sortBy);
+  }
 
   if (pagination.value.page && pagination.value.rowsPerPage) {
     const data = await PlayerApi.get({
@@ -90,13 +99,13 @@ watch(
       class="mt-3"
       :pagination="pagination"
       :rows-per-page-options="[10, 20, 30, 40, 50]"
-      @request="getData"
       :loading="isLoading"
       color="primary"
       binary-state-sort
       dense
       flat
       separator="horizontal"
+      @request="getData"
     >
       <template #top>
         <div class="flex items-baseline justify-between w-full mb-2" v-show="pagination.rowsNumber > 0">
