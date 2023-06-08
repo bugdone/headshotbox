@@ -81,3 +81,5 @@ provide('drawerMiniState', miniState);
     </q-page-container>
   </q-layout>
 </template>
+
+<style lang="scss" scoped></style>

@@ -79,7 +79,7 @@ watch(
 </script>
 
 <template>
-  <q-page class="px-6 py-1">
+  <q-page class="px-6 py-1 main-container">
     <q-table
       ref="tableRef"
       :rows="players"
@@ -170,4 +170,12 @@ watch(
   </q-page>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+body.screen--lg,
+body.screen--xl {
+  .main-container {
+    margin: 0 auto;
+    max-width: 1080px;
+  }
+}
+</style>
