@@ -171,11 +171,12 @@ watch(
 </template>
 
 <style scoped lang="scss">
+body.screen--md,
 body.screen--lg,
 body.screen--xl {
   .main-container {
     margin: 0 auto;
-    max-width: 1080px;
+    max-width: 906px;
   }
 }
 </style>
