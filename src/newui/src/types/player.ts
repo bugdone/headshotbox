@@ -66,3 +66,9 @@ export type PlayerStats = {
 export type PlayerInfoResponse = {
   [k: string]: SteamInfoResponse;
 };
+
+export type PlayerTeamMate = {
+  demos: number;
+  name: string;
+  steamid: string;
+};

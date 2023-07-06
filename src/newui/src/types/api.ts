@@ -4,3 +4,12 @@ export type ApiRequestParams = {
   orderBy?: string;
   folder?: string;
 };
+
+export type StatsRequestParams = {
+  demoType?: string;
+  folder?: string;
+  teammates?: string[];
+  mapName?: string;
+  startDate?: string;
+  endDate?: string;
+};

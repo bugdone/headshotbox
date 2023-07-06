@@ -70,8 +70,8 @@ const getData = debounce(async (tableProps: DataTableRequestDetails) => {
   isLoading.value = false;
 }, 50);
 
-const filterChanged = (folder: string) => {
-  selectedFolder.value = folder;
+const filterChanged = (filter: { folder: string }) => {
+  selectedFolder.value = filter.folder;
   tableRef.value.requestServerInteraction();
 };
 
@@ -142,8 +142,8 @@ onMounted(async () => {
       <template #body-cell-lastRank="props">
         <q-td :props="props">
           <q-img
-            fit="cover"
-            class="my-1 rounded-lg"
+            fit="fill"
+            class="my-1 rounded"
             width="90px"
             height="38px"
             :src="`images/ranks/${props.row.lastRank}.png`"

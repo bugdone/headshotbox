@@ -1,5 +1,5 @@
-import type { ApiRequestParams } from '@/types/api';
-import type { PlayerApiResponse, PlayerInfoResponse, PlayerStats } from '@/types/player';
+import type { ApiRequestParams, StatsRequestParams } from '@/types/api';
+import type { PlayerApiResponse, PlayerInfoResponse, PlayerStats, PlayerTeamMate } from '@/types/player';
 
 import { api } from 'boot/axios';
 
@@ -18,8 +18,20 @@ export const PlayerApi = {
     return data;
   },
 
-  stats: async (steamId: string): Promise<PlayerStats> => {
-    const { data } = await api.get<PlayerStats>(`player/${steamId}/stats`);
+  stats: async (steamId: string, params: StatsRequestParams): Promise<PlayerStats> => {
+    const { data } = await api.get<PlayerStats>(`player/${steamId}/stats`, { params });
+
+    return data;
+  },
+
+  maps: async (steamId: string): Promise<string[]> => {
+    const { data } = await api.get<string[]>(`player/${steamId}/maps`);
+
+    return data;
+  },
+
+  teamMates: async (steamId: string): Promise<PlayerTeamMate[]> => {
+    const { data } = await api.get<PlayerTeamMate[]>(`player/${steamId}/teammates`);
 
     return data;
   },

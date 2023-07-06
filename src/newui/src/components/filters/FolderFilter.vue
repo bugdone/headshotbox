@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import debounce from 'lodash/debounce';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
 import { ConfigApi } from 'src/api/config';
 
@@ -8,7 +7,14 @@ import { ConfigApi } from 'src/api/config';
 
 const selectedFolder = ref('All');
 let folders = ref([] as string[]);
+
 const emits = defineEmits(['changed']);
+
+/* ====================== Methods ====================== */
+
+const changed = () => {
+  emits('changed', { folder: selectedFolder.value });
+};
 
 /* ====================== Hooks ====================== */
 
@@ -16,17 +22,10 @@ const emits = defineEmits(['changed']);
   folders.value = await ConfigApi.folders();
   folders.value.unshift('All');
 })();
-
-watch(
-  selectedFolder,
-  debounce(() => {
-    emits('changed', selectedFolder.value);
-  }, 100)
-);
 </script>
 
 <template>
-  <q-select v-model="selectedFolder" :options="folders" label="Folders" dense />
+  <q-select v-model="selectedFolder" :options="folders" label="Folders" dense @update:modelValue="changed" />
 </template>
 
 <style scoped lang="scss"></style>
