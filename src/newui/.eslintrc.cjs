@@ -89,6 +89,7 @@ module.exports = {
 
     'no-console': 'warn',
     'vue/attribute-hyphenation': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/no-v-html': 'off',
     'vue/valid-v-slot': [

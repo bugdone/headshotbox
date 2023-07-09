@@ -1,176 +1,91 @@
 <script setup lang="ts">
-import debounce from 'lodash/debounce';
-import snakeCase from 'lodash/snakeCase';
-import { date, useQuasar } from 'quasar';
-import { onMounted, ref } from 'vue';
+import { date } from 'quasar';
+import { ref } from 'vue';
 
 import { RANKS } from 'src/constants/ranks';
-import type { DataTableHeader, DataTablePagination, DataTableRequestDetails } from '@/types/dataTable';
-import type { PlayerResponse } from '@/types/player';
+import { ApiRequestParams } from '@/types/api';
+import type { DataTableHeader } from '@/types/dataTable';
+import { PlayerResponse } from '@/types/player';
 
 import { PlayerApi } from 'src/api/player';
 import { ROUTES } from 'src/router/routes';
 
+import DataTable from 'src/components/common/DataTable.vue';
 import FolderFilter from 'src/components/filters/FolderFilter.vue';
 
 /* ====================== Data ====================== */
 
 const tableRef = ref();
-const players = ref([] as PlayerResponse[]);
 const columns = [
   { label: 'Name', name: 'steamInfo', field: 'steamInfo', align: 'left', style: 'width: 35%' },
   { label: 'MM Rank', name: 'lastRank', field: 'lastRank', align: 'center', sortable: true },
   { label: 'Demos', name: 'demos', field: 'demos', align: 'center', sortable: true },
   { label: 'Last Played', name: 'lastTimestamp', field: 'lastTimestamp', align: 'center', sortable: true },
 ] as DataTableHeader[];
-const pagination = ref({
-  page: 1,
-  rowsPerPage: 20,
-  sortBy: '',
-  descending: true,
-  rowsNumber: 0,
-} as DataTablePagination);
-const isLoading = ref(false);
 const selectedFolder = ref('All');
-const $q = useQuasar();
-
-if ($q.localStorage.has('playersListSortBy')) {
-  pagination.value.sortBy = $q.localStorage.getItem('playersListSortBy') as string;
-}
 
 /* ====================== Methods ====================== */
 
-const getData = debounce(async (tableProps: DataTableRequestDetails) => {
-  isLoading.value = true;
-  pagination.value.page = tableProps.pagination?.page || pagination.value.page;
-  pagination.value.rowsPerPage = tableProps.pagination?.rowsPerPage || pagination.value.rowsPerPage;
-  pagination.value.sortBy = tableProps.pagination?.sortBy || 'last_timestamp';
-  pagination.value.descending = tableProps.pagination?.descending || pagination.value.descending;
+const getPlayers = async ({ limit, offset, orderBy }: ApiRequestParams) => {
+  const { playerCount, players } = await PlayerApi.get({
+    ...{ limit, offset, orderBy },
+    ...(selectedFolder.value !== 'All' ? { folder: selectedFolder.value } : {}),
+  });
 
-  if (tableProps.pagination?.sortBy && tableProps.pagination?.sortBy.length > 0) {
-    $q.localStorage.set('playersListSortBy', tableProps.pagination?.sortBy);
-  }
-
-  if (pagination.value.page && pagination.value.rowsPerPage) {
-    const data = await PlayerApi.get({
-      ...{
-        limit: pagination.value.rowsPerPage,
-        offset: (pagination.value.page - 1) * pagination.value.rowsPerPage,
-      },
-      ...(pagination.value.sortBy && pagination.value.sortBy.length > 0
-        ? { orderBy: snakeCase(pagination.value.sortBy) }
-        : {}),
-      ...(selectedFolder.value !== 'All' ? { folder: selectedFolder.value } : {}),
-    });
-
-    players.value = data.players;
-    pagination.value.rowsNumber = data.playerCount;
-  }
-
-  isLoading.value = false;
-}, 50);
+  return {
+    results: players,
+    count: playerCount,
+  };
+};
 
 const filterChanged = (filter: { folder: string }) => {
   selectedFolder.value = filter.folder;
-  tableRef.value.requestServerInteraction();
+  tableRef.value.refresh();
 };
-
-/* ====================== Hooks ====================== */
-
-onMounted(async () => {
-  tableRef.value.requestServerInteraction();
-});
 </script>
 
 <template>
   <q-page class="px-6 py-1 main-container">
-    <q-table
-      ref="tableRef"
-      :rows="players"
-      v-model:pagination="pagination"
-      :columns="columns"
-      loading-label="Loading ... Please wait"
-      no-results-label="No results"
-      class="mt-3"
-      :pagination="pagination"
-      :rows-per-page-options="[10, 20, 30, 40, 50]"
-      :loading="isLoading"
-      color="primary"
-      binary-state-sort
-      dense
-      flat
-      separator="horizontal"
-      @request="getData"
-    >
-      <template #top>
-        <div class="flex items-baseline justify-between w-full mb-2" v-show="pagination.rowsNumber > 0">
-          <div>{{ pagination.rowsNumber }} Results</div>
-          <div style="min-width: 100px">
-            <FolderFilter @changed="filterChanged" />
-          </div>
+    <DataTable ref="tableRef" :columns="columns" entityName="player" :apiCall="getPlayers">
+      <template #top-Filter>
+        <div style="min-width: 100px">
+          <FolderFilter @changed="filterChanged" />
         </div>
       </template>
 
-      <template #header-cell="props">
-        <q-th :props="props">
-          <span class="text-base font-bold">{{ props.col.label }}</span>
-        </q-th>
-      </template>
-
-      <template #body-cell-steamInfo="props">
-        <q-td :props="props">
-          <div class="row no-wrap">
-            <q-img
-              v-if="props.row.steamInfo"
-              :src="props.row.steamInfo.avatarfull || ''"
-              fit="cover"
-              width="40px"
-              height="40px"
-              class="mr-2 rounded-md"
-            />
-            <q-icon v-else name="mdi-account" size="60px" color="primary" />
-            <router-link
-              class="text-base self-center"
-              :to="{ name: ROUTES.playerDetails, params: { id: props.row.steamid } }"
-            >
-              {{ props.row.steamInfo ? props.row.steamInfo.personaname : props.row.name }}
-            </router-link>
-          </div>
-        </q-td>
-      </template>
-
-      <template #body-cell-lastRank="props">
-        <q-td :props="props">
+      <template #steamInfo="item: PlayerResponse">
+        <div class="row">
           <q-img
-            fit="fill"
-            class="my-1 rounded"
-            width="90px"
-            height="38px"
-            :src="`images/ranks/${props.row.lastRank}.png`"
-          >
-            <q-tooltip class="bg-sky-500/95 text-sm shadow-4 text-black" anchor="top middle" self="bottom middle">
-              {{ RANKS[props.row.lastRank] }}
-            </q-tooltip>
-          </q-img>
-        </q-td>
+            v-if="item.steamInfo"
+            :src="item.steamInfo.avatarfull || ''"
+            fit="cover"
+            width="40px"
+            height="40px"
+            class="mr-2 rounded-md"
+          />
+          <q-icon v-else name="mdi-account" size="60px" color="primary" />
+          <router-link class="text-base self-center" :to="{ name: ROUTES.playerDetails, params: { id: item.steamid } }">
+            {{ item.steamInfo ? item.steamInfo.personaname : item.name }}
+          </router-link>
+        </div>
       </template>
 
-      <template #body-cell-demos="props">
-        <q-td :props="props">
-          <span class="text-base">{{ props.row.demos }}</span>
-        </q-td>
+      <template #lastRank="item: PlayerResponse">
+        <q-img fit="fill" class="my-1 rounded" width="90px" height="38px" :src="`images/ranks/${item.lastRank}.png`">
+          <q-tooltip class="bg-sky-500/95 text-sm shadow-4 text-black" anchor="top middle" self="bottom middle">
+            {{ RANKS[item.lastRank] }}
+          </q-tooltip>
+        </q-img>
       </template>
 
-      <template #body-cell-lastTimestamp="props">
-        <q-td :props="props">
-          {{ date.formatDate(props.row.lastTimestamp * 1000, 'D MMM YYYY') }}
-        </q-td>
+      <template #demos="item: PlayerResponse">
+        <span class="text-base">{{ item.demos }}</span>
       </template>
 
-      <template #loading>
-        <q-inner-loading showing color="primary" class="mt-4" />
+      <template #lastTimestamp="item: PlayerResponse">
+        {{ date.formatDate(item.lastTimestamp * 1000, 'D MMM YYYY') }}
       </template>
-    </q-table>
+    </DataTable>
   </q-page>
 </template>
 

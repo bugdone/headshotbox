@@ -20,6 +20,10 @@ import MapFilter from 'components/filters/MapFilter.vue';
 import RoundFilter from 'components/filters/RoundFilter.vue';
 import TeamMatesFilter from 'components/filters/TeamMatesFilter.vue';
 import DateRangeFilter from 'components/filters/DateRangeFilter.vue';
+import PlayerBanned from 'components/Player/Banned.vue';
+import PlayerCharts from 'components/Player/Charts.vue';
+import PlayerDemos from 'components/Player/Demos.vue';
+import PlayerWeaponStats from 'components/Player/WeaponStats.vue';
 
 /* ====================== Data ====================== */
 
@@ -30,6 +34,8 @@ const playerInfo = ref({} as PlayerInfoResponse);
 const isLoading = ref(false);
 const filtersExpanded = ref(false);
 const filters = ref({} as Dictionary);
+const tab = ref('demos');
+const splitterModel = ref(20);
 
 let steamId = '';
 
@@ -232,6 +238,45 @@ provide('steamId', route.params.id);
         ]"
       />
     </div>
+
+    <q-splitter v-model="splitterModel" class="py-6" disable style="min-width: 80%">
+      <template #before>
+        <q-tabs v-model="tab" class="text-primary" vertical>
+          <q-tab name="demos" icon="mdi-history" label="Demos" />
+          <q-tab name="weapon-stats" icon="mdi-bullseye" label="Weapon Stats" />
+          <q-tab name="banned-players" icon="mdi-cancel" label="Banned Players" />
+          <q-tab name="charts" icon="mdi-chart-bar" label="Charts" />
+        </q-tabs>
+      </template>
+
+      <template #after>
+        <q-tab-panels
+          v-model="tab"
+          animated
+          class="min-w-full"
+          swipeable
+          transition-next="jump-up"
+          transition-prev="jump-up"
+          vertical
+        >
+          <q-tab-panel name="demos">
+            <PlayerDemos />
+          </q-tab-panel>
+
+          <q-tab-panel name="weapon-stats">
+            <PlayerWeaponStats />
+          </q-tab-panel>
+
+          <q-tab-panel name="banned-players">
+            <PlayerBanned />
+          </q-tab-panel>
+
+          <q-tab-panel name="charts">
+            <PlayerCharts />
+          </q-tab-panel>
+        </q-tab-panels>
+      </template>
+    </q-splitter>
   </q-page>
 </template>
 
