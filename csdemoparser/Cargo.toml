@@ -7,9 +7,11 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0"
-bitstream-io = "1.0"
+bitstream-io.workspace = true
 byteorder = "1.4"
 csgo-demo-parser = { path = "../csgo-demo-parser" }
+cs2-demo = { path = "../cs2-demo" }
+demo-format = { path = "../demo-format" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 thiserror = "1.0"

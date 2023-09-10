@@ -1,4 +1,4 @@
-use crate::entity::{BitReader, CoordType, EntityReader, PropValue, Scalar, Vector};
+use crate::entity::{BitReader, PropValue, Scalar, ValveBitReader, Vector};
 use crate::num_bits;
 use anyhow::bail;
 use bitstream_io::BitRead;
@@ -6,6 +6,7 @@ use csgo_demo_parser::messages::csvcmsg_class_info;
 use csgo_demo_parser::messages::csvcmsg_send_table::Sendprop_t;
 use csgo_demo_parser::messages::CSVCMsg_SendTable;
 use csgo_demo_parser::parser::data_table::DataTables;
+use demo_format::read::CoordType;
 use std::collections::HashMap;
 use std::io;
 use std::string::FromUtf8Error;
