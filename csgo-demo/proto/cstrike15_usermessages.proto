@@ -1,0 +1,91 @@
+enum USR_Messages {
+	usr_VGUIMenu = 1;
+	usr_Geiger = 2;
+	usr_Train = 3;
+	usr_HudText = 4;
+	usr_SayText = 5;
+	usr_SayText2 = 6;
+	usr_TextMsg = 7;
+	usr_HudMsg = 8;
+	usr_ResetHud = 9;
+	usr_GameTitle = 10;
+	usr_Shake = 12;
+	usr_Fade = 13;
+	usr_Rumble = 14;
+	usr_CloseCaption = 15;
+	usr_CloseCaptionDirect = 16;
+	usr_SendAudio = 17;
+	usr_RawAudio = 18;
+	usr_VoiceMask = 19;
+	usr_RequestState = 20;
+	usr_Damage = 21;
+	usr_RadioText = 22;
+	usr_HintText = 23;
+	usr_KeyHintText = 24;
+	usr_ProcessSpottedEntityUpdate = 25;
+	usr_ReloadEffect = 26;
+	usr_AdjustMoney = 27;
+	usr_UpdateTeamMoney = 28;
+	usr_StopSpectatorMode = 29;
+	usr_KillCam = 30;
+	usr_DesiredTimescale = 31;
+	usr_CurrentTimescale = 32;
+	usr_AchievementEvent = 33;
+	usr_MatchEndConditions = 34;
+	usr_DisconnectToLobby = 35;
+	usr_PlayerStatsUpdate = 36;
+	usr_DisplayInventory = 37;
+	usr_WarmupHasEnded = 38;
+	usr_ClientInfo = 39;
+	usr_XRankGet = 40;
+	usr_XRankUpd = 41;
+	usr_CallVoteFailed = 45;
+	usr_VoteStart = 46;
+	usr_VotePass = 47;
+	usr_VoteFailed = 48;
+	usr_VoteSetup = 49;
+	usr_ServerRankRevealAll = 50;
+	usr_SendLastKillerDamageToClient = 51;
+	usr_ServerRankUpdate = 52;
+	usr_ItemPickup = 53;
+	usr_ShowMenu = 54;
+	usr_BarTime = 55;
+	usr_AmmoDenied = 56;
+	usr_MarkAchievement = 57;
+	usr_MatchStatsUpdate = 58;
+	usr_ItemDrop = 59;
+	usr_GlowPropTurnOff = 60;
+	usr_SendPlayerItemDrops = 61;
+	usr_RoundBackupFilenames = 62;
+	usr_SendPlayerItemFound = 63;
+	usr_ReportHit = 64;
+	usr_XpUpdate = 65;
+	usr_QuestProgress = 66;
+	usr_ScoreLeaderboardData = 67;
+	usr_PlayerDecalDigitalSignature = 68;
+	usr_WeaponSound = 69;
+	usr_UpdateScreenHealthBar = 70;
+	usr_EntityOutlineHighlight = 71;
+	usr_SSUI = 72;
+	usr_SurvivalStats = 73;
+	usr_DisconnectToLobby2 = 74;
+	usr_EndOfMatchAllPlayersData = 75;
+	usr_RoundImpactScoreData = 79;
+	usr_CurrentRoundOdds = 80;
+	usr_DeepStats = 81;
+	usr_UtilMessage = 82;
+	usr_UtilMessageResponse = 83;
+}
+
+message CUSRMsg_ServerRankUpdate {
+	message RankUpdate {
+		optional int32 account_id = 1;
+		optional int32 rank_old = 2;
+		optional int32 rank_new = 3;
+		optional int32 num_wins = 4;
+		optional float rank_change = 5;
+		optional int32 rank_type_id = 6;
+	}
+
+	repeated .CUSRMsg_ServerRankUpdate.RankUpdate rank_update = 1;
+}

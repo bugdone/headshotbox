@@ -4,7 +4,7 @@ use std::io::{BufRead, Cursor};
 use anyhow::bail;
 use bitstream_io::BitRead;
 use byteorder::{BigEndian, LittleEndian, ReadBytesExt};
-use csgo_demo_parser::messages::{CSVCMsg_CreateStringTable, CSVCMsg_UpdateStringTable};
+use csgo_demo::proto::netmessages::{CSVCMsg_CreateStringTable, CSVCMsg_UpdateStringTable};
 use demo_format::BitReader;
 
 use crate::num_bits;

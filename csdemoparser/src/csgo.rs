@@ -7,10 +7,10 @@ use crate::{
     account_id_to_xuid, game_event, guid_to_xuid, maybe_get_i32, maybe_get_u16, DemoInfo, TeamScore,
 };
 use anyhow::bail;
-use csgo_demo_parser::messages::{CSVCMsg_GameEvent, CSVCMsg_GameEventList};
-use csgo_demo_parser::parser::packet::message::{Message, SvcMessage, UsrMessage};
-use csgo_demo_parser::parser::string_table::StringTable;
-use csgo_demo_parser::parser::PacketContent;
+use csgo_demo::proto::netmessages::{CSVCMsg_GameEvent, CSVCMsg_GameEventList};
+use csgo_demo::Message;
+use csgo_demo::PacketContent;
+use csgo_demo::StringTable;
 use demo_format::Tick;
 use serde_json::json;
 use std::cell::RefCell;
@@ -32,7 +32,7 @@ const GAME_RESTART: &str = "m_bGameRestart";
 const TEAM_CLASS: &str = "CCSTeam";
 
 pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
-    let mut parser = csgo_demo_parser::DemoParser::try_new_after_demo_type(read)?;
+    let mut parser = csgo_demo::DemoParser::try_new_after_demo_type(read)?;
     let server_name = parser.header().server_name().to_string();
     let mut server_classes = None;
     let mut packets = vec![];
@@ -51,7 +51,9 @@ pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
         }
     }
 
-    let Some(mut server_classes) = server_classes else { bail!("no data tables before the first event") };
+    let Some(mut server_classes) = server_classes else {
+        bail!("no data tables before the first event")
+    };
     let mut hsbox = HeadshotBoxParser::new(server_name, &mut server_classes);
     for (pv, tick) in packets {
         for p in pv {
@@ -203,32 +205,30 @@ impl<'a> HeadshotBoxParser<'a> {
     #[instrument(skip_all)]
     fn handle_packet(&mut self, p: Message, tick: Tick) -> anyhow::Result<()> {
         match p {
-            Message::Svc(SvcMessage::ServerInfo(info)) => {
+            Message::ServerInfo(info) => {
                 self.demoinfo.borrow_mut().map = info.map_name().to_string();
                 self.tick_interval = info.tick_interval();
             }
-            Message::Svc(SvcMessage::CreateStringTable(table)) => {
+            Message::CreateStringTable(table) => {
                 let mut updates = self.string_tables.create_string_table(&table);
                 while let Some(player_info) = updates.next()? {
                     Self::update_players(&mut self.players, &self.demoinfo, player_info);
                 }
             }
-            Message::Svc(SvcMessage::UpdateStringTable(table)) => {
+            Message::UpdateStringTable(table) => {
                 let mut updates = self.string_tables.update_string_table(&table)?;
                 while let Some(player_info) = updates.next()? {
                     Self::update_players(&mut self.players, &self.demoinfo, player_info);
                 }
             }
-            Message::Svc(SvcMessage::GameEventList(gel)) => {
-                self.game_event_descriptors = parse_game_event_list(gel)
-            }
-            Message::Svc(SvcMessage::GameEvent(event)) => {
+            Message::GameEventList(gel) => self.game_event_descriptors = parse_game_event_list(gel),
+            Message::GameEvent(event) => {
                 if let Some(descriptor) = self.game_event_descriptors.get(&event.eventid()) {
                     let attrs = self.event_map(event, descriptor, tick)?;
                     self.handle_game_event(attrs, tick)?;
                 }
             }
-            Message::Usr(UsrMessage::ServerRankUpdate(ranks)) => {
+            Message::ServerRankUpdate(ranks) => {
                 let mut mm_rank_update = serde_json::Map::new();
                 for update in ranks.rank_update {
                     let mut attr = serde_json::Map::new();
@@ -250,9 +250,7 @@ impl<'a> HeadshotBoxParser<'a> {
                 self.demoinfo.borrow_mut().mm_rank_update =
                     Some(serde_json::Value::Object(mm_rank_update));
             }
-            Message::Svc(SvcMessage::PacketEntities(msg)) => {
-                self.entities.read_packet_entities(msg, tick)?
-            }
+            Message::PacketEntities(msg) => self.entities.read_packet_entities(msg, tick)?,
             _ => (),
         }
         Ok(())

@@ -186,26 +186,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "const_format"
-version = "0.2.31"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c990efc7a285731f9a4378d81aff2f0e85a2c8781a05ef0f8baa8dac54d0ff48"
-dependencies = [
- "const_format_proc_macros",
-]
-
-[[package]]
-name = "const_format_proc_macros"
-version = "0.2.31"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e026b6ce194a874cb9cf32cd5772d1ef9767cc8fcb5765948d74f37a9d8b2bf6"
-dependencies = [
- "proc-macro2",
- "quote",
- "unicode-xid",
-]
-
-[[package]]
 name = "crossbeam-deque"
 version = "0.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -261,7 +241,7 @@ dependencies = [
  "bitstream-io",
  "byteorder",
  "cs2-demo",
- "csgo-demo-parser",
+ "csgo-demo",
  "demo-format",
  "protobuf",
  "serde",
@@ -271,15 +251,16 @@ dependencies = [
 ]
 
 [[package]]
-name = "csgo-demo-parser"
-version = "0.1.0"
+name = "csgo-demo"
+version = "0.0.0"
 dependencies = [
+ "bitstream-io",
  "byteorder",
- "bytes",
- "const_format",
+ "demo-format",
  "getset",
  "paste",
  "protobuf",
+ "protobuf-codegen",
  "thiserror",
  "tracing",
 ]
@@ -810,12 +791,6 @@ name = "unicode-width"
 version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e51733f11c9c4f72aa0c160008246859e340b00807569a0da0e7a1079b27ba85"
-
-[[package]]
-name = "unicode-xid"
-version = "0.2.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f962df74c8c05a667b5ee8bcf162993134c104e96440b663c8daa176dc772d8c"
 
 [[package]]
 name = "utf8parse"

@@ -1,0 +1,19 @@
+[package]
+name = "csgo-demo"
+version = "0.0.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bitstream-io.workspace = true
+byteorder = "1.4"
+demo-format = { path = "../demo-format" }
+getset = "0.1"
+protobuf = { version = "3.2.0", features = ["with-bytes"] }
+thiserror = "1.0"
+tracing = "0.1"
+paste = "1.0"
+
+[build-dependencies]
+protobuf-codegen = "3.2"

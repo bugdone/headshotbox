@@ -9,7 +9,7 @@ edition = "2021"
 anyhow = "1.0"
 bitstream-io.workspace = true
 byteorder = "1.4"
-csgo-demo-parser = { path = "../csgo-demo-parser" }
+csgo-demo = { path = "../csgo-demo" }
 cs2-demo = { path = "../cs2-demo" }
 demo-format = { path = "../demo-format" }
 serde = { version = "1.0", features = ["derive"] }

@@ -3,7 +3,7 @@ mod serverclass;
 
 use anyhow::{bail, Context};
 use bitstream_io::BitRead;
-use csgo_demo_parser::messages::CSVCMsg_PacketEntities;
+use csgo_demo::proto::netmessages::CSVCMsg_PacketEntities;
 use demo_format::read::ValveBitReader;
 use demo_format::BitReader;
 use demo_format::Tick;

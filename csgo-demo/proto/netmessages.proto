@@ -1,0 +1,160 @@
+enum SVC_Messages {
+	svc_ServerInfo = 8;
+	svc_SendTable = 9;
+	svc_ClassInfo = 10;
+	svc_SetPause = 11;
+	svc_CreateStringTable = 12;
+	svc_UpdateStringTable = 13;
+	svc_VoiceInit = 14;
+	svc_VoiceData = 15;
+	svc_Print = 16;
+	svc_Sounds = 17;
+	svc_SetView = 18;
+	svc_FixAngle = 19;
+	svc_CrosshairAngle = 20;
+	svc_BSPDecal = 21;
+	svc_SplitScreen = 22;
+	svc_UserMessage = 23;
+	svc_EntityMessage = 24;
+	svc_GameEvent = 25;
+	svc_PacketEntities = 26;
+	svc_TempEntities = 27;
+	svc_Prefetch = 28;
+	svc_Menu = 29;
+	svc_GameEventList = 30;
+	svc_GetCvarValue = 31;
+	svc_PaintmapData = 33;
+	svc_CmdKeyValues = 34;
+	svc_EncryptedData = 35;
+	svc_HltvReplay = 36;
+	svc_BroadcastCommand = 38;
+}
+
+enum ReplayEventType_t {
+	REPLAY_EVENT_CANCEL = 0;
+	REPLAY_EVENT_DEATH = 1;
+	REPLAY_EVENT_GENERIC = 2;
+	REPLAY_EVENT_STUCK_NEED_FULL_UPDATE = 3;
+}
+
+message CSVCMsg_ServerInfo {
+	optional int32 protocol = 1;
+	optional int32 server_count = 2;
+	optional bool is_dedicated = 3;
+	optional bool is_official_valve_server = 4;
+	optional bool is_hltv = 5;
+	optional bool is_replay = 6;
+	optional bool is_redirecting_to_proxy_relay = 21;
+	optional int32 c_os = 7;
+	optional fixed32 map_crc = 8;
+	optional fixed32 client_crc = 9;
+	optional fixed32 string_table_crc = 10;
+	optional int32 max_clients = 11;
+	optional int32 max_classes = 12;
+	optional int32 player_slot = 13;
+	optional float tick_interval = 14;
+	optional string game_dir = 15;
+	optional string map_name = 16;
+	optional string map_group_name = 17;
+	optional string sky_name = 18;
+	optional string host_name = 19;
+	optional uint32 public_ip = 20;
+	optional uint64 ugc_map_id = 22;
+}
+
+message CSVCMsg_ClassInfo {
+	message class_t {
+		optional int32 class_id = 1;
+		optional string data_table_name = 2;
+		optional string class_name = 3;
+	}
+
+	optional bool create_on_client = 1;
+	repeated .CSVCMsg_ClassInfo.class_t classes = 2;
+}
+
+message CSVCMsg_SendTable {
+	message sendprop_t {
+		optional int32 type = 1;
+		optional string var_name = 2;
+		optional int32 flags = 3;
+		optional int32 priority = 4;
+		optional string dt_name = 5;
+		optional int32 num_elements = 6;
+		optional float low_value = 7;
+		optional float high_value = 8;
+		optional int32 num_bits = 9;
+	}
+
+	optional bool is_end = 1;
+	optional string net_table_name = 2;
+	optional bool needs_decoder = 3;
+	repeated .CSVCMsg_SendTable.sendprop_t props = 4;
+}
+
+message CSVCMsg_CreateStringTable {
+	optional string name = 1;
+	optional int32 max_entries = 2;
+	optional int32 num_entries = 3;
+	optional bool user_data_fixed_size = 4;
+	optional int32 user_data_size = 5;
+	optional int32 user_data_size_bits = 6;
+	optional int32 flags = 7;
+	optional bytes string_data = 8;
+}
+
+message CSVCMsg_UpdateStringTable {
+	optional int32 table_id = 1;
+	optional int32 num_changed_entries = 2;
+	optional bytes string_data = 3;
+}
+
+message CSVCMsg_UserMessage {
+	optional int32 msg_type = 1;
+	optional bytes msg_data = 2;
+	optional int32 passthrough = 3;
+}
+
+message CSVCMsg_GameEvent {
+	message key_t {
+		optional int32 type = 1;
+		optional string val_string = 2;
+		optional float val_float = 3;
+		optional int32 val_long = 4;
+		optional int32 val_short = 5;
+		optional int32 val_byte = 6;
+		optional bool val_bool = 7;
+		optional uint64 val_uint64 = 8;
+		optional bytes val_wstring = 9;
+	}
+
+	optional string event_name = 1;
+	optional int32 eventid = 2;
+	repeated .CSVCMsg_GameEvent.key_t keys = 3;
+	optional int32 passthrough = 4;
+}
+
+message CSVCMsg_GameEventList {
+	message key_t {
+		optional int32 type = 1;
+		optional string name = 2;
+	}
+
+	message descriptor_t {
+		optional int32 eventid = 1;
+		optional string name = 2;
+		repeated .CSVCMsg_GameEventList.key_t keys = 3;
+	}
+
+	repeated .CSVCMsg_GameEventList.descriptor_t descriptors = 1;
+}
+
+message CSVCMsg_PacketEntities {
+	optional int32 max_entries = 1;
+	optional int32 updated_entries = 2;
+	optional bool is_delta = 3;
+	optional bool update_baseline = 4;
+	optional int32 baseline = 5;
+	optional int32 delta_from = 6;
+	optional bytes entity_data = 7;
+}

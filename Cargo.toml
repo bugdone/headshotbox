@@ -1,7 +1,7 @@
 [workspace]
-
+resolver = "2"
 members = [
-    "csgo-demo-parser",
+    "csgo-demo",
     "cs2-demo",
     "csdemoparser",
     "demo-format",
