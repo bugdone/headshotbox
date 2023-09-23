@@ -73,7 +73,7 @@ pub struct Packet {
 }
 
 impl Packet {
-    pub fn try_new(packet: CDemoPacket) -> Result<Self> {
+    pub(crate) fn try_new(packet: CDemoPacket) -> Result<Self> {
         let mut buffer = Vec::with_capacity(1024);
         let mut messages = Vec::new();
         let mut reader = bitstream_io::BitReader::new(Cursor::new(packet.data()));

@@ -31,9 +31,7 @@ Check out the [wiki](https://github.com/bugdone/headshotbox/wiki) for more info.
 Install [rustup](https://rustup.rs/) and run:
 
 ```shell
-git submodule init
-git submodule update
-cargo build --release
+cargo build --release -p csdemoparser
 ```
 
 The output binaries are in `target/release`.

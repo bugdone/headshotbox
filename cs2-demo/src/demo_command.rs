@@ -8,10 +8,9 @@ use protobuf::Message;
 #[derive(Debug)]
 #[allow(clippy::large_enum_variant)]
 pub enum DemoCommand {
-    /// The last packet dispatched. It means there are no more packet left to
-    /// parse.
+    /// The last command.
     Stop,
-    /// The first packet.
+    /// The first command.
     FileHeader(CDemoFileHeader),
     FileInfo,
     /// A sync tick. It contains no data.

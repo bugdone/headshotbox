@@ -3,6 +3,7 @@ pub mod packet;
 pub mod proto;
 
 use self::proto::demo::EDemoCommands;
+use demo_format::Tick;
 use protobuf::CodedInputStream;
 use std::io;
 
@@ -24,8 +25,6 @@ pub enum Error {
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
-
-pub type Tick = i32;
 
 pub struct DemoParser<'a> {
     reader: CodedInputStream<'a>,
