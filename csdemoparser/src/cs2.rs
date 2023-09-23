@@ -5,16 +5,16 @@ use crate::demoinfo::{
 
 use crate::game_event::{from_cs2_event, parse_game_event_list_impl, GameEvent};
 use crate::{game_event, DemoInfo};
-use cs2_demo::packet::Message;
 use cs2_demo::proto::demo::CDemoFileHeader;
 use cs2_demo::proto::gameevents::CMsgSource1LegacyGameEventList;
-use cs2_demo::DemoCommand;
+use cs2_demo::{DemoCommand, StringTable};
+use cs2_demo::{Message, UserInfo};
 use demo_format::Tick;
 use std::cell::RefCell;
-use std::collections::HashMap;
+use std::collections::{hash_map, HashMap};
 use std::io;
 use std::rc::Rc;
-use tracing::trace;
+use tracing::{instrument, trace};
 
 pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
     let mut parser = cs2_demo::DemoParser::try_new_after_demo_type(read)?;
@@ -30,17 +30,33 @@ pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
                     state.handle_packet(msg, tick)?;
                 }
             }
+            DemoCommand::StringTables(st) => state.handle_string_tables(st)?,
             _ => {}
         }
     }
     state.get_info()
 }
 
+#[derive(Eq, PartialEq, Hash, Clone, Copy)]
+struct Slot(u16);
+#[derive(Eq, PartialEq, Hash, Clone, Copy)]
+struct UserId(u16);
+
 #[derive(Default)]
 struct GameState {
     game_event_descriptors: HashMap<i32, game_event::Descriptor>,
+    /// Maps player user_id to last jump tick.
+    jumped_last: HashMap<UserId, Tick>,
+    /// Maps player user_id to slot.
+    user_id2slot: HashMap<UserId, Slot>,
+    /// Maps player slot to player info.
+    players: HashMap<Slot, cs2_demo::PlayerInfo>,
+
+    // DemoInfo fields
     events: Vec<EventTick>,
-    jumped_last: HashMap<i32, Tick>,
+    player_names: HashMap<String, String>,
+    player_slots: HashMap<String, i32>,
+    tick_interval: f32,
     demoinfo: Rc<RefCell<DemoInfo>>,
 }
 
@@ -58,6 +74,7 @@ impl GameState {
         Ok(())
     }
 
+    #[instrument(level = "trace", skip_all)]
     fn handle_packet(&mut self, msg: Message, tick: Tick) -> anyhow::Result<()> {
         match msg {
             Message::Source1LegacyGameEvent(event) => {
@@ -69,6 +86,7 @@ impl GameState {
             Message::Source1LegacyGameEventList(gel) => {
                 self.game_event_descriptors = parse_game_event_list(gel);
             }
+            Message::ServerInfo(si) => self.tick_interval = si.tick_interval(),
             Message::Unknown(_) => (),
         }
         Ok(())
@@ -81,6 +99,9 @@ impl GameState {
             .iter()
             .map(serde_json::to_value)
             .collect::<std::result::Result<_, _>>()?;
+        demoinfo.tickrate = self.tick_interval;
+        demoinfo.player_names = self.player_names;
+        demoinfo.player_slots = self.player_slots;
         Ok(demoinfo.clone())
     }
 
@@ -88,8 +109,13 @@ impl GameState {
         self.events.push(EventTick { tick, event })
     }
 
-    fn maybe_xuid(&mut self, userid: i32) -> u64 {
-        // TODO: lookup self.players
+    fn maybe_xuid(&self, userid: i32) -> u64 {
+        let Some(slot) = self.user_id2slot.get(&UserId(userid as u16)) else {
+            return userid as u64;
+        };
+        if let Some(player) = self.players.get(slot) {
+            return player.xuid;
+        }
         userid as u64
     }
 
@@ -147,7 +173,7 @@ impl GameState {
                 )
             }
             GameEvent::PlayerJump(e) => {
-                self.jumped_last.insert(e.userid, tick);
+                self.jumped_last.insert(UserId(e.userid as u16), tick);
             }
             GameEvent::PlayerSpawn(_) => {
                 // In CS:GO, player_spawn was used to determine the team composition
@@ -177,6 +203,32 @@ impl GameState {
             GameEvent::SmokegrenadeExpired(_) => (),
         }
         Ok(())
+    }
+
+    fn handle_string_tables(&mut self, st: Vec<StringTable>) -> anyhow::Result<()> {
+        for table in st {
+            match table {
+                StringTable::UserInfo(table) => {
+                    for ui in table {
+                        self.update_players(ui);
+                    }
+                }
+            }
+        }
+        Ok(())
+    }
+
+    fn update_players(&mut self, ui: UserInfo) {
+        let slot = Slot(ui.index);
+        if let hash_map::Entry::Vacant(e) = self.players.entry(slot) {
+            self.player_names
+                .insert(ui.info.xuid.to_string(), ui.info.name.clone());
+            self.player_slots
+                .insert(ui.info.xuid.to_string(), ui.info.user_id);
+            self.user_id2slot
+                .insert(UserId(ui.info.user_id as u16), slot);
+            e.insert(ui.info);
+        }
     }
 }
 

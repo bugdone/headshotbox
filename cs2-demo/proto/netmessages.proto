@@ -1,0 +1,53 @@
+import "networkbasetypes.proto";
+
+enum SVC_Messages {
+	svc_ServerInfo = 40;
+	svc_FlattenedSerializer = 41;
+	svc_ClassInfo = 42;
+	svc_SetPause = 43;
+	svc_CreateStringTable = 44;
+	svc_UpdateStringTable = 45;
+	svc_VoiceInit = 46;
+	svc_VoiceData = 47;
+	svc_Print = 48;
+	svc_Sounds = 49;
+	svc_SetView = 50;
+	svc_ClearAllStringTables = 51;
+	svc_CmdKeyValues = 52;
+	svc_BSPDecal = 53;
+	svc_SplitScreen = 54;
+	svc_PacketEntities = 55;
+	svc_Prefetch = 56;
+	svc_Menu = 57;
+	svc_GetCvarValue = 58;
+	svc_StopSound = 59;
+	svc_PeerList = 60;
+	svc_PacketReliable = 61;
+	svc_HLTVStatus = 62;
+	svc_ServerSteamID = 63;
+	svc_FullFrameSplit = 70;
+	svc_RconServerDetails = 71;
+	svc_UserMessage = 72;
+	svc_HltvReplay = 73;
+	svc_Broadcast_Command = 74;
+	svc_HltvFixupOperatorStatus = 75;
+}
+
+message CSVCMsg_ServerInfo {
+	optional int32 protocol = 1;
+	optional int32 server_count = 2;
+	optional bool is_dedicated = 3;
+	optional bool is_hltv = 4;
+	optional int32 c_os = 6;
+	optional int32 max_clients = 10;
+	optional int32 max_classes = 11;
+	optional int32 player_slot = 12 [default = -1];
+	optional float tick_interval = 13;
+	optional string game_dir = 14;
+	optional string map_name = 15;
+	optional string sky_name = 16;
+	optional string host_name = 17;
+	optional string addon_name = 18;
+	optional .CSVCMsg_GameSessionConfiguration game_session_config = 19;
+	optional bytes game_session_manifest = 20;
+}
