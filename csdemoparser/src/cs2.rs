@@ -4,7 +4,8 @@ use crate::demoinfo::{
 };
 
 use crate::game_event::{from_cs2_event, parse_game_event_list_impl, GameEvent};
-use crate::{game_event, DemoInfo};
+use crate::last_jump::LastJump;
+use crate::{game_event, DemoInfo, Slot, UserId};
 use cs2_demo::proto::demo::CDemoFileHeader;
 use cs2_demo::proto::gameevents::CMsgSource1LegacyGameEventList;
 use cs2_demo::{DemoCommand, StringTable};
@@ -20,7 +21,7 @@ pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
     let mut parser = cs2_demo::DemoParser::try_new_after_demo_type(read)?;
     let mut state = GameState::new();
     while let Some((tick, cmd)) = parser.parse_next_demo_command()? {
-        trace!("t#{tick:?} {cmd}");
+        // trace!("t#{tick:?} {cmd}");
         match cmd {
             DemoCommand::FileHeader(header) => {
                 state.handle_file_header(header)?;
@@ -37,16 +38,10 @@ pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
     state.get_info()
 }
 
-#[derive(Eq, PartialEq, Hash, Clone, Copy)]
-struct Slot(u16);
-#[derive(Eq, PartialEq, Hash, Clone, Copy)]
-struct UserId(u16);
-
 #[derive(Default)]
 struct GameState {
     game_event_descriptors: HashMap<i32, game_event::Descriptor>,
-    /// Maps player user_id to last jump tick.
-    jumped_last: HashMap<UserId, Tick>,
+    last_jump: LastJump<UserId>,
     /// Maps player user_id to slot.
     user_id2slot: HashMap<UserId, Slot>,
     /// Maps player slot to player info.
@@ -62,9 +57,7 @@ struct GameState {
 
 impl GameState {
     fn new() -> Self {
-        GameState {
-            ..Default::default()
-        }
+        Default::default()
     }
 
     fn handle_file_header(&mut self, header: CDemoFileHeader) -> anyhow::Result<()> {
@@ -109,6 +102,12 @@ impl GameState {
         self.events.push(EventTick { tick, event })
     }
 
+    /// Returns the user XUID if available.
+    ///
+    /// userid 65535 is used as a marker for events where there is no alive player, for example:
+    /// - kills with no assister
+    /// - player disconnected
+    /// - player died, for example before the smoke_expired event
     fn maybe_xuid(&self, userid: i32) -> u64 {
         let Some(slot) = self.user_id2slot.get(&UserId(userid as u16)) else {
             return userid as u64;
@@ -120,7 +119,7 @@ impl GameState {
     }
 
     fn handle_game_event(&mut self, ge: GameEvent, tick: Tick) -> anyhow::Result<()> {
-        trace!("GameEvent {:?}", ge);
+        trace!("#{tick} GameEvent {:?}", ge);
         match ge {
             GameEvent::BombDefused(e) => {
                 let userid = self.maybe_xuid(e.userid);
@@ -135,6 +134,11 @@ impl GameState {
                 let userid = self.maybe_xuid(e.userid);
                 let attacker = self.maybe_xuid(e.attacker);
                 let assister = self.maybe_xuid(e.assister);
+                let jump = self.last_jump.ticks_since_last_jump(
+                    UserId(e.attacker as u16),
+                    tick,
+                    self.tick_interval,
+                );
                 self.add_event(
                     tick,
                     Event::PlayerDeath(PlayerDeath {
@@ -149,6 +153,7 @@ impl GameState {
                         thrusmoke: e.thrusmoke,
                         attackerblind: e.attackerblind,
                         distance: e.distance,
+                        jump,
                     }),
                 )
             }
@@ -173,7 +178,7 @@ impl GameState {
                 )
             }
             GameEvent::PlayerJump(e) => {
-                self.jumped_last.insert(UserId(e.userid as u16), tick);
+                self.last_jump.record_jump(UserId(e.userid as u16), tick);
             }
             GameEvent::PlayerSpawn(_) => {
                 // In CS:GO, player_spawn was used to determine the team composition

@@ -2,6 +2,7 @@ use crate::entity::{Entities, Entity, EntityId, PropValue, Scalar};
 use crate::entity::{ServerClasses, TrackProp};
 use crate::game_event::parse_game_event_list_impl;
 use crate::geometry::{through_smoke, Point};
+use crate::last_jump::LastJump;
 use crate::string_table::{self, PlayerInfo, StringTables};
 use crate::{
     account_id_to_xuid, game_event, guid_to_xuid, maybe_get_i32, maybe_get_u16, DemoInfo, TeamScore,
@@ -80,7 +81,7 @@ struct HeadshotBoxParser<'a> {
     game_event_descriptors: HashMap<i32, game_event::Descriptor>,
     string_tables: StringTables,
     players: HashMap<i32, PlayerInfo>,
-    jumped_last: HashMap<i32, Tick>,
+    last_jump: LastJump<i32>,
     tick_interval: f32,
     entities: Entities<'a>,
     smokes: BTreeMap<u16, Point>,
@@ -159,7 +160,7 @@ impl<'a> HeadshotBoxParser<'a> {
             game_event_descriptors: Default::default(),
             string_tables: StringTables::new(),
             players: Default::default(),
-            jumped_last: HashMap::new(),
+            last_jump: Default::default(),
             tick_interval: 0.0,
             entities: Entities::new(server_classes),
             smokes: Default::default(),
@@ -276,7 +277,7 @@ impl<'a> HeadshotBoxParser<'a> {
         match attrs.get("type").unwrap().as_str().unwrap() {
             "player_jump" => {
                 if let Some(user_id) = maybe_get_i32(attrs.get("userid")) {
-                    self.jumped_last.insert(user_id, tick);
+                    self.last_jump.record_jump(user_id, tick);
                 }
             }
             "smokegrenade_detonate" => {
@@ -297,7 +298,11 @@ impl<'a> HeadshotBoxParser<'a> {
             "player_death" => {
                 if let Some(attacker_user_id) = maybe_get_i32(attrs.get("attacker")) {
                     if self.players.get(&attacker_user_id).is_some() {
-                        if let Some(jump) = self.jumped_last(attacker_user_id, tick) {
+                        if let Some(jump) = self.last_jump.ticks_since_last_jump(
+                            attacker_user_id,
+                            tick,
+                            self.tick_interval,
+                        ) {
                             attrs.insert("jump".to_string(), json!(jump));
                         }
                     }
@@ -419,18 +424,6 @@ impl<'a> HeadshotBoxParser<'a> {
         attrs.insert("type".into(), json!(descriptor.name));
         attrs.insert("tick".into(), json!(tick));
         Ok(attrs)
-    }
-
-    fn jumped_last(&self, user_id: i32, tick: Tick) -> Option<Tick> {
-        let &jumped_last = self.jumped_last.get(&user_id)?;
-        const JUMP_DURATION: f64 = 0.75;
-        if self.tick_interval > 0_f32
-            && jumped_last as f64 >= tick as f64 - JUMP_DURATION / self.tick_interval as f64
-        {
-            Some(tick - jumped_last)
-        } else {
-            None
-        }
     }
 
     fn get_player_info(&self, key: &str, attrs: &GameEvent) -> Option<&PlayerInfo> {

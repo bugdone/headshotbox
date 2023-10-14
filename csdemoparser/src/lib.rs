@@ -4,6 +4,7 @@ pub mod demoinfo;
 mod entity;
 mod game_event;
 mod geometry;
+mod last_jump;
 mod string_table;
 
 use crate::entity::{Entity, EntityId, PropValue, Scalar};
@@ -29,6 +30,11 @@ pub fn parse(mut read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
     }
 }
 
+#[derive(Eq, PartialEq, Hash, Clone, Copy)]
+struct Slot(u16);
+#[derive(Eq, PartialEq, Hash, Clone, Copy, Default)]
+struct UserId(u16);
+
 #[derive(Default)]
 struct TeamScore {
     team_entity_id: [Option<EntityId>; 2],
@@ -40,9 +46,16 @@ struct TeamScore {
 
 impl TeamScore {
     fn update(&mut self, entity: &Entity, value: &PropValue) -> bool {
-        let Some(pos) = self.team_entity_id.iter().position(|i| &Some(entity.id) == i)
-        else { return false };
-        let &PropValue::Scalar(Scalar::I32(new_score)) = value else { return false };
+        let Some(pos) = self
+            .team_entity_id
+            .iter()
+            .position(|i| &Some(entity.id) == i)
+        else {
+            return false;
+        };
+        let &PropValue::Scalar(Scalar::I32(new_score)) = value else {
+            return false;
+        };
         if new_score < self.round_start[0] && new_score < self.round_start[1] {
             return false;
         }

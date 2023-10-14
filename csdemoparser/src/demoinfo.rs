@@ -83,7 +83,12 @@ pub struct PlayerDeath {
     pub noscope: bool,
     pub thrusmoke: bool,
     pub attackerblind: bool,
+    /// Distance in meters. 1 meter = 39.38 coordinate distance.
     pub distance: f32,
+    /// Number of ticks since the attacker jumped. Only set if death occurred
+    /// less than 0.75 seconds since the jump.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub jump: Option<Tick>,
 }
 
 #[derive(Serialize)]
