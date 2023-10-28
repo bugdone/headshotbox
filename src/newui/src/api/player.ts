@@ -4,7 +4,7 @@ import type { PlayerApiResponse, PlayerInfoResponse, PlayerStats, PlayerTeamMate
 import { api } from 'boot/axios';
 
 export const PlayerApi = {
-  get: async (params: ApiRequestParams = { limit: 50, offset: 0 }): Promise<PlayerApiResponse> => {
+  list: async (params: ApiRequestParams = { limit: 50, offset: 0 }): Promise<PlayerApiResponse> => {
     const { data } = await api.get<PlayerApiResponse>('players', {
       params,
     });

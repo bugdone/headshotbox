@@ -17,17 +17,17 @@ import FolderFilter from 'src/components/filters/FolderFilter.vue';
 
 const tableRef = ref();
 const columns = [
-  { label: 'Name', name: 'steamInfo', field: 'steamInfo', align: 'left', style: 'width: 35%' },
-  { label: 'MM Rank', name: 'lastRank', field: 'lastRank', align: 'center', sortable: true },
-  { label: 'Demos', name: 'demos', field: 'demos', align: 'center', sortable: true },
-  { label: 'Last Played', name: 'lastTimestamp', field: 'lastTimestamp', align: 'center', sortable: true },
+  { label: 'Name', name: 'steamInfo', align: 'left', style: 'width: 35%' },
+  { label: 'MM Rank', name: 'lastRank', sortable: true },
+  { label: 'Demos', name: 'demos', sortable: true },
+  { label: 'Last Played', name: 'lastTimestamp', sortable: true },
 ] as DataTableHeader[];
 const selectedFolder = ref('All');
 
 /* ====================== Methods ====================== */
 
 const getPlayers = async ({ limit, offset, orderBy }: ApiRequestParams) => {
-  const { playerCount, players } = await PlayerApi.get({
+  const { playerCount, players } = await PlayerApi.list({
     ...{ limit, offset, orderBy },
     ...(selectedFolder.value !== 'All' ? { folder: selectedFolder.value } : {}),
   });

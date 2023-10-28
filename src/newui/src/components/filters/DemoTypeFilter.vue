@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { DEMO_TYPE_IMAGES, DEMO_TYPES } from 'src/constants/demos';
 
 /* ====================== Data ====================== */
 
@@ -13,36 +14,36 @@ const demoTypes = ref([
     label: 'All',
   },
   {
-    value: 'valve',
+    value: DEMO_TYPES.VALVE,
     label: 'Valve',
-    image: 'images/demoTypes/valve.png',
+    image: DEMO_TYPE_IMAGES[DEMO_TYPES.VALVE],
   },
   {
-    value: 'esea',
+    value: DEMO_TYPES.ESEA,
     label: 'ESEA',
-    image: 'images/demoTypes/esea.png',
+    image: DEMO_TYPE_IMAGES[DEMO_TYPES.ESEA],
   },
   {
-    value: 'faceit',
+    value: DEMO_TYPES.FACEIT,
     label: 'FACEIT',
-    image: 'images/demoTypes/faceit.png',
+    image: DEMO_TYPE_IMAGES[DEMO_TYPES.FACEIT],
   },
   {
-    value: 'cevo',
+    value: DEMO_TYPES.CEVO,
     label: 'CEVO',
-    image: 'images/demoTypes/cevo.png',
+    image: DEMO_TYPE_IMAGES[DEMO_TYPES.CEVO],
   },
   {
-    value: 'esportal',
+    value: DEMO_TYPES.ESPORTAL,
     label: 'Esportal',
-    image: 'images/demoTypes/esportal.png',
+    image: DEMO_TYPE_IMAGES[DEMO_TYPES.ESPORTAL],
     class: 'bg-blue-500 rounded',
     style: 'height: 20px',
   },
   {
-    value: 'custom',
+    value: DEMO_TYPES.CUSTOM,
     label: 'Custom',
-    image: 'images/demoTypes/custom.png',
+    image: DEMO_TYPE_IMAGES[DEMO_TYPES.CUSTOM],
     style: 'height: 20px',
   },
 ]);

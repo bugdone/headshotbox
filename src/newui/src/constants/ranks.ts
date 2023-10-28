@@ -1,4 +1,5 @@
 export const RANKS = {
+  0: 'Unknown',
   1: 'Silver I',
   2: 'Silver II',
   3: 'Silver III',

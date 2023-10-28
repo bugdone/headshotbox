@@ -239,7 +239,7 @@ provide('steamId', route.params.id);
       />
     </div>
 
-    <q-splitter v-model="splitterModel" class="py-6" disable style="min-width: 80%">
+    <q-splitter v-model="splitterModel" class="py-6 min-w-full" disable>
       <template #before>
         <q-tabs v-model="tab" class="text-primary" vertical>
           <q-tab name="demos" icon="mdi-history" label="Demos" />
@@ -260,19 +260,19 @@ provide('steamId', route.params.id);
           vertical
         >
           <q-tab-panel name="demos">
-            <PlayerDemos />
+            <PlayerDemos :steamId="steamId" />
           </q-tab-panel>
 
           <q-tab-panel name="weapon-stats">
-            <PlayerWeaponStats />
+            <PlayerWeaponStats :steamId="steamId" />
           </q-tab-panel>
 
           <q-tab-panel name="banned-players">
-            <PlayerBanned />
+            <PlayerBanned :steamId="steamId" />
           </q-tab-panel>
 
           <q-tab-panel name="charts">
-            <PlayerCharts />
+            <PlayerCharts :steamId="steamId" />
           </q-tab-panel>
         </q-tab-panels>
       </template>

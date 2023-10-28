@@ -1,4 +1,5 @@
 import { RANKS } from 'src/constants/ranks';
+import { RankUpdate } from '@/types/demo';
 
 export type SteamInfoResponse = {
   avatar: string;
@@ -61,6 +62,9 @@ export type PlayerStats = {
     name: string;
   }[];
   won: number;
+  mmRankUpdate?: RankUpdate;
+  team?: number;
+  steamid?: string;
 };
 
 export type PlayerInfoResponse = {

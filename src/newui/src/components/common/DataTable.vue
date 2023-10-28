@@ -4,34 +4,34 @@ import debounce from 'lodash/debounce';
 import snakeCase from 'lodash/snakeCase';
 import get from 'lodash/get';
 import { useQuasar } from 'quasar';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 import { DataTableHeader, DataTablePagination, DataTableRequestDetails } from '@/types/dataTable';
 
 import notification from 'src/utils/notification';
+import { has } from 'lodash';
 
 /* ====================== Data ====================== */
 
-const props = defineProps({
-  columns: {
-    type: Array as () => DataTableHeader[],
-    required: true,
-  },
-  apiCall: {
-    type: Function as () => any,
-    required: true,
-  },
-  entityName: {
-    type: String,
-    required: true,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    columns: DataTableHeader[];
+    apiCall: (params: any) => any;
+    entityName: string;
+    rowsPerPage?: number | string;
+    addActionsSlot?: boolean;
+  }>(),
+  {
+    rowsPerPage: 20,
+    addActionsSlot: false,
+  }
+);
 
 const tableRef = ref();
 const items = ref<any[]>([]);
 const pagination = ref({
   page: 1,
-  rowsPerPage: 20,
+  rowsPerPage: props.rowsPerPage,
   sortBy: '',
   descending: false,
 } as DataTablePagination);
@@ -42,6 +42,26 @@ const entityListSortKey = props.entityName + 'ListSortBy';
 if (props.entityName && $q.localStorage.has(entityListSortKey)) {
   pagination.value.sortBy = $q.localStorage.getItem(entityListSortKey) as string;
 }
+
+const headers = computed(() => {
+  let headers: DataTableHeader[] = props.columns.map((el) => {
+    if (!has(el, 'align')) {
+      el.align = 'center';
+    }
+
+    if (!has(el, 'field')) {
+      el.field = el.name;
+    }
+
+    return el;
+  });
+
+  if (props.addActionsSlot) {
+    headers = headers.concat([{ classes: 'hs-action', field: 'actions', label: '', name: 'actions', sortable: false }]);
+  }
+
+  return headers;
+});
 
 /* ====================== Methods ====================== */
 
@@ -106,11 +126,11 @@ onMounted(async () => {
   <q-table
     ref="tableRef"
     v-model:pagination="pagination"
-    :columns="columns"
+    :columns="headers"
     :loading="isLoading"
     :pagination="pagination"
     :rows="items"
-    :rows-per-page-options="[10, 20, 30, 40, 50]"
+    :rows-per-page-options="[10, 20, 25, 30, 40, 50]"
     binary-state-sort
     class="mt-3"
     color="primary"

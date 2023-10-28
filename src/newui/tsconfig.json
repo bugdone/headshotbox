@@ -30,6 +30,18 @@
       "stores/*": [
         "src/stores/*"
       ],
+      "api/*": [
+        "src/api/*"
+      ],
+      "constants/*": [
+        "src/constants/*"
+      ],
+      "types/*": [
+        "src/types/*"
+      ],
+      "utils/*": [
+        "src/utils/*"
+      ],
     }
   },
   "include": [

@@ -12,7 +12,7 @@ export type DataTableHeader = {
   /**
    * Row Object property to determine value for this column or function which maps to the required property
    */
-  field: string | CallableFunction;
+  field?: string | CallableFunction;
 
   /**
    * If we use visible-columns, this col will always be visible
