@@ -13,6 +13,7 @@ import { DemoApi } from 'src/api/demo';
 import { Format } from 'src/utils/formatters';
 
 import DataTable from 'components/common/DataTable.vue';
+import MatchDetails from 'components/Player/MatchDetails.vue';
 
 /* ====================== Data ====================== */
 
@@ -21,7 +22,7 @@ const props = defineProps<{
 }>();
 
 const tableRef = ref();
-const columns: DataTableHeader[] = [
+const columns = [
   { label: 'Date', name: 'timestamp', align: 'left', style: 'width: 75px' },
   // { label: 'Type', name: 'type' },
   { label: 'Rank', name: 'mmRankUpdate' },
@@ -32,7 +33,8 @@ const columns: DataTableHeader[] = [
   { label: 'D', name: 'deaths' },
   { label: 'KDD', name: 'kdd' },
   { label: 'ADR', name: 'adr' },
-];
+] as DataTableHeader[];
+const matchDetailsRef = ref();
 
 /* ====================== Methods ====================== */
 
@@ -53,11 +55,22 @@ const formatDate = (timestamp: number) => {
 
   return date.formatDate(timestamp * 1000, dateFormat);
 };
+
+const showMatchDetails = (row: DemoResponse) => {
+  matchDetailsRef.value.open(row.demoid);
+};
 </script>
 
 <template>
   <q-page class="">
-    <DataTable ref="tableRef" :columns="columns" entityName="demo" :apiCall="getDemos" rowsPerPage="25">
+    <DataTable
+      ref="tableRef"
+      :apiCall="getDemos"
+      :columns="columns"
+      entityName="demo"
+      rowsPerPage="25"
+      @click:row="showMatchDetails"
+    >
       <template #timestamp="item: DemoResponse">
         {{ formatDate(item.timestamp) }}
       </template>
@@ -68,11 +81,11 @@ const formatDate = (timestamp: number) => {
 
       <template #mmRankUpdate="{ mmRankUpdate }: DemoResponse">
         <q-img
-          fit="fill"
-          class="my-1 rounded"
-          width="45px"
-          height="19px"
           :src="`images/ranks/${(mmRankUpdate && mmRankUpdate.rankNew) ?? 0}.png`"
+          class="my-1 rounded"
+          fit="fill"
+          height="19px"
+          width="45px"
         >
           <q-tooltip class="bg-sky-500/95 text-sm shadow-4 text-black" anchor="top middle" self="bottom middle">
             {{ RANKS[(mmRankUpdate && mmRankUpdate.rankNew) ?? 0] }}
@@ -99,6 +112,7 @@ const formatDate = (timestamp: number) => {
         {{ Format.number(damage / roundsWithDamageInfo) }}
       </template>
     </DataTable>
+    <MatchDetails ref="matchDetailsRef" />
   </q-page>
 </template>
 

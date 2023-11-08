@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { AxiosError } from 'axios';
 import debounce from 'lodash/debounce';
-import snakeCase from 'lodash/snakeCase';
 import get from 'lodash/get';
+import has from 'lodash/has';
+import snakeCase from 'lodash/snakeCase';
 import { useQuasar } from 'quasar';
 import { computed, onMounted, ref } from 'vue';
 
 import { DataTableHeader, DataTablePagination, DataTableRequestDetails } from '@/types/dataTable';
 
 import notification from 'src/utils/notification';
-import { has } from 'lodash';
 
 /* ====================== Data ====================== */
 
@@ -54,7 +54,7 @@ const headers = computed(() => {
     }
 
     return el;
-  });
+  }) as DataTableHeader[];
 
   if (props.addActionsSlot) {
     headers = headers.concat([{ classes: 'hs-action', field: 'actions', label: '', name: 'actions', sortable: false }]);
@@ -64,6 +64,10 @@ const headers = computed(() => {
 });
 
 /* ====================== Methods ====================== */
+
+const emit = defineEmits<{
+  (e: 'click:row', item: any): void;
+}>();
 
 const getData = debounce(async (tableProps: DataTableRequestDetails) => {
   isLoading.value = true;
@@ -111,6 +115,10 @@ const refresh = () => {
   tableRef.value.requestServerInteraction();
 };
 
+const rowClicked = (evt: Event, row: any) => {
+  emit('click:row', row);
+};
+
 /* ====================== Hooks ====================== */
 
 defineExpose({
@@ -118,7 +126,7 @@ defineExpose({
 });
 
 onMounted(async () => {
-  tableRef.value.requestServerInteraction();
+  refresh();
 });
 </script>
 
@@ -141,6 +149,7 @@ onMounted(async () => {
     separator="horizontal"
     wrap-cells
     @request="getData"
+    @row-click="rowClicked"
   >
     <template #top>
       <div class="flex items-baseline justify-between w-full mb-2" v-show="pagination.rowsNumber > 0">
