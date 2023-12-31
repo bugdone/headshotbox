@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 bitstream-io.workspace = true
-byteorder = "1.4"
+byteorder.workspace = true
 demo-format = { path = "../demo-format" }
 getset = "0.1"
 protobuf = { version = "3.2.0", features = ["with-bytes"] }

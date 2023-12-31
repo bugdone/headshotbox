@@ -10,3 +10,4 @@ members = [
 
 [workspace.dependencies]
 bitstream-io = "1.7"
+byteorder = "1.4"
