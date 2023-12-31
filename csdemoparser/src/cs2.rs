@@ -15,13 +15,13 @@ use std::cell::RefCell;
 use std::collections::{hash_map, HashMap};
 use std::io;
 use std::rc::Rc;
-use tracing::{instrument, trace};
+use tracing::{instrument, trace, trace_span};
 
 pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
     let mut parser = cs2_demo::DemoParser::try_new_after_demo_type(read)?;
     let mut state = GameState::new();
     while let Some((tick, cmd)) = parser.parse_next_demo_command()? {
-        // trace!("t#{tick:?} {cmd}");
+        trace_span!("demo_command").in_scope(|| trace!("#{tick:?} {cmd}"));
         match cmd {
             DemoCommand::FileHeader(header) => {
                 state.handle_file_header(header)?;
@@ -118,6 +118,7 @@ impl GameState {
         userid as u64
     }
 
+    #[instrument(level = "trace", skip_all)]
     fn handle_game_event(&mut self, ge: GameEvent, tick: Tick) -> anyhow::Result<()> {
         trace!("#{tick} GameEvent {:?}", ge);
         match ge {

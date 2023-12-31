@@ -1,5 +1,6 @@
 use crate::proto::gameevents::*;
 use crate::proto::netmessages::*;
+use crate::proto::networkbasetypes::*;
 use crate::Result;
 use bitstream_io::BitRead;
 use demo_format::read::ValveBitReader;
@@ -21,7 +22,7 @@ macro_rules! create_message_impl {
     ),*) => {paste! {
         pub enum Message {
             Unknown(u32),
-            $($($name([<$msg_prefix $name>])),*),*
+            $($($name([<$msg_prefix $name>]),)*)*
         }
 
         impl Message {
@@ -50,8 +51,18 @@ macro_rules! create_message_impl {
 
         impl fmt::Debug for Message {
             fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+                fn unknown_name(t: u32) -> String {
+                    use ::protobuf::Enum;
+                    use ::protobuf::EnumFull;
+                    $(
+                        if let Some(d) = $enum::from_i32(t as i32) {
+                            return d.descriptor().name().to_string();
+                        }
+                    )*
+                    "unknown".to_string()
+                }
                 match self {
-                    Message::Unknown(t) => write!(f, "Unknown({t})"),
+                    Message::Unknown(t) => write!(f, "Unknown({t}: {})", unknown_name(*t)),
                     $($(Message::$name(m) => write!(f, "{}({})", stringify!($name), m),)*)*
                 }
             }
@@ -60,6 +71,7 @@ macro_rules! create_message_impl {
 }
 
 create_message_impl! {
+    (NET_Messages, net_, CNETMsg_) => [],
     (SVC_Messages, svc_, CSVCMsg_) => [
         ServerInfo
     ],
