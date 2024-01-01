@@ -2,6 +2,7 @@ mod demo_command;
 mod message;
 mod packet;
 pub mod proto;
+mod send_tables;
 mod string_table;
 
 use crate::proto::demo::EDemoCommands;
@@ -32,6 +33,8 @@ pub enum Error {
     MissingPacket,
     #[error("cannot parse string table player index")]
     InvalidPlayerIndex,
+    #[error("cannot parse sendtables")]
+    InvalidSendTables,
 }
 
 pub type Result<T> = std::result::Result<T, Error>;

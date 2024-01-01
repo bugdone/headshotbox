@@ -9,9 +9,9 @@ edition = "2021"
 tracing = ["dep:tracing-subscriber"]
 
 [dependencies]
-anyhow = "1.0"
+anyhow = { version = "1.0", features = ["backtrace"] }
 bitstream-io.workspace = true
-byteorder = "1.4"
+byteorder.workspace = true
 csgo-demo = { path = "../csgo-demo" }
 cs2-demo = { path = "../cs2-demo" }
 demo-format = { path = "../demo-format" }

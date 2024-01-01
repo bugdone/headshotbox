@@ -1,5 +1,6 @@
 use super::packet::Packet;
 use super::proto::demo::{CDemoFileHeader, CDemoPacket, CDemoSendTables};
+use super::send_tables::SendTables;
 use super::{Error, Result};
 use crate::proto::demo::{CDemoFullPacket, CDemoStringTables};
 use crate::string_table::{parse_string_tables, StringTable};
@@ -16,7 +17,7 @@ pub enum DemoCommand {
     FileInfo,
     /// A sync tick. It contains no data.
     SyncTick,
-    SendTables(CDemoSendTables),
+    SendTables(SendTables),
     ClassInfo,
     StringTables(Vec<StringTable>),
     Packet(Packet),
@@ -37,7 +38,9 @@ impl DemoCommand {
             1 => DemoCommand::FileHeader(CDemoFileHeader::parse_from_bytes(data)?),
             2 => DemoCommand::FileInfo,
             3 => DemoCommand::SyncTick,
-            4 => DemoCommand::SendTables(CDemoSendTables::parse_from_bytes(data)?),
+            4 => DemoCommand::SendTables(SendTables::try_new(CDemoSendTables::parse_from_bytes(
+                data,
+            )?)?),
             5 => DemoCommand::ClassInfo,
             6 => DemoCommand::StringTables(parse_string_tables(
                 CDemoStringTables::parse_from_bytes(data)?,
@@ -68,7 +71,7 @@ impl fmt::Display for DemoCommand {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
             DemoCommand::FileHeader(m) => write!(f, "FileHeader {}", m),
-            DemoCommand::SendTables(m) => write!(f, "SendTables {} bytes", m.data().len()),
+            DemoCommand::SendTables(_) => write!(f, "SendTables"),
             _ => write!(f, "{:?}", self),
         }
     }

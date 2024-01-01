@@ -32,6 +32,7 @@ pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
                 }
             }
             DemoCommand::StringTables(st) => state.handle_string_tables(st)?,
+            // DemoCommand::SendTables(send) => state.handle_send_tables(send)?,
             _ => {}
         }
     }
