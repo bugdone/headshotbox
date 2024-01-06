@@ -7,6 +7,7 @@ use crate::message::Message;
 use crate::string_table::StringTable;
 use crate::user_command::UserCommandCompressed;
 
+#[allow(clippy::enum_variant_names)]
 #[derive(Debug)]
 pub(crate) enum Command {
     Signon = 1,

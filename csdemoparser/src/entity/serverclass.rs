@@ -649,7 +649,7 @@ mod tests {
         let server_classes = vec![class];
         let server_classes = ServerClassesParser::parse(&send_tables, &server_classes).unwrap();
         let order: Vec<&str> = server_classes
-            .get(0)
+            .first()
             .unwrap()
             .props
             .iter()
