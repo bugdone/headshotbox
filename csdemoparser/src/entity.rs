@@ -14,7 +14,6 @@ use std::rc::Rc;
 
 const MAX_ENTITIES: u32 = 2048;
 
-type ServerPropP = Rc<dyn Fn(&str, &str) -> TrackProp>;
 type PropChange = Rc<dyn Fn(&Entity, Tick, &PropValue)>;
 
 pub enum TrackProp {
@@ -24,14 +23,6 @@ pub enum TrackProp {
     Value,
     // Track the prop and run a callback whenever its value changes.
     Changes(PropChange),
-}
-
-#[derive(Default)]
-pub struct EntityConfig {
-    /// Can be used to specify which entity properties should be tracked.
-    ///
-    /// If `None`, all properties are tracked.
-    pub tracked_props: Option<ServerPropP>,
 }
 
 pub type EntityId = u16;
