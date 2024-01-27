@@ -73,6 +73,7 @@ macro_rules! create_message_impl {
 create_message_impl! {
     (NET_Messages, net_, CNETMsg_) => [],
     (SVC_Messages, svc_, CSVCMsg_) => [
+        PacketEntities,
         ServerInfo
     ],
     (EBaseGameEvents, GE_, CMsg) => [

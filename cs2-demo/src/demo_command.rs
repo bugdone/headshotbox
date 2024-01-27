@@ -1,8 +1,7 @@
 use super::packet::Packet;
 use super::proto::demo::{CDemoFileHeader, CDemoPacket, CDemoSendTables};
-use super::send_tables::SendTables;
 use super::{Error, Result};
-use crate::proto::demo::{CDemoFullPacket, CDemoStringTables};
+use crate::proto::demo::{CDemoClassInfo, CDemoFullPacket, CDemoStringTables};
 use crate::string_table::{parse_string_tables, StringTable};
 use protobuf::Message;
 use std::fmt;
@@ -17,8 +16,8 @@ pub enum DemoCommand {
     FileInfo,
     /// A sync tick. It contains no data.
     SyncTick,
-    SendTables(SendTables),
-    ClassInfo,
+    SendTables(CDemoSendTables),
+    ClassInfo(CDemoClassInfo),
     StringTables(Vec<StringTable>),
     Packet(Packet),
     ConsoleCmd,
@@ -38,10 +37,8 @@ impl DemoCommand {
             1 => DemoCommand::FileHeader(CDemoFileHeader::parse_from_bytes(data)?),
             2 => DemoCommand::FileInfo,
             3 => DemoCommand::SyncTick,
-            4 => DemoCommand::SendTables(SendTables::try_new(CDemoSendTables::parse_from_bytes(
-                data,
-            )?)?),
-            5 => DemoCommand::ClassInfo,
+            4 => DemoCommand::SendTables(CDemoSendTables::parse_from_bytes(data)?),
+            5 => DemoCommand::ClassInfo(CDemoClassInfo::parse_from_bytes(data)?),
             6 => DemoCommand::StringTables(parse_string_tables(
                 CDemoStringTables::parse_from_bytes(data)?,
             )?),

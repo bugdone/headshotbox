@@ -97,7 +97,6 @@ impl<'a> Entities<'a> {
     }
 }
 
-#[allow(dead_code)]
 #[derive(Debug)]
 pub struct Vector {
     pub x: f32,

@@ -1,9 +1,11 @@
 mod demo_command;
+pub mod entity;
 mod message;
 mod packet;
 pub mod proto;
-mod send_tables;
 mod string_table;
+#[cfg(test)]
+mod testdata;
 
 use crate::proto::demo::EDemoCommands;
 use demo_format::Tick;
@@ -35,6 +37,16 @@ pub enum Error {
     InvalidPlayerIndex,
     #[error("cannot parse sendtables")]
     InvalidSendTables,
+    #[error("invalid entity id in PacketEntities")]
+    InvalidEntityId,
+    #[error("missing class_id in CDemoClassInfo")]
+    MissingClassId,
+    #[error("missing class name CDemoClassInfo")]
+    MissingClassName,
+    #[error("skipped class_id in CDemoClassInfo")]
+    SkippedClassId,
+    #[error("duplicate serializer in CDemoSendTables")]
+    DuplicateSerializer,
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
@@ -67,4 +79,15 @@ impl<'a> DemoParser<'a> {
         };
         Ok(Some((tick, DemoCommand::try_new(cmd, &data)?)))
     }
+}
+
+#[allow(dead_code)]
+pub(crate) fn dump<M>(msg: &M, file: &str)
+where
+    M: protobuf::Message,
+{
+    let mut out = std::fs::File::create(file).unwrap();
+    let mut os = protobuf::CodedOutputStream::new(&mut out);
+    msg.write_to(&mut os).unwrap();
+    os.flush().unwrap();
 }

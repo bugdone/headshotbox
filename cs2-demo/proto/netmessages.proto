@@ -82,3 +82,34 @@ message CSVCMsg_FlattenedSerializer {
 	repeated string symbols = 2;
 	repeated .ProtoFlattenedSerializerField_t fields = 3;
 }
+
+message CSVCMsg_PacketEntities {
+	message command_queue_info_t {
+		optional uint32 commands_queued = 1;
+		optional uint32 command_queue_desired_size = 2;
+		optional uint32 starved_command_ticks = 3;
+		optional float time_dilation_percent = 4;
+		optional uint32 discarded_command_ticks = 5;
+	}
+
+	message alternate_baseline_t {
+		optional int32 entity_index = 1;
+		optional int32 baseline_index = 2;
+	}
+
+	optional int32 max_entries = 1;
+	optional int32 updated_entries = 2;
+	optional bool is_delta = 3;
+	optional bool update_baseline = 4;
+	optional int32 baseline = 5;
+	optional int32 delta_from = 6;
+	optional bytes entity_data = 7;
+	optional bool pending_full_frame = 8;
+	optional uint32 active_spawngroup_handle = 9;
+	optional uint32 max_spawngroup_creationsequence = 10;
+	optional uint32 last_cmd_number = 11;
+	optional uint32 server_tick = 12;
+	optional bytes serialized_entities = 13;
+	optional .CSVCMsg_PacketEntities.command_queue_info_t command_queue_info = 14;
+	repeated .CSVCMsg_PacketEntities.alternate_baseline_t alternate_baselines = 15;
+}

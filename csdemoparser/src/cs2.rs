@@ -6,8 +6,10 @@ use crate::demoinfo::{
 use crate::game_event::{from_cs2_event, parse_game_event_list_impl, GameEvent};
 use crate::last_jump::LastJump;
 use crate::{game_event, DemoInfo, Slot, UserId};
+use cs2_demo::entity::{Classes, Entities, SendTables};
 use cs2_demo::proto::demo::CDemoFileHeader;
 use cs2_demo::proto::gameevents::CMsgSource1LegacyGameEventList;
+use cs2_demo::proto::netmessages::CSVCMsg_PacketEntities;
 use cs2_demo::{DemoCommand, StringTable};
 use cs2_demo::{Message, UserInfo};
 use demo_format::Tick;
@@ -32,7 +34,8 @@ pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
                 }
             }
             DemoCommand::StringTables(st) => state.handle_string_tables(st)?,
-            // DemoCommand::SendTables(send) => state.handle_send_tables(send)?,
+            DemoCommand::ClassInfo(ci) => state.classes = Classes::try_new(ci, Rc::clone(&state.send_tables))?,
+            DemoCommand::SendTables(send) => state.send_tables = Rc::new(SendTables::try_new(send)?),
             _ => {}
         }
     }
@@ -41,7 +44,10 @@ pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
 
 #[derive(Default)]
 struct GameState {
+    classes: Classes,
+    send_tables: Rc<SendTables>,
     game_event_descriptors: HashMap<i32, game_event::Descriptor>,
+    entities: Entities,
     last_jump: LastJump<UserId>,
     /// Maps player user_id to slot.
     user_id2slot: HashMap<UserId, Slot>,
@@ -81,8 +87,18 @@ impl GameState {
                 self.game_event_descriptors = parse_game_event_list(gel);
             }
             Message::ServerInfo(si) => self.tick_interval = si.tick_interval(),
+            Message::PacketEntities(pe) => self.handle_packet_entities(pe, tick)?,
             Message::Unknown(_) => (),
         }
+        Ok(())
+    }
+
+    fn handle_packet_entities(
+        &mut self,
+        pe: CSVCMsg_PacketEntities,
+        _tick: Tick,
+    ) -> anyhow::Result<()> {
+        self.entities.read_packet_entities(pe, &self.classes)?;
         Ok(())
     }
 
