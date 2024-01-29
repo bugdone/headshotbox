@@ -25,7 +25,7 @@ pub struct Entities {
 }
 
 impl Entities {
-    pub fn read_packet_entities(
+    pub(crate) fn read_packet_entities(
         &mut self,
         msg: CSVCMsg_PacketEntities,
         classes: &Classes,
@@ -133,15 +133,13 @@ impl Entity {
 
 #[cfg(test)]
 mod tests {
-    use std::rc::Rc;
-
     use super::*;
     use crate::testdata;
 
     #[test]
     fn test() -> Result<()> {
         let send_tables = SendTables::try_new(testdata::send_tables())?;
-        let classes = Classes::try_new(testdata::class_info(), Rc::new(send_tables))?;
+        let classes = Classes::try_new(testdata::class_info(), send_tables)?;
         let mut entities = Entities::default();
         entities.read_packet_entities(testdata::packet_entities(), &classes)?;
         Ok(())

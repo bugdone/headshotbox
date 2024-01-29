@@ -253,11 +253,13 @@ dependencies = [
 name = "cs2-demo"
 version = "0.0.0"
 dependencies = [
+ "anyhow",
  "bitstream-io",
  "demo-format",
  "paste",
  "protobuf",
  "protobuf-codegen",
+ "serde",
  "snap",
  "thiserror",
  "tracing",

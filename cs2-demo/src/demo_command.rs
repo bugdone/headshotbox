@@ -1,10 +1,15 @@
-use super::packet::Packet;
-use super::proto::demo::{CDemoFileHeader, CDemoPacket, CDemoSendTables};
-use super::{Error, Result};
-use crate::proto::demo::{CDemoClassInfo, CDemoFullPacket, CDemoStringTables};
-use crate::string_table::{parse_string_tables, StringTable};
+use demo_format::Tick;
+use protobuf::CodedInputStream;
 use protobuf::Message;
 use std::fmt;
+
+use crate::packet::Packet;
+use crate::proto::demo::{
+    CDemoClassInfo, CDemoFileHeader, CDemoFullPacket, CDemoPacket, CDemoSendTables,
+    CDemoStringTables, EDemoCommands,
+};
+use crate::string_table::{parse_string_tables, StringTable};
+use crate::{Error, Result};
 
 #[derive(Debug)]
 #[allow(clippy::large_enum_variant)]
@@ -71,5 +76,35 @@ impl fmt::Display for DemoCommand {
             DemoCommand::SendTables(_) => write!(f, "SendTables"),
             _ => write!(f, "{:?}", self),
         }
+    }
+}
+
+pub struct DemoParser<'a> {
+    reader: CodedInputStream<'a>,
+}
+
+impl<'a> DemoParser<'a> {
+    pub fn try_new_after_demo_type(read: &'a mut dyn std::io::Read) -> Result<Self> {
+        let mut reader = CodedInputStream::new(read);
+        reader.skip_raw_bytes(8)?;
+        Ok(Self { reader })
+    }
+
+    pub fn parse_next_demo_command(&mut self) -> Result<Option<(Tick, DemoCommand)>> {
+        if self.reader.eof()? {
+            return Ok(None);
+        }
+        let cmd_flags = self.reader.read_raw_varint32()?;
+        let cmd = cmd_flags & !(EDemoCommands::DEM_IsCompressed as u32);
+        let compressed = (cmd_flags & (EDemoCommands::DEM_IsCompressed as u32)) != 0;
+        let tick = self.reader.read_raw_varint32()? as i32;
+        let size = self.reader.read_raw_varint32()?;
+        let data = self.reader.read_raw_bytes(size)?;
+        let data = if compressed {
+            snap::raw::Decoder::new().decompress_vec(data.as_slice())?
+        } else {
+            data
+        };
+        Ok(Some((tick, DemoCommand::try_new(cmd, &data)?)))
     }
 }

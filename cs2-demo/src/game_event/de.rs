@@ -1,12 +1,12 @@
 use super::Descriptor;
-use cs2_demo::proto::gameevents::{cmsg_source1legacy_game_event, CMsgSource1LegacyGameEvent};
+use crate::proto::gameevents::{cmsg_source1legacy_game_event, CMsgSource1LegacyGameEvent};
 use serde::{de, forward_to_deserialize_any};
 use std::fmt::Display;
 
-pub(crate) type Result<T> = std::result::Result<T, Error>;
+pub type Result<T> = std::result::Result<T, Error>;
 
 #[derive(thiserror::Error, Debug)]
-pub(crate) enum Error {
+pub enum Error {
     #[error("{0}")]
     Message(String),
     #[error("event {event}.{key} expected type {descriptor_type} but got type {event_type}")]
@@ -25,7 +25,7 @@ pub(crate) enum Error {
     },
 }
 
-pub(crate) fn from_cs2_event<'a, T: serde::Deserialize<'a>>(
+pub fn from_proto<'a, T: serde::Deserialize<'a>>(
     event: CMsgSource1LegacyGameEvent,
     descriptor: &'a Descriptor,
 ) -> Result<T> {

@@ -6,9 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0"
 bitstream-io.workspace = true
 demo-format = { path = "../demo-format" }
 protobuf = { version = "3.2.0", features = ["with-bytes"] }
+serde = { version = "1.0" }
 snap = "1.1"
 thiserror = "1.0"
 tracing = "0.1"

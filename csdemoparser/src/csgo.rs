@@ -1,14 +1,13 @@
+mod game_event;
+
 use crate::entity::{Entities, Entity, EntityId, PropValue, Scalar};
 use crate::entity::{ServerClasses, TrackProp};
-use crate::game_event::parse_game_event_list_impl;
 use crate::geometry::{through_smoke, Point};
 use crate::last_jump::LastJump;
 use crate::string_table::{self, PlayerInfo, StringTables};
-use crate::{
-    account_id_to_xuid, game_event, guid_to_xuid, maybe_get_i32, maybe_get_u16, DemoInfo, TeamScore,
-};
+use crate::{account_id_to_xuid, guid_to_xuid, maybe_get_i32, maybe_get_u16, DemoInfo, TeamScore};
 use anyhow::bail;
-use csgo_demo::proto::netmessages::{CSVCMsg_GameEvent, CSVCMsg_GameEventList};
+use csgo_demo::proto::netmessages::CSVCMsg_GameEvent;
 use csgo_demo::Message;
 use csgo_demo::PacketContent;
 use csgo_demo::StringTable;
@@ -78,7 +77,7 @@ pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
 type GameEvent = serde_json::Map<String, serde_json::Value>;
 
 struct HeadshotBoxParser<'a> {
-    game_event_descriptors: HashMap<i32, game_event::Descriptor>,
+    game_event_descriptors: HashMap<i32, self::game_event::Descriptor>,
     string_tables: StringTables,
     players: HashMap<i32, PlayerInfo>,
     last_jump: LastJump<i32>,
@@ -222,7 +221,7 @@ impl<'a> HeadshotBoxParser<'a> {
                     Self::update_players(&mut self.players, &self.demoinfo, player_info);
                 }
             }
-            Message::GameEventList(gel) => self.game_event_descriptors = parse_game_event_list(gel),
+            Message::GameEventList(gel) => self.game_event_descriptors = self::game_event::parse_game_event_list(gel),
             Message::GameEvent(event) => {
                 if let Some(descriptor) = self.game_event_descriptors.get(&event.eventid()) {
                     let attrs = self.event_map(event, descriptor, tick)?;
@@ -486,8 +485,6 @@ impl<'a> HeadshotBoxParser<'a> {
         None
     }
 }
-
-parse_game_event_list_impl!(CSVCMsg_GameEventList);
 
 #[cfg(test)]
 mod tests {

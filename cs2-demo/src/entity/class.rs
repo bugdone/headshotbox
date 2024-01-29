@@ -35,7 +35,7 @@ pub struct Classes {
 }
 
 impl Classes {
-    pub fn try_new(msg: CDemoClassInfo, send_tables: Rc<SendTables>) -> Result<Self> {
+    pub fn try_new(msg: CDemoClassInfo, send_tables: SendTables) -> Result<Self> {
         let serializers = send_tables
             .serializers
             .iter()
@@ -71,6 +71,6 @@ mod tests {
     #[test]
     fn test() {
         let send_tables = SendTables::try_new(testdata::send_tables()).unwrap();
-        Classes::try_new(testdata::class_info(), Rc::new(send_tables)).unwrap();
+        Classes::try_new(testdata::class_info(), send_tables).unwrap();
     }
 }

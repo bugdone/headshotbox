@@ -3,63 +3,102 @@ use crate::demoinfo::{
     RoundEnd, RoundStart,
 };
 
-use crate::game_event::{from_cs2_event, parse_game_event_list_impl, GameEvent};
+use crate::game_event::GameEvent;
 use crate::last_jump::LastJump;
-use crate::{game_event, DemoInfo, Slot, UserId};
-use cs2_demo::entity::{Classes, Entities, SendTables};
+use crate::{DemoInfo, Slot, UserId};
 use cs2_demo::proto::demo::CDemoFileHeader;
-use cs2_demo::proto::gameevents::CMsgSource1LegacyGameEventList;
-use cs2_demo::proto::netmessages::CSVCMsg_PacketEntities;
-use cs2_demo::{DemoCommand, StringTable};
-use cs2_demo::{Message, UserInfo};
+use cs2_demo::proto::gameevents::CMsgSource1LegacyGameEvent;
+use cs2_demo::{GameEventDescriptors, StringTable, UserInfo, Visitor};
 use demo_format::Tick;
-use std::cell::RefCell;
 use std::collections::{hash_map, HashMap};
-use std::io;
-use std::rc::Rc;
-use tracing::{instrument, trace, trace_span};
+use tracing::{instrument, trace};
 
-pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
-    let mut parser = cs2_demo::DemoParser::try_new_after_demo_type(read)?;
+pub fn parse(read: &mut dyn std::io::Read) -> anyhow::Result<DemoInfo> {
     let mut state = GameState::new();
-    while let Some((tick, cmd)) = parser.parse_next_demo_command()? {
-        trace_span!("demo_command").in_scope(|| trace!("#{tick:?} {cmd}"));
-        match cmd {
-            DemoCommand::FileHeader(header) => {
-                state.handle_file_header(header)?;
-            }
-            DemoCommand::Packet(p) => {
-                for msg in p.messages {
-                    state.handle_packet(msg, tick)?;
-                }
-            }
-            DemoCommand::StringTables(st) => state.handle_string_tables(st)?,
-            DemoCommand::ClassInfo(ci) => state.classes = Classes::try_new(ci, Rc::clone(&state.send_tables))?,
-            DemoCommand::SendTables(send) => state.send_tables = Rc::new(SendTables::try_new(send)?),
-            _ => {}
-        }
-    }
+    cs2_demo::parse_after_demo_type(read, &mut state)?;
     state.get_info()
 }
 
 #[derive(Default)]
 struct GameState {
-    classes: Classes,
-    send_tables: Rc<SendTables>,
-    game_event_descriptors: HashMap<i32, game_event::Descriptor>,
-    entities: Entities,
+    game_event_descriptors: GameEventDescriptors,
     last_jump: LastJump<UserId>,
     /// Maps player user_id to slot.
     user_id2slot: HashMap<UserId, Slot>,
     /// Maps player slot to player info.
     players: HashMap<Slot, cs2_demo::PlayerInfo>,
 
-    // DemoInfo fields
+    demoinfo: DemoInfo,
+    // DemoInfo field
     events: Vec<EventTick>,
-    player_names: HashMap<String, String>,
-    player_slots: HashMap<String, i32>,
-    tick_interval: f32,
-    demoinfo: Rc<RefCell<DemoInfo>>,
+}
+
+impl Visitor for GameState {
+    fn visit_file_header(&mut self, header: CDemoFileHeader) -> anyhow::Result<()> {
+        self.demoinfo.servername = header.server_name().to_string();
+        self.demoinfo.map = header.map_name().to_string();
+        Ok(())
+    }
+
+    fn visit_server_info(
+        &mut self,
+        server_info: cs2_demo::proto::netmessages::CSVCMsg_ServerInfo,
+    ) -> anyhow::Result<()> {
+        self.demoinfo.tickrate = server_info.tick_interval();
+        Ok(())
+    }
+
+    fn visit_string_tables(&mut self, st: Vec<StringTable>) -> anyhow::Result<()> {
+        for table in st {
+            match table {
+                StringTable::UserInfo(table) => {
+                    for ui in table {
+                        self.update_players(ui);
+                    }
+                }
+            }
+        }
+        Ok(())
+    }
+
+    fn visit_game_event(
+        &mut self,
+        event: CMsgSource1LegacyGameEvent,
+        tick: Tick,
+    ) -> anyhow::Result<()> {
+        if let Some(descriptor) = self.game_event_descriptors.get(&event.eventid()) {
+            let event = cs2_demo::game_event::de::from_proto(event, descriptor)?;
+            self.handle_game_event(event, tick)?;
+        }
+        Ok(())
+    }
+
+    fn visit_game_event_descriptors(
+        &mut self,
+        mut descriptors: GameEventDescriptors,
+    ) -> anyhow::Result<()> {
+        let hsbox_events = std::collections::HashSet::from([
+            "bomb_defused",
+            "bomb_exploded",
+            "bot_takeover",
+            "game_restart",
+            "player_connect",
+            "player_death",
+            "player_disconnect",
+            "player_hurt",
+            "player_jump",
+            "player_spawn",
+            "round_end",
+            "round_officially_ended",
+            "round_start",
+            "score_changed",
+            "smokegrenade_detonate",
+            "smokegrenade_expired",
+        ]);
+        descriptors.retain(|_, ed| hsbox_events.contains(ed.name.as_str()));
+        self.game_event_descriptors = descriptors;
+        Ok(())
+    }
 }
 
 impl GameState {
@@ -67,52 +106,13 @@ impl GameState {
         Default::default()
     }
 
-    fn handle_file_header(&mut self, header: CDemoFileHeader) -> anyhow::Result<()> {
-        let mut demoinfo = self.demoinfo.borrow_mut();
-        demoinfo.servername = header.server_name().to_string();
-        demoinfo.map = header.map_name().to_string();
-        Ok(())
-    }
-
-    #[instrument(level = "trace", skip_all)]
-    fn handle_packet(&mut self, msg: Message, tick: Tick) -> anyhow::Result<()> {
-        match msg {
-            Message::Source1LegacyGameEvent(event) => {
-                if let Some(descriptor) = self.game_event_descriptors.get(&event.eventid()) {
-                    let event = from_cs2_event(event, descriptor)?;
-                    self.handle_game_event(event, tick)?;
-                }
-            }
-            Message::Source1LegacyGameEventList(gel) => {
-                self.game_event_descriptors = parse_game_event_list(gel);
-            }
-            Message::ServerInfo(si) => self.tick_interval = si.tick_interval(),
-            Message::PacketEntities(pe) => self.handle_packet_entities(pe, tick)?,
-            Message::Unknown(_) => (),
-        }
-        Ok(())
-    }
-
-    fn handle_packet_entities(
-        &mut self,
-        pe: CSVCMsg_PacketEntities,
-        _tick: Tick,
-    ) -> anyhow::Result<()> {
-        self.entities.read_packet_entities(pe, &self.classes)?;
-        Ok(())
-    }
-
-    fn get_info(self) -> anyhow::Result<DemoInfo> {
-        let mut demoinfo = self.demoinfo.borrow_mut();
-        demoinfo.events = self
+    fn get_info(mut self) -> anyhow::Result<DemoInfo> {
+        self.demoinfo.events = self
             .events
             .iter()
             .map(serde_json::to_value)
             .collect::<std::result::Result<_, _>>()?;
-        demoinfo.tickrate = self.tick_interval;
-        demoinfo.player_names = self.player_names;
-        demoinfo.player_slots = self.player_slots;
-        Ok(demoinfo.clone())
+        Ok(self.demoinfo)
     }
 
     fn add_event(&mut self, tick: Tick, event: Event) {
@@ -155,7 +155,7 @@ impl GameState {
                 let jump = self.last_jump.ticks_since_last_jump(
                     UserId(e.attacker as u16),
                     tick,
-                    self.tick_interval,
+                    self.demoinfo.tickrate,
                 );
                 self.add_event(
                     tick,
@@ -228,25 +228,13 @@ impl GameState {
         Ok(())
     }
 
-    fn handle_string_tables(&mut self, st: Vec<StringTable>) -> anyhow::Result<()> {
-        for table in st {
-            match table {
-                StringTable::UserInfo(table) => {
-                    for ui in table {
-                        self.update_players(ui);
-                    }
-                }
-            }
-        }
-        Ok(())
-    }
-
     fn update_players(&mut self, ui: UserInfo) {
         let slot = Slot(ui.index);
         if let hash_map::Entry::Vacant(e) = self.players.entry(slot) {
-            self.player_names
+            self.demoinfo
+                .player_names
                 .insert(ui.info.xuid.to_string(), ui.info.name.clone());
-            self.player_slots
+            self.demoinfo.player_slots
                 .insert(ui.info.xuid.to_string(), ui.info.user_id);
             self.user_id2slot
                 .insert(UserId(ui.info.user_id as u16), slot);
@@ -254,5 +242,3 @@ impl GameState {
         }
     }
 }
-
-parse_game_event_list_impl!(CMsgSource1LegacyGameEventList);
