@@ -113,3 +113,27 @@ message CSVCMsg_PacketEntities {
 	optional .CSVCMsg_PacketEntities.command_queue_info_t command_queue_info = 14;
 	repeated .CSVCMsg_PacketEntities.alternate_baseline_t alternate_baselines = 15;
 }
+
+message CSVCMsg_CreateStringTable {
+	optional string name = 1;
+	optional int32 num_entries = 2;
+	optional bool user_data_fixed_size = 3;
+	optional int32 user_data_size = 4;
+	optional int32 user_data_size_bits = 5;
+	optional int32 flags = 6;
+	optional bytes string_data = 7;
+	optional int32 uncompressed_size = 8;
+	optional bool data_compressed = 9;
+	optional bool using_varint_bitcounts = 10;
+}
+
+message CSVCMsg_UpdateStringTable {
+	optional int32 table_id = 1;
+	optional int32 num_changed_entries = 2;
+	optional bytes string_data = 3;
+}
+
+message CSVCMsg_ClearAllStringTables {
+	optional string mapname = 1;
+	optional bool create_tables_skipped = 3;
+}

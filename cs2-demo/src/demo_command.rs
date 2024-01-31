@@ -1,4 +1,3 @@
-use demo_format::Tick;
 use protobuf::CodedInputStream;
 use protobuf::Message;
 use std::fmt;
@@ -8,7 +7,7 @@ use crate::proto::demo::{
     CDemoClassInfo, CDemoFileHeader, CDemoFullPacket, CDemoPacket, CDemoSendTables,
     CDemoStringTables, EDemoCommands,
 };
-use crate::string_table::{parse_string_tables, StringTable};
+use crate::Tick;
 use crate::{Error, Result};
 
 #[derive(Debug)]
@@ -23,13 +22,13 @@ pub enum DemoCommand {
     SyncTick,
     SendTables(CDemoSendTables),
     ClassInfo(CDemoClassInfo),
-    StringTables(Vec<StringTable>),
+    StringTables(CDemoStringTables),
     Packet(Packet),
     ConsoleCmd,
     CustomData,
     CustomDataCallbacks,
     UserCmd,
-    FullPacket(Vec<StringTable>, Packet),
+    FullPacket(CDemoStringTables, Packet),
     SaveGame,
     SpawnGroups,
     AnimationData,
@@ -44,9 +43,7 @@ impl DemoCommand {
             3 => DemoCommand::SyncTick,
             4 => DemoCommand::SendTables(CDemoSendTables::parse_from_bytes(data)?),
             5 => DemoCommand::ClassInfo(CDemoClassInfo::parse_from_bytes(data)?),
-            6 => DemoCommand::StringTables(parse_string_tables(
-                CDemoStringTables::parse_from_bytes(data)?,
-            )?),
+            6 => DemoCommand::StringTables(CDemoStringTables::parse_from_bytes(data)?),
             // SignonPacket seems to be identical to Packet.
             7 | 8 => DemoCommand::Packet(Packet::try_new(CDemoPacket::parse_from_bytes(data)?)?),
             9 => DemoCommand::ConsoleCmd,
@@ -55,8 +52,7 @@ impl DemoCommand {
             12 => DemoCommand::UserCmd,
             13 => {
                 let mut fp = CDemoFullPacket::parse_from_bytes(data)?;
-                let string_tables =
-                    parse_string_tables(fp.string_table.take().ok_or(Error::MissingStringTable)?)?;
+                let string_tables = fp.string_table.take().ok_or(Error::MissingStringTable)?;
                 let packet = Packet::try_new(fp.packet.take().ok_or(Error::MissingPacket)?)?;
                 DemoCommand::FullPacket(string_tables, packet)
             }

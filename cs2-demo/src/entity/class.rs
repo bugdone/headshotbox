@@ -6,12 +6,13 @@ use super::SendTables;
 use crate::proto::demo::{cdemo_class_info, CDemoClassInfo};
 use crate::{Error, Result};
 
-type ClassId = u32;
+pub type ClassId = u32;
 
 #[derive(Debug)]
 pub(super) struct Class {
     class_id: ClassId,
     pub(super) serializer: Rc<Serializer>,
+    pub(super) instance_baseline: Option<Box<[u8]>>,
 }
 
 impl Class {
@@ -24,6 +25,7 @@ impl Class {
         Ok(Self {
             class_id,
             serializer: Rc::clone(&serializers[&name.clone()]),
+            instance_baseline: None,
         })
     }
 }
@@ -56,6 +58,15 @@ impl Classes {
             classes,
             class_id_bits,
         })
+    }
+
+    pub(crate) fn update_instance_baselines(&mut self, items: Vec<(String, Vec<u8>)>) {
+        for (key, value) in items {
+            // Some items have a "<u32>:<u32>" format. I don't know what they are for, skip them.
+            if let Ok(class_id) = key.parse::<ClassId>() {
+                self.classes[class_id as usize].instance_baseline = Some(Box::from(value));
+            }
+        }
     }
 
     pub(super) fn class(&self, class_id: ClassId) -> &Class {

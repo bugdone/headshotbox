@@ -6,9 +6,10 @@ use crate::demoinfo::{
 use crate::game_event::GameEvent;
 use crate::last_jump::LastJump;
 use crate::{DemoInfo, Slot, UserId};
+use cs2_demo::entity::Entities;
 use cs2_demo::proto::demo::CDemoFileHeader;
 use cs2_demo::proto::gameevents::CMsgSource1LegacyGameEvent;
-use cs2_demo::{GameEventDescriptors, StringTable, UserInfo, Visitor};
+use cs2_demo::{GameEventDescriptors, UserInfo, Visitor};
 use demo_format::Tick;
 use std::collections::{hash_map, HashMap};
 use tracing::{instrument, trace};
@@ -48,15 +49,9 @@ impl Visitor for GameState {
         Ok(())
     }
 
-    fn visit_string_tables(&mut self, st: Vec<StringTable>) -> anyhow::Result<()> {
-        for table in st {
-            match table {
-                StringTable::UserInfo(table) => {
-                    for ui in table {
-                        self.update_players(ui);
-                    }
-                }
-            }
+    fn visit_userinfo_table(&mut self, st: Vec<UserInfo>) -> anyhow::Result<()> {
+        for ui in st {
+            self.update_players(ui);
         }
         Ok(())
     }
@@ -65,6 +60,7 @@ impl Visitor for GameState {
         &mut self,
         event: CMsgSource1LegacyGameEvent,
         tick: Tick,
+        _entities: &Entities,
     ) -> anyhow::Result<()> {
         if let Some(descriptor) = self.game_event_descriptors.get(&event.eventid()) {
             let event = cs2_demo::game_event::de::from_proto(event, descriptor)?;
@@ -234,7 +230,8 @@ impl GameState {
             self.demoinfo
                 .player_names
                 .insert(ui.info.xuid.to_string(), ui.info.name.clone());
-            self.demoinfo.player_slots
+            self.demoinfo
+                .player_slots
                 .insert(ui.info.xuid.to_string(), ui.info.user_id);
             self.user_id2slot
                 .insert(UserId(ui.info.user_id as u16), slot);

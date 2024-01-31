@@ -1,20 +1,22 @@
 #![allow(non_snake_case)]
 use bitstream_io::huffman::{compile_read_tree, ReadHuffmanTree};
 use bitstream_io::{BitRead, HuffmanRead, LittleEndian};
-use demo_format::{read::ValveBitReader, BitReader};
 use std::sync::OnceLock;
+use smallvec::SmallVec;
+
+use crate::{read::ValveBitReader, BitReader};
 
 #[derive(Debug, Clone)]
 pub(super) struct FieldPath {
     /// Indices into the serializer.
-    pub(super) data: Vec<i32>,
+    pub(super) data: SmallVec<[i32; 6]>,
     /// Indicates if this is the last field path for an entity.
     pub(super) finished: bool,
 }
 
 impl FieldPath {
     pub(super) fn new() -> Self {
-        let mut data = Vec::with_capacity(6);
+        let mut data = SmallVec::new();
         data.push(-1);
         let finished = false;
         Self { data, finished }

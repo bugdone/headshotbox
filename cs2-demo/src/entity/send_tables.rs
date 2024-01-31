@@ -1,3 +1,4 @@
+use core::fmt;
 use std::collections::HashMap;
 use std::rc::Rc;
 
@@ -8,6 +9,7 @@ use crate::proto::netmessages::CSVCMsg_FlattenedSerializer;
 use crate::{Error, Result};
 
 use super::decoder::{Decoder, DecoderCache};
+use super::{Object, Property};
 
 #[derive(Debug, Default)]
 pub struct SendTables {
@@ -24,26 +26,103 @@ impl std::fmt::Display for Serializer {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         writeln!(f, "class {}", self.name)?;
         for field in &self.fields {
-            writeln!(f, "  {}: {}", field.var_name, field.var_type)?;
+            writeln!(f, "  {field:?}")?;
         }
         Ok(())
     }
 }
 
 #[derive(Clone)]
-pub(super) struct Field {
-    pub(super) var_name: Rc<str>,
-    pub(super) var_type: Rc<str>,
-    pub(super) serializer: Option<Rc<Serializer>>,
-    pub(super) decoder: Decoder,
+pub struct ValueField {
+    var_name: Rc<str>,
+    var_type: Rc<str>,
+    decoder: Decoder,
+}
+#[derive(Clone)]
+pub struct ArrayField {
+    pub size: u16,
+    decoder: Decoder,
+    pub(super) element: Box<Field>,
+}
+#[derive(Clone)]
+pub struct VectorField {
+    decoder: Decoder,
+    pub(super) element: Box<Field>,
+}
+#[derive(Clone)]
+pub struct ObjectField {
+    var_name: Rc<str>,
+    var_type: Rc<str>,
+    decoder: Decoder,
+    pub(super) serializer: Rc<Serializer>,
 }
 
-impl std::fmt::Debug for Field {
+#[derive(Debug, Clone)]
+pub enum Field {
+    Value(ValueField),
+    Object(ObjectField),
+    Array(ArrayField),
+    Vector(VectorField),
+}
+
+impl Field {
+    pub fn name(&self) -> Rc<str> {
+        match self {
+            Field::Value(v) => Rc::clone(&v.var_name),
+            Field::Object(v) => Rc::clone(&v.var_name),
+            Field::Array(v) => v.element.name(),
+            Field::Vector(v) => v.element.name(),
+        }
+    }
+
+    pub fn ctype(&self) -> &str {
+        match self {
+            Field::Value(v) => v.var_type.as_ref(),
+            Field::Object(v) => v.var_type.as_ref(),
+            Field::Array(v) => v.element.ctype(),
+            Field::Vector(v) => v.element.ctype(),
+        }
+    }
+
+    pub fn decoder(&self) -> &Decoder {
+        match self {
+            Field::Value(v) => &v.decoder,
+            Field::Object(v) => &v.decoder,
+            Field::Array(v) => &v.decoder,
+            Field::Vector(v) => &v.decoder,
+        }
+    }
+}
+
+impl std::fmt::Debug for ValueField {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::result::Result<(), std::fmt::Error> {
-        f.debug_struct("Field")
+        f.debug_struct("Value")
             .field("var_name", &self.var_name)
             .field("var_type", &self.var_type)
-            .field("serializer", &self.serializer.as_ref().map(|s| s.name.as_str()))
+            .finish()
+    }
+}
+impl std::fmt::Debug for ArrayField {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::result::Result<(), std::fmt::Error> {
+        f.debug_struct("Array")
+            .field("size", &self.size)
+            .field("element", &self.element)
+            .finish()
+    }
+}
+impl std::fmt::Debug for VectorField {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::result::Result<(), std::fmt::Error> {
+        f.debug_struct("Vector")
+            .field("element", &self.element)
+            .finish()
+    }
+}
+impl std::fmt::Debug for ObjectField {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::result::Result<(), std::fmt::Error> {
+        f.debug_struct("Object")
+            .field("var_name", &self.var_name)
+            .field("var_type", &self.var_type)
+            .field("serializer", &self.serializer)
             .finish()
     }
 }
@@ -73,13 +152,9 @@ impl SentTableData {
             .iter()
             .enumerate()
             .map(|(i, s)| {
-                (
-                    (
-                        s.serializer_name_sym.unwrap(),
-                        s.serializer_version.unwrap(),
-                    ),
-                    i as i32,
-                )
+                let name = s.serializer_name_sym.unwrap();
+                let version = s.serializer_version.unwrap();
+                ((name, version), i as i32)
             })
             .collect();
         let symbols = fs.symbols.iter().map(|s| Rc::from(s.as_str())).collect();
@@ -135,6 +210,20 @@ impl<'a> SendTableBuilder<'a> {
         s
     }
 
+    fn lookup_serializer(
+        &mut self,
+        name_sym: Option<i32>,
+        version: Option<i32>,
+    ) -> Option<Rc<Serializer>> {
+        match (name_sym, version) {
+            (Some(name), Some(version)) => {
+                let si = self.data.by_name_ver.get(&(name, version)).cloned();
+                si.map(|si| self.serializer(si))
+            }
+            _ => None,
+        }
+    }
+
     fn field(&mut self, fi: i32) -> Field {
         let fsf = &self.data.fs.fields[fi as usize];
         let var_name = Rc::clone(&self.data.symbols[fsf.var_name_sym.unwrap() as usize]);
@@ -145,14 +234,6 @@ impl<'a> SendTableBuilder<'a> {
                 .var_encoder_sym
                 .map(|e| self.data.symbols[e as usize].as_ref()),
         };
-        let decoder = self.decoder_cache.make_decoder(
-            var_type.as_ref(),
-            encoder,
-            fsf.bit_count(),
-            fsf.low_value.unwrap_or(0f32),
-            fsf.high_value.unwrap_or(1f32),
-            fsf.encode_flags(),
-        );
         let serializer = match (fsf.field_serializer_name_sym, fsf.field_serializer_version) {
             (Some(name), Some(version)) => {
                 let si = self.data.by_name_ver.get(&(name, version)).cloned();
@@ -160,11 +241,211 @@ impl<'a> SendTableBuilder<'a> {
             }
             _ => None,
         };
-        Field {
-            var_name,
-            var_type,
-            serializer,
-            decoder,
+        let polymorphic_types = fsf
+            .polymorphic_types
+            .iter()
+            .map(|t| {
+                self.lookup_serializer(
+                    t.polymorphic_field_serializer_name_sym,
+                    t.polymorphic_field_serializer_version,
+                )
+                .unwrap()
+            })
+            .collect::<Vec<_>>();
+        let ctype = CType::parse(var_type.as_ref());
+        let field = if let Some(serializer) = serializer {
+            let decoder = if !polymorphic_types.is_empty() {
+                self.decoder_cache.decode_polymorphic(serializer.clone())
+            } else {
+                self.decoder_cache.decode_object(serializer.clone())
+            };
+            Field::Object(ObjectField {
+                var_name,
+                var_type: Rc::clone(&var_type),
+                decoder,
+                serializer,
+            })
+        } else {
+            let decoder = make_decoder(
+                &self.decoder_cache,
+                ctype.0,
+                encoder,
+                fsf.bit_count(),
+                fsf.low_value.unwrap_or(0f32),
+                fsf.high_value.unwrap_or(1f32),
+                fsf.encode_flags(),
+            );
+            Field::Value(ValueField {
+                var_name,
+                var_type: Rc::clone(&var_type),
+                decoder,
+            })
+        };
+        match ctype.2 {
+            ArraySize::None => field,
+            ArraySize::Fixed(size) => {
+                let decoder = match ctype.0 {
+                    "char" => Rc::clone(&self.decoder_cache.string),
+                    _ => self.decoder_cache.decode_fixed_array(size),
+                };
+                Field::Array(ArrayField {
+                    size,
+                    decoder,
+                    element: Box::new(field),
+                })
+            }
+            ArraySize::Variable => {
+                let init = match &field {
+                    Field::Value(_) => None,
+                    Field::Object(o) => Some(Property::Object(Object::new(&o.serializer))),
+                    Field::Array(_) | Field::Vector(_) => todo!(),
+                };
+                let decoder = self.decoder_cache.decode_var_array(init);
+                Field::Vector(VectorField {
+                    decoder,
+                    element: Box::new(field),
+                })
+            }
+        }
+    }
+}
+
+fn make_decoder(
+    cache: &DecoderCache,
+    base_type: &str,
+    encoder: Option<&str>,
+    bit_count: i32,
+    low_value: f32,
+    high_value: f32,
+    encode_flags: i32,
+) -> Decoder {
+    match base_type {
+        "int8"
+        | "int16"
+        | "int32"
+        | "BeamType_t"
+        | "CEntityIndex"
+        | "EntityDisolveType_t"
+        | "HSequence" => Rc::clone(&cache.signed),
+        "uint64" | "CStrongHandle" => match encoder {
+            Some("fixed64") => Rc::clone(&cache.fixed64),
+            Some(s) => todo!("{}", s),
+            None => Rc::clone(&cache.uint64),
+        },
+        "uint8"
+        | "uint16"
+        | "uint32"
+        | "attributeprovidertypes_t"
+        | "loadout_slot_t"
+        | "tablet_skin_state_t"
+        | "AnimLoopMode_t"
+        | "AttachmentHandle_t"
+        | "BeamClipStyle_t"
+        | "CEntityHandle"
+        | "CHandle"
+        | "CGameSceneNodeHandle"
+        | "Color"
+        | "CPlayerSlot"
+        | "CSWeaponMode"
+        | "CSPlayerBlockingUseAction_t"
+        | "CSPlayerState"
+        | "CUtlStringToken"
+        | "DoorState_t"
+        | "EGrenadeThrowState"
+        | "EKillTypes_t"
+        | "ESurvivalGameRuleDecision_t"
+        | "ESurvivalSpawnTileState"
+        | "FixAngleSet_t"
+        | "GameTick_t"
+        | "MedalRank_t"
+        | "MoveType_t"
+        | "MoveCollide_t"
+        | "PlayerConnectedState"
+        | "PlayerAnimEvent_t"
+        | "PointWorldTextJustifyHorizontal_t"
+        | "PointWorldTextJustifyVertical_t"
+        | "PointWorldTextReorientMode_t"
+        | "QuestProgress::Reason"
+        | "RelativeDamagedDirection_t"
+        | "RenderFx_t"
+        | "RenderMode_t"
+        | "ShardSolid_t"
+        | "ShatterPanelMode"
+        | "SolidType_t"
+        | "SpawnStage_t"
+        | "SurroundingBoundsType_t"
+        | "ValueRemapperRatchetType_t"
+        | "ValueRemapperHapticsType_t"
+        | "ValueRemapperMomentumType_t"
+        | "ValueRemapperInputType_t"
+        | "ValueRemapperOutputType_t"
+        | "WeaponState_t"
+        | "WorldGroupId_t" => Rc::clone(&cache.unsigned),
+        "bool" => Rc::clone(&cache.bool),
+        "float32" | "CNetworkedQuantizedFloat" => {
+            cache.decode_float32(encoder, bit_count, low_value, high_value, encode_flags)
+        }
+        "char" | "CUtlString" | "CUtlSymbolLarge" => Rc::clone(&cache.string),
+        "GameTime_t" => Rc::clone(&cache.noscale),
+        "QAngle" => cache.decode_qangle(encoder, bit_count),
+        "Vector2D" => {
+            cache.decode_vector(2, encoder, bit_count, low_value, high_value, encode_flags)
+        }
+        "Vector" => cache.decode_vector(3, encoder, bit_count, low_value, high_value, encode_flags),
+        "Vector4D" | "Quaternion" => {
+            cache.decode_vector(4, encoder, bit_count, low_value, high_value, encode_flags)
+        }
+        "CTransform" => {
+            cache.decode_vector(6, encoder, bit_count, low_value, high_value, encode_flags)
+        }
+        _ => todo!("{}", base_type),
+    }
+}
+
+#[derive(Clone, Debug)]
+enum ArraySize {
+    None,
+    Fixed(u16),
+    Variable,
+}
+
+impl fmt::Display for ArraySize {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            ArraySize::None => Ok(()),
+            ArraySize::Fixed(s) => write!(f, "[{s}]"),
+            ArraySize::Variable => write!(f, "[]"),
+        }
+    }
+}
+
+struct CType<'a>(&'a str, Option<Box<CType<'a>>>, ArraySize);
+
+impl<'a> CType<'a> {
+    fn parse(s: &'a str) -> Self {
+        let (s, array) = match s.split_once('[') {
+            Some((s, a)) => (
+                s,
+                ArraySize::Fixed(a[..a.len() - 1].parse::<u16>().unwrap()),
+            ),
+            None => (s, ArraySize::None),
+        };
+        let (base, param) = match s.find('<') {
+            Some(open) => {
+                let close = s.rfind('>').unwrap();
+                (
+                    &s[..open],
+                    Some(Box::new(CType::parse(&s[open + 2..close - 1]))),
+                )
+            }
+            None => (s, None),
+        };
+        match base {
+            "CUtlVector" | "CNetworkUtlVectorBase" | "CUtlVectorEmbeddedNetworkVar" => {
+                let base = param.unwrap();
+                CType(base.0, base.1, ArraySize::Variable)
+            }
+            _ => CType(base, param, array),
         }
     }
 }
@@ -197,8 +478,31 @@ mod tests {
             .read_message()
             .or(Err(Error::InvalidSendTables))
             .unwrap();
-        for f in fs.fields {
-            println!("{}", f);
+        let data = SentTableData::new(fs);
+        for f in data.fs.fields {
+            let mut f = f.clone();
+            f.clear_send_node_sym();
+            let resolve =
+                |sym: &mut Option<i32>| data.symbols[sym.take().unwrap() as usize].as_ref();
+            let var_name = resolve(&mut f.var_name_sym);
+            let var_type = resolve(&mut f.var_type_sym);
+            print!("{}: {} ", var_name, var_type);
+            if f.var_encoder_sym.is_some() {
+                print!("encoder: {} ", resolve(&mut f.var_encoder_sym));
+            }
+            if f.field_serializer_name_sym.is_some() {
+                print!("serializer: {} ", resolve(&mut f.field_serializer_name_sym));
+            }
+            if !f.polymorphic_types.is_empty() {
+                for pt in f.polymorphic_types.iter_mut() {
+                    print!(
+                        "poly: {} ",
+                        resolve(&mut pt.polymorphic_field_serializer_name_sym)
+                    )
+                }
+                f.polymorphic_types.clear();
+            }
+            println!("{f}");
         }
     }
 }

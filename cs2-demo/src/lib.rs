@@ -5,6 +5,7 @@ pub mod game_event;
 mod message;
 mod packet;
 pub mod proto;
+mod read;
 mod string_table;
 #[cfg(test)]
 mod testdata;
@@ -12,8 +13,11 @@ mod visit;
 
 pub use crate::error::{Error, Result};
 pub use crate::game_event::GameEventDescriptors;
-pub use crate::string_table::{PlayerInfo, StringTable, UserInfo};
+pub use crate::string_table::{PlayerInfo, UserInfo};
 pub use crate::visit::{parse_after_demo_type, Visitor};
+pub type Tick = i32;
+
+type BitReader<'a> = bitstream_io::BitReader<&'a [u8], bitstream_io::LittleEndian>;
 
 #[allow(dead_code)]
 pub(crate) fn dump<M>(msg: &M, file: &str)

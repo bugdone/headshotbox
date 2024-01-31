@@ -1,13 +1,15 @@
+use std::fmt;
+use std::io::{Read, Seek, SeekFrom};
+
+use bitstream_io::BitRead;
+use paste::paste;
+use protobuf::Message as protobuf_Message;
+
 use crate::proto::gameevents::*;
 use crate::proto::netmessages::*;
 use crate::proto::networkbasetypes::*;
+use crate::read::ValveBitReader;
 use crate::Result;
-use bitstream_io::BitRead;
-use demo_format::read::ValveBitReader;
-use paste::paste;
-use protobuf::Message as protobuf_Message;
-use std::fmt;
-use std::io::{Read, Seek, SeekFrom};
 
 /// Generates an enum with a variant for each supported Packet message type.
 ///
@@ -32,7 +34,7 @@ macro_rules! create_message_impl {
             ) -> Result<Message> {
                 $($(const [<$name:upper>]: u32 = $enum::[<$enum_prefix $name>] as u32;)*)*
                 let msg_type = reader.read_ubitvar()?;
-                let size = reader.read_varint32()? as usize;
+                let size = reader.read_varuint32()? as usize;
                 match msg_type {
                     $($(
                         [<$name:upper>] => {
@@ -73,6 +75,9 @@ macro_rules! create_message_impl {
 create_message_impl! {
     (NET_Messages, net_, CNETMsg_) => [],
     (SVC_Messages, svc_, CSVCMsg_) => [
+        ClearAllStringTables,
+        CreateStringTable,
+        UpdateStringTable,
         PacketEntities,
         ServerInfo
     ],

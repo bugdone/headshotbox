@@ -29,8 +29,14 @@ pub enum Error {
     SkippedClassId,
     #[error("duplicate serializer in CDemoSendTables")]
     DuplicateSerializer,
-    #[error("packet out of order")]
-    PacketOutOfOrder,
+    #[error("PacketEntities before ClassInfo")]
+    EntityBeforeClassInfo,
+    #[error("ClassInfo before SendTables")]
+    ClassInfoBeforeSendTables,
+    #[error("Missing polymorphic type from {field}")]
+    MissingPolymorphicType { field: String },
+    #[error(transparent)]
+    Visitor(#[from] anyhow::Error),
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
