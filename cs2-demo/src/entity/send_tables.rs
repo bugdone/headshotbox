@@ -40,7 +40,7 @@ pub struct ValueField {
 }
 #[derive(Clone)]
 pub struct ArrayField {
-    pub size: u16,
+    pub(super) size: u16,
     decoder: Decoder,
     pub(super) element: Box<Field>,
 }
@@ -347,6 +347,7 @@ fn make_decoder(
         | "Color"
         | "CPlayerSlot"
         | "CSWeaponMode"
+        | "CSWeaponState_t"
         | "CSPlayerBlockingUseAction_t"
         | "CSPlayerState"
         | "CUtlStringToken"
@@ -379,6 +380,7 @@ fn make_decoder(
         | "ValueRemapperMomentumType_t"
         | "ValueRemapperInputType_t"
         | "ValueRemapperOutputType_t"
+        | "WeaponAttackType_t"
         | "WeaponState_t"
         | "WorldGroupId_t" => Rc::clone(&cache.unsigned),
         "bool" => Rc::clone(&cache.bool),
