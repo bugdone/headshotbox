@@ -22,12 +22,21 @@ pub use self::send_tables::SendTables;
 
 #[derive(Default)]
 pub struct Entities {
-    pub entities: Vec<Option<Entity>>,
+    entities: Vec<Option<Entity>>,
     /// Only used by read_props to avoid allocations.
     field_paths: Vec<FieldPath>,
 }
 
 impl Entities {
+    pub fn len(&self) -> usize {
+        self.entities.len()
+    }
+
+    #[must_use]
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
+    }
+
     pub(crate) fn read_packet_entities(
         &mut self,
         msg: CSVCMsg_PacketEntities,
@@ -71,6 +80,20 @@ impl Entities {
     }
 }
 
+impl std::ops::Index<usize> for Entities {
+    type Output = Entity;
+
+    /// Returns a reference to the entity with the supplied id.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the id is not found.
+    fn index(&self, id: usize) -> &Self::Output {
+        self.entities[id].as_ref().expect("no entry for index")
+    }
+}
+
+#[derive(Debug)]
 pub struct Entity {
     object: Object,
     serializer: Rc<Serializer>,
@@ -227,7 +250,11 @@ mod tests {
         let mut classes = Classes::try_new(testdata::class_info(), send_tables)?;
         for table in testdata::string_tables().tables {
             if table.table_name() == "instancebaseline" {
-                let items = table.items.into_iter().map(|mut e| (e.take_str(), e.take_data())).collect();
+                let items = table
+                    .items
+                    .into_iter()
+                    .map(|mut e| (e.take_str(), e.take_data()))
+                    .collect();
                 classes.update_instance_baselines(items);
             }
         }
