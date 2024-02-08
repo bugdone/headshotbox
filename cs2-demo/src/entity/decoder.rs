@@ -108,13 +108,13 @@ impl DecoderCache {
     }
 
     pub(super) fn decode_fixed_array(&self, size: u16) -> Decoder {
-        Rc::new(move |_| Ok(Some(Property::Array(vec![None; size as usize].into_boxed_slice()))))
+        Rc::new(move |_| Ok(Some(Property::Array(vec![None; size as usize]))))
     }
 
     pub(super) fn decode_var_array(&self, init: Option<Property>) -> Decoder {
         Rc::new(move |r| {
             let vec = vec![init.clone(); r.read_varuint32()? as usize];
-            Ok(Some(Property::Array(vec.into_boxed_slice())))
+            Ok(Some(Property::Array(vec)))
         })
     }
 

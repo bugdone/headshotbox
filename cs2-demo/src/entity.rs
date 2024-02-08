@@ -44,8 +44,6 @@ impl Entities {
     ) -> Result<()> {
         let mut next_entity_id = 0;
         let mut reader = BitReader::new(msg.entity_data());
-        let max_entries = msg.max_entries() as usize;
-        self.entities.resize_with(max_entries, || None);
         for _ in 0..msg.updated_entries() {
             let entity_id = next_entity_id + reader.read_ubitvar()?;
             next_entity_id = entity_id + 1;
@@ -69,6 +67,9 @@ impl Entities {
                         entity.read_props(&mut BitReader::new(baseline), &mut self.field_paths)?;
                     };
                     entity.read_props(&mut reader, &mut self.field_paths)?;
+                    if self.entities.len() <= entity_id as usize {
+                        self.entities.resize_with(entity_id as usize + 1, || None);
+                    }
                     self.entities[entity_id as usize] = Some(entity);
                 }
                 (true, _) => {
@@ -154,12 +155,15 @@ impl Entity {
                     (&mut a[i as usize], f.element.as_ref())
                 }
                 (Some(Property::Array(a)), Field::Vector(f)) => {
+                    if a.len() <= i as usize {
+                        a.resize(i as usize + 1, Default::default());
+                    }
                     (&mut a[i as usize], f.element.as_ref())
                 }
                 (Some(p), f) => unreachable!("{p:?} {f:?}"),
                 (p, Field::Array(f)) if p.is_none() => {
                     *p = Some(Property::Array(
-                        vec![None; f.size as usize].into_boxed_slice(),
+                        vec![None; f.size as usize],
                     ));
                     match p {
                         Some(Property::Array(a)) => (&mut a[i as usize], &f.element.as_ref()),

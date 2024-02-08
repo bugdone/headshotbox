@@ -29,7 +29,7 @@ pub enum Property {
     Vec4([f32; 4]),
     Vec6([f32; 6]),
     Object(Object),
-    Array(Box<[Option<Property>]>),
+    Array(Vec<Option<Property>>),
 }
 
 impl std::fmt::Display for Property {
