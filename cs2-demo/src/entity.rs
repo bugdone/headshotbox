@@ -4,10 +4,11 @@ mod fieldpath;
 mod property;
 mod send_tables;
 
+use std::fmt;
 use std::rc::Rc;
 
 use bitstream_io::BitRead;
-use tracing::trace;
+use tracing::{enabled, trace, Level};
 
 use self::fieldpath::FieldPath;
 use self::send_tables::{Field, Serializer};
@@ -51,6 +52,7 @@ impl Entities {
             let new = reader.read_bit()?;
             match (remove, new) {
                 (false, false) => {
+                    trace!("Update entity {entity_id}");
                     if let Some(entity) = self.entities[entity_id as usize].as_mut() {
                         entity.read_props(&mut reader, &mut self.field_paths)?;
                     } else {
@@ -62,9 +64,11 @@ impl Entities {
                     let _serial = reader.read::<u32>(17)?;
                     reader.read_varuint32()?; // Don't know what this is.
                     let class = classes.class(class_id);
+                    trace!("Create entity {entity_id} {}", class.serializer.name);
                     let mut entity = Entity::new(Rc::clone(&class.serializer));
                     if let Some(baseline) = &class.instance_baseline {
                         entity.read_props(&mut BitReader::new(baseline), &mut self.field_paths)?;
+                        trace!("Baseline for entity {entity_id} done");
                     };
                     entity.read_props(&mut reader, &mut self.field_paths)?;
                     if self.entities.len() <= entity_id as usize {
@@ -73,6 +77,7 @@ impl Entities {
                     self.entities[entity_id as usize] = Some(entity);
                 }
                 (true, _) => {
+                    trace!("Delete entity {entity_id}");
                     self.entities[entity_id as usize] = None;
                 }
             };
@@ -189,7 +194,7 @@ impl Entity {
             let (prop, field) = self.property(&fp.data);
             *prop = (field.decoder())(reader)?;
 
-            if false {
+            if enabled!(Level::TRACE) {
                 let (prop, field, name) = self.get_property(&fp.data);
                 match field {
                     Field::Value(_) | Field::Array(_) | Field::Vector(_) => {
@@ -205,11 +210,65 @@ impl Entity {
     }
 }
 
+impl fmt::Display for Entity {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        fn dfs(
+            f: &mut fmt::Formatter<'_>,
+            path: PathName,
+            prop: &Property,
+            field: &Field,
+        ) -> fmt::Result {
+            let path = path.push_field(field.name());
+            match (prop, field) {
+                (Property::Object(o), Field::Object(fo)) => {
+                    print_object(f, path, o, &fo.serializer)?
+                }
+                (Property::Array(a), Field::Array(fa)) => {
+                    for (i, e) in a.iter().enumerate() {
+                        let path = path.clone().push_index(i);
+                        dfs(f, path, e.as_ref().unwrap(), &fa.element)?;
+                    }
+                }
+                (Property::Array(a), Field::Vector(fv)) => {
+                    for (i, e) in a.iter().enumerate() {
+                        let path = path.clone().push_index(i);
+                        dfs(f, path, e.as_ref().unwrap(), &fv.element)?;
+                    }
+                }
+                _ => writeln!(f, "{} = {}", path, prop)?,
+            }
+            Ok(())
+        }
+
+        fn print_object(
+            f: &mut fmt::Formatter<'_>,
+            path: PathName,
+            object: &Object,
+            serializer: &Serializer,
+        ) -> fmt::Result {
+            for (i, e) in object.properties.iter().enumerate() {
+                let field = &serializer.fields[i];
+                if let Some(prop) = e {
+                    dfs(f, path.clone(), prop, field)?;
+                }
+            }
+            Ok(())
+        }
+
+        let path = PathName {
+            items: vec![PathNameItem::Field(Rc::from(self.serializer.name.as_str()))],
+        };
+        print_object(f, path, &self.object, &self.serializer)
+    }
+}
+
+#[derive(Clone)]
 enum PathNameItem {
     Field(Rc<str>),
     Index(usize),
 }
 
+#[derive(Clone)]
 pub struct PathName {
     items: Vec<PathNameItem>,
 }
