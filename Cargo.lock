@@ -271,7 +271,6 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "assert-json-diff",
- "byteorder",
  "cs2-demo",
  "csgo-demo",
  "protobuf",

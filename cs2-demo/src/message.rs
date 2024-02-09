@@ -8,6 +8,10 @@ use protobuf::Message as protobuf_Message;
 use crate::proto::gameevents::*;
 use crate::proto::netmessages::*;
 use crate::proto::networkbasetypes::*;
+use crate::proto::cstrike15_usermessages::ECstrike15UserMessages;
+use crate::proto::usermessages::{EBaseUserMessages, EBaseEntityMessages};
+use crate::proto::te::ETEProtobufIds;
+use crate::proto::cs_gameevents::ECsgoGameEvents;
 use crate::read::ValveBitReader;
 use crate::Result;
 
@@ -73,6 +77,11 @@ macro_rules! create_message_impl {
 }
 
 create_message_impl! {
+    (EBaseUserMessages, UM_, CUserMessage) => [],
+    (EBaseEntityMessages, EM_, CEntityMessage) => [],
+    (ECstrike15UserMessages, CS_UM_, CCSUsrMsg_) => [],
+    (ETEProtobufIds, TE_, CMsgTE) => [],
+    (ECsgoGameEvents, GE_, CMsgTE) => [],
     (NET_Messages, net_, CNETMsg_) => [],
     (SVC_Messages, svc_, CSVCMsg_) => [
         ClearAllStringTables,

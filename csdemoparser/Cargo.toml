@@ -10,7 +10,6 @@ tracing = ["dep:tracing-subscriber"]
 
 [dependencies]
 anyhow = { version = "1.0", features = ["backtrace"] }
-byteorder = "1.4"
 csgo-demo = { path = "../csgo-demo" }
 cs2-demo = { path = "../cs2-demo" }
 serde = { version = "1.0", features = ["derive"] }

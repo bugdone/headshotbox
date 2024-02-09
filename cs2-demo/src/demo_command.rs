@@ -68,7 +68,9 @@ impl DemoCommand {
 impl fmt::Display for DemoCommand {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
-            DemoCommand::FileHeader(m) => write!(f, "FileHeader {}", m),
+            DemoCommand::FileHeader(m) => write!(f, "FileHeader {m}"),
+            DemoCommand::ClassInfo(m) => write!(f, "ClassInfo {m}"),
+            DemoCommand::FullPacket(st, p) => write!(f, "FullPacket {st}, {p:?}"),
             DemoCommand::SendTables(_) => write!(f, "SendTables"),
             _ => write!(f, "{:?}", self),
         }
