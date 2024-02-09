@@ -6,11 +6,8 @@ pub type Result<T> = std::result::Result<T, Error>;
 #[derive(thiserror::Error, Debug)]
 #[allow(clippy::enum_variant_names)]
 pub enum HeaderParsingError {
-    #[error("invalid demo type (expected: {expected}, found: {found})")]
-    InvalidDemoType {
-        expected: &'static str,
-        found: String,
-    },
+    #[error("invalid demo type (expected: HL2DEMO, found: {0:?})")]
+    InvalidDemoType(Box<[u8]>),
     #[error("invalid demo protocol (expected: {expected}, found: {found})")]
     InvalidDemoProtocol { expected: u32, found: u32 },
     #[error("invalid game (expected: {expected}, found: {found})")]
@@ -44,4 +41,10 @@ pub enum Error {
     UnknownPacketCommand(u8),
     #[error(transparent)]
     DataTablesParsing(#[from] DataTablesParsingError),
+    #[error("StringTable error: {0}")]
+    StringTable(&'static str),
+    #[error("Entity error: {0}")]
+    Entity(&'static str),
+    #[error("ServerClass error: {0}")]
+    ServerClass(String),
 }

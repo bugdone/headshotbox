@@ -1,23 +1,27 @@
 mod cs2;
 mod csgo;
 pub mod demoinfo;
-mod entity;
 mod game_event;
 mod geometry;
 mod last_jump;
-mod string_table;
 
-use crate::entity::{Entity, EntityId, PropValue, Scalar};
-use demo_format::read::ReadExt;
+use csgo_demo::entity::{Entity, EntityId, PropValue, Scalar};
 use demoinfo::DemoInfo;
-use std::io;
+use std::{
+    fs::File,
+    io::{Read, Seek},
+};
 
-const SOURCE1_DEMO_TYPE: &str = "HL2DEMO";
-const SOURCE2_DEMO_TYPE: &str = "PBDEMS2";
+type Tick = i32;
 
-pub fn parse(mut read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
-    let demo_type = read.read_string_limited(8)?;
-    match demo_type.as_str() {
+const SOURCE1_DEMO_TYPE: &[u8; 8] = b"HL2DEMO\0";
+const SOURCE2_DEMO_TYPE: &[u8; 8] = b"PBDEMS2\0";
+
+pub fn parse(read: &mut File) -> anyhow::Result<DemoInfo> {
+    let mut demo_type = [0; 8];
+    read.read_exact(&mut demo_type)?;
+    read.rewind()?;
+    match &demo_type {
         SOURCE1_DEMO_TYPE => csgo::parse(read),
         SOURCE2_DEMO_TYPE => {
             if std::env::var("CS2_EXPERIMENTAL_PARSER").is_ok() {
@@ -26,7 +30,7 @@ pub fn parse(mut read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
                 panic!("CS2 demo parser is not complete. You can test it by seting the CS2_EXPERIMENTAL_PARSER environment variable.")
             }
         }
-        _ => Err(cs2_demo::Error::InvalidDemoType { found: demo_type }.into()),
+        _ => Err(cs2_demo::Error::InvalidDemoType(Box::new(demo_type)).into()),
     }
 }
 
@@ -92,15 +96,6 @@ fn maybe_get_u16(v: Option<&serde_json::Value>) -> Option<u16> {
 
 fn maybe_get_i32(v: Option<&serde_json::Value>) -> Option<i32> {
     Some(v?.as_i64()? as i32)
-}
-
-// Number of  bits needed to represent values in the 0..=n interval.
-fn num_bits(n: u32) -> u32 {
-    if n == 0 {
-        1
-    } else {
-        u32::BITS - n.leading_zeros()
-    }
 }
 
 #[cfg(test)]

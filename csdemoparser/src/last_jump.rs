@@ -1,4 +1,4 @@
-use demo_format::Tick;
+use crate::Tick;
 use std::collections::HashMap;
 
 #[derive(Default)]

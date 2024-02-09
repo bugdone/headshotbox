@@ -1,17 +1,14 @@
 mod game_event;
 
-use crate::entity::{Entities, Entity, EntityId, PropValue, Scalar};
-use crate::entity::{ServerClasses, TrackProp};
+use csgo_demo::entity::{Entities, Entity, EntityId, PropValue, Scalar, ServerClasses, TrackProp};
 use crate::geometry::{through_smoke, Point};
 use crate::last_jump::LastJump;
-use crate::string_table::{self, PlayerInfo, StringTables};
 use crate::{account_id_to_xuid, guid_to_xuid, maybe_get_i32, maybe_get_u16, DemoInfo, TeamScore};
 use anyhow::bail;
 use csgo_demo::proto::netmessages::CSVCMsg_GameEvent;
-use csgo_demo::Message;
-use csgo_demo::PacketContent;
-use csgo_demo::StringTable;
-use demo_format::Tick;
+use csgo_demo::{Message, PacketContent};
+use csgo_demo::string_table::{parse_player_infos, PlayerInfo, StringTable, StringTables};
+use crate::Tick;
 use serde_json::json;
 use std::cell::RefCell;
 use std::collections::{BTreeMap, HashMap};
@@ -32,7 +29,7 @@ const GAME_RESTART: &str = "m_bGameRestart";
 const TEAM_CLASS: &str = "CCSTeam";
 
 pub fn parse(read: &mut dyn io::Read) -> anyhow::Result<DemoInfo> {
-    let mut parser = csgo_demo::DemoParser::try_new_after_demo_type(read)?;
+    let mut parser = csgo_demo::DemoParser::try_new(read)?;
     let server_name = parser.header().server_name().to_string();
     let mut server_classes = None;
     let mut packets = vec![];
@@ -191,13 +188,8 @@ impl<'a> HeadshotBoxParser<'a> {
     fn handle_string_tables(&mut self, st: Vec<StringTable>) -> anyhow::Result<()> {
         // demoinfogo clears the players but I don't think this is correct
         self.players.clear();
-        for st in st.iter().filter(|st| st.name() == "userinfo") {
-            for (entity_id, string) in st.strings().iter().enumerate() {
-                if let Some(data) = string.data() {
-                    let player_info = string_table::parse_player_info(data, entity_id as i32)?;
-                    Self::update_players(&mut self.players, &self.demoinfo, player_info);
-                }
-            }
+        for player_info in parse_player_infos(st)? {
+            Self::update_players(&mut self.players, &self.demoinfo, player_info);
         }
         Ok(())
     }
@@ -211,17 +203,19 @@ impl<'a> HeadshotBoxParser<'a> {
             }
             Message::CreateStringTable(table) => {
                 let mut updates = self.string_tables.create_string_table(&table);
-                while let Some(player_info) = updates.next()? {
+                while let Some(player_info) = updates.next_player_info()? {
                     Self::update_players(&mut self.players, &self.demoinfo, player_info);
                 }
             }
             Message::UpdateStringTable(table) => {
                 let mut updates = self.string_tables.update_string_table(&table)?;
-                while let Some(player_info) = updates.next()? {
+                while let Some(player_info) = updates.next_player_info()? {
                     Self::update_players(&mut self.players, &self.demoinfo, player_info);
                 }
             }
-            Message::GameEventList(gel) => self.game_event_descriptors = self::game_event::parse_game_event_list(gel),
+            Message::GameEventList(gel) => {
+                self.game_event_descriptors = self::game_event::parse_game_event_list(gel)
+            }
             Message::GameEvent(event) => {
                 if let Some(descriptor) = self.game_event_descriptors.get(&event.eventid()) {
                     let attrs = self.event_map(event, descriptor, tick)?;

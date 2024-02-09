@@ -1,12 +1,10 @@
 use crate::entity::{BitReader, PropValue, Scalar, ValveBitReader, Vector};
-use crate::num_bits;
-use anyhow::bail;
-use bitstream_io::BitRead;
-use csgo_demo::proto::netmessages::{
+use crate::proto::netmessages::{
     csvcmsg_class_info, csvcmsg_send_table::Sendprop_t, CSVCMsg_SendTable,
 };
-use csgo_demo::DataTables;
-use demo_format::read::CoordType;
+use crate::read::CoordType;
+use crate::{num_bits, DataTables, Error, Result};
+use bitstream_io::BitRead;
 use std::collections::HashMap;
 use std::io;
 use std::string::FromUtf8Error;
@@ -27,13 +25,13 @@ impl ServerClass {
     }
 }
 
-pub(crate) struct ServerClasses {
-    pub(crate) bits: u32,
-    pub(crate) server_classes: Vec<ServerClass>,
+pub struct ServerClasses {
+    pub bits: u32,
+    pub server_classes: Vec<ServerClass>,
 }
 
 impl ServerClasses {
-    pub(crate) fn try_new(data_tables: DataTables) -> anyhow::Result<Self> {
+    pub fn try_new(data_tables: DataTables) -> Result<Self> {
         let bits = num_bits(data_tables.server_classes().len() as u32);
         Ok(Self {
             bits,
@@ -128,7 +126,7 @@ struct ArrayPropDescriptor {
 }
 
 impl ArrayPropDescriptor {
-    fn try_new(sendprop: &Sendprop_t, array_element: &Sendprop_t) -> anyhow::Result<Self> {
+    fn try_new(sendprop: &Sendprop_t, array_element: &Sendprop_t) -> Result<Self> {
         Ok(Self {
             num_elements: sendprop.num_elements() as u32,
             elem_type: ScalarPropDescriptor::try_new(array_element)?,
@@ -151,14 +149,14 @@ impl PropDescriptor {
         }
     }
 
-    pub(crate) fn decode(&self, reader: &mut BitReader) -> DecodeResult<PropValue> {
+    pub(crate) fn decode(&self, reader: &mut BitReader) -> std::io::Result<PropValue> {
         match &self.type_ {
             PropDescriptorType::Scalar(s) => Ok(PropValue::Scalar(self.decode_scalar(s, reader)?)),
             PropDescriptorType::Array(a) => Ok(PropValue::Array(self.decode_array(a, reader)?)),
         }
     }
 
-    pub(crate) fn skip(&self, reader: &mut BitReader) -> DecodeResult<()> {
+    pub(crate) fn skip(&self, reader: &mut BitReader) -> std::io::Result<()> {
         match &self.type_ {
             PropDescriptorType::Scalar(s) => self.skip_scalar(s, reader),
             PropDescriptorType::Array(a) => self.skip_array(a, reader),
@@ -169,7 +167,7 @@ impl PropDescriptor {
         &self,
         type_: &ScalarPropDescriptor,
         reader: &mut BitReader,
-    ) -> DecodeResult<Scalar> {
+    ) -> std::io::Result<Scalar> {
         match type_ {
             ScalarPropDescriptor::Int(int) => Ok(Scalar::I32(self.decode_int(int, reader)?)),
             ScalarPropDescriptor::Float(f) => Ok(Scalar::F32(self.decode_float(f, reader)?)),
@@ -188,7 +186,7 @@ impl PropDescriptor {
         &self,
         type_: &ScalarPropDescriptor,
         reader: &mut BitReader,
-    ) -> DecodeResult<()> {
+    ) -> std::io::Result<()> {
         match type_ {
             ScalarPropDescriptor::Int(int) => Ok(self.skip_int(int, reader)?),
             ScalarPropDescriptor::Float(f) => Ok(self.skip_float(f, reader)?),
@@ -203,7 +201,7 @@ impl PropDescriptor {
         &self,
         type_: &ArrayPropDescriptor,
         reader: &mut BitReader,
-    ) -> DecodeResult<Vec<Scalar>> {
+    ) -> std::io::Result<Vec<Scalar>> {
         let len_bits = num_bits(type_.num_elements);
         let len = reader.read::<u32>(len_bits)?;
         let mut array = Vec::with_capacity(len as usize);
@@ -213,7 +211,7 @@ impl PropDescriptor {
         Ok(array)
     }
 
-    fn skip_array(&self, type_: &ArrayPropDescriptor, reader: &mut BitReader) -> DecodeResult<()> {
+    fn skip_array(&self, type_: &ArrayPropDescriptor, reader: &mut BitReader) -> std::io::Result<()> {
         let len_bits = num_bits(type_.num_elements);
         let len = reader.read::<u32>(len_bits)?;
         for _ in 0..len {
@@ -350,15 +348,16 @@ impl PropDescriptor {
         }
     }
 
-    fn decode_string(&self, reader: &mut BitReader) -> DecodeResult<String> {
+    fn decode_string(&self, reader: &mut BitReader) -> std::io::Result<String> {
         let len = reader.read::<u32>(9)? as usize;
         let mut buf = vec![0; len];
         reader.read_bytes(buf.as_mut_slice())?;
-        let val = String::from_utf8(buf)?;
+        let val = String::from_utf8(buf)
+            .map_err(|e| std::io::Error::new(std::io::ErrorKind::InvalidData, e))?;
         Ok(val)
     }
 
-    fn skip_string(&self, reader: &mut BitReader) -> DecodeResult<()> {
+    fn skip_string(&self, reader: &mut BitReader) -> std::io::Result<()> {
         let len = reader.read::<u32>(9)?;
         reader.skip(len * 8)?;
         Ok(())
@@ -373,8 +372,6 @@ pub enum DecodeError {
     Protobuf(#[from] FromUtf8Error),
 }
 
-pub type DecodeResult<T> = std::result::Result<T, DecodeError>;
-
 #[derive(Debug)]
 enum ScalarPropDescriptor {
     Int(IntPropDescriptor),
@@ -386,7 +383,7 @@ enum ScalarPropDescriptor {
 }
 
 impl ScalarPropDescriptor {
-    fn try_new(sendprop: &Sendprop_t) -> anyhow::Result<Self> {
+    fn try_new(sendprop: &Sendprop_t) -> Result<Self> {
         Ok(match sendprop.type_() {
             DPT_INT => Self::Int(IntPropDescriptor::from(sendprop)),
             DPT_FLOAT => Self::Float(FloatPropDescriptor::from(sendprop)),
@@ -397,7 +394,9 @@ impl ScalarPropDescriptor {
             DPT_VECTOR_XY => Self::VectorXY(FloatPropDescriptor::from(sendprop)),
             DPT_STRING => Self::String,
             DPT_INT64 => Self::Int64,
-            _ => bail!("invalid scalar sendprop type"),
+            _ => Err(Error::ServerClass(
+                "invalid scalar sendprop type".to_string(),
+            ))?,
         })
     }
 }
@@ -416,7 +415,7 @@ impl<'a> ServerClassesParser<'a> {
     pub(crate) fn parse(
         send_tables: &'a [CSVCMsg_SendTable],
         server_classes: &'a [csvcmsg_class_info::Class_t],
-    ) -> anyhow::Result<Vec<ServerClass>> {
+    ) -> Result<Vec<ServerClass>> {
         let send_tables: HashMap<&str, &CSVCMsg_SendTable> = send_tables
             .iter()
             .map(|st| (st.net_table_name(), st))
@@ -424,20 +423,22 @@ impl<'a> ServerClassesParser<'a> {
         Self { send_tables }.parse_server_classes(server_classes)
     }
 
-    fn lookup_data_table(&self, name: &str) -> anyhow::Result<&'a CSVCMsg_SendTable> {
+    fn lookup_data_table(&self, name: &str) -> Result<&'a CSVCMsg_SendTable> {
         self.send_tables
             .get(name)
             .copied()
-            .ok_or_else(|| anyhow::anyhow!(format!("table name {name} not found")))
+            .ok_or_else(|| Error::ServerClass(format!("table name {name} not found")))
     }
 
     fn parse_server_classes(
         &self,
         server_classes: &'a [csvcmsg_class_info::Class_t],
-    ) -> anyhow::Result<Vec<ServerClass>> {
+    ) -> Result<Vec<ServerClass>> {
         for (i, sc) in server_classes.iter().enumerate() {
             if i != sc.class_id() as usize {
-                bail!("server class id not sequential");
+                return Err(Error::ServerClass(
+                    "server class id not sequential".to_string(),
+                ));
             }
         }
         server_classes
@@ -454,10 +455,7 @@ impl<'a> ServerClassesParser<'a> {
     /// except for excluded properties. See [Valve doc].
     ///
     /// [Valve doc]: https://developer.valvesoftware.com/wiki/Networking_Entities#Network_Data_Tables
-    fn parse_server_class(
-        &self,
-        class_ref: &csvcmsg_class_info::Class_t,
-    ) -> anyhow::Result<ServerClass> {
+    fn parse_server_class(&self, class_ref: &csvcmsg_class_info::Class_t) -> Result<ServerClass> {
         let table = self.lookup_data_table(class_ref.data_table_name())?;
         let mut excludes = Vec::new();
         self.gather_excludes(table, &mut excludes)?;
@@ -475,7 +473,7 @@ impl<'a> ServerClassesParser<'a> {
         &self,
         table: &'a CSVCMsg_SendTable,
         excludes: &mut Vec<(&'a str, &'a str)>,
-    ) -> anyhow::Result<()> {
+    ) -> Result<()> {
         for prop in &table.props {
             if prop.flags() & SPROP_EXCLUDE != 0 {
                 excludes.push((prop.dt_name(), prop.var_name()))
@@ -492,7 +490,7 @@ impl<'a> ServerClassesParser<'a> {
         table: &CSVCMsg_SendTable,
         excludes: &Vec<(&str, &str)>,
         result: &mut Vec<(i32, PropDescriptor)>,
-    ) -> Result<(), anyhow::Error> {
+    ) -> Result<()> {
         let mut tmp = Vec::new();
         self.gather_props(table, excludes, &mut tmp, result)?;
         result.append(&mut tmp);
@@ -505,7 +503,7 @@ impl<'a> ServerClassesParser<'a> {
         excludes: &Vec<(&'a str, &'a str)>,
         current: &mut Vec<(i32, PropDescriptor)>,
         result: &mut Vec<(i32, PropDescriptor)>,
-    ) -> anyhow::Result<()> {
+    ) -> Result<()> {
         let mut array_elem = None;
         for sendprop in &table.props {
             // sendprop.dt_name() is only set for data tables and exclude props.
@@ -524,7 +522,7 @@ impl<'a> ServerClassesParser<'a> {
                 }
             } else if sendprop.type_() == DPT_ARRAY {
                 let array_elem = array_elem.ok_or_else(|| {
-                    anyhow::anyhow!(format!(
+                    Error::ServerClass(format!(
                         "array sendprop without preceding element: {}.{}",
                         sendprop.dt_name(),
                         sendprop.var_name()

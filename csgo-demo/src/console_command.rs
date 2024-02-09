@@ -1,6 +1,7 @@
-use crate::Result;
-use demo_format::read::ReadExt;
 use protobuf::CodedInputStream;
+
+use crate::Result;
+use crate::read::ReadExt;
 
 #[derive(Debug)]
 pub(crate) struct ConsoleCommand {

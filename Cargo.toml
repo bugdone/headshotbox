@@ -4,10 +4,8 @@ members = [
     "csgo-demo",
     "cs2-demo",
     "csdemoparser",
-    "demo-format",
     "parsetest",
 ]
 
 [workspace.dependencies]
 bitstream-io = "1.7"
-byteorder = "1.4"

@@ -1,16 +1,16 @@
 /// https://developer.valvesoftware.com/wiki/Networking_Entities
 mod serverclass;
 
-use anyhow::{bail, Context};
 use bitstream_io::BitRead;
-use csgo_demo::proto::netmessages::CSVCMsg_PacketEntities;
-use demo_format::read::ValveBitReader;
-use demo_format::BitReader;
-use demo_format::Tick;
 use serverclass::ServerClass;
-pub(crate) use serverclass::ServerClasses;
 use std::io;
 use std::rc::Rc;
+
+use crate::proto::netmessages::CSVCMsg_PacketEntities;
+use crate::read::ValveBitReader;
+use crate::{BitReader, Error, Result, Tick};
+
+pub use serverclass::ServerClasses;
 
 const MAX_ENTITIES: u32 = 2048;
 
@@ -35,7 +35,7 @@ pub struct Entities<'a> {
 }
 
 impl<'a> Entities<'a> {
-    pub(crate) fn new(server_classes: &'a ServerClasses) -> Self {
+    pub fn new(server_classes: &'a ServerClasses) -> Self {
         Self {
             server_classes,
             entities: (0..MAX_ENTITIES).map(|_| None).collect(),
@@ -47,18 +47,14 @@ impl<'a> Entities<'a> {
         self.entities.get(id as usize)?.as_ref()
     }
 
-    pub fn read_packet_entities(
-        &mut self,
-        msg: CSVCMsg_PacketEntities,
-        tick: Tick,
-    ) -> anyhow::Result<()> {
+    pub fn read_packet_entities(&mut self, msg: CSVCMsg_PacketEntities, tick: Tick) -> Result<()> {
         let mut next_entity_id = 0;
         let mut reader = BitReader::new(msg.entity_data());
         for _ in 0..msg.updated_entries() {
             let entity_id = next_entity_id + reader.read_ubitvar()?;
             next_entity_id = entity_id + 1;
             if entity_id >= MAX_ENTITIES {
-                bail!("invalid entity_id");
+                return Err(Error::Entity("invalid entity_id"));
             }
             let remove = reader.read_bit()?;
             let new = reader.read_bit()?;
@@ -67,7 +63,7 @@ impl<'a> Entities<'a> {
                     if let Some(entity) = self.entities[entity_id as usize].as_mut() {
                         entity.read_props(&mut reader, &mut self.field_indices, tick)?;
                     } else {
-                        bail!("entity id not found");
+                        return Err(Error::Entity("entity id not found"));
                     }
                 }
                 (false, true) => {
@@ -76,7 +72,7 @@ impl<'a> Entities<'a> {
                         .server_classes
                         .server_classes
                         .get(class_id as usize)
-                        .ok_or_else(|| anyhow::anyhow!("class id not found"))?;
+                        .ok_or_else(|| Error::Entity("class id not found"))?;
                     // Discard serial_num.
                     reader.read::<u32>(10)?;
                     let mut entity = Entity::new(entity_id as EntityId, class);
@@ -85,10 +81,14 @@ impl<'a> Entities<'a> {
                 }
                 (true, _) => {
                     if !msg.is_delta() {
-                        bail!("Entities should not be deleted in a full update");
+                        return Err(Error::Entity(
+                            "Entities should not be deleted in a full update",
+                        ));
                     }
                     if self.entities[entity_id as usize].take().is_none() {
-                        bail!("Tried to remove an entity which doesn't exist")
+                        return Err(Error::Entity(
+                            "Tried to remove an entity which doesn't exist",
+                        ));
                     }
                 }
             };
@@ -104,7 +104,6 @@ pub struct Vector {
     pub z: f32,
 }
 
-#[allow(dead_code)]
 #[derive(Debug)]
 pub enum Scalar {
     I32(i32),
@@ -159,7 +158,7 @@ impl Entity<'_> {
         reader: &mut BitReader,
         field_indices: &mut Vec<i32>,
         tick: Tick,
-    ) -> anyhow::Result<()> {
+    ) -> Result<()> {
         let new_way = reader.read_bit()?;
         field_indices.clear();
         let mut index = -1;
@@ -167,7 +166,7 @@ impl Entity<'_> {
             index = val;
             field_indices.push(index);
             if field_indices.len() > 20000 {
-                bail!("found too many entity field indices, probably corrupt demo")
+                return Err(Error::Entity("found too many entity field indices, probably corrupt demo"))
             }
         }
         for i in field_indices {
@@ -175,7 +174,7 @@ impl Entity<'_> {
                 .class
                 .props
                 .get(*i as usize)
-                .context("invalid prop index")?;
+                .ok_or(Error::Entity("invalid prop index"))?;
             match &descriptor.track {
                 TrackProp::No => descriptor.skip(reader)?,
                 TrackProp::Value => self.props[*i as usize] = Some(descriptor.decode(reader)?),

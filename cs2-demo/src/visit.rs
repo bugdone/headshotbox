@@ -42,8 +42,8 @@ pub trait Visitor {
     }
 }
 
-pub fn parse_after_demo_type(read: &mut dyn Read, visitor: &mut dyn Visitor) -> Result<()> {
-    DemoVisit::new(DemoParser::try_new_after_demo_type(read)?, visitor).parse()
+pub fn parse(read: &mut dyn Read, visitor: &mut dyn Visitor) -> Result<()> {
+    DemoVisit::new(DemoParser::try_new(read)?, visitor).parse()
 }
 
 struct DemoVisit<'a> {

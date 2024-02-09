@@ -1,7 +1,8 @@
 use bitstream_io::BitRead;
-use demo_format::BitReader;
 use protobuf::CodedInputStream;
 use std::io;
+
+use crate::BitReader;
 
 trait ReadByte {
     fn read_byte(&mut self) -> io::Result<u8>;

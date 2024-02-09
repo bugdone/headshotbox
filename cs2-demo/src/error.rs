@@ -5,8 +5,8 @@ pub enum Error {
     Io(#[from] std::io::Error),
     #[error(transparent)]
     Protobuf(#[from] protobuf::Error),
-    #[error("invalid demo type (expected: PBDEMS2, found: {found})")]
-    InvalidDemoType { found: String },
+    #[error("invalid demo type (expected: PBDEMS2, found: {0:?})")]
+    InvalidDemoType(Box<[u8]>),
     #[error("unknown packet command found: {0}")]
     UnknownPacketCommand(u32),
     #[error(transparent)]

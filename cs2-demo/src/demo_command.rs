@@ -80,7 +80,12 @@ pub struct DemoParser<'a> {
 }
 
 impl<'a> DemoParser<'a> {
-    pub fn try_new_after_demo_type(read: &'a mut dyn std::io::Read) -> Result<Self> {
+    pub fn try_new(read: &'a mut dyn std::io::Read) -> Result<Self> {
+        let mut demo_type = [0; 8];
+        read.read_exact(&mut demo_type)?;
+        if &demo_type != b"PBDEMS2\0" {
+            return Err(Error::InvalidDemoType(Box::new(demo_type)));
+        }
         let mut reader = CodedInputStream::new(read);
         reader.skip_raw_bytes(8)?;
         Ok(Self { reader })

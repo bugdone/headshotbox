@@ -1,4 +1,4 @@
-use demo_format::Tick;
+use crate::Tick;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 

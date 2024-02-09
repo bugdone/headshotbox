@@ -5,18 +5,18 @@ use crate::demoinfo::{
 
 use crate::game_event::GameEvent;
 use crate::last_jump::LastJump;
+use crate::Tick;
 use crate::{DemoInfo, Slot, UserId};
 use cs2_demo::entity::Entities;
 use cs2_demo::proto::demo::CDemoFileHeader;
 use cs2_demo::proto::gameevents::CMsgSource1LegacyGameEvent;
 use cs2_demo::{GameEventDescriptors, UserInfo, Visitor};
-use demo_format::Tick;
 use std::collections::{hash_map, HashMap};
 use tracing::{instrument, trace};
 
 pub fn parse(read: &mut dyn std::io::Read) -> anyhow::Result<DemoInfo> {
     let mut state = GameState::new();
-    cs2_demo::parse_after_demo_type(read, &mut state)?;
+    cs2_demo::parse(read, &mut state)?;
     state.get_info()
 }
 

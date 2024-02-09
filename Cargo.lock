@@ -271,11 +271,9 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "assert-json-diff",
- "bitstream-io",
  "byteorder",
  "cs2-demo",
  "csgo-demo",
- "demo-format",
  "protobuf",
  "serde",
  "serde_json",
@@ -290,20 +288,12 @@ version = "0.0.0"
 dependencies = [
  "bitstream-io",
  "byteorder",
- "demo-format",
  "getset",
  "paste",
  "protobuf",
  "protobuf-codegen",
  "thiserror",
  "tracing",
-]
-
-[[package]]
-name = "demo-format"
-version = "0.1.0"
-dependencies = [
- "bitstream-io",
 ]
 
 [[package]]
@@ -512,7 +502,6 @@ dependencies = [
  "console",
  "glob",
  "indicatif",
- "once_cell",
  "rayon",
  "serde",
  "serde_json",
