@@ -1,3 +1,8 @@
+# Headshot Box
+
+Search engine and stats for your CS:GO replays. Visit
+https://headshotbox.github.io/ for a visual description of the features.
+
 # Development setup newui
 
 ```bash
