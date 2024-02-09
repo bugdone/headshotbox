@@ -11,15 +11,13 @@ jobs:
   linux:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3
-      with:
-        submodules: true
+    - uses: actions/checkout@v4
     - uses: Swatinem/rust-cache@v2
+    - name: Test csdemoparser
+      run: cargo test --release
     - name: Build csdemoparser
       run: cargo build -p csdemoparser --release
-    - name: Test csdemoparser
-      run: cargo test -p csdemoparser --release
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: rust-linux
         path: target/release/csdemoparser
@@ -27,15 +25,13 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        submodules: true
+    - uses: actions/checkout@v4
     - uses: Swatinem/rust-cache@v2
+    - name: Test csdemoparser
+      run: cargo test --release
     - name: Build csdemoparser
       run: cargo build -p csdemoparser --release
-    - name: Test csdemoparser
-      run: cargo test -p csdemoparser --release
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: rust-windows
         path: target/release/csdemoparser.exe
