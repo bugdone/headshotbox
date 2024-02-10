@@ -53,7 +53,7 @@ public class SysTrayIcon {
                 });
                 popup.add(quitItem);
 
-                InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("public/img/hsbox.png");
+                InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("newui/public/images/hsbox.png");
                 BufferedImage image = ImageIO.read(is);
                 TrayIcon trayIcon = new TrayIcon(image, "HeadshotBox", popup);
                 trayIcon.setImageAutoSize(true);
