@@ -50,12 +50,18 @@
   (def demoinfo-dir-path dir))
 
 (defn find-demoparser []
-  (let [csdemoparser (str demoinfo-dir-path "/csdemoparser")
+  (let [csdemoparser-exe (str demoinfo-dir-path "/csdemoparser.exe")
+        csdemoparser (str demoinfo-dir-path "/csdemoparser")
+        csdemoparser-dev-exe (str demoinfo-dir-path "/target/release/csdemoparser.exe")
         csdemoparser-dev (str demoinfo-dir-path "/target/release/csdemoparser")
+        demoinfogo-exe (str demoinfo-dir-path "/demoinfogo.exe")
         demoinfogo (str demoinfo-dir-path "/demoinfogo")]
     (cond
+      (file-exists? csdemoparser-exe) [csdemoparser-exe]
       (file-exists? csdemoparser) [csdemoparser]
+      (file-exists? csdemoparser-dev-exe) [csdemoparser-dev-exe]
       (file-exists? csdemoparser-dev) [csdemoparser-dev]
+      (file-exists? demoinfogo-exe) [demoinfogo-exe "-hsbox"]
       (file-exists? demoinfogo) [demoinfogo "-hsbox"]
       :else (throw (Exception. (str "No demo parser found in '" demoinfo-dir-path "'"))))))
 
