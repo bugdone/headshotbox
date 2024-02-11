@@ -259,7 +259,6 @@ dependencies = [
  "protobuf",
  "protobuf-codegen",
  "serde",
- "smallvec",
  "snap",
  "thiserror",
  "tracing",

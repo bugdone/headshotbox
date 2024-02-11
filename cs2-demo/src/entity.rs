@@ -185,17 +185,17 @@ impl Entity {
         fps.clear();
         loop {
             fp.read(reader)?;
-            if fp.finished {
+            if fp.len() == 0 {
                 break;
             }
             fps.push(fp.clone());
         }
         for fp in fps {
-            let (prop, field) = self.property(&fp.data);
+            let (prop, field) = self.property(fp.data());
             *prop = (field.decoder())(reader)?;
 
             if enabled!(Level::TRACE) {
-                let (prop, field, name) = self.get_property(&fp.data);
+                let (prop, field, name) = self.get_property(fp.data());
                 match field {
                     Field::Value(_) | Field::Array(_) | Field::Vector(_) => {
                         trace!("{fp} {}: {} = {}", name, field.ctype(), prop.unwrap())
