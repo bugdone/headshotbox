@@ -8,8 +8,7 @@ use crate::proto::demo::CDemoSendTables;
 use crate::proto::netmessages::CSVCMsg_FlattenedSerializer;
 use crate::{Error, Result};
 
-use super::decoder::{Decoder, DecoderCache};
-use super::{Object, Property};
+use super::decoder::{decode_float32, decode_qangle, decode_vector, Decoder};
 
 #[derive(Debug, Default)]
 pub struct SendTables {
@@ -17,7 +16,7 @@ pub struct SendTables {
 }
 
 #[derive(Debug)]
-pub(super) struct Serializer {
+pub struct Serializer {
     pub(super) name: String,
     pub(super) fields: Vec<Field>,
 }
@@ -34,14 +33,14 @@ impl std::fmt::Display for Serializer {
 
 #[derive(Clone)]
 pub struct ValueField {
+    decoder: Decoder,
     var_name: Rc<str>,
     var_type: Rc<str>,
-    decoder: Decoder,
 }
 #[derive(Clone)]
 pub struct ArrayField {
-    pub(super) size: u16,
     decoder: Decoder,
+    pub(super) size: u16,
     pub(super) element: Box<Field>,
 }
 #[derive(Clone)]
@@ -51,9 +50,9 @@ pub struct VectorField {
 }
 #[derive(Clone)]
 pub struct ObjectField {
+    decoder: Decoder,
     var_name: Rc<str>,
     var_type: Rc<str>,
-    decoder: Decoder,
     pub(super) serializer: Rc<Serializer>,
 }
 
@@ -84,7 +83,7 @@ impl Field {
         }
     }
 
-    pub fn decoder(&self) -> &Decoder {
+    pub(super) fn decoder(&self) -> &Decoder {
         match self {
             Field::Value(v) => &v.decoder,
             Field::Object(v) => &v.decoder,
@@ -169,18 +168,12 @@ impl SentTableData {
 struct SendTableBuilder<'a> {
     data: &'a SentTableData,
     serializers: Vec<Option<Rc<Serializer>>>,
-    decoder_cache: DecoderCache,
 }
 
 impl<'a> SendTableBuilder<'a> {
     fn new(data: &'a SentTableData) -> Self {
         let serializers = vec![None; data.fs.serializers.len()];
-        let decoder_cache = DecoderCache::new();
-        Self {
-            data,
-            serializers,
-            decoder_cache,
-        }
+        Self { data, serializers }
     }
 
     fn build(mut self) -> Result<SendTables> {
@@ -255,19 +248,18 @@ impl<'a> SendTableBuilder<'a> {
         let ctype = CType::parse(var_type.as_ref());
         let field = if let Some(serializer) = serializer {
             let decoder = if !polymorphic_types.is_empty() {
-                self.decoder_cache.decode_polymorphic(serializer.clone())
+                Decoder::Polymorphic(serializer.clone())
             } else {
-                self.decoder_cache.decode_object(serializer.clone())
+                Decoder::Object(serializer.clone())
             };
             Field::Object(ObjectField {
-                var_name,
+                var_name: Rc::clone(&var_name),
                 var_type: Rc::clone(&var_type),
                 decoder,
                 serializer,
             })
         } else {
             let decoder = make_decoder(
-                &self.decoder_cache,
                 ctype.0,
                 encoder,
                 fsf.bit_count(),
@@ -276,42 +268,34 @@ impl<'a> SendTableBuilder<'a> {
                 fsf.encode_flags(),
             );
             Field::Value(ValueField {
-                var_name,
+                var_name: Rc::clone(&var_name),
                 var_type: Rc::clone(&var_type),
                 decoder,
             })
         };
         match ctype.2 {
             ArraySize::None => field,
-            ArraySize::Fixed(size) => {
-                let decoder = match ctype.0 {
-                    "char" => Rc::clone(&self.decoder_cache.string),
-                    _ => self.decoder_cache.decode_fixed_array(size),
-                };
-                Field::Array(ArrayField {
+            ArraySize::Fixed(size) => match ctype.0 {
+                "char" => Field::Value(ValueField {
+                    var_name,
+                    var_type,
+                    decoder: Decoder::String,
+                }),
+                _ => Field::Array(ArrayField {
                     size,
-                    decoder,
+                    decoder: Decoder::None,
                     element: Box::new(field),
-                })
-            }
-            ArraySize::Variable => {
-                let init = match &field {
-                    Field::Value(_) => None,
-                    Field::Object(o) => Some(Property::Object(Object::new(&o.serializer))),
-                    Field::Array(_) | Field::Vector(_) => todo!(),
-                };
-                let decoder = self.decoder_cache.decode_var_array(init);
-                Field::Vector(VectorField {
-                    decoder,
-                    element: Box::new(field),
-                })
-            }
+                }),
+            },
+            ArraySize::Variable => Field::Vector(VectorField {
+                decoder: Decoder::U32,
+                element: Box::new(field),
+            }),
         }
     }
 }
 
 fn make_decoder(
-    cache: &DecoderCache,
     base_type: &str,
     encoder: Option<&str>,
     bit_count: i32,
@@ -326,11 +310,11 @@ fn make_decoder(
         | "BeamType_t"
         | "CEntityIndex"
         | "EntityDisolveType_t"
-        | "HSequence" => Rc::clone(&cache.signed),
+        | "HSequence" => Decoder::I32,
         "uint64" | "CStrongHandle" => match encoder {
-            Some("fixed64") => Rc::clone(&cache.fixed64),
+            Some("fixed64") => Decoder::Fixed64,
             Some(s) => todo!("{}", s),
-            None => Rc::clone(&cache.uint64),
+            None => Decoder::U64,
         },
         "uint8"
         | "uint16"
@@ -382,24 +366,20 @@ fn make_decoder(
         | "ValueRemapperOutputType_t"
         | "WeaponAttackType_t"
         | "WeaponState_t"
-        | "WorldGroupId_t" => Rc::clone(&cache.unsigned),
-        "bool" => Rc::clone(&cache.bool),
+        | "WorldGroupId_t" => Decoder::U32,
+        "bool" => Decoder::Bool,
         "float32" | "CNetworkedQuantizedFloat" => {
-            cache.decode_float32(encoder, bit_count, low_value, high_value, encode_flags)
+            decode_float32(encoder, bit_count, low_value, high_value, encode_flags)
         }
-        "char" | "CUtlString" | "CUtlSymbolLarge" => Rc::clone(&cache.string),
-        "GameTime_t" => Rc::clone(&cache.noscale),
-        "QAngle" => cache.decode_qangle(encoder, bit_count),
-        "Vector2D" => {
-            cache.decode_vector(2, encoder, bit_count, low_value, high_value, encode_flags)
-        }
-        "Vector" => cache.decode_vector(3, encoder, bit_count, low_value, high_value, encode_flags),
+        "char" | "CUtlString" | "CUtlSymbolLarge" => Decoder::String,
+        "GameTime_t" => Decoder::NoScale,
+        "QAngle" => decode_qangle(encoder, bit_count),
+        "Vector2D" => decode_vector(2, encoder, bit_count, low_value, high_value, encode_flags),
+        "Vector" => decode_vector(3, encoder, bit_count, low_value, high_value, encode_flags),
         "Vector4D" | "Quaternion" => {
-            cache.decode_vector(4, encoder, bit_count, low_value, high_value, encode_flags)
+            decode_vector(4, encoder, bit_count, low_value, high_value, encode_flags)
         }
-        "CTransform" => {
-            cache.decode_vector(6, encoder, bit_count, low_value, high_value, encode_flags)
-        }
+        "CTransform" => decode_vector(6, encoder, bit_count, low_value, high_value, encode_flags),
         _ => todo!("{}", base_type),
     }
 }

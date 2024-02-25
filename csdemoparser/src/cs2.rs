@@ -7,7 +7,7 @@ use crate::game_event::GameEvent;
 use crate::last_jump::LastJump;
 use crate::Tick;
 use crate::{DemoInfo, Slot, UserId};
-use cs2_demo::entity::Entities;
+use cs2_demo::entity::{EntityList, TreeEntity};
 use cs2_demo::proto::demo::CDemoFileHeader;
 use cs2_demo::proto::gameevents::CMsgSource1LegacyGameEvent;
 use cs2_demo::{GameEventDescriptors, UserInfo, Visitor};
@@ -16,7 +16,7 @@ use tracing::{instrument, trace};
 
 pub fn parse(read: &mut dyn std::io::Read) -> anyhow::Result<DemoInfo> {
     let mut state = GameState::new();
-    cs2_demo::parse(read, &mut state)?;
+    cs2_demo::parse(read, &mut state, &TreeEntity::factory)?;
     state.get_info()
 }
 
@@ -60,7 +60,7 @@ impl Visitor for GameState {
         &mut self,
         event: CMsgSource1LegacyGameEvent,
         tick: Tick,
-        _entities: &Entities,
+        _entities: &EntityList,
     ) -> anyhow::Result<()> {
         if let Some(descriptor) = self.game_event_descriptors.get(&event.eventid()) {
             let event = cs2_demo::game_event::de::from_proto(event, descriptor)?;

@@ -2,159 +2,143 @@ use std::rc::Rc;
 
 use bitstream_io::BitRead;
 
-use super::{send_tables::Serializer, Object, Property};
+use super::{property::Object, send_tables::Serializer, Property};
 use crate::{read::ValveBitReader, BitReader};
 
-pub(super) type Decoder = Rc<dyn Fn(&mut BitReader) -> std::io::Result<Option<Property>>>;
-
-pub(super) struct DecoderCache {
-    pub(super) noscale: Decoder,
-    pub(super) simtime: Decoder,
-    pub(super) bool: Decoder,
-    pub(super) coord: Decoder,
-    pub(super) unsigned: Decoder,
-    pub(super) signed: Decoder,
-    pub(super) string: Decoder,
-    pub(super) qangle_precise: Decoder,
-    pub(super) qangle_coord: Decoder,
-    pub(super) uint64: Decoder,
-    pub(super) fixed64: Decoder,
-    pub(super) normal_vec: Decoder,
+#[derive(Clone)]
+pub(super) enum Decoder {
+    None,
+    Quantized(QuantizedParams),
+    NoScale,
+    Simtime,
+    Bool,
+    Coord,
+    I32,
+    U32,
+    U64,
+    Fixed64,
+    String,
+    QAnglePrecise,
+    QAngleCoord,
+    QAngle(u32),
+    VectorNormal,
+    VectorCoord(u8),
+    VectorNoScale(u8),
+    Object(Rc<Serializer>),
+    Polymorphic(Rc<Serializer>),
 }
 
-impl DecoderCache {
-    pub(super) fn new() -> Self {
-        Self {
-            noscale: Rc::new(decode_noscale),
-            simtime: Rc::new(decode_simtime),
-            coord: Rc::new(decode_coord),
-            bool: Rc::new(decode_bool),
-            unsigned: Rc::new(decode_unsigned),
-            signed: Rc::new(decode_signed),
-            string: Rc::new(decode_string),
-            qangle_precise: Rc::new(decode_qangle_precise),
-            qangle_coord: Rc::new(decode_qangle_coord),
-            uint64: Rc::new(decode_uint64),
-            fixed64: Rc::new(decode_fixed64),
-            normal_vec: Rc::new(decode_normal_vec),
+impl Decoder {
+    pub(super) fn decode(&self, reader: &mut BitReader) -> std::io::Result<Option<Property>> {
+        match self {
+            Decoder::Quantized(qp) => decode_quantized(reader, qp),
+            Decoder::NoScale => decode_noscale(reader),
+            Decoder::Simtime => decode_simtime(reader),
+            Decoder::Bool => decode_bool(reader),
+            Decoder::Coord => decode_coord(reader),
+            Decoder::I32 => decode_signed(reader),
+            Decoder::U32 => decode_unsigned(reader),
+            Decoder::U64 => decode_uint64(reader),
+            Decoder::Fixed64 => decode_fixed64(reader),
+            Decoder::String => decode_string(reader),
+            Decoder::QAnglePrecise => decode_qangle_precise(reader),
+            Decoder::QAngleCoord => decode_qangle_coord(reader),
+            Decoder::QAngle(bit_count) => decode_qangle3(reader, *bit_count),
+            Decoder::VectorNormal => decode_vector_normal(reader),
+            Decoder::VectorCoord(size) => decode_vector_coord(reader, *size),
+            Decoder::VectorNoScale(size) => decode_vector_noscale(reader, *size),
+            Decoder::Object(serializer) => decode_object(reader, serializer),
+            Decoder::Polymorphic(serializer) => decode_polymorphic(reader, serializer),
+            Decoder::None => unreachable!(),
         }
     }
+}
 
-    pub(super) fn decode_float32(
-        &self,
-        encoder: Option<&str>,
-        bit_count: i32,
-        low: f32,
-        high: f32,
-        flags: i32,
-    ) -> Decoder {
-        match encoder {
-            Some("coord") => Rc::clone(&self.coord),
-            Some("simtime") => Rc::clone(&self.simtime),
-            Some(_) => todo!(),
-            None => {
-                if bit_count == 0 || bit_count >= 32 {
-                    assert!(flags == 0 && low == 0.0 && high == 1.0);
-                    return Rc::clone(&self.noscale);
-                }
-                return decode_quantized(bit_count, low, high, flags);
-            }
-        }
-    }
-
-    pub(super) fn decode_qangle(&self, encoder: Option<&str>, bit_count: i32) -> Decoder {
-        match encoder {
-            Some("qangle_precise") => Rc::clone(&self.qangle_precise),
-            Some("qangle") => {
-                if bit_count != 0 {
-                    Rc::new(move |reader| {
-                        Ok(Some(Property::Vec3([
-                            reader.read_angle(bit_count as u32)?,
-                            reader.read_angle(bit_count as u32)?,
-                            reader.read_angle(bit_count as u32)?,
-                        ])))
-                    })
-                } else {
-                    Rc::clone(&self.qangle_coord)
-                }
-            }
-            Some(s) => todo!("{}", s),
-            None => todo!(),
-        }
-    }
-
-    pub(super) fn decode_object(&self, serializer: Rc<Serializer>) -> Decoder {
-        Rc::new(move |reader| {
-            if reader.read_bit()? {
-                let object = Object::new(&serializer);
-                Ok(Some(Property::Object(object)))
+pub(super) fn decode_float32(
+    encoder: Option<&str>,
+    bit_count: i32,
+    low: f32,
+    high: f32,
+    flags: i32,
+) -> Decoder {
+    match encoder {
+        Some("coord") => Decoder::Coord,
+        Some("simtime") => Decoder::Simtime,
+        Some(_) => todo!(),
+        None => {
+            if bit_count == 0 || bit_count >= 32 {
+                assert!(flags == 0 && low == 0.0 && high == 1.0);
+                Decoder::NoScale
             } else {
-                Ok(None)
+                Decoder::Quantized(quantized_params(bit_count, low, high, flags))
             }
-        })
-    }
-
-    pub(super) fn decode_polymorphic(&self, serializer: Rc<Serializer>) -> Decoder {
-        Rc::new(move |reader| {
-            if reader.read_bit()? {
-                let _polymorphic_index = reader.read_ubitvar()?;
-                // TODO this should create an object based on _polymorphic_index
-                let object = Object::new(&serializer);
-                Ok(Some(Property::Object(object)))
-            } else {
-                Ok(None)
-            }
-        })
-    }
-
-    pub(super) fn decode_fixed_array(&self, size: u16) -> Decoder {
-        Rc::new(move |_| Ok(Some(Property::Array(vec![None; size as usize]))))
-    }
-
-    pub(super) fn decode_var_array(&self, init: Option<Property>) -> Decoder {
-        Rc::new(move |r| {
-            let vec = vec![init.clone(); r.read_varuint32()? as usize];
-            Ok(Some(Property::Array(vec)))
-        })
-    }
-
-    pub(crate) fn decode_vector(
-        &self,
-        size: u8,
-        encoder: Option<&str>,
-        bit_count: i32,
-        low_value: f32,
-        high_value: f32,
-        encode_flags: i32,
-    ) -> Decoder {
-        assert!(
-            (bit_count == 0 || bit_count == 32)
-                && low_value == 0.0
-                && high_value == 1.0
-                && encode_flags == 0
-        );
-        match encoder {
-            Some("normal") => {
-                assert!(size == 3);
-                Rc::clone(&self.normal_vec)
-            }
-            // TODO: cache
-            Some("coord") => match size {
-                2 => Rc::new(|r| decode_vector2(r, decode_coord_f32)),
-                3 => Rc::new(|r| decode_vector3(r, decode_coord_f32)),
-                4 => Rc::new(|r| decode_vector4(r, decode_coord_f32)),
-                6 => Rc::new(|r| decode_vector6(r, decode_coord_f32)),
-                _ => unreachable!(),
-            },
-            None => match size {
-                2 => Rc::new(|r| decode_vector2(r, decode_noscale_f32)),
-                3 => Rc::new(|r| decode_vector3(r, decode_noscale_f32)),
-                4 => Rc::new(|r| decode_vector4(r, decode_noscale_f32)),
-                6 => Rc::new(|r| decode_vector6(r, decode_noscale_f32)),
-                _ => unreachable!(),
-            },
-            _ => unimplemented!("vector encoder {}", encoder.unwrap()),
         }
+    }
+}
+
+pub(super) fn decode_qangle(encoder: Option<&str>, bit_count: i32) -> Decoder {
+    match encoder {
+        Some("qangle_precise") => Decoder::QAnglePrecise,
+        Some("qangle") => {
+            if bit_count != 0 {
+                Decoder::QAngle(bit_count as u32)
+            } else {
+                Decoder::QAngleCoord
+            }
+        }
+        Some(s) => todo!("{}", s),
+        None => todo!(),
+    }
+}
+
+pub(super) fn decode_object(
+    reader: &mut BitReader,
+    serializer: &Rc<Serializer>,
+) -> std::io::Result<Option<Property>> {
+    if reader.read_bit()? {
+        let object = Object::new(serializer);
+        Ok(Some(Property::Object(object)))
+    } else {
+        Ok(None)
+    }
+}
+
+pub(super) fn decode_polymorphic(
+    reader: &mut BitReader,
+    serializer: &Rc<Serializer>,
+) -> std::io::Result<Option<Property>> {
+    if reader.read_bit()? {
+        let _polymorphic_index = reader.read_ubitvar()?;
+        // TODO this should create an object based on _polymorphic_index
+        let object = Object::new(serializer);
+        Ok(Some(Property::Object(object)))
+    } else {
+        Ok(None)
+    }
+}
+
+pub(crate) fn decode_vector(
+    size: u8,
+    encoder: Option<&str>,
+    bit_count: i32,
+    low_value: f32,
+    high_value: f32,
+    encode_flags: i32,
+) -> Decoder {
+    assert!(
+        (bit_count == 0 || bit_count == 32)
+            && low_value == 0.0
+            && high_value == 1.0
+            && encode_flags == 0
+    );
+    match encoder {
+        Some("normal") => {
+            assert!(size == 3);
+            Decoder::VectorNormal
+        }
+        Some("coord") => Decoder::VectorCoord(size),
+        None => Decoder::VectorNoScale(size),
+        _ => unimplemented!("vector encoder {}", encoder.unwrap()),
     }
 }
 
@@ -179,28 +163,28 @@ fn decode_coord(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
     Ok(Some(Property::F32(decode_coord_f32(reader)?)))
 }
 
-fn decode_bool(r: &mut BitReader) -> std::io::Result<Option<Property>> {
-    Ok(Some(Property::Bool(r.read_bit()?)))
+fn decode_bool(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
+    Ok(Some(Property::Bool(reader.read_bit()?)))
 }
 
-fn decode_unsigned(r: &mut BitReader) -> std::io::Result<Option<Property>> {
-    Ok(Some(Property::U32(r.read_varuint32()?)))
+fn decode_unsigned(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
+    Ok(Some(Property::U32(reader.read_varuint32()?)))
 }
 
-fn decode_signed(r: &mut BitReader) -> std::io::Result<Option<Property>> {
-    Ok(Some(Property::I32(r.read_signed_varint32()?)))
+fn decode_signed(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
+    Ok(Some(Property::I32(reader.read_signed_varint32()?)))
 }
 
-fn decode_uint64(r: &mut BitReader) -> std::io::Result<Option<Property>> {
-    Ok(Some(Property::U64(r.read_varuint64()?)))
+fn decode_uint64(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
+    Ok(Some(Property::U64(reader.read_varuint64()?)))
 }
 
-fn decode_fixed64(r: &mut BitReader) -> std::io::Result<Option<Property>> {
-    Ok(Some(Property::U64(r.read::<u64>(64)?)))
+fn decode_fixed64(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
+    Ok(Some(Property::U64(reader.read::<u64>(64)?)))
 }
 
-fn decode_string(r: &mut BitReader) -> std::io::Result<Option<Property>> {
-    Ok(Some(Property::Str(Box::from(r.read_string()?))))
+fn decode_string(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
+    Ok(Some(Property::Str(Box::from(reader.read_string()?))))
 }
 
 const ROUNDDOWN: i32 = 1 << 0;
@@ -208,28 +192,18 @@ const ROUNDUP: i32 = 1 << 1;
 const ENCODE_ZERO_EXACTLY: i32 = 1 << 2;
 const ENCODE_INTEGERS_EXACTLY: i32 = 1 << 3;
 
-fn decode_quantized(bit_count: i32, low: f32, high: f32, flags: i32) -> Decoder {
-    let QuantizedParams {
-        bit_count,
-        low,
-        high,
-        flags,
-        decode_mul,
-    } = quantized_params(bit_count, low, high, flags);
-
-    Rc::new(move |r: &mut BitReader| {
-        let val = if flags & ROUNDDOWN != 0 && r.read_bit()? {
-            low
-        } else if flags & ROUNDUP != 0 && r.read_bit()? {
-            high
-        } else if flags & ENCODE_ZERO_EXACTLY != 0 && r.read_bit()? {
-            0f32
-        } else {
-            let u = r.read::<u32>(bit_count as u32)?;
-            low + (high - low) * (u as f32 * decode_mul)
-        };
-        Ok(Some(Property::F32(val)))
-    })
+fn decode_quantized(r: &mut BitReader, p: &QuantizedParams) -> std::io::Result<Option<Property>> {
+    let val = if p.flags & ROUNDDOWN != 0 && r.read_bit()? {
+        p.low
+    } else if p.flags & ROUNDUP != 0 && r.read_bit()? {
+        p.high
+    } else if p.flags & ENCODE_ZERO_EXACTLY != 0 && r.read_bit()? {
+        0f32
+    } else {
+        let u = r.read::<u32>(p.bit_count as u32)?;
+        p.low + (p.high - p.low) * (u as f32 * p.decode_mul)
+    };
+    Ok(Some(Property::F32(val)))
 }
 
 fn validate_flags(low: f32, high: f32, mut flags: i32) -> i32 {
@@ -254,8 +228,8 @@ fn validate_flags(low: f32, high: f32, mut flags: i32) -> i32 {
     flags
 }
 
-#[derive(Debug, PartialEq)]
-struct QuantizedParams {
+#[derive(Clone, Debug, PartialEq)]
+pub(super) struct QuantizedParams {
     bit_count: i32,
     low: f32,
     high: f32,
@@ -345,51 +319,59 @@ fn quantized_params(
     }
 }
 
-fn decode_qangle_precise(r: &mut BitReader) -> std::io::Result<Option<Property>> {
+fn decode_qangle3(reader: &mut BitReader, bit_count: u32) -> std::io::Result<Option<Property>> {
+    Ok(Some(Property::Vec3([
+        reader.read_angle(bit_count)?,
+        reader.read_angle(bit_count)?,
+        reader.read_angle(bit_count)?,
+    ])))
+}
+
+fn decode_qangle_precise(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
     let mut vec = [0.0; 3];
-    let has_x = r.read_bit()?;
-    let has_y = r.read_bit()?;
-    let has_z = r.read_bit()?;
+    let has_x = reader.read_bit()?;
+    let has_y = reader.read_bit()?;
+    let has_z = reader.read_bit()?;
     if has_x {
-        vec[0] = r.read_angle(20)? - 180.0;
+        vec[0] = reader.read_angle(20)? - 180.0;
     }
     if has_y {
-        vec[1] = r.read_angle(20)? - 180.0;
+        vec[1] = reader.read_angle(20)? - 180.0;
     }
     if has_z {
-        vec[2] = r.read_angle(20)? - 180.0;
+        vec[2] = reader.read_angle(20)? - 180.0;
     }
     Ok(Some(Property::Vec3(vec)))
 }
 
-fn decode_qangle_coord(r: &mut BitReader) -> std::io::Result<Option<Property>> {
+fn decode_qangle_coord(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
     let mut vec = [0.0; 3];
-    let has_x = r.read_bit()?;
-    let has_y = r.read_bit()?;
-    let has_z = r.read_bit()?;
+    let has_x = reader.read_bit()?;
+    let has_y = reader.read_bit()?;
+    let has_z = reader.read_bit()?;
     if has_x {
-        vec[0] = r.read_coord()?;
+        vec[0] = reader.read_coord()?;
     }
     if has_y {
-        vec[1] = r.read_coord()?;
+        vec[1] = reader.read_coord()?;
     }
     if has_z {
-        vec[2] = r.read_coord()?;
+        vec[2] = reader.read_coord()?;
     }
     Ok(Some(Property::Vec3(vec)))
 }
 
-fn decode_normal_vec(r: &mut BitReader) -> std::io::Result<Option<Property>> {
+fn decode_vector_normal(reader: &mut BitReader) -> std::io::Result<Option<Property>> {
     let mut vec = [0.0; 3];
-    let has_x = r.read_bit()?;
-    let has_y = r.read_bit()?;
+    let has_x = reader.read_bit()?;
+    let has_y = reader.read_bit()?;
     if has_x {
-        vec[0] = r.read_normal()?;
+        vec[0] = reader.read_normal()?;
     }
     if has_y {
-        vec[1] = r.read_normal()?;
+        vec[1] = reader.read_normal()?;
     }
-    let neg_z = r.read_bit()?;
+    let neg_z = reader.read_bit()?;
     let prod_sum = vec[0] * vec[0] + vec[1] * vec[1];
     if prod_sum < 1.0 {
         vec[2] = (1.0 - prod_sum).sqrt();
@@ -403,6 +385,26 @@ fn decode_normal_vec(r: &mut BitReader) -> std::io::Result<Option<Property>> {
 }
 
 type DecodeF32 = fn(r: &mut BitReader) -> std::io::Result<f32>;
+
+fn decode_vector_coord(r: &mut BitReader, size: u8) -> std::io::Result<Option<Property>> {
+    match size {
+        2 => decode_vector2(r, decode_coord_f32),
+        3 => decode_vector3(r, decode_coord_f32),
+        4 => decode_vector4(r, decode_coord_f32),
+        6 => decode_vector6(r, decode_coord_f32),
+        _ => unreachable!(),
+    }
+}
+
+fn decode_vector_noscale(r: &mut BitReader, size: u8) -> std::io::Result<Option<Property>> {
+    match size {
+        2 => decode_vector2(r, decode_noscale_f32),
+        3 => decode_vector3(r, decode_noscale_f32),
+        4 => decode_vector4(r, decode_noscale_f32),
+        6 => decode_vector6(r, decode_noscale_f32),
+        _ => unreachable!(),
+    }
+}
 
 fn decode_vector2(r: &mut BitReader, decoder: DecodeF32) -> std::io::Result<Option<Property>> {
     let vec = [decoder(r)?, decoder(r)?];

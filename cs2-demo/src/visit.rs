@@ -3,7 +3,7 @@ use std::io::Read;
 use tracing::{trace, trace_span};
 
 use crate::demo_command::{DemoCommand, DemoParser};
-use crate::entity::{Classes, Entities, SendTables};
+use crate::entity::{Classes, EntityFactory, EntityList, SendTables};
 use crate::game_event::{parse_game_event_list, GameEventDescriptors};
 use crate::message::Message;
 use crate::packet::Packet;
@@ -30,7 +30,7 @@ pub trait Visitor {
         &mut self,
         _game_event: CMsgSource1LegacyGameEvent,
         _tick: Tick,
-        _entities: &Entities,
+        _entities: &EntityList,
     ) -> anyhow::Result<()> {
         Ok(())
     }
@@ -42,24 +42,33 @@ pub trait Visitor {
     }
 }
 
-pub fn parse(read: &mut dyn Read, visitor: &mut dyn Visitor) -> Result<()> {
-    DemoVisit::new(DemoParser::try_new(read)?, visitor).parse()
+pub fn parse(
+    read: &mut dyn Read,
+    visitor: &mut dyn Visitor,
+    entity_factory: EntityFactory,
+) -> Result<()> {
+    DemoVisit::new(DemoParser::try_new(read)?, visitor, entity_factory).parse()
 }
 
 struct DemoVisit<'a> {
     parser: DemoParser<'a>,
     visitor: &'a mut dyn Visitor,
-    send_tables: Option<SendTables>,
     classes: Option<Classes>,
+    entities: EntityList,
     // Information necessary to parse UpdateStringTable.
     string_tables: Vec<Option<StringTableInfo>>,
-    // Data from "instancebaselines" string table cached until `classes` gets created.
+    // Stored temporarily until ClassInfo.
+    send_tables: Option<SendTables>,
+    // Data from "instancebaselines" string table stored temporarily until `classes` gets created.
     instance_baselines: StringTableData,
-    entities: Entities,
 }
 
 impl<'a> DemoVisit<'a> {
-    fn new(parser: DemoParser<'a>, visitor: &'a mut dyn Visitor) -> Self {
+    fn new(
+        parser: DemoParser<'a>,
+        visitor: &'a mut dyn Visitor,
+        entity_factory: EntityFactory,
+    ) -> Self {
         Self {
             parser,
             visitor,
@@ -67,7 +76,7 @@ impl<'a> DemoVisit<'a> {
             classes: None,
             string_tables: Default::default(),
             instance_baselines: Default::default(),
-            entities: Default::default(),
+            entities: EntityList::new(entity_factory),
         }
     }
 }
